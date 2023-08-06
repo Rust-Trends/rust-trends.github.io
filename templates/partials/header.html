@@ -68,6 +68,14 @@
         <link rel="icon" type="image/png" href={{ config.extra.favicon }} />
     {% endif %}
 
+    {# Font from cdn or disk #}
+    {% if config.extra.use_cdn | default(value=false) %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css">
+    {% else %}
+        <link href={{ get_url(path="fonts.css") }} rel="stylesheet" />
+    {% endif %}
+
     {# Analytics #}
     {% if config.extra.analytics.enabled and config.extra.analytics.goatcounter_user %}
         {% set user = config.extra.analytics.goatcounter_user %}
