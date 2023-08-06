@@ -30,12 +30,12 @@ theme = "dark"
 # mathjax_dollar_inline_enable = true
 
 menu = [
-    { name = "/newsletter", url = "/newsletter", weight = 1 },
-    { name = "/posts", url = "/posts", weight = 2 },
-    { name = "/faq", url = "/faq", weight = 3 },
-    { name = "/about", url = "/about", weight = 4 },
-    { name = "/contact", url = "/contact", weight = 5 },
-    { name = "/sign up", url = "/signup", weight = 6 },
+    { name = "/newsletter", url = "/newsletter/", weight = 1, slash = true },
+    { name = "/posts", url = "/posts/", weight = 2, slash = true },
+    { name = "/faq", url = "/faq/", weight = 3, slash = true },
+    { name = "/about", url = "/about/", weight = 4, slash = true },
+    { name = "/contact", url = "/contact/", weight = 5, slash = true },
+    { name = "/sign up", url = "/signup/", weight = 6, slash = true },
 ]
 
 
