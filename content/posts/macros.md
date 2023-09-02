@@ -2,7 +2,7 @@
 title = "Rust Macros Revealed!"
 date = "2023-08-06"
 slug = "Rust Macros Revealed"
-description = "Explore the power and intricacies of Rust macros and dive into their transformative capabilities. Understand how tools like cargo expand reveal the magic behind macros, using the Actix Web server example with the Tokio runtime. Demystify the boilerplate and embrace meta-programming in Rust."
+description = "Delve into Rust macros' transformative potential. See how tools like 'cargo expand' unveil macro magic, illustrated with Actix Web & Tokio runtime. Simplify boilerplate and master Rust meta-programming."
 +++
 # Macros in Rust
 In the world of programming, repetition is often seen as a bad thing. Rust macros provide a way to avoid repetitive code, allowing you to define reusable code templates. Unlike functions, macros don't operate on values; instead, they operate on the code itself.
