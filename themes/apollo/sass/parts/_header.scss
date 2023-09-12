@@ -67,14 +67,23 @@ header .main {
   letter-spacing: -0.5px;
 }
 
-h1,
-h2,
+h1 {
+  font-size: 1.6rem;
+  margin-top: 2em;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+
 h3,
 h4,
 h5,
 h6 {
-  font-size: 1.2rem;
-  margin-top: 2em;
+  font-size: 1.1rem;
+  margin-top: 1.8em;
 }
 
 h1::before {
