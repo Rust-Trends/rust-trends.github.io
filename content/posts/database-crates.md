@@ -2,7 +2,7 @@
 title = "Choosing a Rust Database Crate in 2023: Diesel, SQLx, or Tokio-Postgres?"
 date = "2023-09-12"
 slug = "database-crates-diesel-sqlx-tokio-postgress"
-description = ""
+description = "Explore the pros and cons of Diesel, SQLx, and Tokio-Postgres in Rust development. This comprehensive guide helps you choose the right database crate for your next Rust project, covering performance, type safety, and community support."
 +++
 
 # Introduction
