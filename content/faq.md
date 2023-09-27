@@ -16,4 +16,4 @@ The easiest way to install Rust is with an installer called <a href="https://rus
 If you do not want to install anything this might be something for you <a href="https://play.rust-lang.org/" target="_blank">Rust Playground</a>.
 
 # What is the best way to learn Rust?
-Rust is known for its great documentation. This is the official starting point to <a href="https://www.rust-lang.org/learn" target="_blank">Learn Rust</a>.
+Rust is known for its great documentation. This is the official starting point to <a href="https://www.rust-lang.org/learn" target="_blank">Learn Rust</a>. For more resources look at our [Newsletter Edition 26](/newsletter/rust-101-the-best-learning-resources-compiled/) 
