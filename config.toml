@@ -23,7 +23,7 @@ highlight_code = true
 # Put all your custom variables here
 toc = true
 use_cdn = false
-# favicon = "/icon/favicon.png"
+favicon = "icon/favicon.ico"
 theme = "dark"      
 # mode = "toggle"
 # mathjax = true
