@@ -3,6 +3,8 @@ title = "Choosing a Rust Database Crate in 2023: Diesel, SQLx, or Tokio-Postgres
 date = "2023-09-12"
 slug = "database-crates-diesel-sqlx-tokio-postgress"
 description = "Explore the pros and cons of Diesel, SQLx, and Tokio-Postgres in Rust development. This comprehensive guide helps you choose the right database crate for your next Rust project, covering performance, type safety, and community support."
+[extra]
+edited = "2024-01-11"
 +++
 
 # Introduction
@@ -70,10 +72,13 @@ __Diesel__ is a safe, extensible Object-Relational Mapping (ORM) and query-build
 2. **Strong Type System**
     - One of __Diesel__'s major highlights is its strong type system that ties into Rust's native type system. This adds an additional layer of safety, ensuring that you are less likely to make mistakes when writing queries.
 
-3. **Asynchronous Support (with tokio-diesel)**
-    - While __Diesel__ itself is synchronous, you can integrate it with the async runtime by using third-party extensions like `tokio-diesel`, which allows you to run __Diesel__ queries within an asynchronous Tokio runtime.
+3. **Asynchronous Support (with diesel-async)**
+    - While __Diesel__ itself is synchronous, you can integrate it with the async runtime by using third-party extensions like `diesel-async`.
 
-4. **Data Migration Tools**
+4. **Compatibility with Connection Poolers**
+    - While the library itself doesn't offer built-in connection pooling, it is designed to work seamlessly with third-party connection poolers like `bb8` and `deadpool`. This makes it flexible and adaptable to various use-cases.
+    - 
+5. **Data Migration Tools**
     - __Diesel__'s robust type system and built-in migration support make it a good fit for data migration tasks.
 
 ## Community and Ecosystem
@@ -122,18 +127,18 @@ __Tokio-Postgres__ benefits from being a part of the larger Tokio ecosystem, whi
 ___
 # Feature Matrix Comparison
 
-| Feature                          | `diesel`           | `sqlx`         | `tokio-postgres` |
-|----------------------------------|--------------------|----------------|-----------------------------|
-| Asynchronous support             | Yes with `tokio-diesel`| Yes        | Yes                         |
-| Synchronous support              | Yes                | No             | Yes (`postgres`)            |
-| ORM (Object Relational Mapping)  | Yes                | No             | No                          |
-| Compile-time SQL verification    | Yes                | Yes            | No                          |
-| Raw SQL execution                | Yes                | Yes            | Yes                         |
-| Connection pooling               | Via `r2d2`         | Built-in       | Via `bb8` or `deadpool`     |
-| Macros for query generation      | Yes                | Yes            | No                          |
-| Supports multiple databases      | Yes                | Yes            | No (PostgreSQL specific)    |
-| Integrated migration tools       | Yes                | Yes            | No                          |
-| Query Interface                  | DSL & Raw SQL      | Raw SQL with Macros | Raw SQL                |
+| Feature                          | `diesel`               | `sqlx`         | `tokio-postgres` |
+|----------------------------------|------------------------|----------------|-----------------------------|
+| Asynchronous support             | Yes with `diesel-async`| Yes            | Yes                         |
+| Synchronous support              | Yes                    | No             | Yes (`postgres`)            |
+| ORM (Object Relational Mapping)  | Yes                    | No             | No                          |
+| Compile-time SQL verification    | Yes                    | Yes            | No                          |
+| Raw SQL execution                | Yes                    | Yes            | Yes                         |
+| Connection pooling               | Via `bb8` or `deadpool`| Built-in       | Via `bb8` or `deadpool`     |
+| Macros for query generation      | Yes                    | Yes            | No                          |
+| Supports multiple databases      | Yes                    | Yes            | No (PostgreSQL specific)    |
+| Integrated migration tools       | Yes                    | Yes            | No                          |
+| Query Interface                  | DSL & Raw SQL          | Raw SQL with Macros | Raw SQL                |
 
 In this context:
 - **DSL (Domain Specific Language)**: `diesel` offers a Rust-based DSL to construct queries, which allows for more type safety and is more idiomatic to Rust. You can also use raw SQL if desired.
