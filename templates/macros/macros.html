@@ -73,6 +73,10 @@
                         Posted on <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
                     {% endif %}
 
+                    {% if page.extra.edited %}
+                        , last edited on <time>{{ page.extra.edited | date(format="%Y-%m-%d") }}</time>
+                    {% endif %}
+
                     {% if page.draft %}
                         <span class="draft-label">DRAFT</span> 
                     {% endif %}
