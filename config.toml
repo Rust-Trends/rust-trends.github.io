@@ -30,6 +30,7 @@ theme = "dark"
 # mathjax_dollar_inline_enable = true
 
 menu = [
+    { name = "/subscribe and win!", url = "/win/", weight = 1, slash = true },
     { name = "/newsletter", url = "/newsletter/", weight = 1, slash = true },
     { name = "/posts", url = "/posts/", weight = 2, slash = true },
     { name = "/faq", url = "/faq/", weight = 3, slash = true },
