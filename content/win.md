@@ -17,8 +17,8 @@ This April 2024, we're thrilled to announce a partnership with CodeCrafters to o
 - Risk-Free Learning: With nothing to lose, there’s no better time to explore and expand your knowledge.
 
 # 🔥 How Can You Participate?
-1. Subscribe to "Rust Trends": Get the latest insights, updates, and tutorials in Rust, plus your chance to win one of the valuable subscriptions.
-2. [Sign Up for the CodeCrafters Challenge](https://app.codecrafters.io/join?via=Rust-Trends): Join the challenge for free and start your journey to mastering Rust by building an HTTP server from scratch.
+1. <a href="/signup/">Subscribe to Rust Trends</a>: Get the latest insights, updates, and tutorials in Rust, plus your chance to win one of the valuable subscriptions.
+2. <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">Sign Up for the CodeCrafters Challenge</a>: Join the challenge for free and start your journey to mastering Rust by building an HTTP server from scratch.
 3. Unleash Your Potential: Take this unique opportunity to deepen your understanding and capabilities in Rust.
 
 🌐 Don't let this chance slip by! Join fellow Rust enthusiasts and start your transformational journey in Rust programming today. Let’s code, learn, and grow together. Sign up now and be part of this exciting adventure!
