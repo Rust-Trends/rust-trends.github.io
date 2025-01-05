@@ -9,11 +9,11 @@ build_search_index = false
 theme = "apollo"
 
 
-generate_feed = true
+generate_feeds = true
 compile_sass = true
 minify_html = true
 
-feed_filename = "rss.xml"
+feed_filenames = ["rss.xml"]
 
 [markdown]
 # Whether to do syntax highlighting

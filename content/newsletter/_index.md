@@ -1,6 +1,6 @@
 +++
 paginate_by = 7
-path = "newsletter"
+paginate_path = "newsletter"
 title = "NewsLetter"
 sort_by = "date"
 +++
