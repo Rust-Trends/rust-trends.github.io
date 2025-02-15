@@ -80,11 +80,9 @@ fn main() {
     println!("Final total: {}", total);
 }
 ```
-⚠ Note: These examples will only work once if/let while chains are stabilized! 
+⚠ Note: These examples will only work once if/let while chains are stabilized! You can run it on the <a href="https://play.rust-lang.org/?version=nightly&mode=debug&edition=2021&gist=3d7d383082e42aa01f65b1444db56e3a" target="_blank">Rust Playground</a> if you select Rust version: Nightly.
 
-You can run it on the <a href="https://play.rust-lang.org/?version=nightly&mode=debug&edition=2021&gist=3d7d383082e42aa01f65b1444db56e3a" target="_blank">Rust Playground</a> if you select Rust version: Nightly.
-
-This makes the intent much clearer and eliminates unnecessary nesting.
+This makes the intent much clearer and eliminates unnecessary nesting. Just what we need!
 
 # Why Is This Useful?
  1.	__Cleaner Code__ – No more deep nesting just to check additional conditions.
