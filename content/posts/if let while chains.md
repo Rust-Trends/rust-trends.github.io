@@ -23,16 +23,25 @@ fn main() {
     }
 }
 ```
-Or in a while loop:
+Or in a while loop with a game of blackjack:
 ```rust
 fn main() {
-    let mut numbers = vec![2, 3, 4, 6, 8].into_iter();
+    let deck = vec![5, 6, 10, 3, 2, 4]; // Example card values.
+    let mut total = 0;
+    let max = 21;
 
-    while let Some(x) = numbers.next() {
-        if x % 2 == 0 {
-            println!("Even number: {}", x);
+    let mut iter = deck.into_iter();
+
+    while let Some(card) = iter.next() {
+        // Check if drawing the next card would bust (exceed max).
+        if total + card > max {
+            break;
         }
+        total += card;
+        println!("Drew card: {} (total: {})", card, total);
     }
+
+    println!("Final total: {}", total);
 }
 ```
 This indentation gets annoying fast!
@@ -41,6 +50,7 @@ This indentation gets annoying fast!
 
 With if/let while chains, Rust will let you write conditions in a more natural way. Instead of nesting if let inside an if, you can chain them together like this:
 ```rust
+#![feature(let_chains)] // Enable the feature
 fn main() {
     let some_option = Some(15);
 
@@ -51,43 +61,30 @@ fn main() {
 ```
 Similarly, for while let:
 ```rust
+#![feature(let_chains)] // Enable the feature
 fn main() {
-    let mut numbers = vec![2, 3, 4, 6, 8].into_iter();
+    let deck = vec![5, 6, 10, 3, 2, 4]; // Example card values.
+    let mut total = 0;
+    let max = 21;
 
-    while let Some(x) = numbers.next() && x % 2 == 0 {
-        println!("Even number: {}", x);
+    let mut iter = deck.into_iter();
+
+    // The loop continues only if:
+    // 1. A card is drawn (Some(card)), AND
+    // 2. Adding the card does not exceed 21.
+    while let Some(card) = iter.next() && total + card <= max {
+        total += card;
+        println!("Drew card: {} (total: {})", card, total);
     }
+
+    println!("Final total: {}", total);
 }
 ```
-⚠ Note: These examples will only work once if/let while chains are stabilized!
+⚠ Note: These examples will only work once if/let while chains are stabilized! 
+
+You can run it on the <a href="https://play.rust-lang.org/?version=nightly&mode=debug&edition=2021&gist=3d7d383082e42aa01f65b1444db56e3a" target="_blank">Rust Playground</a> if you select Rust version: Nightly.
 
 This makes the intent much clearer and eliminates unnecessary nesting.
-
-# Workaround Until Stabilization
-
-Since the syntax is not yet available, here are alternative approaches that work right now:
-
-Alternative for if let with Multiple Conditions
-```rust
-fn main() {
-    let some_option = Some(15);
-
-    if matches!(some_option, Some(x) if x > 10) {
-        println!("x is greater than 10!");
-    }
-}
-```
-Alternative for while let with Multiple Conditions
-```rust
-fn main() {
-    let mut numbers = vec![2, 3, 4, 6, 8].into_iter();
-
-    for x in numbers.filter(|x| x % 2 == 0) {
-        println!("Even number: {}", x);
-    }
-}
-```
-These alternatives achieve the same goal while keeping the code runnable today.
 
 # Why Is This Useful?
  1.	__Cleaner Code__ – No more deep nesting just to check additional conditions.
@@ -102,3 +99,7 @@ Rust has always emphasized safety and clarity, but small ergonomic tweaks like i
 With this feature expected to land soon, you’ll be able to streamline your control flow—no hacks, no unnecessary nesting, just clean Rust.
 
 Now, if only debugging borrow checker errors could be this easy… 😆
+
+<br><br>
+
+P.S. Previously, I had a while let chain example that was incorrect and didn’t function the same way as the code without this feature. Thanks to Günter’s keen eye, he pointed out the mistake—much appreciated!
