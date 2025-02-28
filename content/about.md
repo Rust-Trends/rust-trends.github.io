@@ -8,20 +8,39 @@ toc_not_generate = true
 
 # Welcome to Rust Trends!
 
-If you are interested in staying up-to-date on the latest developments in the Rust programming language, you have come to the right place. Rust is a systems programming language that is designed for safety, concurrency, and performance, and it is quickly becoming a popular choice for a wide range of applications.
+If you want to stay up-to-date on the latest developments in the Rust programming language, you’ve come to the right place. Rust is a powerful systems programming language designed for **safety, concurrency, and performance**. Its growing popularity makes it an excellent choice for a wide range of applications.
 
-Our newsletter and posts will bring you the latest news, insights, and resources related to Rust, so you can stay informed and stay ahead of the curve. We will cover a variety of topics, including new language features, tools and libraries, best practices, and more.
+At **Rust Trends**, we bring you the latest **news, insights, and resources** to help you stay informed and ahead of the curve. Our newsletter and posts cover everything from new language features and tools to best practices and industry trends.
 
-Whether you are a seasoned Rust developer or just getting started, we hope you will find our newsletter valuable and informative. We welcome your feedback and suggestions, so please do not hesitate to get in touch with us.
+Whether you're an experienced Rust developer or just getting started, we hope you'll find our content valuable and insightful. We also welcome your feedback—feel free to reach out anytime!
 
-Thanks for joining us, and we look forward to sharing the latest Rust trends with you!
+Thanks for joining us, and we look forward to sharing the latest **Rust trends** with you.
 
-# About the author
+---
 
-Meet <a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">Bob Peters</a>, the author of the Rust Trends newsletter and posts.
+## Get Expert Rust Code Reviews
 
-Bob has a background in the Internet of Things (IoT) and has extensive experience in the technology industry. He is entrepreneurial with a passion for staying up-to-date on the latest trends and developments in the field.
+Need a **Rust code review**? Rust Trends, led by a seasoned Rust expert, provides personalized feedback to improve your **code’s safety, performance, and maintainability**.
 
-In addition to writing the Rust Trends newsletter, Bob also works as CTO in an Industrial IoT company. His expertise in programming languages and his passion for staying informed about the latest trends make him well-equipped to bring you valuable insights and resources on the latest developments in the Rust community.
+### What You Get:
+- ✅ **Best practices & performance optimization**  
+- ✅ **Security checks**  
+- ✅ **Clear, actionable feedback**  
 
-We hope you will enjoy reading Bob’s newsletter and posts. Feel free to connect on <a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">LinkedIn</a>.
+### Pricing:
+- **Quick PR Review** (up to 500 lines) – **$99**
+- **Interview Candidate Review** (up to 2000 lines) – **$199**
+- **Full Module Review** (up to 2000 lines) – **$299**  
+- **Security & Performance Audit** – **Contact for a custom quote**  
+
+---
+
+## About the Author
+
+Meet **[Bob Peters](https://www.linkedin.com/in/bjhpeters/)**, the creator of Rust Trends.
+
+Bob has a strong background in the **Internet of Things (IoT)** and extensive experience in the technology industry. As an entrepreneur and tech leader, he is passionate about keeping up with the latest trends and advancements.
+
+In addition to running Rust Trends, Bob is the **CTO of an Industrial IoT company**, where he applies his expertise in programming languages and cutting-edge technology. His deep understanding of Rust and dedication to continuous learning make him well-equipped to bring you **valuable insights and resources**.
+
+We hope you enjoy the **Rust Trends newsletter**. Feel free to **connect with Bob on [LinkedIn](https://www.linkedin.com/in/bjhpeters/)!**
