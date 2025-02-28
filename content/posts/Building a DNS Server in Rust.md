@@ -889,11 +889,11 @@ This tutorial is inspired by the Codecrafters challenge of building your own DNS
 Have questions or feedback? Drop a comment or reach out, I’d love to hear how your DNS server is coming along! Stay tuned for Part 2!
 
 # Disclaimer  
-This project is intended for **educational purposes** and may not be fully optimized for production use.  
+This project is intended for **educational purposes** and is not fully optimized for production use.  
 
-You may notice warnings when running `cargo check` or `cargo run`, such as **unused code warnings**. For example, some `from_bytes` and `to_bytes` functions are not currently used, same holds for enum entries. These functions and entires have been intentionally left in place for **illustrative purposes** and to maintain **code symmetry**.
+When running `cargo check` or `cargo run`, you may notice warnings about **unused code**, such as `from_bytes` and `to_bytes` functions or unused enum variants. These have been **intentionally left in place** for **illustrative purposes** and to maintain **code symmetry**.  
 
-Contributions and improvements are always welcome! 🚀  
+Contributions and improvements are always welcome! 🚀    
 
 # Acknowledgments  
 A huge thanks to the **Codecrafters team** for their support and guidance throughout this project.  
