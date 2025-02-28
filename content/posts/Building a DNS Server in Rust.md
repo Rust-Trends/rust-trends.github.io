@@ -27,7 +27,7 @@ Sign up using <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Tren
     - Implementing decompression of DNS packets.
     - Forwarding DNS queries to resolvers.
 
-# Accompanying GitHub Repository
+## Accompanying GitHub Repository
 The complete source code for this tutorial is available on <a href="https://github.com/Rust-Trends/dns-server-tutorial" target="_blank">Github</a>.
 
 # Prerequisites
@@ -68,6 +68,8 @@ DNS messages are encoded as binary data to ensure efficient transmission over th
  - Answer (in response): The resolved IP address.
 
 The full specification is available in <a href="https://www.rfc-editor.org/rfc/rfc1035" target="_blank">RFC 1035</a> I’ll refer to it throughout this article and highlight the most relevant chapters. If you want a step-by-step walkthrough of the DNS protocol, I recommend <a href="https://github.com/EmilHernvall/dnsguide/blob/b52da3b32b27c81e5c6729ac14fe01fef8b1b593/chapter1.md" target="_blank">this article</a>.
+
+One of the great things about Rust is its strong type system, which allows us to define structures that closely resemble the DNS message format as specified in RFC 1035.
 
 # Setting Up the Project
 
@@ -230,6 +232,8 @@ fn main() {
 
 Our current code contains several `expect` calls, which we’ll refine later. This exemplifies one of Rust’s key strengths: explicit error handling, ensuring that nothing is left to implicit behavior.
 
+In the main function, we create a UDP socket bound to port 1053 and initialize a 512-byte buffer. We then print a message indicating that the DNS server is running. Inside the loop, the server listens for incoming requests, parses the DNS header, and prints the query details, continuously processing requests until stopped with `Ctrl+C`.
+
 Now, let’s run the server! Open a terminal and start the DNS server: `cargo run`. Open another terminal and run `dig @localhost -p 1053 rust-trends.com`
 
 Since we have not implemented DNS query processing, `dig` won’t receive a valid response. Instead, it may retry a few times before giving up. Because **UDP** is an unreliable protocol, dig simply attempts the query again if no response is received.
@@ -380,7 +384,7 @@ __Final binary representation:__
 
 This is how a DNS client would structure a query to resolve www.rust-trends.com into an IPv4 address.
 
-How should we structure this? Instead of storing the domain name as a single string, we break it down into its individual labels (e.g., www, rust-trends, com). This allows for more efficient processing when serializing and handling compressed DNS messages later. We can represent QTYPE and QCLASS as enums:
+How should we structure this? Instead of storing the domain name as a single string, we break it down into its individual labels (e.g., www, rust-trends, com). This allows for more efficient processing when serializing and handling compressed DNS messages later. We can represent QTYPE and QCLASS as enums.
 
 ```rust
 // src/dns.rs
@@ -496,7 +500,7 @@ impl Question {
 }
 ```
 
-The code uses functions to serialize and deserialize Type (field qtype) and Class (field qclass) into bytes and back into their respective types, requiring proper implementation see below.
+The code uses functions to serialize and deserialize Type (field qtype) and Class (field qclass) into bytes and back into their respective types, requiring proper implementation for from_bytes and to_bytes see below.
 
 ```rust
 // src/dns.rs
@@ -587,7 +591,7 @@ impl Class {
 
 ```
 
-To deserialize the question, we need to modify `main.rs`:
+We have all the plumbing in place to deserialize the question, we need to modify `main.rs` to handle the incoming DNS queries and print them.
 
 ```rust
 // src/main.rs
@@ -699,7 +703,6 @@ impl ResourceRecord {
     }
 }
 ```
-
 With the above method, we can easily construct a ResourceRecord as part of the reply. Ready to answer the query?
 
 # Constructing a (hardcoded) reply
