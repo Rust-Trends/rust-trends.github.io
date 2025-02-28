@@ -241,7 +241,7 @@ $ cargo run
 DNS server is running at port 1053
 Received query from 127.0.0.1:63928 Header { id: 22295, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
 ```
-Code for this part can be found in the Github Repository under `step 1`.
+Code for this part can be found in the <a href="https://github.com/Rust-Trends/dns-server-tutorial" target="_blank">Github</a> Repository under `step 1`.
 
 Wow! We’re running a DNS server in Rust! Are you curious how the rest of the request looks like? Let's print it out!
 
@@ -318,7 +318,7 @@ This debug information is useful for understanding the DNS request. Did you noti
 
 Since the DNS header is always 12 bytes, and our total request length is 44 bytes, we can infer that the remaining 32 bytes correspond to the Question Section. Next, we’ll decode it to extract the domain name being queried.
 
-Code for this part can be found in the Github Repository under `step 1`.
+Code for this part can be found in the <a href="https://github.com/Rust-Trends/dns-server-tutorial" target="_blank">Github</a> Repository under `step 1`.
 
 # Defining the DNS Question Structure
 
@@ -660,7 +660,7 @@ Labels:
 Question { name: [Label("www"), Label("rust-trends"), Label("com")], qtype: A, qclass: IN }
 ```
 
-Code for this part can be found in the Github Repository under `step 2`.
+Code for this part can be found in the <a href="https://github.com/Rust-Trends/dns-server-tutorial" target="_blank">Github</a> Repository under `step 2`.
 
 We see the label sequence and Question struct. We still do not have an answer for this DNS request so next we are going to implement a reply.
 
