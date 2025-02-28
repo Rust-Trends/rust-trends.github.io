@@ -887,3 +887,13 @@ We are coming to the end of Part 1 of this series. You've built a basic DNS serv
 This tutorial is inspired by the Codecrafters challenge of building your own DNS server. If you enjoy hands-on learning, use <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Trends" target="_blank">my referral link</a> to get a 40% discount and support my content. You can even try it for free no strings attached!
 
 Have questions or feedback? Drop a comment or reach out, I’d love to hear how your DNS server is coming along! Stay tuned for Part 2!
+
+# Disclaimer  
+This project is intended for **educational purposes** and may not be fully optimized for production use.  
+
+You may notice warnings when running `cargo check` or `cargo run`, such as **unused code warnings**. For example, some `from_bytes` and `to_bytes` functions are not currently used, same holds for enum entries. These functions and entires have been intentionally left in place for **illustrative purposes** and to maintain **code symmetry**.
+
+Contributions and improvements are always welcome! 🚀  
+
+# Acknowledgments  
+A huge thanks to the **Codecrafters team** for their support and guidance throughout this project.  
