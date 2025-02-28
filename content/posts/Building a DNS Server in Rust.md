@@ -9,7 +9,7 @@ description = "Learn how to build a DNS server in Rust from scratch. Explore the
 
 Ever wondered how your browser finds websites? It all starts with DNS (Domain Name System). DNS servers are the backbone of the internet, translating human-readable domain names (like google.com) into IP addresses.
 
-But have you ever wondered how these translations actually work under the hood? By building your own DNS server, you will gain a deeper understanding of networking, protocols, and systems programming, all while sharpening your Rust skills. In this tutorial, we will build a simple DNS server in Rust as part of the Codecrafters DNS challenge.
+But have you ever wondered how these translations actually work under the hood? By building your own DNS server, you will gain a deeper understanding of networking, protocols, and systems programming, all while sharpening your Rust skills. In this tutorial, we will build a simple DNS server in Rust inspired by Codecrafters DNS challenge.
 
 ## Why Codecrafters?
 
@@ -26,6 +26,9 @@ Sign up using <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Tren
  - Part 2:
     - Implementing decompression of DNS packets.
     - Forwarding DNS queries to resolvers.
+
+# Accompanying GitHub Repository
+The complete source code for this tutorial is available on <a href="https://github.com/Rust-Trends/dns-server-tutorial" target="_blank">Github</a>.
 
 # Prerequisites
 
@@ -238,6 +241,7 @@ $ cargo run
 DNS server is running at port 1053
 Received query from 127.0.0.1:63928 Header { id: 22295, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
 ```
+Code for this part can be found in the Github Repository under `step 1`.
 
 Wow! We’re running a DNS server in Rust! Are you curious how the rest of the request looks like? Let's print it out!
 
@@ -313,6 +317,8 @@ Each line in the output represents 16 bytes of the request. The first column is 
 This debug information is useful for understanding the DNS request. Did you notice the quirk where z is set to 2? It's a reserved field that can be used for future extensions and was expected to be zero. Huh!? What's that about? You can read more about it at <a href="https://unix.stackexchange.com/questions/591203/understanding-the-digs-dns-query-does-dig-set-non-zero-value-for-z-field" target="_blank">StackExchange</a>. Apperently RFC's get amended. For now, we’ll ignore it and move on....
 
 Since the DNS header is always 12 bytes, and our total request length is 44 bytes, we can infer that the remaining 32 bytes correspond to the Question Section. Next, we’ll decode it to extract the domain name being queried.
+
+Code for this part can be found in the Github Repository under `step 1`.
 
 # Defining the DNS Question Structure
 
@@ -627,7 +633,7 @@ Now that we can deserialize both the Header and Question, let’s restart the se
 dig @localhost -p 1053 www.rust-trends.com
 ```
 
-```bash 
+```bash
 cargo run
 
 DNS server is running at port 1053
@@ -654,11 +660,12 @@ Labels:
 Question { name: [Label("www"), Label("rust-trends"), Label("com")], qtype: A, qclass: IN }
 ```
 
-We see the label sequence and Question struct. We still do not have an answer for this question dns request so next we are going to implement a reply.
+Code for this part can be found in the Github Repository under `step 2`.
 
+We see the label sequence and Question struct. We still do not have an answer for this DNS request so next we are going to implement a reply.
 
 # Defining DNS Answer structure
-The answer section in a DNS query reply is also called a <a href="https://www.rfc-editor.org/rfc/rfc1035#section-4.1.3" target="_blank">Resource record</a>. It includes several fields, such as the domain name, time-to-live (TTL), and the actual data, which can contain an IP address or other relevant information. Below you can find the structure in code:
+The answer section in a DNS query reply is also called a <a href="https://www.rfc-editor.org/rfc/rfc1035#section-4.1.3" target="_blank">Resource record</a>. It includes several fields, such as the domain name, time-to-live (TTL), the Type and Class we previously defined for the question part and the actual data, which can contain an IP address or other relevant information. Below you can find the structure in code:
 
 ```rust
 // src/dns.rs
@@ -693,10 +700,17 @@ impl ResourceRecord {
 }
 ```
 
-# Constructing a (hardcoded) reply
-When creating an reply on a DNS query several Header fields can be copied into a new Header and we duplicate the query.
+With the above method, we can easily construct a ResourceRecord as part of the reply. Ready to answer the query?
 
-For now we will hardcode the response to a query for www.rust-trends.com. In the next part we will add support for DNS resolution with help of a DNS resolver. The Default constructor will be used to create a default ResourceRecord. These are nice and easy to use.
+# Constructing a (hardcoded) reply
+A valid DNS response consists of three main parts:
+  - Header: Includes metadata, response flags, and record counts.
+	- Question: Echoes the original query back to the client.
+	- Answer: Contains the resolved IP address for the requested domain.
+
+For now, our server will always return the fixed IP address 172.67.221.148 when queried for `www.rust-trends.com`.
+
+We will use Rust’s Default trait to define a default ResourceRecord. This provides a simple and reusable way to hardcode a response for now.
 
 ```rust
 // src/dns.rs
@@ -713,6 +727,158 @@ impl Default for ResourceRecord {
     }
 }
 ```
+
+Next, we adapt `main.rs` to send a response. We need to add the ResourceRecord in the use statement.
+
+```rust
+// src/main.rs
+use std::net::UdpSocket;
+
+mod dns;
+use dns::{Header, Question, ResourceRecord};
+```
+
+After printing the query, we construct the response.
+
+```rust
+// src/main.rs
+fn main() {
+    let socket = UdpSocket::bind("0.0.0.0:1053").expect("Could not bind to port 1053");
+    let mut buf = [0; 512];
+
+    println!("DNS server is running at port 1053");
+
+    loop {
+        let (len, addr) = socket.recv_from(&mut buf).expect("Could not receive data");
+
+        println!("\nReceived query from {} with length {} bytes", addr, len);
+        println!("\n### DNS Query: ###");
+        debug_print_bytes(&buf[..len]);
+
+        let header = Header::from_bytes(&buf[..12]).expect("Could not parse DNS header");
+        println!("\n{:?}", header);
+
+        println!("\n### Question: ###");
+        debug_print_bytes(&buf[12..len]);
+        println!();
+
+        let question = Question::from_bytes(&buf[12..len]).expect("Could not parse DNS question");
+        println!("\n{:?}", question);
+
+        // We parsed the DNS query and question, now we can respond to it
+        let answer = ResourceRecord::default();
+
+        println!("{:?}", answer);
+
+        let response_header = Header {
+            id: header.id,
+            qr: true,              // It is a query response
+            opcode: header.opcode, // Standard query
+            aa: false,             // Not authoritative
+            tc: false,             // Not truncated
+            rd: header.rd,         // Recursion desired
+            ra: false,             // Recursion not available
+            z: 0,                  // Reserved
+            rcode: if header.opcode == 0 { 0 } else { 4 },
+            qdcount: 1, // Question count we assume is 1
+            ancount: 1, // Answer count is 1
+            nscount: 0, // Name server count is 0
+            arcount: 0, // Additional record count is 0
+        };
+
+        // Create a response message with the header and question
+        let mut response: Vec<u8> = Vec::new();
+        response.extend_from_slice(&response_header.to_bytes());
+        response.extend_from_slice(&question.to_bytes());
+        response.extend_from_slice(&answer.to_bytes());
+
+        // Send the response back to the client
+        socket
+            .send_to(&response, addr)
+            .expect("Could not send response");
+    }
+}
+```
+Code for this part can be found in the Github Repository under `step 2`.
+
+Our response reuses some fields from the incoming query but updates specific values:
+	- qr = true → Indicates this is a response.
+	- rcode = 0 (or 4 for unsupported opcode) → Specifies success or failure.
+	- ancount = 1 → Indicates that one answer is included.
+
+The deserialized question is re-serialized and included in the response. This ensures that the client can match the response to its original query.
+
+A complete DNS response consists of:
+ - Header – Metadata and response flags
+ - Question – Echoed back from the request
+ - Answer – The resolved IP address or relevant data
+
+Note: including the question section in the response is a standard part of the DNS protocol, allowing clients to verify the response corresponds to their request.
+
+Last step is putting it in one byte array and sending it to the client.
+
+Now let's test our DNS server! Fire up dig and start the server
+
+```bash
+dig @localhost -p 1053 www.rust-trends.com
+```
+
+```bash
+cargo run
+
+DNS server is running at port 1053
+
+Received query from 127.0.0.1:54734 with length 48 bytes
+
+### DNS Query: ###
+00000000: 2e 1f 01 20 00 01 00 00 00 00 00 01 03 77 77 77   ... .........www
+00000010: 0b 72 75 73 74 2d 74 72 65 6e 64 73 03 63 6f 6d   .rust-trends.com
+00000020: 00 00 01 00 01 00 00 29 10 00 00 00 00 00 00 00   .......)........
+
+Header { id: 11807, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
+
+### Question: ###
+00000000: 03 77 77 77 0b 72 75 73 74 2d 74 72 65 6e 64 73   .www.rust-trends
+00000010: 03 63 6f 6d 00 00 01 00 01 00 00 29 10 00 00 00   .com.......)....
+00000020: 00 00 00 00                                       ....
+
+Labels:
+[Label("www")]
+[Label("www"), Label("rust-trends")]
+[Label("www"), Label("rust-trends"), Label("com")]
+
+Question { name: [Label("www"), Label("rust-trends"), Label("com")], qtype: A, qclass: IN }
+ResourceRecord { name: "www.rust-trends.com", rtype: A, rclass: IN, ttl: 60, rdlength: 4, rdata: [172, 67, 221, 148] }
+```
+
+And looking at the dig output:
+
+```bash
+dig @localhost -p 1053 www.rust-trends.com
+
+; <<>> DiG 9.10.6 <<>> @localhost -p 1053 www.rust-trends.com
+; (2 servers found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11807
+;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;www.rust-trends.com.		IN	A
+
+;; ANSWER SECTION:
+www.rust-trends.com.	60	IN	A	172.67.221.148
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.1#1053(127.0.0.1)
+;; WHEN: Fri Feb 28 12:44:09 CET 2025
+;; MSG SIZE  rcvd: 72
+```
+
+Wow it works! we can see it received the header, query and answer. Also note is show a warning about recursion requested but not available. By default, dig requests recursion, but our server does not perform recursive queries. The warning `WARNING: recursion requested but not available`simply indicates that recursion was requested but not supported. To remove this warning, use: `dig @localhost -p 1053 www.rust-trends.com +norecurse`.
+
+You got your reply and can visit <a href="https://www.rust-trends.com" target="_blank">www.rust-trends.com</a>.
 
 # Conclusion
 
