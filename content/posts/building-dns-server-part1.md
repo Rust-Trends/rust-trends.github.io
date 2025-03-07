@@ -6,10 +6,7 @@ description = "Learn how to build a DNS server in Rust from scratch. Explore the
 +++
 
 # Introduction: Why Build a DNS Server?
-
-Ever wondered how your browser finds websites? It all starts with DNS (Domain Name System). DNS servers are the backbone of the internet, translating human-readable domain names (like google.com) into IP addresses.
-
-But have you ever wondered how these translations actually work under the hood? By building your own DNS server, you will gain a deeper understanding of networking, protocols, and systems programming, all while sharpening your Rust skills. In this tutorial, we will build a simple DNS server in Rust inspired by Codecrafters DNS challenge.
+Imagine typing a web address into your browser, and behind the scenes, a digital detective springs into action translating that friendly URL into the cryptic IP address where the website lives. This is the magic of DNS (Domain Name System), a cornerstone of the internet’s functionality. Inspired by the hands-on learning approach championed by Code Crafters, this tutorial will guide you through building your own DNS server from scratch using Rust! You’ll not only deepen your understanding of how the web operates but also gain practical experience with Rust’s networking capabilities. Let’s dive in and unravel the mystery behind how the internet finds what you’re looking for!
 
 ## Why Codecrafters?
 
@@ -891,12 +888,20 @@ This tutorial is inspired by the Codecrafters challenge of building your own DNS
 
 Have questions or feedback? Drop a comment or reach out, I’d love to hear how your DNS server is coming along! Stay tuned for Part 2!
 
-# Disclaimer  
-This project is intended for **educational purposes** and is not fully optimized for production use.  
+# Disclaimer
+This project is intended for **educational purposes** and is not fully optimized for production use.
 
-When running `cargo check` or `cargo run`, you may notice warnings about **unused code**, such as `from_bytes` and `to_bytes` functions or unused enum variants. These have been **intentionally left in place** for **illustrative purposes** and to maintain **code symmetry**.  
+When running `cargo check` or `cargo run`, you may notice warnings about **unused code**, such as `from_bytes` and `to_bytes` functions or unused enum variants. These have been **intentionally left in place** for **illustrative purposes** and to maintain **code symmetry**.
 
-Contributions and improvements are always welcome! 🚀    
+Contributions and improvements are always welcome! 🚀
 
-# Acknowledgments  
-A huge thanks to the **Codecrafters team** for their support and guidance throughout this project.  
+# Acknowledgments
+A huge thanks to the **Codecrafters team** for their support and guidance throughout this project.
+
+
+<center>
+
+# Share
+[Hacker News](https://news.ycombinator.com/submitlink?u=https://rust-trends.com/posts/building-a-dns-server-in-rust/)&nbsp;&nbsp;&nbsp;&nbsp;[Reddit](https://reddit.com/r/rust/submit?url=https://rust-trends.com/posts/building-a-dns-server-in-rust/)&nbsp;&nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/shareArticle?mini=true&url=https://rust-trends.com/posts/building-a-dns-server-in-rust/)
+
+</center>
