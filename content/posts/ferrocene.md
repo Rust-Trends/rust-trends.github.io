@@ -5,11 +5,11 @@ slug = "ferrocene language specification donated to the rust project"
 description = "Ferrous Systems has donated the Ferrocene Language Specification to the Rust Project—a major step toward standardizing Rust and enabling its use in safety-critical systems."
 +++
 
-Ferrous Systems recently donated the [Ferrocene Language Specification](https://spec.ferrocene.dev/) (**FLS**) to the Rust Project, marking a significant milestone toward formalizing the Rust programming language. This article explains the impact and importance of this contribution.
+Ferrous Systems recently donated the <a href="https://spec.ferrocene.dev/" target="_blank">Ferrocene Language Specification</a> (**FLS**) to the Rust Project, marking a significant milestone toward formalizing the Rust programming language. This article explains the impact and importance of this contribution.
 
 # What is the Ferrocene Language Specification?
 
-The Ferrocene Language Specification provides a detailed, formal description of Rust’s syntax, semantics, and compiler behavior. Originally developed by [Ferrous Systems](https://ferrous-systems.com/) in 2022 to meet the demands of safety-critical software certification, the FLS precisely documents how Rust behaves, especially the subset supported by Ferrocene, a Rust compiler designed for regulated industries.
+The Ferrocene Language Specification provides a detailed, formal description of Rust’s syntax, semantics, and compiler behavior. Originally developed by <a href="https://ferrous-systems.com/" target="_blank">Ferrous Systems</a> in 2022 to meet the demands of safety-critical software certification, the FLS precisely documents how Rust behaves, especially the subset supported by Ferrocene, a Rust compiler designed for regulated industries.
 
 # About Ferrous Systems and the Rust Foundation
 
@@ -35,4 +35,4 @@ The open-source community gains a single, unified specification, reducing confus
 
 In summary, Ferrous Systems' donation of the Ferrocene specification is a significant leap forward for Rust, solidifying its place as a robust, trustworthy language for both everyday and safety-critical applications.
 
-If you want to read more about this on Reddit, a post started by Steve Klabnik, you can find it [here](https://www.reddit.com/r/rust/comments/1jkfovo/ferrous_systems_donates_ferrocene_language/).
+If you want to read more about this on Reddit, a post started by Steve Klabnik, you can find it <a href="https://www.reddit.com/r/rust/comments/1jkfovo/ferrous_systems_donates_ferrocene_language/" target="_blank">here</a>.
