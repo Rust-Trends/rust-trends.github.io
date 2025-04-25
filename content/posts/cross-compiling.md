@@ -1,8 +1,8 @@
 +++
 title = "Cross-Compiling for Raspberry Pi with Docker"
-date = 2025-04-25
+date = "2025-04-25"
+slug = "cross-compiling-for-raspberry-pi-with-docker"
 description = "How I used Docker to easily cross-compile Rust projects for Raspberry Pi 4 with the right libraries and environment."
-slug=Cross-Compiling for Raspberry Pi with Docker
 +++
 
 So, I recently had to cross-compile a Rust project targeting a Raspberry Pi 4. Now, if you've ever wrestled with getting all the right libraries, sysroots, and toolchains lined up for ARM64, you know it can get messy faster than a `cargo check` on a broken dependency tree.
