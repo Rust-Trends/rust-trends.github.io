@@ -7,7 +7,7 @@ description = "Learn how to enhance your Rust code with Clippy. This guide cover
 
 Clippy is an essential linter for Rust, helping to catch common mistakes and improve code quality by providing insightful warnings and suggestions. By configuring Clippy with specific lints, you can enhance your skills as a Rust programmer, ensuring your code is cleaner, more efficient, and aligned with best practices. In this guide, we’ll explore several Clippy lints, including some frequently recommended by the Rust community, and demonstrate how to configure them.
 
-# Recommended Clippy Lints for Improved Rust Code
+## Recommended Clippy Lints for Improved Rust Code
 
 Here are some of the most recommended Clippy lints that can help you write better Rust code. Click on each lint to learn more about its purpose and how it can benefit your codebase.
 
@@ -28,11 +28,11 @@ Here are some of the most recommended Clippy lints that can help you write bette
 15. <a href="https://rust-lang.github.io/rust-clippy/master/#/expect_used" target="_blank">**expect_used**</a>: Warns about the use of `expect`, suggesting safer alternatives.
 
 
-# How to Add Clippy Lints to Your Rust Project?
+## How to Add Clippy Lints to Your Rust Project?
 
 To use these lints, you need to configure Clippy to include them in your Rust project. Here’s how you can add these lints to your Clippy configuration.
 
-## Method 1: Adding Lints via Command Line
+### Method 1: Adding Lints via Command Line
 
 You can run Clippy with specific warnings enabled directly from the command line. For instance:
 
@@ -55,7 +55,7 @@ cargo clippy -- \
     -W clippy::expect_used
 ```
 
-## Method 2: Adding Lints in `cargo.toml`
+### Method 2: Adding Lints in `cargo.toml`
 
 For a more permanent setup, you can add these lints to your `cargo.toml` file. This ensures that Clippy will always run with these configurations whenever you use it.
 
@@ -80,7 +80,7 @@ unwrap_used = "warn"
 expect_used = "warn"
 ```
 
-## Method 3: Using a `.cargo/config.toml` File in Your Project or Home Directory
+### Method 3: Using a `.cargo/config.toml` File in Your Project or Home Directory
 
 You can also create a `.cargo/config.toml` file in your project or home directory `~/.cargo/config` to set up Clippy lints. This file in these locations allow you to respectively configure per project or globally, providing flexibility in managing lints. For more information check the <a href="https://doc.rust-lang.org/cargo/reference/config.html" target="_blank">Cargo Book</a>
 
@@ -105,7 +105,7 @@ rustflags = [
 ]
 ```
 
-# Understanding Key Lints by Example
+## Understanding Key Lints by Example
 
 Let's take a closer look at some of these lints to understand how they can help improve your Rust code.
 
@@ -194,7 +194,7 @@ Let's take a closer look at some of these lints to understand how they can help 
 
 Looking for examples see the <a href="https://rust-lang.github.io/rust-clippy/master/" target="_blank">Clippy Lints Overview</a>
 
-# Clippy's Lint Groups
+## Clippy's Lint Groups
 
 To further enhance your Rust code quality and maintainability, have a look at Clippy's lint categories and consider enabling additional lints that suit your project's needs:
 
@@ -210,11 +210,11 @@ To further enhance your Rust code quality and maintainability, have a look at Cl
 
 If you enable more lints, you may need to set priorities because certain lints may conflict with each other. See <a href="https://doc.rust-lang.org/stable/cargo/reference/manifest.html#the-lints-section" target="_blank">Cargo Book - Lint section</a> for more information.
 
-# Conclusion
+## Conclusion
 
 By incorporating these Clippy lints into your workflow, you can ensure your Rust code is not only functional but also idiomatic, efficient, and maintainable. Experiment with different lints and configurations to find the right balance for your project, and watch your code quality soar to new heights.
 
-References: 
+References:
 - <a href="https://doc.rust-lang.org/stable/cargo/reference/manifest.html#the-lints-section" target="_blank">Cargo Book - Lint section</a>
 - <a href="https://rust-lang.github.io/rust-clippy/master/index.html" target="_blank">Clippy Lints Overview</a>
 - <a href="https://www.reddit.com/r/rust/comments/q9qz28/sometimes_clippy_lints_amaze_me/" target="_blank">Amazed by Clippy Lints - Reddit Discussion</a>

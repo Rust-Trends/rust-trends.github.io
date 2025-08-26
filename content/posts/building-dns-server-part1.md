@@ -5,16 +5,16 @@ slug = "Building a DNS Server in Rust"
 description = "Learn how to build a DNS server in Rust from scratch. Explore the DNS protocol, create a simple server, and handle DNS queries with ease."
 +++
 
-# Introduction: Why Build a DNS Server?
+## Introduction: Why Build a DNS Server?
 Imagine typing a web address into your browser, and behind the scenes, a digital detective springs into action translating that friendly URL into the cryptic IP address where the website lives. This is the magic of DNS (Domain Name System), a cornerstone of the internet’s functionality. Inspired by the hands-on learning approach championed by Code Crafters, this tutorial will guide you through building your own DNS server from scratch using Rust! You’ll not only deepen your understanding of how the web operates but also gain practical experience with Rust’s networking capabilities. Let’s dive in and unravel the mystery behind how the internet finds what you’re looking for!
 
-## Why Codecrafters?
+### Why Codecrafters?
 
 Codecrafters provides hands-on system-building challenges, guiding you to create complex applications, like Redis, HTTP Server, and DNS servers—entirely from scratch. If you love learning by doing, this is the perfect platform for you.
 
 Sign up using <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Trends" target="_blank">my referral link</a> to support my content and unlock a 40% discount on your subscription. The best part? You can try it for free, no strings attached! If you go for a paid subscription, you might even qualify for reimbursement from your employer, so don’t miss out on this opportunity to level up your skills!
 
-## What You’ll Learn
+### What You’ll Learn
  - Part 1:
     - Understanding DNS requests and responses.
     - Handling UDP packets in Rust.
@@ -24,10 +24,10 @@ Sign up using <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Tren
     - Implementing decompression of DNS packets.
     - Forwarding DNS queries to resolvers.
 
-## Accompanying GitHub Repository
+### Accompanying GitHub Repository
 The complete source code for this tutorial is available on <a href="https://github.com/Rust-Trends/dns-server-tutorial" target="_blank">Github</a>.
 
-# Prerequisites
+## Prerequisites
 
 Before diving in, ensure you have the following:
 
@@ -41,16 +41,16 @@ Before diving in, ensure you have the following:
 To test your DNS server, use tools like `dig` or `nslookup`. To install `dig`, run:
 
 ```bash
-# Ubuntu
+## Ubuntu
 sudo apt-get install dnsutils
 
-# macOS
+## macOS
 brew install bind
 ```
 
 Later on we will explain how to use the dig tool to test our DNS server.
 
-# Understanding DNS: A Quick Crash Course
+## Understanding DNS: A Quick Crash Course
 
 A DNS request involves:
 
@@ -68,7 +68,7 @@ The full specification is available in <a href="https://www.rfc-editor.org/rfc/r
 
 One of the great things about Rust is its strong type system, which allows us to define structures that closely resemble the DNS message format as specified in RFC 1035.
 
-# Setting Up the Project
+## Setting Up the Project
 
 Let’s create a Rust project for our DNS server:
 
@@ -100,7 +100,7 @@ cargo add thiserror
 
 Now let's start writing our DNS server...
 
-# Defining DNS Header structure
+## Defining DNS Header structure
 To handle a DNS request, we first need to define the structure of a DNS message. Let’s start by defining the DNS Header in a separate file called `dns.rs`. The DNS header structure is defined in <a href="https://www.rfc-editor.org/rfc/rfc1035#section-4.1.1" target="_blank">RFC 1035 - 4.1.1</a>.
 
 ```rust
@@ -246,7 +246,7 @@ Code for this part can be found in the <a href="https://github.com/Rust-Trends/d
 
 Wow! We’re running a DNS server in Rust! Are you curious how the rest of the request looks like? Let's print it out!
 
-# Printing the DNS Request
+## Printing the DNS Request
 
 Before parsing the full DNS request, let’s first inspect the raw data. The function below prints the incoming bytes in a structured hex format, similar to how hex editors display binary files. This helps us visualize the request and debug potential issues.
 
@@ -321,7 +321,7 @@ Since the DNS header is always 12 bytes, and our total request length is 44 byte
 
 Code for this part can be found in the <a href="https://github.com/Rust-Trends/dns-server-tutorial" target="_blank">Github</a> Repository under `step 1`.
 
-# Defining the DNS Question Structure
+## Defining the DNS Question Structure
 
 In the Domain Name System (DNS), a question is a structured query that specifies the domain name and the type of record being requested. This structure is fundamental to DNS resolution and is formally defined in <a href="https://www.rfc-editor.org/rfc/rfc1035#section-4.1.2" target="_blank">RFC 1035, Section 4.1.2</a>.
 
@@ -330,18 +330,18 @@ A DNS question consists of three fields:
  - QTYPE: Specifies the type of DNS record being requested (e.g., A for IPv4 addresses, AAAA for IPv6 addresses, MX for mail exchange records).
  - QCLASS: Indicates the class of the query, with the most common value being IN (Internet).
 
-## QNAME Encoding Details
+### QNAME Encoding Details
 
 DNS uses a compact encoding for domain names:
 	1.	Each label (e.g., “www”, “rust-trends”, “com”) is prefixed by a single byte indicating its length.
 	2.	Labels are concatenated sequentially.
 	3.	The entire sequence is terminated with a zero byte (0x00).
 
-## Example DNS Question for www.rust-trends.com
+### Example DNS Question for www.rust-trends.com
 
 A DNS query for `www.rust-trends.com` requesting an A record (IPv4 address) in the Internet class would be structured as follows:
 
-### QNAME Encoding
+#### QNAME Encoding
 
 The domain name "www.rust-trends.com" is split into labels:
 	•	"www" → 3 characters
@@ -352,11 +352,11 @@ DNS encoding rules:
 	•	Each label is prefixed by its length as a single byte.
 	•	The entire domain is terminated with a 0x00 byte.
 
-### Encoded QNAME:
+#### Encoded QNAME:
 ```
 [03] 'w' 'w 'w' [0B] 'r' 'u' 's' 't' '-' 't' 'r' 'e' 'n' 'd' 's' [03] 'c' 'o' 'm' [00]
 
-# in bytes
+## in bytes
 03 77 77 77 0B 72 75 73 74 2D 74 72 65 6E 64 73 03 63 6F 6D 00
 ```
 Breaking it down:
@@ -365,7 +365,7 @@ Breaking it down:
 	-	03 → Length of "com", followed by ASCII 63 6F 6D (com).
 	-	00 → End of QNAME.
 
-### Complete DNS Question Structure
+#### Complete DNS Question Structure
 
 A complete DNS question includes:
 	-	QNAME → Encoded domain name.
@@ -641,14 +641,14 @@ DNS server is running at port 1053
 
 Received query from 127.0.0.1:64228 with length 48 bytes
 
-### DNS Query: ###
+#### DNS Query: ###
 00000000: ef 60 01 20 00 01 00 00 00 00 00 01 03 77 77 77   .`. .........www
 00000010: 0b 72 75 73 74 2d 74 72 65 6e 64 73 03 63 6f 6d   .rust-trends.com
 00000020: 00 00 01 00 01 00 00 29 10 00 00 00 00 00 00 00   .......)........
 
 Header { id: 61280, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
 
-### Question: ###
+#### Question: ###
 00000000: 03 77 77 77 0b 72 75 73 74 2d 74 72 65 6e 64 73   .www.rust-trends
 00000010: 03 63 6f 6d 00 00 01 00 01 00 00 29 10 00 00 00   .com.......)....
 00000020: 00 00 00 00                                       ....
@@ -665,7 +665,7 @@ Code for this part can be found in the <a href="https://github.com/Rust-Trends/d
 
 We see the label sequence and Question struct. We still do not have an answer for this DNS request so next we are going to implement a reply.
 
-# Defining DNS Answer structure
+## Defining DNS Answer structure
 The answer section in a DNS query reply is also called a <a href="https://www.rfc-editor.org/rfc/rfc1035#section-4.1.3" target="_blank">Resource record</a>. It includes several fields, such as the domain name, time-to-live (TTL), the Type and Class we previously defined for the question part and the actual data, which can contain an IP address or other relevant information. Below you can find the structure in code:
 
 ```rust
@@ -702,7 +702,7 @@ impl ResourceRecord {
 ```
 With the above method, we can easily construct a ResourceRecord as part of the reply. Ready to answer the query?
 
-# Constructing a (hardcoded) reply
+## Constructing a (hardcoded) reply
 A valid DNS response consists of three main parts:
   - Header: Includes metadata, response flags, and record counts.
 	- Question: Echoes the original query back to the client.
@@ -799,7 +799,7 @@ fn main() {
     }
 }
 ```
-Code for this part can be found in the Github Repository under `step 2`.
+Code for this part can be found in the Github Repository under `step 3`.
 
 Our response reuses some fields from the incoming query but updates specific values:
 	- qr = true → Indicates this is a response.
@@ -830,14 +830,14 @@ DNS server is running at port 1053
 
 Received query from 127.0.0.1:54734 with length 48 bytes
 
-### DNS Query: ###
+#### DNS Query: ###
 00000000: 2e 1f 01 20 00 01 00 00 00 00 00 01 03 77 77 77   ... .........www
 00000010: 0b 72 75 73 74 2d 74 72 65 6e 64 73 03 63 6f 6d   .rust-trends.com
 00000020: 00 00 01 00 01 00 00 29 10 00 00 00 00 00 00 00   .......)........
 
 Header { id: 11807, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
 
-### Question: ###
+#### Question: ###
 00000000: 03 77 77 77 0b 72 75 73 74 2d 74 72 65 6e 64 73   .www.rust-trends
 00000010: 03 63 6f 6d 00 00 01 00 01 00 00 29 10 00 00 00   .com.......)....
 00000020: 00 00 00 00                                       ....
@@ -880,7 +880,7 @@ Wow it works! we can see it received the header, query and answer. Also note is 
 
 You got your reply and can visit <a href="https://www.rust-trends.com" target="_blank">www.rust-trends.com</a>.
 
-# Conclusion
+## Conclusion
 
 We are coming to the end of Part 1 of this series. You've built a basic DNS server that can parse queries and return a hardcoded IP address. In the next part we will add support for DNS decompression and send the request to a resolver, collect the response, and construct a reply to the client.
 
@@ -888,20 +888,20 @@ This tutorial is inspired by the Codecrafters challenge of building your own DNS
 
 Have questions or feedback? Drop a comment or reach out, I’d love to hear how your DNS server is coming along! Stay tuned for Part 2!
 
-# Disclaimer
+## Disclaimer
 This project is intended for **educational purposes** and is not fully optimized for production use.
 
 When running `cargo check` or `cargo run`, you may notice warnings about **unused code**, such as `from_bytes` and `to_bytes` functions or unused enum variants. These have been **intentionally left in place** for **illustrative purposes** and to maintain **code symmetry**.
 
 Contributions and improvements are always welcome! 🚀
 
-# Acknowledgments
+## Acknowledgments
 A huge thanks to the **Codecrafters team** for their support and guidance throughout this project.
 
 
 <center>
 
-# Share
+## Share
 [Hacker News](https://news.ycombinator.com/submitlink?u=https://rust-trends.com/posts/building-a-dns-server-in-rust/)&nbsp;&nbsp;&nbsp;&nbsp;[Reddit](https://reddit.com/r/rust/submit?url=https://rust-trends.com/posts/building-a-dns-server-in-rust/)&nbsp;&nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/shareArticle?mini=true&url=https://rust-trends.com/posts/building-a-dns-server-in-rust/)
 
 </center>

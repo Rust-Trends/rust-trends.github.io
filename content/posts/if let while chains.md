@@ -7,7 +7,7 @@ description = "Rust’s upcoming if/let while chains will clean up control flow 
 
 One of the long-awaited features in Rust is if/let while chains, and it’s finally on the way! This small but powerful change will make conditional expressions and loops more ergonomic, eliminating some of the verbosity that Rustaceans have had to deal with.
 
-# What’s the Problem?
+## What’s the Problem?
 
 Currently, if you want to combine multiple conditions involving if let and while let, you have to nest them or write separate conditions, making the code harder to read.
 
@@ -46,7 +46,7 @@ fn main() {
 ```
 This indentation gets annoying fast!
 
-# What’s Changing?
+## What’s Changing?
 
 With if/let while chains, Rust will let you write conditions in a more natural way. Instead of nesting if let inside an if, you can chain them together like this:
 ```rust
@@ -84,13 +84,13 @@ fn main() {
 
 This makes the intent much clearer and eliminates unnecessary nesting. Just what we need!
 
-# Why Is This Useful?
+## Why Is This Useful?
  1.	__Cleaner Code__ – No more deep nesting just to check additional conditions.
  2.	__Better Readability__ – The logic is clearer at a glance.
  3.	__Improved Consistency__ – Other languages allow similar patterns, and Rust is catching up.
 
 
-# Final Thoughts
+## Final Thoughts
 
 Rust has always emphasized safety and clarity, but small ergonomic tweaks like if/let while chains help make code easier to write and read.
 

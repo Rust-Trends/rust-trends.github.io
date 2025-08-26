@@ -5,31 +5,31 @@ slug = "Building a Honeypot in Rust and Deploy it to Oracle for Free"
 description = "Learn how to build a honeypot in Rust and deploy it to Oracle Cloud for free! This step-by-step guide covers coding, deployment, and tips for leveraging Rust’s safety and performance for cybersecurity projects."
 +++
 
-# Introduction
+## Introduction
 Looking for a fun and educational hands-on project that combines Rust coding with cloud deployment? In this guide, we will build a simple honeypot—a minimal TCP server in Rust that listens on a specific port and logs every incoming request—then deploy it to an Ubuntu instance on Oracle Cloud Infrastructure (OCI) for FREE. A honeypot offers a fascinating window into the malicious scans and attacks traveling the internet while also providing a playful way to practice coding, cross-compiling, and network configuration. By following these steps, you will gain valuable Rust experience, learn how to set up OCI for external traffic, and come away with deeper insight into real-world attack patterns.
 
 - Note 1: I am using a Apple M1 Pro MacBook for development and cross-compiling for x86_64 architecture.
 
 ---
 
-# 1. Prerequisites
+## 1. Prerequisites
 Welcome to the warm-up lap before our Rust honeypot grand adventure! Here’s what you need to get started:
 
-## 1.1 Oracle Cloud Account
+### 1.1 Oracle Cloud Account
 First things first: snag an <a href="https://www.oracle.com/cloud/free/" target="_blank">Oracle Cloud account</a> (free is our favorite price). The Always Free tier is pretty sweet since it gives you a no-cost VM to play around with. Perfect for deploying a honeypot without emptying your wallet.
 
 - Note 1: you can of course use any cloud provider or your own server for this project. But Oracle Cloud offers an "Always Free" tier that allows you to run a small VM at no cost and I was looking for an excuse to try it out. Initially I was interested in the ARM architecture but those are limited in my region of choice so I am using a AMD64 instance for this project.
 
-## 1.2 Ubuntu VM in OCI
+### 1.2 Ubuntu VM in OCI
 Go to the Oracle Cloud console and <a href="https://cloud.oracle.com/compute/instances" target="_blank">spin up an Ubuntu instance</a>. Make sure you’ve got your SSH key set up and can **actually get in**. Some additional information on how to use SSH can be found in the <a href="https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/accessinginstance.htm" target="_blank">Oracle Cloud documentation</a>.
 
-## 1.3 Rust Installed Locally
+### 1.3 Rust Installed Locally
 If you do not have Rust installed look here for the <a href="https://www.rust-lang.org/learn/get-started" target="_blank">basic setup steps</a>. To add another architecture Rust up your local environment with the following:
 
 ```bash
 rustup update
 
-# Add the target for x86_64 architecture
+## Add the target for x86_64 architecture
 rustup target add x86_64-unknown-linux-gnu
 ```
 
@@ -42,15 +42,15 @@ brew install messense/macos-cross-toolchains/x86_64-unknown-linux-gnu
 
 If your setup is different, fear not—just make sure you have some way to compile your Rust code into a binary that your Ubuntu server recognizes.
 
-## 1.4 Basic Terminal / SSH Skills
+### 1.4 Basic Terminal / SSH Skills
 
 Brush up on your command line wizardry and SSH know-how. If you can SSH into your server, open files in your favorite terminal editor you’re set! If you are not there yet, no worries—there are plenty of tutorials out there to help you get up to speed, e.g. <a href="https://www.pluralsight.com/resources/blog/cloud/ssh-and-scp-howto-tips-tricks" target="_blank">here</a>.
 
 ---
 
-# 2. Coding the Honeypot in Rust
+## 2. Coding the Honeypot in Rust
 
-## 2.1 Project Setup
+### 2.1 Project Setup
 
 To get started, we’ll create a fresh Rust project for our honeypot:
 
@@ -74,7 +74,7 @@ That’s it, no dependencies listed because Rust’s standard library already in
 
 Next, open `src/main.rs`, and you will find a bare-bones “Hello, world!” file. We will soon replace that with our honeypot logic.
 
-## 2.2 Minimal TCP Server Code
+### 2.2 Minimal TCP Server Code
 
 Here’s a simple TCP server that listens on port 2222, for every connection a thread is spawned. Each thread logs incoming data to a file and stdout.
 
@@ -159,24 +159,24 @@ fn get_epoch_time() -> u64 {
 }
 ```
 
-### 2.2.1 Handling Connections
+#### 2.2.1 Handling Connections
 Each incoming connection is handled in a separate thread to avoid blocking the main loop. This way, the honeypot can handle multiple connections simultaneously. The `handle_client` function reads data from the incoming stream, logs it to a file, and prints it to the console. The `get_epoch_time` function generates a timestamp for the log file name.
 
 The TcpListener is bound to `0.0.0.0:2222`, which means it listens on all available network interfaces on port 2222. This allows the honeypot to accept connections from any IP address. The `listener.incoming()` method returns an iterator over incoming connections (infinitely), which we loop over to handle each connection. Great job! You’ve set up your first TCP listener.
 
 The TcpStream represents the connection to a client. We use `stream.peer_addr()` to get the IP address of the client. If the address is successfully retrieved, we convert it to a string; otherwise, we use "Unknown". We then create a buffer to read data from the stream and a file to log the incoming data.
 
-### 2.2.2 Logging Data
+#### 2.2.2 Logging Data
 The `handle_client` function reads data from the stream into the buffer and writes it to the log file. If the read operation returns 0 bytes, the connection is closed, and the function breaks out of the loop. We use `String::from_utf8_lossy` to convert the buffer to a string, handling invalid UTF-8 sequences gracefully. This allows us to log binary data like �, as well as text.
 
-## 2.3 Enhancing the Honeypot
+### 2.3 Enhancing the Honeypot
 This can be extended in many ways, for example, you could add a banner to mimic a real service, or you could add a database to store the logs. Adding more ports, or even emulating a specific protocol. But for now, this is a good starting point.
 
 ---
 
-# 3. Building and Packaging
+## 3. Building and Packaging
 
-## 3.1 Native vs. Cross-Compilation
+### 3.1 Native vs. Cross-Compilation
 Since we want to deploy our honeypot on an Ubuntu AMD64 server, we need to compile our Rust code for the x86_64 architecture. If your development machine has the same architecture, you can compile natively `cargo build --release`. Otherwise, you’ll need to cross-compile for the target architecture. It is one of the benefits of Rust that it is easy to cross-compile.
 
 In my case, I am using an Apple M1 Pro MacBook, so I need to cross-compile for x86_64. Here’s how you can do it:
@@ -189,14 +189,14 @@ This creates a binary optimized for the x86_64 architecture, which you can then 
 
 Why not use the debug build? The debug build includes additional symbols and debugging information, making the binary larger and slower. The release build is optimized for performance and size, making it more suitable for deployment.
 
-## 3.2 Testing Locally
+### 3.2 Testing Locally
 Before deploying to Oracle Cloud, you can test your honeypot locally. Build it and run it with `cargo run --release` the binary on your development machine and connect to it using `telnet localhost 2222` or `nc localhost 2222`. You should see the connection logs in your terminal and a new log file created in the current directory.
 
 ---
 
-# 4. Deploying to Oracle Cloud
+## 4. Deploying to Oracle Cloud
 
-## 4.1 Orcale Cloud Infrastructure Network Configuration
+### 4.1 Orcale Cloud Infrastructure Network Configuration
 By default, Oracle Cloud blocks inbound traffic on custom ports. You need to create an **Ingress Rule** in the **Security List** or **Network Security Group** for your instance’s subnet. Example: Open port `2222` to `0.0.0.0/0` via TCP.
 
 - Go to the Oracle Cloud console and navigate to your instance
@@ -207,34 +207,34 @@ By default, Oracle Cloud blocks inbound traffic on custom ports. You need to cre
 
 Additional tip is to close the actual SSH port on 22 after you have deployed and tested the honeypot service, so that attackers aren’t attempting to brute-force your "real" SSH port.
 
-## 4.2 Uploading the Honeypot Binary
+### 4.2 Uploading the Honeypot Binary
 To upload the binary to the server, you can use `scp` or a deployment script. I choose to use a deployment script to automate the process, because I will be doing this multiple times.
 
 ```bash
 #!/usr/bin/env bash
 
 ##############################################################################
-# Configuration
+## Configuration
 ##############################################################################
 
-# Path to your SSH private key
+## Path to your SSH private key
 SSH_KEY="$HOME/.ssh/id_ssh_key" # Change this to your private key
 
-# SSH username and server IP
+## SSH username and server IP
 SERVER_USER="ubuntu"
 SERVER_HOST="xxx.xxx.xxx.xxx" # Change this to your server's IP
 
-# Local paths
+## Local paths
 LOCAL_BINARY="./target/x86_64-unknown-linux-gnu/release/honeypot"                  # Compiled honeypot binary
 LOCAL_INSTALL_SCRIPT="./install_honeypot_service.sh"
 
-# Remote locations
+## Remote locations
 REMOTE_DIR="/home/ubuntu"                  # Temporary location for uploads
 REMOTE_BINARY_PATH="${REMOTE_DIR}/honeypot"
 REMOTE_INSTALL_SCRIPT="${REMOTE_DIR}/install_honeypot_service.sh"
 
 ##############################################################################
-# 0. Build the binary
+## 0. Build the binary
 ##############################################################################
 
 echo "=== Building the honeypot binary... ==="
@@ -245,7 +245,7 @@ if [ $? -ne 0 ]; then
 fi
 
 ##############################################################################
-# 1. Upload the new binary
+## 1. Upload the new binary
 ##############################################################################
 
 echo "=== Uploading the honeypot binary to ${SERVER_USER}@${SERVER_HOST}... ==="
@@ -257,7 +257,7 @@ fi
 echo "=== Successfully uploaded binary. ==="
 
 ##############################################################################
-# 2. Upload the install script
+## 2. Upload the install script
 ##############################################################################
 
 echo "=== Uploading install script to ${SERVER_USER}@${SERVER_HOST}... ==="
@@ -269,7 +269,7 @@ fi
 echo "=== Successfully uploaded install script. ==="
 
 ##############################################################################
-# 3. Run install script remotely
+## 3. Run install script remotely
 ##############################################################################
 
 echo "=== Running install script on the remote server... ==="
@@ -295,28 +295,28 @@ fi
 
 This script automates the process of building the binary, uploading it to the server, and running an installation script. You can customize it to fit your needs.
 
-## 4.3 Installation Script
+### 4.3 Installation Script
 Create an installation script to set up the honeypot on the server. Here’s an example script that installs the honeypot as a systemd service. It’s idempotent, meaning you can run it multiple times without causing issues.
 
 ```bash
 #!/usr/bin/env bash
 #
-# install_honeypot_service.sh
+## install_honeypot_service.sh
 #
-# Idempotent script to install/upgrade the 'honeypot' systemd service.
-# Safe to run multiple times.
+## Idempotent script to install/upgrade the 'honeypot' systemd service.
+## Safe to run multiple times.
 #
-# Steps:
-# 1. Create 'honeypot' user if missing
-# 2. Create /opt/honeypot dir if missing
-# 3. Copy local binary to /opt/honeypot if it differs
-# 4. Create or update systemd unit file
-# 5. Reload & restart service
+## Steps:
+## 1. Create 'honeypot' user if missing
+## 2. Create /opt/honeypot dir if missing
+## 3. Copy local binary to /opt/honeypot if it differs
+## 4. Create or update systemd unit file
+## 5. Reload & restart service
 
 set -euo pipefail
 
 ###############################################################################
-# Configurable parameters
+## Configurable parameters
 ###############################################################################
 SERVICE_NAME="honeypot"
 HONEYPOT_USER="honeypot"
@@ -328,7 +328,7 @@ SYSTEMD_UNIT_PATH="/etc/systemd/system/${SERVICE_NAME}.service"
 PERMISSIONS="750"                   # Permissions for $INSTALL_DIR
 
 ###############################################################################
-# 1. Create user and group if they do not exist
+## 1. Create user and group if they do not exist
 ###############################################################################
 echo ">> Checking if user '$HONEYPOT_USER' exists..."
 if id "$HONEYPOT_USER" &>/dev/null; then
@@ -339,7 +339,7 @@ else
 fi
 
 ###############################################################################
-# 2. Create /opt/honeypot directory if missing
+## 2. Create /opt/honeypot directory if missing
 ###############################################################################
 echo ">> Ensuring $INSTALL_DIR directory exists..."
 if [ ! -d "$INSTALL_DIR" ]; then
@@ -355,7 +355,7 @@ else
 fi
 
 ###############################################################################
-# 3. Copy binary to /opt/honeypot if it differs
+## 3. Copy binary to /opt/honeypot if it differs
 ###############################################################################
 echo ">> Checking if $BINARY_NAME needs to be updated..."
 LOCAL_CHECKSUM=$(sha256sum "$LOCAL_BINARY_PATH" | awk '{print $1}')
@@ -393,7 +393,7 @@ else
 fi
 
 ###############################################################################
-# 4. Create or update systemd service file
+## 4. Create or update systemd service file
 ###############################################################################
 echo ">> Installing or updating systemd unit file at $SYSTEMD_UNIT_PATH..."
 SERVICE_FILE_CONTENT="[Unit]
@@ -414,7 +414,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 "
 
-# If the file doesn't exist OR the content differs, overwrite it
+## If the file doesn't exist OR the content differs, overwrite it
 if [ -f "$SYSTEMD_UNIT_PATH" ]; then
   CURRENT_CONTENT=$(sudo cat "$SYSTEMD_UNIT_PATH")
   if [ "$CURRENT_CONTENT" != "$SERVICE_FILE_CONTENT" ]; then
@@ -429,7 +429,7 @@ else
 fi
 
 ###############################################################################
-# 5. Reload & restart systemd service
+## 5. Reload & restart systemd service
 ###############################################################################
 echo ">> Reloading systemd daemon..."
 sudo systemctl daemon-reload
@@ -456,9 +456,9 @@ In the current version I kept it simple and straightforward for educational purp
 
 ---
 
-# 5. Testing and Monitoring
+## 5. Testing and Monitoring
 
-## 5.1 Live Logs
+### 5.1 Live Logs
 You can monitor the honeypot logs in real-time using `tail -f`. Here’s how to check the logs:
 
 - SSH into your server.
@@ -469,14 +469,14 @@ I separated the logs to make it easier to distinguish between regular logs and e
 
 The `stderr` could benefit from `structured logging` or `tracing`, but for this simple honeypot, we’ll keep it basic.
 
-## 5.2 Simulating an Attack
+### 5.2 Simulating an Attack
 You can test your honeypot by connecting to it using `telnet` or `nc` from your local machine. Here’s how:
 
 - From your local machine, run `telnet <server_ip> 2222` or `nc <server_ip> 2222` to connect to the honeypot.
 - Enter some random text and press Enter.
 - Check the logs on the server to see the incoming request.
 
-## 5.3 Gathering Intelligence
+### 5.3 Gathering Intelligence
 Over time, your honeypot will encounter a variety of malicious activities, including port scans, SSH brute-force attempts, and automated exploit scripts. By storing these logs for analysis, you can gain valuable insights into who’s probing your system and what they’re attempting to achieve.
 
 Setting up alerts or notifications can help you identify specific patterns in real-time. Tools like the ELK Stack or Splunk are excellent for log analysis and can be configured to trigger alerts based on defined criteria.
@@ -485,17 +485,17 @@ For example, I observed numerous SSH brute-force attempts and port scans targeti
 
 ---
 
-# Conclusion
+## Conclusion
 Deploying a custom Rust honeypot on an always-free Oracle Cloud instance gives you hands-on insight into real-world malicious activity. You’ve learned how to code a simple TCP server in Rust, configure Oracle’s networking, manage an OCI's firewall, and centralize logging. With a bit of creativity, you can expand your honeypot to emulate common protocols, capture richer data, or integrate with threat intelligence pipelines. Happy hacking—safely, of course!
 
 ---
-# GitHub Repository
+## GitHub Repository
 You can find the code for this project on my GitHub repository <a href="https://github.com/Rust-Trends/honeypot" target="_blank">Rust Honeypot</a>. Feel free to fork, modify, and experiment with it and if you star it - I will be very happy - I may be tempted to write more guides like this one it has been fun to write.
 
-# Author
+## Author
 Bob Peters - <a href="https://rust-trends.com" target="_blank">Rust Trends</a> - <a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">LinkedIn</a>
 
-# Further Reading
+## Further Reading
 
 - <a href="https://www.oracle.com/cloud/free/" target="_blank">Oracle Cloud Free Tier</a>
 - <a href="https://doc.rust-lang.org/std/" target="_blank">Rust Standard Library</a>

@@ -7,12 +7,12 @@ description = "Discover how async closures in Rust (coming in Rust 1.85) will ma
 
 Rust’s upcoming async closures are an exciting feature set to land in **Rust 1.85**. If you’ve ever tried to write a closure inside an async function, you’ve likely hit a wall. Until now, closures couldn’t be async themselves, forcing developers to work around the limitation with named async functions. But with async closures, Rustaceans will finally get the closure they’ve been seeking!
 
-# What Are Closures in Rust?
+## What Are Closures in Rust?
 
 Closures in Rust are anonymous functions that can capture variables from their surrounding scope. They’re often used for short, throwaway functions, making code more concise and expressive. Closures in Rust can be assigned to variables, passed as arguments, and even return values.
 
 
-## Example of a Basic Closure:
+### Example of a Basic Closure:
 
 ```rust
 fn main() {
@@ -23,7 +23,7 @@ fn main() {
 Here, add_one is a closure that takes an i32 increments it with 1 and returns the resulting i32.
 
 
-## Closures Capturing Variables:
+### Closures Capturing Variables:
 ```rust
 fn main() {
     let multiplier = 3;
@@ -33,7 +33,7 @@ fn main() {
 ```
 This closure captures multiplier from its environment.
 
-# Why Do We Need Async Closures?
+## Why Do We Need Async Closures?
 Previously, if you wanted to write an async function inside another function, you had to define it separately:
 
 ```rust
@@ -47,7 +47,7 @@ fn main() {
 ```
 This is clunky! Async closures will allow a more natural syntax.
 
-## Example: Using an Async Closure
+### Example: Using an Async Closure
 ```rust
 fn main() {
     let fetcher = async |url: &str| reqwest::get(url).await.unwrap().text().await.unwrap();
@@ -56,7 +56,7 @@ fn main() {
 Now fetcher is a true async closure that can be used inside async contexts seamlessly.
 
 
-## Example: Using an Async Closure in Tokio
+### Example: Using an Async Closure in Tokio
 ```rust
 use tokio::time::{sleep, Duration};
 
@@ -73,7 +73,7 @@ async fn main() {
 Here, we define an async closure that waits for two seconds before printing a message. Want to try it out? Here is a <a href="https://play.rust-lang.org/?version=beta&mode=debug&edition=2021&gist=7770a1e098415137296f767cbd3273fe" target="_blank">Rust playground link</a> to the code snippet. Note that for now Beta Rust is required to run async closures.
 
 
-# What’s Next?
+## What’s Next?
 With Rust 1.85, async closures will make writing asynchronous code more ergonomic. They’ll be useful in scenarios like async iterators, event handling, and networking.
 
 

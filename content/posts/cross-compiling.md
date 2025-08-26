@@ -9,7 +9,7 @@ So, I recently had to cross-compile a Rust project targeting a Raspberry Pi 4. N
 
 Instead of going down the rabbit hole of manually setting up sysroots or trying to copy over dev libraries from my Pi (been there, done that), I spun up a Docker container to emulate the environment. Not only did this isolate all the dependencies neatly, but it also let me keep my host setup clean and reproducible.
 
-# The Dockerfile
+## The Dockerfile
 
 We start from `debian:bookworm-slim` and install a bunch of goodies:
 - The `gcc-aarch64-linux-gnu` toolchain for compiling to ARM64
@@ -51,11 +51,11 @@ docker run --rm -it -v /your/project/path:/workspace rust-pi-cross bash
 Inside the container, just cd into your project and run:
 
 ```bash
-# Inside the container
+## Inside the container
 cargo build --release --target aarch64-unknown-linux-gnu
 ```
 
-# Why Docker?
+## Why Docker?
 
 You can cross-compile without Docker using cross or manually installing sysroots, but I liked this approach because:
 	•	I needed dev versions of libasound2, and this gave me a full Debian userland to work with.
@@ -65,14 +65,14 @@ You can cross-compile without Docker using cross or manually installing sysroots
 The resulting binary lives inside the container at:
 
 ```bash
-# Inside the container
+## Inside the container
 /workspace/target/aarch64-unknown-linux-gnu/release/<your-binary>
 ```
 
 Or on your host machine via the mounted volume:
 
 ```bash
-# On your host machine
+## On your host machine
 /your/project/path/target/aarch64-unknown-linux-gnu/release/<your-binary>
 ```
 
@@ -80,7 +80,7 @@ That is it for this short tutorial. Let me know what your thoughts are on this a
 
 <center>
 
-# Share
+## Share
 [Hacker News](https://news.ycombinator.com/submitlink?u=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/)&nbsp;&nbsp;&nbsp;&nbsp;[Reddit](https://reddit.com/r/rust/submit?url=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/)&nbsp;&nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/shareArticle?mini=true&url=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/)
 
 </center>

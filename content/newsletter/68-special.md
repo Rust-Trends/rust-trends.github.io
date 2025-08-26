@@ -11,7 +11,7 @@ toc_not_generate = true
 
 While you're soaking up the sun or taking a well-earned summer break, why not squeeze in some Rust? We are launching the **Rust-Trends Contest** on CodeCrafters from **July 1 to August 1** — the perfect way to make your summer both relaxing and productive.
 
-# What is the Rust-Trends Summer Contest?
+## What is the Rust-Trends Summer Contest?
 
 This is a Rust programming contest run with CodeCrafters, where you’ll solve hands-on coding challenges, like **building your own shell**,  and earn points as you go.
 
@@ -19,18 +19,18 @@ It’s all about real-world Rust, community spirit, and a touch of summer compet
 
 Join here: <a href="https://app.codecrafters.io/join_team?invite_code=a207679ba061d1e4" target="_blank">Rust-Trends Team on CodeCrafters</a>
 
-# How It Works
+## How It Works
 
 - Complete coding stages to earn points:
-  - Very Easy: 5 pts  
-  - Easy: 15 pts  
-  - Medium: 30 pts  
+  - Very Easy: 5 pts
+  - Easy: 15 pts
+  - Medium: 30 pts
   - Hard: 50 pts
 - Points count only once per unique stage (per person, not per language).
 - Score resets after the contest ends on August 1.
 - Top 15 show up on the leaderboard.
 
-# Prizes for the Top Rustacean
+## Prizes for the Top Rustacean
 
 The highest scorer on August 1 gets to choose one of:
 
@@ -40,14 +40,14 @@ The highest scorer on August 1 gets to choose one of:
 
 You’ll need a <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">**CodeCrafters subscription - 40% OFF**</a> to be eligible for prizes, but participation is open to everyone. Just want to build and learn Rust this summer? That’s totally fine too, e.g. the build your own shell challenge is completely free this month.
 
-# Make This Summer Count
+## Make This Summer Count
 
 - Build real, portfolio-worthy Rust projects
 - Learn at your own pace, whether you're at the beach or your desk
 - Subscription might be reimbursable by your employer
 - You’ll also be supporting Rust-Trends if you go premium, use this <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">referral link to get 40% off</a> ❤️
 
-# Play It Straight
+## Play It Straight
 
 CodeCrafters has strong anti-cheat protections in place. Any funny business leads to a **1-year ban**. Let’s keep it cool and code clean.
 

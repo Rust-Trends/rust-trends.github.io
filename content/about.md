@@ -6,7 +6,7 @@ toc_not_generate = true
 
 +++
 
-# Welcome to Rust Trends!
+## Welcome to Rust Trends!
 
 If you want to stay up-to-date on the latest developments in the Rust programming language, you’ve come to the right place. Rust is a powerful systems programming language designed for **safety, concurrency, and performance**. Its growing popularity makes it an excellent choice for a wide range of applications.
 
@@ -18,24 +18,24 @@ Thanks for joining us, and we look forward to sharing the latest **Rust trends**
 
 ---
 
-## Get Expert Rust Code Reviews
+### Get Expert Rust Code Reviews
 
 Need a **Rust code review**? Rust Trends, led by a seasoned Rust expert, provides personalized feedback to improve your **code’s safety, performance, and maintainability**.
 
-### What You Get:
-- ✅ **Best practices & performance optimization**  
-- ✅ **Security checks**  
-- ✅ **Clear, actionable feedback**  
+#### What You Get:
+- **Best practices & performance optimization**
+- **Security checks**
+- **Clear, actionable feedback**
 
-### Pricing:
+#### Pricing:
 - **Quick PR Review** (up to 500 lines) – **$99**
 - **Interview Candidate Review** (up to 2000 lines) – **$199**
-- **Full Module Review** (up to 2000 lines) – **$299**  
-- **Security & Performance Audit** – **Contact for a custom quote**  
+- **Full Module Review** (up to 2000 lines) – **$299**
+- **Security & Performance Audit** – **Contact for a custom quote**
 
 ---
 
-## About the Author
+### About the Author
 
 Meet **[Bob Peters](https://www.linkedin.com/in/bjhpeters/)**, the creator of Rust Trends.
 
