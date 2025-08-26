@@ -186,3 +186,201 @@
     {% endfor -%}
     </div>
 {% endmacro cards_posts %}
+
+{# Schema markup macros for SEO #}
+{% macro article_schema(page) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.title }}",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "{{ config.base_url }}/about",
+    "sameAs": [
+      "{{ config.extra.socials | filter(attribute='name', value='linkedin') | first | get(key='url') }}",
+      "{{ config.extra.socials | filter(attribute='name', value='github') | first | get(key='url') }}"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ config.title }}",
+    "url": "{{ config.base_url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ config.base_url }}/icon/favicon.ico"
+    }
+  },
+  {% if page.date %}"datePublished": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
+  {% if page.extra.edited %}"dateModified": "{{ page.extra.edited | date(format='%Y-%m-%d') }}",{% elif page.date %}"dateModified": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
+  "description": "{{ page.description | default(value=page.summary | default(value='') | striptags) }}",
+  "url": "{{ page.permalink }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.permalink }}"
+  },
+  {% if page.taxonomies and page.taxonomies.tags %}"keywords": [{% for tag in page.taxonomies.tags %}"{{ tag }}"{% if not loop.last %},{% endif %}{% endfor %}],{% endif %}
+  "articleSection": "{% if 'newsletter' in page.permalink %}Newsletter{% else %}Tutorial{% endif %}",
+  "inLanguage": "en-US"
+}
+</script>
+{% endmacro article_schema %}
+
+{% macro organization_schema() %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ config.title }}",
+  "url": "{{ config.base_url }}",
+  "logo": "{{ config.base_url }}/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    {% for social in config.extra.socials %}"{{ social.url }}"{% if not loop.last %},{% endif %}{% endfor %}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "{{ config.base_url }}/contact"
+  }
+}
+</script>
+{% endmacro organization_schema %}
+
+{% macro newsletter_schema(page) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "{{ page.title }}",
+  "description": "{{ page.description | default(value=page.summary | default(value='') | striptags) }}",
+  "url": "{{ page.permalink }}",
+  {% if page.date %}"datePublished": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "{{ config.base_url }}/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ config.title }}",
+    "url": "{{ config.base_url }}"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script>
+{% endmacro newsletter_schema %}
+
+{% macro breadcrumb_schema(page) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ config.base_url }}"
+    },
+    {% if 'newsletter' in page.permalink %}
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "{{ config.base_url }}/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.title }}",
+      "item": "{{ page.permalink }}"
+    }
+    {% elif 'posts' in page.permalink %}
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "{{ config.base_url }}/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.title }}",
+      "item": "{{ page.permalink }}"
+    }
+    {% else %}
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page.title }}",
+      "item": "{{ page.permalink }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endmacro breadcrumb_schema %}
+
+{% macro website_schema() %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ config.title }}",
+  "url": "{{ config.base_url }}",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ config.base_url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ config.title }}",
+    "url": "{{ config.base_url }}"
+  }
+}
+</script>
+{% endmacro website_schema %}
+
+{# Breadcrumb navigation component #}
+{% macro breadcrumb_nav(page) %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol class="breadcrumb-list">
+        <li class="breadcrumb-item">
+            <a href="{{ config.base_url }}">Home</a>
+        </li>
+        {% if 'newsletter' in page.permalink %}
+            <li class="breadcrumb-item">
+                <a href="{{ config.base_url }}/newsletter">Newsletter</a>
+            </li>
+            <li class="breadcrumb-item current" aria-current="page">
+                {{ page.title }}
+            </li>
+        {% elif 'posts' in page.permalink %}
+            <li class="breadcrumb-item">
+                <a href="{{ config.base_url }}/posts">Posts</a>
+            </li>
+            <li class="breadcrumb-item current" aria-current="page">
+                {{ page.title }}
+            </li>
+        {% else %}
+            <li class="breadcrumb-item current" aria-current="page">
+                {{ page.title }}
+            </li>
+        {% endif %}
+    </ol>
+</nav>
+{% endmacro breadcrumb_nav %}

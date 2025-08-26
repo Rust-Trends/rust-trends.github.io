@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {# Additional performance and SEO meta tags #}
+    <meta name="theme-color" content="#ff6b35">
+    <meta name="msapplication-TileColor" content="#ff6b35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    {# Language and content optimization #}
+    <meta name="language" content="en">
+    <meta name="author" content="Bob Peters">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    {# Performance hints #}
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
     {% if page.extra.meta %}
          <!-- the meta data config goes here  -->
@@ -68,6 +83,13 @@
         <link rel="icon" type="image/x-icon" href={{ get_url(path=config.extra.favicon) }} />
     {% endif %}
 
+    {# Font preloading for performance #}
+    {% if not config.extra.use_cdn | default(value=false) %}
+        <link rel="preload" href="{{ get_url(path='fonts/JetbrainsMono/JetBrainsMono-Regular.ttf') }}" as="font" type="font/ttf" crossorigin>
+        <link rel="preload" href="{{ get_url(path='fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf') }}" as="font" type="font/ttf" crossorigin>
+        <link rel="preload" href="{{ get_url(path='fonts/SpaceGrotesk/SpaceGrotesk-Bold.ttf') }}" as="font" type="font/ttf" crossorigin>
+    {% endif %}
+
     {# Font from cdn or disk #}
     {% if config.extra.use_cdn | default(value=false) %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
@@ -107,6 +129,42 @@
     {# RSS #}
     <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
 
+    {# Twitter Card and enhanced Open Graph #}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rust_trends" />
+    <meta name="twitter:creator" content="@bob_peters" />
+    {% if page.title %}
+        <meta name="twitter:title" content="{{ page.title }}" />
+    {% else %}
+        <meta name="twitter:title" content="{{ config.title }}" />
+    {% endif %}
+    {% if page.description %}
+        <meta name="twitter:description" content="{{ page.description }}" />
+    {% elif config.description %}
+        <meta name="twitter:description" content="{{ config.description }}" />
+    {% endif %}
+    
+    {# Open Graph enhancements #}
+    <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}" />
+    <meta property="og:url" content="{% if page %}{{ page.permalink }}{% else %}{{ config.base_url }}{% endif %}" />
+    <meta property="og:site_name" content="{{ config.title }}" />
+    {% if page.date %}
+        <meta property="article:published_time" content="{{ page.date | date(format='%Y-%m-%d') }}" />
+    {% endif %}
+    {% if page.extra.edited %}
+        <meta property="article:modified_time" content="{{ page.extra.edited | date(format='%Y-%m-%d') }}" />
+    {% endif %}
+    {% if page and 'newsletter' in page.permalink %}
+        <meta property="article:section" content="Newsletter" />
+    {% elif page and 'posts' in page.permalink %}
+        <meta property="article:section" content="Tutorial" />
+    {% endif %}
+    {% if page.taxonomies and page.taxonomies.tags %}
+        {% for tag in page.taxonomies.tags %}
+            <meta property="article:tag" content="{{ tag }}" />
+        {% endfor %}
+    {% endif %}
+
     <link rel="stylesheet" type="text/css" media="screen" href={{ get_url(path="main.css") }} />
 
 
@@ -114,5 +172,13 @@
         {% for stylesheet in config.extra.stylesheets %}
             <link rel="stylesheet" href="{{ get_url(path=stylesheet) }}">
         {% endfor %}
+    {% endif %}
+
+    {# Schema.org structured data #}
+    {{ post_macros::organization_schema() }}
+    {{ post_macros::website_schema() }}
+    {% if page %}
+        {{ post_macros::article_schema(page=page) }}
+        {{ post_macros::breadcrumb_schema(page=page) }}
     {% endif %}
 </head>

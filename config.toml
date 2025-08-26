@@ -2,9 +2,10 @@
 base_url = "https://rust-trends.com"
 
 title = "Rust Trends"
+description = "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates. Stay current with the latest developments in the Rust programming language."
 
 # Whether to build a search index to be used later on by a JavaScript library
-build_search_index = false
+build_search_index = true
 
 theme = "apollo"
 
@@ -12,6 +13,8 @@ theme = "apollo"
 generate_feeds = true
 compile_sass = true
 minify_html = true
+# Enable sitemap generation with enhanced configuration
+generate_sitemap = true
 
 feed_filenames = ["rss.xml"]
 
@@ -34,10 +37,11 @@ theme = "dark"
 menu = [
     { name = "/newsletter", url = "/newsletter/", weight = 1, slash = true },
     { name = "/posts", url = "/posts/", weight = 2, slash = true },
-    { name = "/faq", url = "/faq/", weight = 3, slash = true },
-    { name = "/about", url = "/about/", weight = 4, slash = true },
-    { name = "/contact", url = "/contact/", weight = 5, slash = true },
-    { name = "/sign up", url = "/signup/", weight = 6, slash = true },
+    { name = "/search", url = "/search/", weight = 3, slash = true },
+    { name = "/faq", url = "/faq/", weight = 4, slash = true },
+    { name = "/about", url = "/about/", weight = 5, slash = true },
+    { name = "/contact", url = "/contact/", weight = 6, slash = true },
+    { name = "/sign up", url = "/signup/", weight = 7, slash = true },
 ]
 
 

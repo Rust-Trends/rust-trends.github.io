@@ -61,3 +61,136 @@ time {
     padding: 0;
   }
 }
+
+.menu-footer {
+  color: var(--hover-color);
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.menu-footer a {
+  color: var(--hover-color);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.menu-footer h3::before {
+  content: "";
+  margin: 0;
+}
+
+.menu-footer h3 {
+  margin: 0 20 0 0;
+  color: #999;
+  padding: 0;
+ 
+}
+
+.menu-footer  {
+  margin: 10px;
+  padding: 0;
+}
+
+.menu-footer ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+  line-height: 2.2em;
+}
+
+/* Breadcrumb navigation styles */
+.breadcrumb {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+  content: "→";
+  margin: 0 0.5em;
+  color: var(--border-color);
+}
+
+.breadcrumb-item a {
+  border-bottom: 1px solid var(--primary-color);
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  background-color: var(--primary-color);
+  color: var(--hover-color);
+}
+
+.breadcrumb-item.current {
+  color: grey;
+}
+
+@media screen and (max-width: 600px) {
+  .breadcrumb-list {
+    font-size: 0.8em;
+  }
+  
+  .breadcrumb-item:not(:last-child)::after {
+    margin: 0 0.3em;
+  }
+}
+
+/* Search functionality styles */
+#search {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5em;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+#search:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+#search-results {
+  margin-top: 1em;
+}
+
+.search-result {
+  margin-bottom: 1.5em;
+  padding: 1em;
+  border-left: 3px solid var(--primary-color);
+  background-color: var(--background);
+}
+
+.search-result h3 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.1em;
+}
+
+.search-result h3 a {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.search-result p {
+  margin: 0;
+  color: grey;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+
+

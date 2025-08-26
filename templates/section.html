@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block main_content %}
+    {# Add schema markup for homepage and main sections #}
+    {% if current_path == "/" %}
+        {{ post_macros::website_schema() }}
+        {{ post_macros::organization_schema() }}
+    {% endif %}
+
     {% if section.extra.section_path -%}
         {% set section = get_section(path=section.extra.section_path) %}
     {% endif -%}

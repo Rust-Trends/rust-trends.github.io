@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
 {% block main_content %}
+    {# Add schema markup for articles/newsletters #}
+    {% if 'newsletter' in page.permalink %}
+        {{ post_macros::newsletter_schema(page=page) }}
+    {% else %}
+        {{ post_macros::article_schema(page=page) }}
+    {% endif %}
+    {{ post_macros::breadcrumb_schema(page=page) }}
+    
+    {# Add breadcrumb navigation #}
+    {{ post_macros::breadcrumb_nav(page=page) }}
+    
     {{ post_macros::content(page=page)}}
 {% endblock main_content %}

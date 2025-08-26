@@ -26,6 +26,11 @@
     <div class="footer">
         {% include "partials/footer.html" %}
     </div>
+    
+    {# Include search functionality #}
+    {% if config.build_search_index %}
+        <script src="{{ get_url(path='search.js') }}"></script>
+    {% endif %}
 </body>
 
 </html>
