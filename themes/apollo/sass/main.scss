@@ -138,7 +138,8 @@ blockquote:nth-of-type(even) footer:before {
 blockquote:nth-of-type(even) footer:after {
   content: ' —';
 }
-@element 'blockquote' and (min-width: 300px) {
+/* Enhanced blockquote styles for larger screens */
+@media screen and (min-width: 480px) {
   blockquote {
     padding: 0.8em 20% 0.8em 0.8em;
   }
