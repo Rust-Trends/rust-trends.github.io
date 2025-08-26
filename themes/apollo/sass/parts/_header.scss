@@ -69,7 +69,17 @@ header .main {
 
 h1 {
   font-size: 1.6rem;
-  margin-top: 1.8em;
+  margin: 1.8em 0 0.5em 0;
+  line-height: 1.6em;
+}
+
+/* Ensure sectioned h1 elements have consistent styling */
+section h1,
+article h1,
+aside h1,
+nav h1 {
+  font-size: 1.6rem;
+  margin: 1.8em 0 0.5em 0;
   line-height: 1.6em;
 }
 
