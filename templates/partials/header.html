@@ -83,6 +83,18 @@
         <link rel="icon" type="image/x-icon" href={{ get_url(path=config.extra.favicon) }} />
     {% endif %}
 
+    {# Apple Touch Icons #}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ get_url(path='icon/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ get_url(path='icon/favicon.ico') }}">
+
     {# Font preloading for performance #}
     {% if not config.extra.use_cdn | default(value=false) %}
         <link rel="preload" href="{{ get_url(path='fonts/JetbrainsMono/JetBrainsMono-Regular.ttf') }}" as="font" type="font/ttf" crossorigin>
