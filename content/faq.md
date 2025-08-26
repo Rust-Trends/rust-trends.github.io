@@ -34,6 +34,6 @@ Yes, you can learn Rust as your first programming language, though it comes with
 1. Start with <a href="https://doc.rust-lang.org/book/" target="_blank">The Rust Book</a>
 2. Practice with <a href="https://rustlings.cool/" target="_blank">Rustlings</a> exercises
 3. Join the <a href="https://www.reddit.com/r/learnrust/" target="_blank">/r/learnrust subreddit</a> and <a href="https://discord.gg/rust-lang" target="_blank">Rust Community Discord</a>
-4. Build projects on <a href="https://codecrafters.io/join?via=rust-trends" target="_blank">CodeCrafters</a> for hands-on learning (referral link - but I wouldn't recommend it if it weren't genuinely excellent)
+4. Build projects on <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">CodeCrafters</a> for hands-on learning (referral link - but I wouldn't recommend it if it weren't genuinely excellent)
 
 **Bottom Line:** While challenging, many beginners successfully learn Rust as their first language in 2024. Companies report typical onboarding time of 3-6 months for new Rust developers. If you're motivated and patient with the learning curve, Rust can be an excellent foundation for your programming journey.
