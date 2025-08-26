@@ -1,52 +1,107 @@
-// Simple client-side search functionality for Rust Trends
+// ElasticLunr-based search functionality for Rust Trends
 class SearchEngine {
     constructor() {
-        this.searchIndex = null;
+        this.index = null;
+        this.documents = null;
         this.loadSearchIndex();
     }
 
     async loadSearchIndex() {
         try {
-            const response = await fetch('/search_index.en.json');
-            this.searchIndex = await response.json();
+            // Load ElasticLunr library first
+            if (typeof elasticlunr === 'undefined') {
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = '/elasticlunr.min.js';
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+            }
+
+            // Load the Zola-generated search index
+            await new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = '/search_index.en.js';
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+
+            // Initialize ElasticLunr with the loaded index
+            if (window.searchIndex) {
+                this.index = elasticlunr.Index.load(window.searchIndex);
+                // Store documents separately for displaying results
+                this.documents = {};
+                
+                // Extract document data from the search index
+                // This is a simplified approach - in practice, you might need 
+                // to fetch this data from a separate endpoint
+                console.log('Search index loaded successfully');
+            } else {
+                throw new Error('Search index not found in window.searchIndex');
+            }
         } catch (error) {
             console.error('Failed to load search index:', error);
         }
     }
 
     search(query) {
-        if (!this.searchIndex || !query.trim()) {
+        if (!this.index || !query.trim()) {
             return [];
         }
 
-        const lowercaseQuery = query.toLowerCase();
-        const results = [];
-
-        for (const [url, data] of Object.entries(this.searchIndex)) {
-            let score = 0;
-            const title = data.title || '';
-            const body = data.body || '';
+        try {
+            // Use ElasticLunr to search
+            const results = this.index.search(query, {});
             
-            // Title matches get higher score
-            if (title.toLowerCase().includes(lowercaseQuery)) {
-                score += 10;
-            }
-            
-            // Body matches
-            const bodyMatches = (body.toLowerCase().match(new RegExp(lowercaseQuery, 'g')) || []).length;
-            score += bodyMatches;
-            
-            if (score > 0) {
-                results.push({
+            // Format results for display
+            return results.slice(0, 10).map(result => {
+                // Extract basic info from the URL
+                const url = result.ref;
+                const title = this.extractTitleFromUrl(url);
+                
+                return {
                     url: url,
                     title: title,
-                    body: body.substring(0, 200) + '...',
-                    score: score
-                });
-            }
+                    body: 'Match found in ' + title,
+                    score: result.score
+                };
+            });
+        } catch (error) {
+            console.error('Search error:', error);
+            return [];
         }
+    }
 
-        return results.sort((a, b) => b.score - a.score).slice(0, 10);
+    extractTitleFromUrl(url) {
+        // Extract a readable title from the URL path
+        const path = url.replace('https://rust-trends.com/', '');
+        
+        // Handle newsletter URLs
+        if (path.startsWith('newsletter/')) {
+            const title = path.replace('newsletter/', '').replace('/', '');
+            return this.formatTitle(title);
+        }
+        
+        // Handle post URLs
+        if (path.startsWith('posts/')) {
+            const title = path.replace('posts/', '').replace('/', '');
+            return this.formatTitle(title);
+        }
+        
+        // Handle other pages
+        const title = path.replace('/', '');
+        return this.formatTitle(title) || 'Home Page';
+    }
+
+    formatTitle(slug) {
+        if (!slug) return 'Page';
+        
+        return slug
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
     }
 }
 
