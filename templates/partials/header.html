@@ -87,7 +87,6 @@
     {% if not config.extra.use_cdn | default(value=false) %}
         <link rel="preload" href="{{ get_url(path='fonts/JetbrainsMono/JetBrainsMono-Regular.ttf') }}" as="font" type="font/ttf" crossorigin>
         <link rel="preload" href="{{ get_url(path='fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf') }}" as="font" type="font/ttf" crossorigin>
-        <link rel="preload" href="{{ get_url(path='fonts/SpaceGrotesk/SpaceGrotesk-Bold.ttf') }}" as="font" type="font/ttf" crossorigin>
     {% endif %}
 
     {# Font from cdn or disk #}
