@@ -70,6 +70,12 @@ The site automatically deploys to GitHub Pages when changes are pushed to the `m
 1. Building the site with Zola
 2. Deploying to the `gh-pages` branch
 
+## Author
+
+**[Bob Peters](https://www.linkedin.com/in/bjhpeters/)** - Creator of Rust Trends
+
+Bob has a strong background in the Internet of Things (IoT) and extensive experience in the technology industry. As an entrepreneur and tech leader, he is passionate about keeping up with the latest trends and advancements. In addition to running Rust Trends, Bob is the CTO of an Industrial IoT company, where he applies his expertise in programming languages and cutting-edge technology.
+
 ## Contributing
 
 Contributions are welcome! Feel free to:
