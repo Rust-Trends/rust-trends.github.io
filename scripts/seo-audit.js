@@ -73,35 +73,73 @@ class SEOAuditor {
     };
 
     const getMetaContent = (name) => {
-      // Try name attribute
-      let regex = new RegExp(`<meta[^>]*name=["']${name}["'][^>]*content=["']([^"']*)["']`, 'i');
-      let match = html.match(regex);
-      if (match) return match[1];
+      // Handle both quoted and unquoted attributes in minified HTML
+      // Pattern: name=value or name="value" or name='value'
+      const namePatterns = [
+        `name=["']${name}["']`,
+        `name=${name}(?=[\\s>])`,
+      ];
+      const contentPatterns = [
+        `content=["']([^"']*)["']`,
+        `content=([^\\s>]+)`,
+      ];
 
-      // Try content before name
-      regex = new RegExp(`<meta[^>]*content=["']([^"']*)["'][^>]*name=["']${name}["']`, 'i');
-      match = html.match(regex);
-      if (match) return match[1];
+      for (const namePattern of namePatterns) {
+        for (const contentPattern of contentPatterns) {
+          // Try name before content
+          let regex = new RegExp(`<meta[^>]*${namePattern}[^>]*${contentPattern}`, 'i');
+          let match = html.match(regex);
+          if (match) return match[1];
+
+          // Try content before name
+          regex = new RegExp(`<meta[^>]*${contentPattern}[^>]*${namePattern}`, 'i');
+          match = html.match(regex);
+          if (match) return match[1];
+        }
+      }
 
       return null;
     };
 
     const getMetaProperty = (property) => {
-      let regex = new RegExp(`<meta[^>]*property=["']${property}["'][^>]*content=["']([^"']*)["']`, 'i');
-      let match = html.match(regex);
-      if (match) return match[1];
+      // Handle both quoted and unquoted attributes
+      const propPatterns = [
+        `property=["']${property}["']`,
+        `property=${property.replace(':', '\\:')}(?=[\\s>])`,
+      ];
+      const contentPatterns = [
+        `content=["']([^"']*)["']`,
+        `content=([^\\s>]+)`,
+      ];
 
-      regex = new RegExp(`<meta[^>]*content=["']([^"']*)["'][^>]*property=["']${property}["']`, 'i');
-      match = html.match(regex);
-      if (match) return match[1];
+      for (const propPattern of propPatterns) {
+        for (const contentPattern of contentPatterns) {
+          let regex = new RegExp(`<meta[^>]*${propPattern}[^>]*${contentPattern}`, 'i');
+          let match = html.match(regex);
+          if (match) return match[1];
+
+          regex = new RegExp(`<meta[^>]*${contentPattern}[^>]*${propPattern}`, 'i');
+          match = html.match(regex);
+          if (match) return match[1];
+        }
+      }
 
       return null;
     };
 
     const getCanonical = () => {
-      const regex = /<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["']/i;
-      const match = html.match(regex);
-      return match ? match[1] : null;
+      // Handle both quoted and unquoted attributes in minified HTML
+      const patterns = [
+        /<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["']/i,
+        /<link[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["']/i,
+        /<link[^>]*rel=canonical[^>]*href=([^\s>]+)/i,
+        /<link[^>]*href=([^\s>]+)[^>]*rel=canonical/i,
+      ];
+      for (const regex of patterns) {
+        const match = html.match(regex);
+        if (match) return match[1];
+      }
+      return null;
     };
 
     const getCharset = () => {
@@ -115,14 +153,21 @@ class SEOAuditor {
     };
 
     const getLang = () => {
-      const regex = /<html[^>]*lang=["']([^"']*)["']/i;
-      const match = html.match(regex);
+      // Handle both quoted and unquoted lang attribute
+      let regex = /<html[^>]*lang=["']([^"']*)["']/i;
+      let match = html.match(regex);
+      if (match) return match[1];
+
+      // Unquoted: lang=en
+      regex = /<html[^>]*lang=([a-zA-Z-]+)/i;
+      match = html.match(regex);
       return match ? match[1] : null;
     };
 
     const getStructuredData = () => {
       const scripts = [];
-      const regex = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+      // Handle both quoted and unquoted type attribute
+      const regex = /<script[^>]*type=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi;
       let match;
       while ((match = regex.exec(html)) !== null) {
         try {

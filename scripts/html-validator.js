@@ -182,15 +182,12 @@ class HTMLValidator {
       }
     }
 
-    // Check for malformed attributes
-    const malformedAttr = html.match(/\s[a-z-]+=[^"'\s>][^\s>]*/gi);
+    // Note: Unquoted attributes are valid in HTML5, so we don't warn about them
+    // Only check for truly malformed attributes (e.g., missing value after =)
+    const malformedAttr = html.match(/\s[a-z-]+=(?=[\s>])/gi);
     if (malformedAttr) {
       for (const attr of malformedAttr.slice(0, 3)) {
-        if (!attr.includes('=') || /=\s/.test(attr)) continue;
-        const attrName = attr.trim().split('=')[0];
-        if (!['class', 'style', 'id'].includes(attrName)) {
-          warnings.push(`Possibly unquoted attribute: ${attr.trim().substring(0, 30)}`);
-        }
+        warnings.push(`Attribute with empty value: ${attr.trim()}`);
       }
     }
 
