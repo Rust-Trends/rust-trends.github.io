@@ -1,7 +1,7 @@
 # The URL the site will be built for
 base_url = "https://rust-trends.com"
 
-title = "Rust Trends | The Rust Programming Newsletter"
+title = "Rust Trends"
 description = "The premier Rust programming newsletter covering trends, tutorials, and ecosystem updates. Stay current with Rust development."
 
 # Whether to build a search index to be used later on by a JavaScript library
