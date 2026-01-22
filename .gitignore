@@ -1,1 +1,13 @@
 rusttrends-website.code-workspace
+
+# Node.js
+node_modules/
+
+# Build output
+public/
+
+# Generated reports (keep these out of repo)
+seo-report.json
+performance-report.json
+html-validation-report.json
+seo-benchmark-report.json

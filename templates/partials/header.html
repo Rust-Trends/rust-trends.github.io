@@ -140,6 +140,15 @@
     {# RSS #}
     <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
 
+    {# Canonical URL #}
+    {% if page %}
+        <link rel="canonical" href="{{ page.permalink }}" />
+    {% elif section %}
+        <link rel="canonical" href="{{ section.permalink }}" />
+    {% else %}
+        <link rel="canonical" href="{{ config.base_url }}" />
+    {% endif %}
+
     {# Twitter Card and enhanced Open Graph #}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@rust_trends" />

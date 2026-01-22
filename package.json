@@ -1,0 +1,15 @@
+{
+  "name": "rust-trends-seo-tools",
+  "version": "1.0.0",
+  "description": "SEO benchmarking and validation tools for rust-trends.com",
+  "scripts": {
+    "seo:audit": "node scripts/seo-audit.js",
+    "seo:performance": "node scripts/performance-audit.js",
+    "seo:validate-html": "node scripts/html-validator.js",
+    "seo:benchmark": "node scripts/benchmark-runner.js",
+    "seo:all": "npm run seo:benchmark"
+  },
+  "devDependencies": {
+    "glob": "^10.3.10"
+  }
+}
