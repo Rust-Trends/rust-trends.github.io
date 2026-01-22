@@ -360,16 +360,44 @@ class PerformanceAuditor {
     console.log(`${colors.red('Issues:')} ${totalIssues}`);
     console.log(`${colors.yellow('Recommendations:')} ${totalRecommendations}`);
 
-    // Performance score (simplified)
+    // Performance score - more granular calculation
     const avgPageSize = pageResults.reduce((sum, p) => sum + p.size, 0) / pageResults.length;
     const avgElements = pageResults.reduce((sum, p) => sum + p.analysis.elementCount, 0) / pageResults.length;
 
+    // Calculate score components
     let score = 100;
-    score -= Math.min(30, totalIssues * 5);
-    score -= Math.min(20, totalRecommendations * 2);
-    if (avgPageSize > THRESHOLDS.htmlSize.good) score -= 10;
-    if (avgElements > THRESHOLDS.domElements.good) score -= 10;
-    if (totalAssetSize > 500 * 1024) score -= 10;
+
+    // Issues penalty: scale from 0-40 based on issue count (0 issues = 0 penalty, 20+ = max penalty)
+    const issuesPenalty = Math.min(40, Math.round((totalIssues / 20) * 40));
+    score -= issuesPenalty;
+
+    // Recommendations penalty: scale from 0-15 (minor impact)
+    const recsPenalty = Math.min(15, totalRecommendations * 2);
+    score -= recsPenalty;
+
+    // Page size penalty: 0-15 based on average page size
+    if (avgPageSize > THRESHOLDS.htmlSize.warning) {
+      score -= 15;
+    } else if (avgPageSize > THRESHOLDS.htmlSize.good) {
+      score -= 8;
+    }
+
+    // DOM complexity penalty: 0-15 based on element count
+    if (avgElements > THRESHOLDS.domElements.warning) {
+      score -= 15;
+    } else if (avgElements > THRESHOLDS.domElements.good) {
+      score -= 8;
+    }
+
+    // Asset size penalty: 0-15 (exclude fonts if using CDN - check for font preload absence)
+    // Note: If fonts aren't preloaded locally, likely using CDN
+    const effectiveAssetSize = totalCSS + totalJS + totalImages; // Exclude fonts for CDN case
+    if (effectiveAssetSize > 5 * 1024 * 1024) {
+      score -= 15;
+    } else if (effectiveAssetSize > 1 * 1024 * 1024) {
+      score -= 8;
+    }
+
     score = Math.max(0, score);
 
     console.log(`\nPerformance Score: ${score >= 80 ? colors.green(score + '/100') : score >= 60 ? colors.yellow(score + '/100') : colors.red(score + '/100')}`);

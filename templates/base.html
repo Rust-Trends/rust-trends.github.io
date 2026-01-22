@@ -27,9 +27,9 @@
         {% include "partials/footer.html" %}
     </div>
     
-    {# Include search functionality #}
+    {# Include search functionality - defer to avoid render blocking #}
     {% if config.build_search_index %}
-        <script src="{{ get_url(path='search.js') }}?v={{ now() | date(format='%Y%m%d%H%M') }}"></script>
+        <script defer src="{{ get_url(path='search.js') }}?v={{ now() | date(format='%Y%m%d%H%M') }}"></script>
     {% endif %}
 </body>
 
