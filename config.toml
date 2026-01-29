@@ -2,7 +2,7 @@
 base_url = "https://rust-trends.com"
 
 title = "Rust Trends"
-description = "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates. Stay current with the latest developments in the Rust programming language."
+description = "The premier Rust programming newsletter covering trends, tutorials, and ecosystem updates. Stay current with Rust development."
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
@@ -27,7 +27,7 @@ highlight_code = true
 [extra]
 # Put all your custom variables here
 toc = true
-use_cdn = false
+use_cdn = true  # Use CDN for fonts (saves ~2.3MB in local font files)
 favicon = "icon/favicon.ico"
 theme = "dark"      
 # mode = "toggle"

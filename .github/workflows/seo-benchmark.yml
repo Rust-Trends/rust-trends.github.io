@@ -1,0 +1,184 @@
+# SEO Benchmark CI - runs on PRs and pushes to provide feedback
+name: SEO Benchmark
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Zola
+        run: |
+          wget -qO- https://github.com/getzola/zola/releases/download/v0.19.2/zola-v0.19.2-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          sudo mv zola /usr/local/bin/
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: zola build
+
+      - name: Run SEO Audit
+        id: seo
+        run: |
+          node scripts/seo-audit.js public || true
+          if [ -f seo-report.json ]; then
+            SCORE=$(cat seo-report.json | jq '.summary.score')
+            echo "seo_score=$SCORE" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Performance Audit
+        id: perf
+        run: |
+          node scripts/performance-audit.js public || true
+          if [ -f performance-report.json ]; then
+            SCORE=$(cat performance-report.json | jq '.summary.score')
+            echo "perf_score=$SCORE" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run HTML Validation
+        id: html
+        run: |
+          node scripts/html-validator.js public || true
+          if [ -f html-validation-report.json ]; then
+            SCORE=$(cat html-validation-report.json | jq '.summary.score')
+            echo "html_score=$SCORE" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate Summary
+        run: |
+          echo "## SEO Benchmark Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Score |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| SEO | ${{ steps.seo.outputs.seo_score || 'N/A' }}% |" >> $GITHUB_STEP_SUMMARY
+          echo "| Performance | ${{ steps.perf.outputs.perf_score || 'N/A' }}/100 |" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML Validation | ${{ steps.html.outputs.html_score || 'N/A' }}% |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Add details from reports
+          if [ -f seo-report.json ]; then
+            ERRORS=$(cat seo-report.json | jq '.summary.errors')
+            WARNINGS=$(cat seo-report.json | jq '.summary.warnings')
+            echo "### SEO Details" >> $GITHUB_STEP_SUMMARY
+            echo "- Errors: $ERRORS" >> $GITHUB_STEP_SUMMARY
+            echo "- Warnings: $WARNINGS" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-reports
+          path: |
+            seo-report.json
+            performance-report.json
+            html-validation-report.json
+          retention-days: 30
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let comment = '## 📊 SEO Benchmark Results\n\n';
+            comment += '| Metric | Score | Status |\n';
+            comment += '|--------|-------|--------|\n';
+
+            const getEmoji = (score, good, warn) => {
+              if (score >= good) return '✅';
+              if (score >= warn) return '⚠️';
+              return '❌';
+            };
+
+            const seoScore = '${{ steps.seo.outputs.seo_score }}' || 'N/A';
+            const perfScore = '${{ steps.perf.outputs.perf_score }}' || 'N/A';
+            const htmlScore = '${{ steps.html.outputs.html_score }}' || 'N/A';
+
+            comment += `| SEO | ${seoScore}% | ${getEmoji(parseInt(seoScore), 80, 60)} |\n`;
+            comment += `| Performance | ${perfScore}/100 | ${getEmoji(parseInt(perfScore), 80, 60)} |\n`;
+            comment += `| HTML Validation | ${htmlScore}% | ${getEmoji(parseInt(htmlScore), 90, 70)} |\n`;
+
+            // Add summary from reports
+            try {
+              if (fs.existsSync('seo-report.json')) {
+                const seo = JSON.parse(fs.readFileSync('seo-report.json', 'utf8'));
+                comment += `\n### SEO Summary\n`;
+                comment += `- Pages audited: ${seo.summary.pagesAudited}\n`;
+                comment += `- Passed: ${seo.summary.passed}\n`;
+                comment += `- Warnings: ${seo.summary.warnings}\n`;
+                comment += `- Errors: ${seo.summary.errors}\n`;
+              }
+            } catch (e) {
+              console.log('Could not read SEO report:', e.message);
+            }
+
+            comment += '\n<details><summary>View detailed reports</summary>\n\n';
+            comment += 'Download the `seo-reports` artifact for full JSON reports.\n';
+            comment += '</details>';
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('SEO Benchmark Results')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }
+
+      - name: Check thresholds
+        run: |
+          SEO_SCORE=${{ steps.seo.outputs.seo_score }}
+          PERF_SCORE=${{ steps.perf.outputs.perf_score }}
+          HTML_SCORE=${{ steps.html.outputs.html_score }}
+
+          FAILED=0
+
+          if [ ! -z "$SEO_SCORE" ] && [ "$SEO_SCORE" -lt 60 ]; then
+            echo "::error::SEO score ($SEO_SCORE%) is below threshold (60%)"
+            FAILED=1
+          fi
+
+          if [ ! -z "$PERF_SCORE" ] && [ "$PERF_SCORE" -lt 50 ]; then
+            echo "::error::Performance score ($PERF_SCORE) is below threshold (50)"
+            FAILED=1
+          fi
+
+          if [ ! -z "$HTML_SCORE" ] && [ "$HTML_SCORE" -lt 70 ]; then
+            echo "::error::HTML validation score ($HTML_SCORE%) is below threshold (70%)"
+            FAILED=1
+          fi
+
+          exit $FAILED

@@ -206,7 +206,7 @@ Note in this example I am still using `strum` to iterate over the enum variants,
 
 ### How to generate such great code snippets?
 
-<img src="../../newsletter/40/match-operator.png" alt="Code snippet match-operator" style="display: block; margin-left: auto; margin-right: auto; width: 50%; border:0">
+<img src="../../newsletter/40/match-operator.webp" alt="Code snippet match-operator" style="display: block; margin-left: auto; margin-right: auto; width: 50%; border:0">
 
 One community member asked how to generate such great code snippets images I use ray.so for generating code snippets. It's a fantastic tool for creating beautiful code images for sharing on social media platforms like LinkedIn, Twitter, etc. You can check it out <a href="https://ray.so/" target="_blank">here</a>.
 

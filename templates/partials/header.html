@@ -117,7 +117,7 @@
         <script data-goatcounter="https://{{ user }}.{{ host }}/count" async src="{{ get_url(path="js/count.js") }}"></script>
         <noscript>
             {# EasyList blocks '.com/count?', so we have to use '.com//count' #}
-            <img src="https://{{ user }}.{{ host }}//count?p={{ current_path }}&t={{ page.title | default(value=config.title) }}">
+            <img alt="" src="https://{{ user }}.{{ host }}//count?p={{ current_path }}&t={{ page.title | default(value=config.title) }}">
         </noscript>
     {% endif %}
 
@@ -140,6 +140,15 @@
     {# RSS #}
     <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
 
+    {# Canonical URL #}
+    {% if page %}
+        <link rel="canonical" href="{{ page.permalink }}" />
+    {% elif section %}
+        <link rel="canonical" href="{{ section.permalink }}" />
+    {% else %}
+        <link rel="canonical" href="{{ config.base_url }}" />
+    {% endif %}
+
     {# Twitter Card and enhanced Open Graph #}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@rust_trends" />
@@ -153,6 +162,15 @@
         <meta name="twitter:description" content="{{ page.description }}" />
     {% elif config.description %}
         <meta name="twitter:description" content="{{ config.description }}" />
+    {% endif %}
+
+    {# Social sharing images - og:image and twitter:image #}
+    {% if page.extra.og_image %}
+        <meta property="og:image" content="{{ get_url(path=page.extra.og_image) }}" />
+        <meta name="twitter:image" content="{{ get_url(path=page.extra.og_image) }}" />
+    {% else %}
+        <meta property="og:image" content="{{ get_url(path='icon/favicon.ico') }}" />
+        <meta name="twitter:image" content="{{ get_url(path='icon/favicon.ico') }}" />
     {% endif %}
     
     {# Open Graph enhancements #}
