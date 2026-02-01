@@ -1,37 +1,41 @@
 +++
 title = "About"
 path = "about"
+description = "Learn about Rust Trends newsletter - your source for the latest Rust programming language news, insights, and expert analysis from industry professionals."
 [extra]
 toc_not_generate = true
-
 +++
 
-## Welcome to Rust Trends!
+## Your bi-weekly Source for Rust Excellence
 
-If you want to stay up-to-date on the latest developments in the Rust programming language, you’ve come to the right place. Rust is a powerful systems programming language designed for **safety, concurrency, and performance**. Its growing popularity makes it an excellent choice for a wide range of applications.
+**Rust Trends** delivers curated insights on the latest developments in systems programming's most innovative language. Every bi-week, we analyze **new language features, performance optimizations, security updates, and ecosystem growth** to help you stay ahead in the rapidly evolving Rust landscape.
 
-At **Rust Trends**, we bring you the latest **news, insights, and resources** to help you stay informed and ahead of the curve. Our newsletter and posts cover everything from new language features and tools to best practices and industry trends.
+### What You'll Discover
+- **Language Updates**: Compiler improvements, new syntax, and experimental features
+- **Ecosystem Growth**: Emerging crates, framework updates, and tooling advances
+- **Industry Applications**: Real-world case studies from WebAssembly to blockchain
+- **Performance Insights**: Benchmarks, optimization techniques, and best practices
+- **Community Highlights**: RFC discussions, conference talks, and open-source contributions
 
-Whether you're an experienced Rust developer or just getting started, we hope you'll find our content valuable and insightful. We also welcome your feedback—feel free to reach out anytime!
+*Join our community of developers who rely on Rust Trends for their bi-weekly Rust intelligence.*
 
-Thanks for joining us, and we look forward to sharing the latest **Rust trends** with you.
+[**Subscribe to the Newsletter**](/) • [**Browse Past Issues**](/newsletter/)
 
 ---
 
-### Get Expert Rust Code Reviews
+## Meet the Author
 
-Need a **Rust code review**? Rust Trends, led by a seasoned Rust expert, provides personalized feedback to improve your **code’s safety, performance, and maintainability**.
+**<a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">Bob Peters</a>** brings over a decade of systems programming experience to Rust Trends, with deep expertise in both **Rust development and Industrial IoT systems**.
 
-#### What You Get:
-- **Best practices & performance optimization**
-- **Security checks**
-- **Clear, actionable feedback**
+As **CTO of an Industrial IoT company**, Bob architects high-performance, safety-critical systems where Rust's guarantees around memory safety and concurrency are essential. His hands-on experience spans embedded systems, distributed architectures, and performance optimization—giving him unique insight into where Rust excels and where the ecosystem is heading.
 
-#### Pricing:
-- **Quick PR Review** (up to 500 lines) – **$99**
-- **Interview Candidate Review** (up to 2000 lines) – **$199**
-- **Full Module Review** (up to 2000 lines) – **$299**
-- **Security & Performance Audit** – **Contact for a custom quote**
+**Background & Expertise:**
+- **Industrial IoT systems** architecture and implementation
+- **Technology leadership** in startup and enterprise environments
+
+Bob's technical depth and industry perspective ensure Rust Trends delivers practical, actionable insights rather than just news summaries.
+
+**Connect:** <a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">LinkedIn</a> • [Email](mailto:contact@rust-trends.com)
 
 ---
 
