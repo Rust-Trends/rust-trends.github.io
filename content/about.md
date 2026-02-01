@@ -19,7 +19,7 @@ toc_not_generate = true
 
 *Join our community of developers who rely on Rust Trends for their bi-weekly Rust intelligence.*
 
-[**Subscribe to the Newsletter**](/) • [**Browse Past Issues**](/newsletter/)
+[**Subscribe to the Newsletter**](/signup/) • [**Browse Past Issues**](/newsletter/)
 
 ---
 
