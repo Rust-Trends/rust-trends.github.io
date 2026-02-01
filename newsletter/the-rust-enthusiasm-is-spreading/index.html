@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         6 - The Rust Enthusiasm is spreading
+        
+    </title><meta content="6 - The Rust Enthusiasm is spreading" property=og:title><meta content="In this edition of the Rust trends newsletter, learn about the significant drop in vulnerabilities observed in Android 13, attributed to the shift to memory-safe languages like Rust. Explore the fast Rust alternative to the popular Nmap port scanner called RustScan. Also, discover how the Rust Book, a comprehensive guide to learning Rust, is now available in a crate format that you can access from your command line. Feel the increasing enthusiasm in the Rust community!" property=og:description><meta content="In this edition of the Rust trends newsletter, learn about the significant drop in vulnerabilities observed in Android 13, attributed to the shift to memory-safe languages like Rust. Explore the fast Rust alternative to the popular Nmap port scanner called RustScan. Also, discover how the Rust Book, a comprehensive guide to learning Rust, is now available in a crate format that you can access from your command line. Feel the increasing enthusiasm in the Rust community!" name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/the-rust-enthusiasm-is-spreading/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="6 - The Rust Enthusiasm is spreading" name=twitter:title><meta content="In this edition of the Rust trends newsletter, learn about the significant drop in vulnerabilities observed in Android 13, attributed to the shift to memory-safe languages like Rust. Explore the fast Rust alternative to the popular Nmap port scanner called RustScan. Also, discover how the Rust Book, a comprehensive guide to learning Rust, is now available in a crate format that you can access from your command line. Feel the increasing enthusiasm in the Rust community!" name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/the-rust-enthusiasm-is-spreading/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2022-12-04 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "6 - The Rust Enthusiasm is spreading",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2022-12-04",
+  "dateModified": "2022-12-04",
+  "description": "In this edition of the Rust trends newsletter, learn about the significant drop in vulnerabilities observed in Android 13, attributed to the shift to memory-safe languages like Rust. Explore the fast Rust alternative to the popular Nmap port scanner called RustScan. Also, discover how the Rust Book, a comprehensive guide to learning Rust, is now available in a crate format that you can access from your command line. Feel the increasing enthusiasm in the Rust community!",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;the-rust-enthusiasm-is-spreading&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;the-rust-enthusiasm-is-spreading&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "6 - The Rust Enthusiasm is spreading",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;the-rust-enthusiasm-is-spreading&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "6 - The Rust Enthusiasm is spreading",
+  "description": "In this edition of the Rust trends newsletter, learn about the significant drop in vulnerabilities observed in Android 13, attributed to the shift to memory-safe languages like Rust. Explore the fast Rust alternative to the popular Nmap port scanner called RustScan. Also, discover how the Rust Book, a comprehensive guide to learning Rust, is now available in a crate format that you can access from your command line. Feel the increasing enthusiasm in the Rust community!",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;the-rust-enthusiasm-is-spreading&#x2F;",
+  "datePublished": "2022-12-04",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "6 - The Rust Enthusiasm is spreading",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;the-rust-enthusiasm-is-spreading&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>6 - The Rust Enthusiasm is spreading</ol></nav><main><article><div class=title><div class=page-header>6 - The Rust Enthusiasm is spreading<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2022-12-04</time></div></div><section class=body><br><blockquote><p><q>You can get addicted to Rust. Do not take this addiction lightly.</q></blockquote><p>The Rust enthusiasm is spreading. You can get addicted to Rust. Do not take this addiction lightly. Let’s dive into the topics…<p><strong>In today’s email:</strong><ul><li><strong>The drop in vulnerabilities in Android 13</strong><li><strong>A port scanner in Rust</strong><li><strong>The Rust Book, now available in a crate format</strong></ul><h2 id=the-drop-in-vulnerabilities-in-android-13>The drop in vulnerabilities in Android 13</h2><div class=row><div class=column>Google says that the number of memory safety vulnerabilities has dropped considerably over the past few years/releases. They believe Android’s ongoing shift from memory-unsafe to memory-safe languages is a major factor. <p>There is a strong correlation between the use of Rust and the decrease in vulnerabilities found. Note that correlation is not causation, but there is strong evidence like:<p>To date, there have been zero memory safety vulnerabilities discovered in Android’s Rust code.<p>Want to read more head over to their <a href=https://security.googleblog.com/2022/12/memory-safe-languages-in-android-13.html target=_blank>security blog</a>.</div><div class=column><a href=https://security.googleblog.com/2022/12/memory-safe-languages-in-android-13.html target=_blank><img alt="Android and Rust" src=../6/android-rust.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div></div><h2 id=a-port-scanner-in-rust>A port scanner in Rust</h2><div class=row><div class=column><a href=https://rustscan.github.io/RustScan/ target=_blank><img alt="Rustscan portscanner in Rust" src=../6/rustscan.webp style=border:1px;width:100%;margin-left:auto;margin-right:auto;display:block></a></div><div class=column>A well-known port scanner is Nmap (Network mapper). Did you know there is a (faster) Rust alternative called <a href=https://rustscan.github.io/RustScan/ target=_blank>RustScan</a>? To be fair it uses Nmap under the hood but utilizes multiple threads to speed up scanning. <p>The well-maintained <a href=https://github.com/RustScan/RustScan target=_blank>repository of RustScan can be found here</a>.<p>You can run Rustscan also in a Docker image. This was done to make performance consistent across different Operating Systems, because of the high open file limit.<p>Using a Docker in your Rust development is not new. There is an official <a href=https://hub.docker.com/_/rust/ target=_blank>Rust image</a>.</div></div><h2 id=the-rust-book-now-available-in-a-crate-format>The Rust Book, now available in a crate format</h2><div class=row><div class=column>A funny crate and a nice way to close the Newsletter. <p>The Rust Book also called The Book has now I crate of its own. This book is the starting point to learn Rust. Hiro created a <a href=https://crates.io/crates/thebook target=_blank>command line utility</a> to easily access the book from your command line.</div><div class=column><a href=https://crates.io/crates/thebook target=_blank><img alt="Crate of Books" src=../6/book_to_crate.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div></div><hr><p>The Rust in crate form Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

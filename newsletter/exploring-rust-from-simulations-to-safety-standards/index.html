@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         22 - Exploring Rust: From Simulations to Safety Standards
+        
+    </title><meta content="22 - Exploring Rust: From Simulations to Safety Standards" property=og:title><meta content="Explore the dynamic world of Rust programming with our biweekly update. Dive into fascinating applications of Rust, from creating an ant colony simulation to ensuring the highest safety standards in electronic systems with Rust and Ferrocene. Discover the power of parallel computing with Rayon, a data-parallelism library for Rust. Whether you're a seasoned Rustacean or a curious newcomer, there's something for everyone in this edition." property=og:description><meta content="Explore the dynamic world of Rust programming with our biweekly update. Dive into fascinating applications of Rust, from creating an ant colony simulation to ensuring the highest safety standards in electronic systems with Rust and Ferrocene. Discover the power of parallel computing with Rayon, a data-parallelism library for Rust. Whether you're a seasoned Rustacean or a curious newcomer, there's something for everyone in this edition." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/exploring-rust-from-simulations-to-safety-standards/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="22 - Exploring Rust: From Simulations to Safety Standards" name=twitter:title><meta content="Explore the dynamic world of Rust programming with our biweekly update. Dive into fascinating applications of Rust, from creating an ant colony simulation to ensuring the highest safety standards in electronic systems with Rust and Ferrocene. Discover the power of parallel computing with Rayon, a data-parallelism library for Rust. Whether you're a seasoned Rustacean or a curious newcomer, there's something for everyone in this edition." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/exploring-rust-from-simulations-to-safety-standards/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-08-02 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "22 - Exploring Rust: From Simulations to Safety Standards",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-08-02",
+  "dateModified": "2023-08-02",
+  "description": "Explore the dynamic world of Rust programming with our biweekly update. Dive into fascinating applications of Rust, from creating an ant colony simulation to ensuring the highest safety standards in electronic systems with Rust and Ferrocene. Discover the power of parallel computing with Rayon, a data-parallelism library for Rust. Whether you&#x27;re a seasoned Rustacean or a curious newcomer, there&#x27;s something for everyone in this edition.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;exploring-rust-from-simulations-to-safety-standards&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;exploring-rust-from-simulations-to-safety-standards&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "22 - Exploring Rust: From Simulations to Safety Standards",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;exploring-rust-from-simulations-to-safety-standards&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "22 - Exploring Rust: From Simulations to Safety Standards",
+  "description": "Explore the dynamic world of Rust programming with our biweekly update. Dive into fascinating applications of Rust, from creating an ant colony simulation to ensuring the highest safety standards in electronic systems with Rust and Ferrocene. Discover the power of parallel computing with Rayon, a data-parallelism library for Rust. Whether you&#x27;re a seasoned Rustacean or a curious newcomer, there&#x27;s something for everyone in this edition.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;exploring-rust-from-simulations-to-safety-standards&#x2F;",
+  "datePublished": "2023-08-02",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "22 - Exploring Rust: From Simulations to Safety Standards",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;exploring-rust-from-simulations-to-safety-standards&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>22 - Exploring Rust: From Simulations to Safety Standards</ol></nav><main><article><div class=title><div class=page-header>22 - Exploring Rust: From Simulations to Safety Standards<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-08-02</time></div></div><section class=body><br><blockquote><p><q>Dive into the world of Rust programming, exploring its applications in simulations, safety-critical systems, and parallel computing.</q></blockquote><p>Hello, Rust Enthusiasts!<p>Welcome to another edition of "Rust Trends", your biweekly update on the dynamic world of Rust programming. In this issue, we delve into the fascinating applications of Rust, from creating an ant colony simulation to ensuring the highest safety standards in electronic systems with Rust and Ferrocene. We also explore the power of parallel computing with Rayon, a data-parallelism library for Rust.<p>So, sit back, grab your favorite beverage, and let's embark on this exciting exploration of Rust's capabilities and advancements. Whether you're a seasoned Rustacean or a curious newcomer, there's something for everyone in this edition. Let's get started!<h2 id=rust-ants-colony-simulation-a-unique-pet-project>Rust Ants Colony Simulation: A Unique Pet Project</h2><p><a href=https://github.com/bones-ai/rust-ants-colony-simulation target=_blank><img alt="Rust Ants Colony Simulation" src=../22/giant_ant_simulation.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block></a> In the world of Rust programming, there's always something new and exciting to explore. Today, we're introducing a fascinating pet project (pun intended) that's been buzzing in the Rust community: <a href=https://github.com/bones-ai/rust-ants-colony-simulation target=_blank>the Rust Ants Colony Simulation</a>.<p>This project, is an ant colony simulation implemented in Rust. Despite its current inefficiency, which allows it to handle only about 500 ants on an older laptop, it's a captivating exploration of Rust's capabilities. The simulation is built using Rust and the <a href=https://bevyengine.org/ target=_blank>Bevy game engine</a>, showcasing the versatility of Rust in different domains.<p>You can find the <a href=https://youtu.be/98pUSZAM_7M target=_blank>timelapse video on Youtube</a>.<p><strong>Thought-Provoking Insights</strong><ul><li><strong>Rust in Game Development:</strong> Rust's performance characteristics make it a suitable choice for game development. The use of the Bevy game engine in this project is a testament to this. How might Rust evolve as a language for game development in the future?<li><strong>Simulation Efficiency:</strong> The current implementation can handle about 500 ants. This opens up discussions about optimization in Rust. What strategies could be employed to increase the efficiency of such a simulation?</ul><h2 id=ferrocene-elevating-safety-standards-with-the-rust-compiler>Ferrocene: Elevating Safety Standards with the Rust Compiler</h2><p><a href=https://ferrous-systems.com/ferrocene/ target=_blank><img alt=Ferrocene src=../22/ferrocene_logo_horizontal.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block></a> In the realm of coding, safety is paramount, especially when it comes to applications like autonomous driving systems, medical equipment, or industrial control systems. Enter <a href=https://ferrous-systems.com/ferrocene/ target=_blank>Ferrocene</a>, a unique variant of the Rust compiler, designed with a singular purpose - to ensure the highest level of safety in electrical and electronic systems.<p>Ferrocene is not just any Rust compiler. It's currently undergoing a rigorous qualification process under two globally recognized standards - ISO 26262 and IEC 61508. ISO 26262 is a critical standard for the functional safety of electrical and electronic systems in production automobiles, a key requirement for applications like autonomous vehicle software. IEC 61508, on the other hand, is a comprehensive standard for functional safety of electrical, electronic, and programmable electronic safety-related systems, essential for industries like healthcare and manufacturing.<p>For two years, the Ferrocene project has been in development, meticulously crafted to meet these stringent safety standards. The result? A release candidate that's currently available and poised to make a significant impact in the field of safety-critical applications, from medical devices that monitor patient health to industrial systems that control complex manufacturing processes.<p>The ultimate goal of Ferrocene is to provide a version of the Rust compiler that not only meets but surpasses these safety standards. It's about elevating the bar for safety in the digital world, ensuring that safety-critical applications can rely on a robust and secure foundation. With Ferrocene, the future of safe coding in critical applications looks promising.<p>Join Ferrous Systems announcement party on <a href="https://www.eventbrite.com/e/a-decade-of-rust-with-ferrous-systems-tickets-680492891557?aff=oddtdtcreator" target=_blank>October 4th, 2023, online</a>.<h2 id=fearless-concurrency-with-rayon>Fearless concurrency with Rayon</h2><p><a href=https://github.com/rayon-rs/rayon target=_blank><img alt="Robots working in parallel just like Rayon" src=../22/Robots-working-parallel.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block></a> Rayon is a powerful data-parallelism library for Rust that allows developers to easily convert sequential computations into parallel ones. It's incredibly lightweight and ensures data-race freedom, providing a safe environment for parallel execution.<p>The beauty of Rayon lies in its simplicity. To convert a sequential iterator into a parallel one, you typically just replace your <code>iter()</code> call with <code>par_iter()</code>, and Rayon handles the rest. This makes it straightforward to leverage the power of parallel computing in your Rust applications.<p>Rayon also offers the <code>join</code> and <code>scope</code> functions for creating parallel tasks manually, providing more flexibility when needed. Moreover, it supports <code>custom thread pools</code>, giving you even more control over your parallel computations.<p>One of the key features of Rayon is its guarantee of data-race freedom. This means that if your code compiles, it will typically behave the same way it did before, but faster. Parallel iterators, in particular, are guaranteed to produce the same results as their sequential counterparts.<p>To use Rayon, you simply add it as a dependency in your Cargo.toml file and bring the necessary traits into scope using the Rayon prelude. Rayon currently requires Rustc 1.59.0 or greater.<p>Rayon also supports WebAssembly through an adapter and some project configuration. This allows you to bring the power of Rayon to web applications.<p><strong>Key Takeaways:</strong><ol><li>Rayon allows easy conversion of sequential computations into parallel ones in Rust.<li>It guarantees data-race freedom, ensuring safe parallel execution.<li>Rayon supports custom thread pools and manual task creation for greater flexibility.<li>It's compatible with WebAssembly, extending its use to web applications.</ol><p><strong>Thought-Provoking Questions:</strong><ol><li>How can the simplicity of converting sequential iterators to parallel ones with Rayon change the way we approach programming in Rust?<li>What impact does the guarantee of data-race freedom have on the reliability of parallel computing in Rust?<li>How can the WebAssembly support in Rayon broaden its application in web development?</ol><p>For more information, check out the <a href=https://github.com/rayon-rs/rayon target=_blank>Rayon GitHub page</a>. For a Youtube explainer checkout this <a href=https://youtu.be/YxG7PhZ3fb4 target=_blank>video from Let's Gets Rusty</a>.<hr><p>Push yourself to explore the uncharted territories of Rust. Venturing beyond your usual limits can substantially enrich your evolution as a coder.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

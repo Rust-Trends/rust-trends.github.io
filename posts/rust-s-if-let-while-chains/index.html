@@ -1,0 +1,225 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Rust’s if/let While Chains: Cleaner Control Flow is Coming!
+        
+    </title><meta content="Rust’s if/let While Chains: Cleaner Control Flow is Coming!" property=og:title><meta content="Rust’s upcoming if/let while chains will clean up control flow by eliminating unnecessary nesting. Explore how this feature simplifies conditional expressions and loops, making Rust code more readable and expressive." property=og:description><meta content="Rust’s upcoming if/let while chains will clean up control flow by eliminating unnecessary nesting. Explore how this feature simplifies conditional expressions and loops, making Rust code more readable and expressive." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/rust-s-if-let-while-chains/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Rust’s if/let While Chains: Cleaner Control Flow is Coming!" name=twitter:title><meta content="Rust’s upcoming if/let while chains will clean up control flow by eliminating unnecessary nesting. Explore how this feature simplifies conditional expressions and loops, making Rust code more readable and expressive." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/rust-s-if-let-while-chains/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-02-14 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust’s if&#x2F;let While Chains: Cleaner Control Flow is Coming!",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-02-14",
+  "dateModified": "2025-02-14",
+  "description": "Rust’s upcoming if&#x2F;let while chains will clean up control flow by eliminating unnecessary nesting. Explore how this feature simplifies conditional expressions and loops, making Rust code more readable and expressive.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-if-let-while-chains&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-if-let-while-chains&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust’s if&#x2F;let While Chains: Cleaner Control Flow is Coming!",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-if-let-while-chains&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust’s if&#x2F;let While Chains: Cleaner Control Flow is Coming!",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-02-14",
+  "dateModified": "2025-02-14",
+  "description": "Rust’s upcoming if&#x2F;let while chains will clean up control flow by eliminating unnecessary nesting. Explore how this feature simplifies conditional expressions and loops, making Rust code more readable and expressive.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-if-let-while-chains&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-if-let-while-chains&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust’s if&#x2F;let While Chains: Cleaner Control Flow is Coming!",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-if-let-while-chains&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Rust’s if/let While Chains: Cleaner Control Flow is Coming!</ol></nav><main><article><div class=title><div class=page-header>Rust’s if/let While Chains: Cleaner Control Flow is Coming!<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-02-14</time></div></div><h1>Table of Contents</h1><ul><li><a href=https://rust-trends.com/posts/rust-s-if-let-while-chains/#what-s-the-problem>What’s the Problem?</a><li><a href=https://rust-trends.com/posts/rust-s-if-let-while-chains/#what-s-changing>What’s Changing?</a><li><a href=https://rust-trends.com/posts/rust-s-if-let-while-chains/#why-is-this-useful>Why Is This Useful?</a><li><a href=https://rust-trends.com/posts/rust-s-if-let-while-chains/#final-thoughts>Final Thoughts</a></ul><section class=body><p>One of the long-awaited features in Rust is if/let while chains, and it’s finally on the way! This small but powerful change will make conditional expressions and loops more ergonomic, eliminating some of the verbosity that Rustaceans have had to deal with.<h2 id=what-s-the-problem>What’s the Problem?</h2><p>Currently, if you want to combine multiple conditions involving if let and while let, you have to nest them or write separate conditions, making the code harder to read.<p>For example, if you wanted to check whether an Option contains a value and another condition holds, you’d have to write:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> some_option = Some(</span><span style=color:#d08770>15</span><span>);
+</span><span>
+</span><span>    </span><span style=color:#b48ead>if let </span><span>Some(x) = some_option {
+</span><span>        </span><span style=color:#b48ead>if</span><span> x > </span><span style=color:#d08770>10 </span><span>{
+</span><span>            println!("</span><span style=color:#a3be8c>x is greater than 10!</span><span>");
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Or in a while loop with a game of blackjack:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> deck = vec![</span><span style=color:#d08770>5</span><span>, </span><span style=color:#d08770>6</span><span>, </span><span style=color:#d08770>10</span><span>, </span><span style=color:#d08770>3</span><span>, </span><span style=color:#d08770>2</span><span>, </span><span style=color:#d08770>4</span><span>]; </span><span style=color:#65737e>// Example card values.
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> total = </span><span style=color:#d08770>0</span><span>;
+</span><span>    </span><span style=color:#b48ead>let</span><span> max = </span><span style=color:#d08770>21</span><span>;
+</span><span>
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> iter = deck.</span><span style=color:#96b5b4>into_iter</span><span>();
+</span><span>
+</span><span>    </span><span style=color:#b48ead>while let </span><span>Some(card) = iter.</span><span style=color:#96b5b4>next</span><span>() {
+</span><span>        </span><span style=color:#65737e>// Check if drawing the next card would bust (exceed max).
+</span><span>        </span><span style=color:#b48ead>if</span><span> total + card > max {
+</span><span>            </span><span style=color:#b48ead>break</span><span>;
+</span><span>        }
+</span><span>        total += card;
+</span><span>        println!("</span><span style=color:#a3be8c>Drew card: </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> (total: </span><span style=color:#d08770>{}</span><span style=color:#a3be8c>)</span><span>", card, total);
+</span><span>    }
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>Final total: </span><span style=color:#d08770>{}</span><span>", total);
+</span><span>}
+</span></code></pre><p>This indentation gets annoying fast!<h2 id=what-s-changing>What’s Changing?</h2><p>With if/let while chains, Rust will let you write conditions in a more natural way. Instead of nesting if let inside an if, you can chain them together like this:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span>#![</span><span style=color:#bf616a>feature</span><span>(let_chains)] </span><span style=color:#65737e>// Enable the feature
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> some_option = Some(</span><span style=color:#d08770>15</span><span>);
+</span><span>
+</span><span>    </span><span style=color:#b48ead>if let </span><span>Some(x) = some_option && x > </span><span style=color:#d08770>10 </span><span>{
+</span><span>        println!("</span><span style=color:#a3be8c>x is greater than 10!</span><span>");
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Similarly, for while let:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span>#![</span><span style=color:#bf616a>feature</span><span>(let_chains)] </span><span style=color:#65737e>// Enable the feature
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> deck = vec![</span><span style=color:#d08770>5</span><span>, </span><span style=color:#d08770>6</span><span>, </span><span style=color:#d08770>10</span><span>, </span><span style=color:#d08770>3</span><span>, </span><span style=color:#d08770>2</span><span>, </span><span style=color:#d08770>4</span><span>]; </span><span style=color:#65737e>// Example card values.
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> total = </span><span style=color:#d08770>0</span><span>;
+</span><span>    </span><span style=color:#b48ead>let</span><span> max = </span><span style=color:#d08770>21</span><span>;
+</span><span>
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> iter = deck.</span><span style=color:#96b5b4>into_iter</span><span>();
+</span><span>
+</span><span>    </span><span style=color:#65737e>// The loop continues only if:
+</span><span>    </span><span style=color:#65737e>// 1. A card is drawn (Some(card)), AND
+</span><span>    </span><span style=color:#65737e>// 2. Adding the card does not exceed 21.
+</span><span>    </span><span style=color:#b48ead>while let </span><span>Some(card) = iter.</span><span style=color:#96b5b4>next</span><span>() && total + card &lt;= max {
+</span><span>        total += card;
+</span><span>        println!("</span><span style=color:#a3be8c>Drew card: </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> (total: </span><span style=color:#d08770>{}</span><span style=color:#a3be8c>)</span><span>", card, total);
+</span><span>    }
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>Final total: </span><span style=color:#d08770>{}</span><span>", total);
+</span><span>}
+</span></code></pre><p>⚠ Note: These examples will only work once if/let while chains are stabilized! You can run it on the <a href="https://play.rust-lang.org/?version=nightly&mode=debug&edition=2021&gist=3d7d383082e42aa01f65b1444db56e3a" target=_blank>Rust Playground</a> if you select Rust version: Nightly.<p>This makes the intent much clearer and eliminates unnecessary nesting. Just what we need!<h2 id=why-is-this-useful>Why Is This Useful?</h2><ol><li><strong>Cleaner Code</strong> – No more deep nesting just to check additional conditions.<li><strong>Better Readability</strong> – The logic is clearer at a glance.<li><strong>Improved Consistency</strong> – Other languages allow similar patterns, and Rust is catching up.</ol><h2 id=final-thoughts>Final Thoughts</h2><p>Rust has always emphasized safety and clarity, but small ergonomic tweaks like if/let while chains help make code easier to write and read.<p>With this feature expected to land soon, you’ll be able to streamline your control flow—no hacks, no unnecessary nesting, just clean Rust.<p>Now, if only debugging borrow checker errors could be this easy… 😆<p><br><br><p>P.S. Previously, I had a while let chain example that was incorrect and didn’t function the same way as the code without this feature. Thanks to Günter’s keen eye, he pointed out the mistake—much appreciated!</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

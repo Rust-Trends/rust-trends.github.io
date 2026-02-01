@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         39 - From Silicon to Software: Rust's Role in Embedded (Automotive) Systems
+        
+    </title><meta content="39 - From Silicon to Software: Rust's Role in Embedded (Automotive) Systems" property=og:title><meta content="Insights into Rust's applications in industries, notably in Tesla's innovative projects, the latest on embedded systems and coding challenges" property=og:description><meta content="Insights into Rust's applications in industries, notably in Tesla's innovative projects, the latest on embedded systems and coding challenges" name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/from-silicon-to-software-rust-s-role-in-embedded-automotive-systems/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="39 - From Silicon to Software: Rust's Role in Embedded (Automotive) Systems" name=twitter:title><meta content="Insights into Rust's applications in industries, notably in Tesla's innovative projects, the latest on embedded systems and coding challenges" name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/from-silicon-to-software-rust-s-role-in-embedded-automotive-systems/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2024-04-13 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "39 - From Silicon to Software: Rust&#x27;s Role in Embedded (Automotive) Systems",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-04-13",
+  "dateModified": "2024-04-13",
+  "description": "Insights into Rust&#x27;s applications in industries, notably in Tesla&#x27;s innovative projects, the latest on embedded systems and coding challenges",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;from-silicon-to-software-rust-s-role-in-embedded-automotive-systems&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;from-silicon-to-software-rust-s-role-in-embedded-automotive-systems&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "39 - From Silicon to Software: Rust&#x27;s Role in Embedded (Automotive) Systems",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;from-silicon-to-software-rust-s-role-in-embedded-automotive-systems&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "39 - From Silicon to Software: Rust&#x27;s Role in Embedded (Automotive) Systems",
+  "description": "Insights into Rust&#x27;s applications in industries, notably in Tesla&#x27;s innovative projects, the latest on embedded systems and coding challenges",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;from-silicon-to-software-rust-s-role-in-embedded-automotive-systems&#x2F;",
+  "datePublished": "2024-04-13",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "39 - From Silicon to Software: Rust&#x27;s Role in Embedded (Automotive) Systems",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;from-silicon-to-software-rust-s-role-in-embedded-automotive-systems&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>39 - From Silicon to Software: Rust's Role in Embedded (Automotive) Systems</ol></nav><main><article><div class=title><div class=page-header>39 - From Silicon to Software: Rust's Role in Embedded (Automotive) Systems<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2024-04-13</time></div></div><section class=body><br> Explore the dynamic world of Rust programming with Rust Trends. Each issue offers a glimpse into how industries like automotive are leveraging Rust for better technology, with features on Tesla's software projects, embedded systems insights, and exciting coding challenges. Perfect for developers eager to keep pace with Rust's growing impact in tech. <h2 id=tesla-embraces-rust-for-enhanced-vehicle-firmware-development>Tesla Embraces Rust for Enhanced Vehicle Firmware Development</h2><img alt="Tesla Hiring for Rust" src=../39/tesla-rust.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block><p>In a significant nod to the Rust programming language's capabilities, Tesla has incorporated Rust into its development stack for chassis controls. The role of a Full Stack Rust Software Engineer at Tesla, posted on 9th of April 2024, involves architecting and developing service backends using asynchronous Rust with Tokio, along with frontend applications utilizing frameworks like React and VueJS.<p>This strategic move underlines Rust's importance in creating robust, efficient software crucial for Tesla's vehicle firmware functionality validation, supporting both current and future vehicle projects. This adoption marks a noteworthy trend as major tech-oriented automotive companies leverage Rust's safety and performance benefits.<h2 id=weekend-code-warrior-take-the-http-server-challenge>Weekend Code Warrior: Take the HTTP Server Challenge</h2><p><a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank><img alt="Coding Challenge" src=../39/coding-challenge.webp style=border:0;width:50%;margin-left:auto;margin-right:auto;display:block></a><p>Ready to take your Rust skills up a notch? In partnership with CodeCrafters, we’ve cooked up something special just for you. This isn't just any course — it's a hands-on challenge where you can build your very own HTTP server, and yes, it’s absolutely free to try!<h3 id=easy-sign-up>Easy Sign-Up</h3><p>Getting started couldn’t be simpler. You can <a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>sign up</a> using your GitHub account — no credit card or payment details needed. Just a few clicks and you’re in!<h3 id=what-s-the-deal>What’s the Deal?</h3><p>All you need is to be a subscriber here (which you are — high five!) and <a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>click on my referral link</a> to jump over to CodeCrafters. There’s no charge at all, and here’s the kicker: you might just snag one of two free yearly subscriptions worth a whopping $990 each!<h3 id=fun-and-learning-combined>Fun and Learning Combined</h3><p>I’ve gone through the challenge myself over a weekend, and it was a blast. It starts with simple, clear steps that’ll have you feeling like a pro in no time — Yep, that’s the psychological boost in action! You’ll use everyday tools like Git and your favorite code editor, so everything feels familiar yet excitingly new.<h3 id=why-dig-deeper>Why Dig Deeper?</h3><p>It’s smart to dive deeper into what you’re learning. In this case, you’re not just coding—you’re really getting to grips with Rust and how to build an HTTP web server. It's the perfect side project with practical benefits.<h3 id=cool-features-to-check-out>Cool Features to Check Out</h3><p>CodeCrafters isn’t just about coding in isolation; you get to see code examples from others and check out comments from fellow coders who’ve tackled the same exercises. It’s like having a coding buddy group at your fingertips!<h3 id=thinking-of-subscribing>Thinking of Subscribing?</h3><p>If you love it and want more, signing up for a paid subscription gets you a neat 40% discount. Not only does this save you some cash, but it also helps support Rust Trends. And hey, if you’re considering this, you might want to chat with your employer about covering the costs as part of your professional development.<p>So, why not give it a shot? Boost your skills, have fun, and maybe even win big — all with a few clicks.<p>Feel free to share this offer with friends and colleagues.<p><strong>Let’s get coding!</strong><h2 id=embarking-on-an-embedded-journey-with-rust>Embarking on an Embedded Journey with Rust</h2><img alt="Embedded Rusty Probe" src=../39/debugger.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block><p>As I venture deeper into the world of embedded programming, I sought your input on exciting project ideas. The response was fantastic, and I've settled on a thrilling project to tackle — more on that in our next edition. But first, let’s talk about an intriguing discovery I made while gathering your suggestions: the <a href=https://probe.rs/ target=_blank>Probe-rs project</a>.<h3 id=introducing-probe-rs-a-rust-based-tool-for-embedded-development>Introducing Probe-rs: A Rust-Based Tool for Embedded Development</h3><p>In the ever-evolving landscape of software development, Rust is gaining momentum, and the embedded sector is no exception. Among the gems I discovered is Probe-rs, a powerful tool designed for embedded development, entirely written in Rust. This versatile toolkit serves as a debugger and a programmer, providing robust features for connecting with microcontrollers.<h3 id=what-makes-probe-rs-stand-out>What Makes Probe-rs Stand Out?</h3><p>Probe-rs isn’t just another tool; it exemplifies Rust’s capability to enhance system reliability and performance. It supports a range of hardware probes, including the innovative Rusty Probe, which is based on a Raspberry Pi Pico microcontroller. Additionally, it's compatible with established tools like the Segger JLink, offering flexibility for various development needs.<h3 id=the-rusty-probe-a-closer-look>The Rusty Probe: A Closer Look</h3><p>The <a href=https://shop.probe.rs/products/rusty-probe target=_blank>Rusty Probe</a> represents a significant advancement in the field, leveraging the safety and efficiency of Rust. Yes the firmware of this probe is also written in Rust. Therefore this hardware probe exemplifies how Rust can be utilized to create dependable and high-performing embedded tools that are both innovative and accessible. Note that all the hardware and firmware files of this probe are freely available.<h3 id=why-rust-and-probe-rs-are-game-changers-in-embedded-systems>Why Rust and Probe-rs Are Game Changers in Embedded Systems</h3><p>Using Rust for embedded systems offers numerous advantages, including enhanced safety, fewer bugs, and better control over low-level system details. Rust stands out as the first higher-level language that bridges the gap between various programming disciplines — from web development, desktop applications to systems programming — allowing a broader range of developers to enter the world of embedded systems. Probe-rs harnesses these strengths, providing developers with a powerful, reliable, and easy-to-use toolset that stands out in a crowded market.<h3 id=disclaimer-and-personal-note>Disclaimer and Personal Note</h3><p>I want to be transparent with you all — I recently purchased the Rusty Probe myself. They have a delivery time of 6 - weeks from now, so I haven't had the chance to test it out yet. I also want to clarify that I am not receiving any compensation for mentioning Probe-rs or the Rusty Probe. I'm just genuinely excited about the possibilities it offers and wanted to share this tool with you. I'll definitely keep you updated on my findings once I get my hands on it and start experimenting.<h2 id=snippets>Snippets</h2><ul><li><p><a href="https://www.youtube.com/watch?v=o2ob8zkeq2s&ab_channel=JonGjengset" target=_blank>Decrusting the tokio crate with Jon Gjengset</a></p><li><p>Building a stock market engine in Rust <a href=https://medium.com/@harshiljani2002/building-stock-market-engine-from-scratch-in-rust-i-9be7c110e137 target=_blank>part 1</a> and <a href=https://medium.com/@harshiljani2002/building-stock-market-engine-from-scratch-in-rust-ii-0c7b5d8a60b6 target=_blank>part 2</a></p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

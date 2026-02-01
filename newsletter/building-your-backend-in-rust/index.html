@@ -1,0 +1,173 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         14 - Building your backend in Rust
+        
+    </title><meta content="14 - Building your backend in Rust" property=og:title><meta content="Discover the latest insights on Rust backend development, learn about the power of hot reloading with cargo-watch, and ensure comprehensive test coverage with cargo-tarpaulin in this edition of the Rust Trends newsletter." property=og:description><meta content="Discover the latest insights on Rust backend development, learn about the power of hot reloading with cargo-watch, and ensure comprehensive test coverage with cargo-tarpaulin in this edition of the Rust Trends newsletter." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/building-your-backend-in-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="14 - Building your backend in Rust" name=twitter:title><meta content="Discover the latest insights on Rust backend development, learn about the power of hot reloading with cargo-watch, and ensure comprehensive test coverage with cargo-tarpaulin in this edition of the Rust Trends newsletter." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/building-your-backend-in-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-03-26 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "14 - Building your backend in Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-03-26",
+  "dateModified": "2023-03-26",
+  "description": "Discover the latest insights on Rust backend development, learn about the power of hot reloading with cargo-watch, and ensure comprehensive test coverage with cargo-tarpaulin in this edition of the Rust Trends newsletter.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;building-your-backend-in-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;building-your-backend-in-rust&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "14 - Building your backend in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;building-your-backend-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "14 - Building your backend in Rust",
+  "description": "Discover the latest insights on Rust backend development, learn about the power of hot reloading with cargo-watch, and ensure comprehensive test coverage with cargo-tarpaulin in this edition of the Rust Trends newsletter.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;building-your-backend-in-rust&#x2F;",
+  "datePublished": "2023-03-26",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "14 - Building your backend in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;building-your-backend-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>14 - Building your backend in Rust</ol></nav><main><article><div class=title><div class=page-header>14 - Building your backend in Rust<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-03-26</time></div></div><section class=body><br><blockquote><p><q>Hot reloading, Test coverage and more</q></blockquote><p>Welcome to the most recent release of the Rust Trends newsletter, where I present to you the most up-to-date news and insights from the dynamic Rust community. No matter if you’re an experienced Rust developer or a newcomer, there’s something in here for you. In this edition, we’ll explore topics like building your backend using Rust, the advantages of hot reloading, and how to achieve comprehensive test coverage.<p>Let’s dive into today’s topics and discover the latest and greatest in the world of Rust programming! <br><h2 id=building-a-backend-in-rust>Building a Backend in Rust</h2><img alt="Rust Backend" src=../14/Rust-Backend-sketch.webp style=width:50%;margin-left:auto;margin-right:auto;display:block><p>Are you curious about why you should build your backend in Rust? Not only is it fast, secure, and reliable, resources become more widely available. Rust’s unique combination of performance and safety features has made it a go-to choice for backend development. Rust is an excellent choice for building your backend.<p>But that is not all! If you want to make use of a serverless approach like AWS API Gateway, you can still benefit from writing the functions, called lambdas on AWS, in Rust. Check out this page on <a href=https://maxday.github.io/lambda-perf/ target=_blank>lambda performances</a> (cold start, average memory used, and duration). A youtube video on the same topic from the same author can be found <a href="https://www.youtube.com/watch?v=aIKnb8iMtRA&ab_channel=maxday" target=_blank>here</a>.<p>And if you are still wondering why Rust is worth considering for your backend, we have got an <a href=https://blog.adamchalmers.com/why-rust-on-backend target=_blank>opinion piece</a>, from a credible source, that is sure to persuade you. It discusses the unique features of Rust that make it stand out from other programming languages and explains why Rust is quickly becoming a top choice for backend developers.<p>So, what are you waiting for? Click on those links and start exploring the power of Rust on the backend! <br><h2 id=hot-reloading-with-cargo-watch>Hot reloading with cargo watch</h2><div class=row><div class=column><a href=https://github.com/watchexec/cargo-watch target=_blank><img alt="Cargo Watch" src=../14/cargo-watch.webp style=margin-left:auto;margin-right:auto;display:block></a></div><div class=column>If you are looking for a handy tool to automate the build and rebuild process in your Rust project directory, look no further than cargo-watch. This nifty tool automatically builds and rebuilds your Rust project when changes are saved, so you can focus on coding without worrying about manually rebuilding every time you make a change. <p>To install cargo-watch, simply run the following command:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>$</span><span> cargo install cargo-watch
+</span></code></pre><p>Make sure to include the path with the binaries (e.g., <code>/Users/bob/.cargo/bin</code>) in your <code>$PATH</code> variable, and you can execute it from anywhere on your CLI.<p>Here are some useful commands to use in a Rust project directory:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#65737e>## Rebuilding on changes:
+</span><span style=color:#bf616a>$</span><span> cargo watch
+</span></code></pre><pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#65737e>## Clearing the screen before each run:
+</span><span style=color:#bf616a>$</span><span> cargo watch</span><span style=color:#bf616a> -c
+</span></code></pre><pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#65737e>## Monitor directory for changes:
+</span><span style=color:#bf616a>$</span><span> cargo watch –watch src/</span><span style=color:#bf616a> -x</span><span> ‘run’
+</span></code></pre><p>Check out the <a href=https://github.com/watchexec/cargo-watch target=_blank>cargo-watch Github repository</a> for more information and documentation. Happy coding!</div></div><h2 id=test-coverage-to-make-sure-we-got-you-covered>Test coverage, to make sure we got you covered</h2><div class=row><div class=column>Are you looking for a tool to help you test and ensure code coverage in your Rust project? Meet cargo tarpaulin! This handy tool provides coverage statistics and visualizations, allowing you to easily identify untested code and ensure comprehensive test coverage. <p>To install cargo tarpaulin, simply run the following command:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>$</span><span> cargo install cargo-tarpaulin
+</span></code></pre><p>Once installed, you can use the following command to generate a coverage report for your Rust project:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>$</span><span> cargo tarpaulin –workspace
+</span></code></pre><p>This command generates a coverage report for all the tests in your project, including integration tests.<p>You can also use the following command to customize the coverage report:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#65737e>## Output a coverage report in different formats, such as HTML, JSON, or XML:
+</span><span style=color:#bf616a>$</span><span> cargo tarpaulin –out Html –output-dir ./target/coverage
+</span></code></pre><p>You can set coverage goals, e.g. –line 75, for your project and fail the build if the coverage is below 75%. Check out the <a href=https://lib.rs/crates/cargo-tarpaulin target=_blank>cargo tarpaulin Github repository</a> for more information and documentation. With cargo tarpaulin, you can ensure comprehensive test coverage and identify any untested code in your Rust project.</div><div class=column><img alt=Testing src=../14/testing.webp style=margin-left:auto;margin-right:auto;display:block></div></div><h2 id=snippets>Snippets</h2><ul><li><a href=https://blog.rust-lang.org/2023/03/23/Rust-1.68.1.html target=_blank>Announcing Rust 1.68.1</a> – 23 March 2023, don’t forget <code>rustup update</code></ul><hr><p>Do not hesitate to explore new possibilities in Rust. Pushing yourself out of your comfort zone can be a great way to learn and grow as a programmer.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         74 - When Meta and Anthropic Choose Rust
+        
+    </title><meta content="74 - When Meta and Anthropic Choose Rust" property=og:title><meta content="Meta rewrites WhatsApp's media library in Rust for billions of devices. Anthropic's Claude Code uses ripgrep over vector search." property=og:description><meta content="Meta rewrites WhatsApp's media library in Rust for billions of devices. Anthropic's Claude Code uses ripgrep over vector search." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/when-meta-and-anthropic-choose-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="74 - When Meta and Anthropic Choose Rust" name=twitter:title><meta content="Meta rewrites WhatsApp's media library in Rust for billions of devices. Anthropic's Claude Code uses ripgrep over vector search." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/when-meta-and-anthropic-choose-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-01-29 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "74 - When Meta and Anthropic Choose Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-01-29",
+  "dateModified": "2026-01-29",
+  "description": "Meta rewrites WhatsApp&#x27;s media library in Rust for billions of devices. Anthropic&#x27;s Claude Code uses ripgrep over vector search.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;when-meta-and-anthropic-choose-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;when-meta-and-anthropic-choose-rust&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "74 - When Meta and Anthropic Choose Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;when-meta-and-anthropic-choose-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "74 - When Meta and Anthropic Choose Rust",
+  "description": "Meta rewrites WhatsApp&#x27;s media library in Rust for billions of devices. Anthropic&#x27;s Claude Code uses ripgrep over vector search.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;when-meta-and-anthropic-choose-rust&#x2F;",
+  "datePublished": "2026-01-29",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "74 - When Meta and Anthropic Choose Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;when-meta-and-anthropic-choose-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>74 - When Meta and Anthropic Choose Rust</ol></nav><main><article><div class=title><div class=page-header>74 - When Meta and Anthropic Choose Rust<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2026-01-29</time></div></div><section class=body><p>Big news from Meta this week. WhatsApp replaced its C++ media handling library with Rust, and the scale is unprecedented: billions of devices across Android, iOS, macOS, Web, and wearables.<p>This is the largest client-side Rust deployment I'm aware of. When a company serving 3 billion daily users rewrites critical infrastructure in Rust, it signals something significant about enterprise adoption.<p>In this issue: WhatsApp's Rust migration, why Claude Code uses ripgrep instead of embeddings, PostgreSQL FFI performance gains, async blocking pitfalls, and more.<p>Let's dive in.<h1 id=whatsapp-rewrites-media-library-in-rust>WhatsApp Rewrites Media Library in Rust</h1><p>Meta's engineering team published an <a href=https://engineering.fb.com/2026/01/27/security/rust-at-scale-security-whatsapp/ target=_blank>in-depth writeup</a> on rewriting "wamedia," WhatsApp's media handling library, from C++ to Rust. The numbers tell the story: 160,000 lines of C++ became 90,000 lines of Rust, including tests.<p>The rewritten library powers a security system called "Kaleidoscope" that validates media files and detects malicious content. Every image, video, and document flowing through WhatsApp now passes through Rust code before reaching users.<p>What stands out is their migration approach. Instead of a risky big-bang rewrite, Meta ran both implementations in parallel using differential fuzzing. The C++ and Rust versions processed the same inputs, and any discrepancy triggered investigation. This strategy let them catch subtle bugs before they reached production.<p>The Hacker News discussion praised this approach. One commenter called it "exactly how you do a safe migration at scale." The binary size overhead (around 200KB) was addressed through Buck2 build optimizations.<p>Performance and memory usage improved over the original C++. Meta attributes this partly to Rust's ownership model encouraging cleaner data flow patterns.<p><strong>Takeaways:</strong><ul><li>Rust is viable for client-side deployments at massive scale<li>Differential fuzzing enables safe migrations without big-bang risk<li>The rewrite reduced code size by 44% while adding comprehensive tests</ul><h1 id=why-claude-code-chose-ripgrep-over-vector-search>Why Claude Code Chose ripgrep Over Vector Search</h1><p>Here's a counterintuitive choice: while most AI coding tools rush to implement vector databases and embeddings, Claude Code relies on <a href=https://github.com/BurntSushi/ripgrep target=_blank>ripgrep</a> for code search. Not RAG pipelines. Just fast, reliable text search written in Rust.<p>Claude Code bundles ripgrep via the <code>@vscode/ripgrep</code> npm package, the same battle-tested dependency that powers VS Code's search. It works immediately on any codebase with no indexing required.<p>The advantages are significant: exact matches instead of semantic approximations, automatic <code>.gitignore</code> respect, and predictable behavior. You know exactly what it's searching.<p>A Hacker News commenter pointed out this is still technically RAG, just using information retrieval techniques that have existed for decades. Sometimes proven approaches beat newer alternatives.<p>I wrote a <a href=/posts/ripgrep-claude-code/ target=_blank>deeper dive on this topic</a> covering ripgrep's architecture, the VS Code connection, and configuration tips for Claude Code users.<p><strong>Takeaways:</strong><ul><li>Zero indexing time means instant productivity on new codebases<li>Exact text matching avoids semantic drift of embeddings<li>ripgrep demonstrates Rust's value proposition: C-level performance with memory safety</ul><h1 id=replacing-protobuf-with-direct-rust-ffi>Replacing Protobuf with Direct Rust FFI</h1><p>A detailed post from <a href=https://pgdog.dev/blog/replace-protobuf-with-rust target=_blank>PgDog</a> shows how they eliminated Protocol Buffers by using direct C-to-Rust FFI bindings. The performance gains are substantial: 5.45x faster parsing and 9.64x faster deparsing compared to the Protobuf version.<p>The approach bypasses serialization entirely. Instead of converting data to Protobuf format and back, they pass pointers directly between C and Rust code. This works because PgDog controls both sides of the interface, so they don't need language-agnostic serialization.<p>The tradeoff is clear: you lose cross-language compatibility but gain significant performance. For internal services where you control the entire stack, removing the serialization layer cuts out both latency and complexity.<p><strong>Takeaways:</strong><ul><li>Direct FFI can dramatically outperform serialization-based approaches<li>Consider this when you control both ends and need maximum performance<li>The 5-10x speedup comes from eliminating data transformation entirely</ul><h1 id=the-hidden-bottleneck-blocking-in-async-rust>The Hidden Bottleneck: Blocking in Async Rust</h1><p>A walkthrough from <a href=https://cong-or.xyz/blocking-async-rust.html target=_blank>cong-or.xyz</a> tackles one of the most common async Rust mistakes: accidentally blocking the runtime. This bug works fine in testing but tanks performance in production.<p>The article explains why calling synchronous code (file I/O, CPU-heavy computations, or blocking network calls) inside an async context starves other tasks. The Tokio runtime can't preempt your code, so one blocking call holds up the entire thread pool.<p>The fix depends on the situation. For CPU-bound work, use <code>spawn_blocking</code> to move it off the async threads. For blocking I/O, switch to async alternatives or wrap in <code>spawn_blocking</code>. The post includes concrete examples showing the performance difference.<p><strong>Takeaways:</strong><ul><li>Blocking calls inside async functions prevent other tasks from running<li>Use <code>spawn_blocking</code> for CPU-bound or unavoidably blocking operations<li>Profile your async code to find hidden synchronous bottlenecks</ul><h1 id=simd-programming-in-pure-rust>SIMD Programming in Pure Rust</h1><p>Sylvain Kerkour published a <a href=https://kerkour.com/introduction-rust-simd target=_blank>practical introduction to SIMD in Rust</a> that cuts through the complexity. Instead of diving into architecture-specific intrinsics, the guide focuses on portable SIMD using the experimental std::simd module.<p>The tutorial builds up from basic vector operations to real speedups. What makes it valuable is the emphasis on when SIMD helps versus when it doesn't. Spoiler: if your data isn't already contiguous in memory, you'll spend more time shuffling bytes than computing.<p>The portable approach means your code works on x86, ARM, and WebAssembly without conditional compilation. You write once, and the compiler picks the best instructions for each target.<p><strong>Takeaways:</strong><ul><li>std::simd provides portable SIMD without platform-specific intrinsics<li>Memory layout matters more than instruction choice for real speedups<li>Start with the high-level API before reaching for raw intrinsics</ul><h1 id=snippets>Snippets</h1><ul><li><p><strong><a href=https://github.com/lucasgelfond/zerobrew target=_blank>zerobrew: Faster Homebrew Alternative</a></strong></p><li><p><strong><a href=https://github.com/11happy/cpx target=_blank>cpx: Modern cp Replacement</a></strong></p><li><p><strong><a href=https://antoine.vandecreme.net/blog/rust-closures/ target=_blank>Understanding Rust Closures</a></strong></p><li><p><strong><a href=https://www.ratatui-ruby.dev/ target=_blank>RatatuiRuby</a></strong></p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

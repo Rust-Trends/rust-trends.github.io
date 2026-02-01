@@ -1,0 +1,741 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Building a DNS Server in Rust: Part 1 of 2
+        
+    </title><meta content="Building a DNS Server in Rust: Part 1 of 2" property=og:title><meta content="Learn how to build a DNS server in Rust from scratch. Explore the DNS protocol, create a simple server, and handle DNS queries with ease." property=og:description><meta content="Learn how to build a DNS server in Rust from scratch. Explore the DNS protocol, create a simple server, and handle DNS queries with ease." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/building-a-dns-server-in-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Building a DNS Server in Rust: Part 1 of 2" name=twitter:title><meta content="Learn how to build a DNS server in Rust from scratch. Explore the DNS protocol, create a simple server, and handle DNS queries with ease." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/building-a-dns-server-in-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-02-28 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Building a DNS Server in Rust: Part 1 of 2",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-02-28",
+  "dateModified": "2025-02-28",
+  "description": "Learn how to build a DNS server in Rust from scratch. Explore the DNS protocol, create a simple server, and handle DNS queries with ease.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-dns-server-in-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-dns-server-in-rust&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Building a DNS Server in Rust: Part 1 of 2",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-dns-server-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Building a DNS Server in Rust: Part 1 of 2",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-02-28",
+  "dateModified": "2025-02-28",
+  "description": "Learn how to build a DNS server in Rust from scratch. Explore the DNS protocol, create a simple server, and handle DNS queries with ease.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-dns-server-in-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-dns-server-in-rust&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Building a DNS Server in Rust: Part 1 of 2",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-dns-server-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Building a DNS Server in Rust: Part 1 of 2</ol></nav><main><article><div class=title><div class=page-header>Building a DNS Server in Rust: Part 1 of 2<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-02-28</time></div></div><h1>Table of Contents</h1><ul><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#introduction-why-build-a-dns-server>Introduction: Why Build a DNS Server?</a> <ul><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#why-codecrafters>Why Codecrafters?</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#what-you-ll-learn>What You’ll Learn</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#accompanying-github-repository>Accompanying GitHub Repository</a></ul><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#prerequisites>Prerequisites</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#understanding-dns-a-quick-crash-course>Understanding DNS: A Quick Crash Course</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#setting-up-the-project>Setting Up the Project</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#defining-dns-header-structure>Defining DNS Header structure</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#printing-the-dns-request>Printing the DNS Request</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#defining-the-dns-question-structure>Defining the DNS Question Structure</a> <ul><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#qname-encoding-details>QNAME Encoding Details</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#example-dns-question-for-www-rust-trends-com>Example DNS Question for www.rust-trends.com</a></li><ul><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#qname-encoding>QNAME Encoding</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#encoded-qname>Encoded QNAME:</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#complete-dns-question-structure>Complete DNS Question Structure</a></ul></ul><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#defining-dns-answer-structure>Defining DNS Answer structure</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#constructing-a-hardcoded-reply>Constructing a (hardcoded) reply</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#conclusion>Conclusion</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#disclaimer>Disclaimer</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#acknowledgments>Acknowledgments</a><li><a href=https://rust-trends.com/posts/building-a-dns-server-in-rust/#share>Share</a></ul><section class=body><h2 id=introduction-why-build-a-dns-server>Introduction: Why Build a DNS Server?</h2><p>Imagine typing a web address into your browser, and behind the scenes, a digital detective springs into action translating that friendly URL into the cryptic IP address where the website lives. This is the magic of DNS (Domain Name System), a cornerstone of the internet’s functionality. Inspired by the hands-on learning approach championed by Code Crafters, this tutorial will guide you through building your own DNS server from scratch using Rust! You’ll not only deepen your understanding of how the web operates but also gain practical experience with Rust’s networking capabilities. Let’s dive in and unravel the mystery behind how the internet finds what you’re looking for!<h3 id=why-codecrafters>Why Codecrafters?</h3><p>Codecrafters provides hands-on system-building challenges, guiding you to create complex applications, like Redis, HTTP Server, and DNS servers—entirely from scratch. If you love learning by doing, this is the perfect platform for you.<p>Sign up using <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Trends" target=_blank>my referral link</a> to support my content and unlock a 40% discount on your subscription. The best part? You can try it for free, no strings attached! If you go for a paid subscription, you might even qualify for reimbursement from your employer, so don’t miss out on this opportunity to level up your skills!<h3 id=what-you-ll-learn>What You’ll Learn</h3><ul><li><p>Part 1:</p> <ul><li>Understanding DNS requests and responses.<li>Handling UDP packets in Rust.<li>Parsing and constructing DNS packets.</ul><li><p>Part 2:</p> <ul><li>Implementing decompression of DNS packets.<li>Forwarding DNS queries to resolvers.</ul></ul><h3 id=accompanying-github-repository>Accompanying GitHub Repository</h3><p>The complete source code for this tutorial is available on <a href=https://github.com/Rust-Trends/dns-server-tutorial target=_blank>Github</a>.<h2 id=prerequisites>Prerequisites</h2><p>Before diving in, ensure you have the following:<ul><li>Rust installed: If you haven’t, install it using <a href=https://rustup.rs/ target=_blank>rustup</a>:</ul><p><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code><ul><li>Basic knowledge of Rust: Familiarity with variables, functions, structs, and enums.<li>Basic networking concepts: Understanding of DNS resolution, and the differences between UDP and TCP.</ul><p>To test your DNS server, use tools like <code>dig</code> or <code>nslookup</code>. To install <code>dig</code>, run:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#65737e>## Ubuntu
+</span><span style=color:#bf616a>sudo</span><span> apt-get install dnsutils
+</span><span>
+</span><span style=color:#65737e>## macOS
+</span><span style=color:#bf616a>brew</span><span> install bind
+</span></code></pre><p>Later on we will explain how to use the dig tool to test our DNS server.<h2 id=understanding-dns-a-quick-crash-course>Understanding DNS: A Quick Crash Course</h2><p>A DNS request involves:<ol><li>A client (like your browser) sending a DNS query to a server.<li>The server responds with an IP address (or forwards the query).<li>The client uses that IP to establish a connection.</ol><p>DNS messages are encoded as binary data to ensure efficient transmission over the network. This means we will be working with raw bytes rather than plain text. A request typically includes:<ul><li>Header: Contains metadata.<li>Question: The domain name being queried.<li>Answer (in response): The resolved IP address.</ul><p>The full specification is available in <a href=https://www.rfc-editor.org/rfc/rfc1035 target=_blank>RFC 1035</a> I’ll refer to it throughout this article and highlight the most relevant chapters. If you want a step-by-step walkthrough of the DNS protocol, I recommend <a href=https://github.com/EmilHernvall/dnsguide/blob/b52da3b32b27c81e5c6729ac14fe01fef8b1b593/chapter1.md target=_blank>this article</a>.<p>One of the great things about Rust is its strong type system, which allows us to define structures that closely resemble the DNS message format as specified in RFC 1035.<h2 id=setting-up-the-project>Setting Up the Project</h2><p>Let’s create a Rust project for our DNS server:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> new dns-server
+</span><span style=color:#96b5b4>cd</span><span> dns-server
+</span></code></pre><p>Open your preferred text editor and navigate to the project directory. If you’re looking for a recommendation, <a href=https://zed.dev target=_blank>Zed</a> is a great option.<p>Now, open Cargo.toml and add dependencies:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>[dependencies]
+</span><span style=color:#bf616a>clap</span><span> = { version = "</span><span style=color:#a3be8c>4.5.28</span><span>", features = </span><span style=color:#b48ead>[</span><span>"</span><span style=color:#a3be8c>derive</span><span>"</span><span style=color:#b48ead>] </span><span>}
+</span><span style=color:#bf616a>thiserror</span><span> = "</span><span style=color:#a3be8c>1.0.38</span><span>"
+</span></code></pre><p>Another way of doing the same is using <code>cargo add</code> in the project directory:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> add clap</span><span style=color:#bf616a> --features</span><span> derive
+</span><span style=color:#bf616a>cargo</span><span> add thiserror
+</span></code></pre><p><a href=https://docs.rs/clap/latest/clap/ target=_blank>Clap</a> is a powerful and intuitive command-line argument parser for Rust, supporting subcommands, flags, options, and arguments.<p><a href=https://docs.rs/thiserror/latest/thiserror/ target=_blank>Thiserror</a> is a lightweight crate for defining custom error types with Rust’s Error trait.<p>Now let's start writing our DNS server...<h2 id=defining-dns-header-structure>Defining DNS Header structure</h2><p>To handle a DNS request, we first need to define the structure of a DNS message. Let’s start by defining the DNS Header in a separate file called <code>dns.rs</code>. The DNS header structure is defined in <a href=https://www.rfc-editor.org/rfc/rfc1035#section-4.1.1 target=_blank>RFC 1035 - 4.1.1</a>.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(Debug)]
+</span><span style=color:#b48ead>pub struct </span><span>Header {
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>id</span><span>: </span><span style=color:#b48ead>u16</span><span>,      </span><span style=color:#65737e>// identifier
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>qr</span><span>: </span><span style=color:#b48ead>bool</span><span>,     </span><span style=color:#65737e>// 0 for query, 1 for response
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>opcode</span><span>: </span><span style=color:#b48ead>u8</span><span>,   </span><span style=color:#65737e>// 0 for standard query
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>aa</span><span>: </span><span style=color:#b48ead>bool</span><span>,     </span><span style=color:#65737e>// authoritative answer
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>tc</span><span>: </span><span style=color:#b48ead>bool</span><span>,     </span><span style=color:#65737e>// truncated message
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>rd</span><span>: </span><span style=color:#b48ead>bool</span><span>,     </span><span style=color:#65737e>// recursion desired
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>ra</span><span>: </span><span style=color:#b48ead>bool</span><span>,     </span><span style=color:#65737e>// recursion available
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>z</span><span>: </span><span style=color:#b48ead>u8</span><span>,        </span><span style=color:#65737e>// reserved for future use
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>rcode</span><span>: </span><span style=color:#b48ead>u8</span><span>,    </span><span style=color:#65737e>// 0 for no error
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>qdcount</span><span>: </span><span style=color:#b48ead>u16</span><span>, </span><span style=color:#65737e>// number of entries in the question section
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>ancount</span><span>: </span><span style=color:#b48ead>u16</span><span>, </span><span style=color:#65737e>// number of resource records in the answer section
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>nscount</span><span>: </span><span style=color:#b48ead>u16</span><span>, </span><span style=color:#65737e>// number of name server resource records in the authority records section
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>arcount</span><span>: </span><span style=color:#b48ead>u16</span><span>, </span><span style=color:#65737e>// number of resource records in the additional records section
+</span><span>}
+</span></code></pre><p>You do not need to know the meaning of each field in the DNS header. The fields are used by the DNS protocol to indicate the type of message, the status of the message, and the number of resource records in each section of the message among other things.<p>Since DNS messages are transmitted as raw binary data, we need to convert our Header struct into a byte array (serialization). When receiving a DNS request, we perform deserialization to reconstruct the Header from raw bytes.<p>Note that network byte order is big-endian (be) hence our use of the function <code>u16::to_be_bytes()</code> and <code>u16::from_be_bytes()</code>.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span style=color:#b48ead>impl </span><span>Header {
+</span><span>    </span><span style=color:#b48ead>const </span><span style=color:#d08770>DNS_HEADER_LEN</span><span>: </span><span style=color:#b48ead>usize </span><span>= </span><span style=color:#d08770>12</span><span>;
+</span><span>
+</span><span>    </span><span style=color:#65737e>// Serialize the header into a byte array
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>to_bytes</span><span>(&</span><span style=color:#bf616a>self</span><span>) -> Vec&lt;</span><span style=color:#b48ead>u8</span><span>> {
+</span><span>        </span><span style=color:#b48ead>let mut</span><span> buf = Vec::with_capacity(Header::</span><span style=color:#d08770>DNS_HEADER_LEN</span><span>);
+</span><span>
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.id.</span><span style=color:#96b5b4>to_be_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>push</span><span>(
+</span><span>            (</span><span style=color:#bf616a>self</span><span>.qr as </span><span style=color:#b48ead>u8</span><span>) &lt;&lt; </span><span style=color:#d08770>7
+</span><span>                | </span><span style=color:#bf616a>self</span><span>.opcode &lt;&lt; </span><span style=color:#d08770>3
+</span><span>                | (</span><span style=color:#bf616a>self</span><span>.aa as </span><span style=color:#b48ead>u8</span><span>) &lt;&lt; </span><span style=color:#d08770>2
+</span><span>                | (</span><span style=color:#bf616a>self</span><span>.tc as </span><span style=color:#b48ead>u8</span><span>) &lt;&lt; </span><span style=color:#d08770>1
+</span><span>                | </span><span style=color:#bf616a>self</span><span>.rd as </span><span style=color:#b48ead>u8</span><span>,
+</span><span>        );
+</span><span>        buf.</span><span style=color:#96b5b4>push</span><span>((</span><span style=color:#bf616a>self</span><span>.ra as </span><span style=color:#b48ead>u8</span><span>) &lt;&lt; </span><span style=color:#d08770>7 </span><span>| </span><span style=color:#bf616a>self</span><span>.z &lt;&lt; </span><span style=color:#d08770>4 </span><span>| </span><span style=color:#bf616a>self</span><span>.rcode);
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.qdcount.</span><span style=color:#96b5b4>to_be_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.ancount.</span><span style=color:#96b5b4>to_be_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.nscount.</span><span style=color:#96b5b4>to_be_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.arcount.</span><span style=color:#96b5b4>to_be_bytes</span><span>());
+</span><span>
+</span><span>        buf
+</span><span>    }
+</span><span>
+</span><span>    </span><span style=color:#65737e>// Deserialize the header from a byte array
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>from_bytes</span><span>(</span><span style=color:#bf616a>buf</span><span>: &[</span><span style=color:#b48ead>u8</span><span>]) -> Result&lt;Header, ErrorCondition> {
+</span><span>        </span><span style=color:#b48ead>if</span><span> buf.</span><span style=color:#96b5b4>len</span><span>() &lt; Header::</span><span style=color:#d08770>DNS_HEADER_LEN </span><span>{
+</span><span>            </span><span style=color:#b48ead>return </span><span>Err(ErrorCondition::DeserializationErr(
+</span><span>                "</span><span style=color:#a3be8c>Buffer length is less than header length</span><span>".</span><span style=color:#96b5b4>to_string</span><span>(),
+</span><span>            ));
+</span><span>        }
+</span><span>
+</span><span>        Ok(Header {
+</span><span>            id: </span><span style=color:#b48ead>u16</span><span>::from_be_bytes([buf[</span><span style=color:#d08770>0</span><span>], buf[</span><span style=color:#d08770>1</span><span>]]),
+</span><span>            qr: (buf[</span><span style=color:#d08770>2</span><span>] & </span><span style=color:#d08770>0b1000_0000</span><span>) != </span><span style=color:#d08770>0</span><span>,
+</span><span>            opcode: (buf[</span><span style=color:#d08770>2</span><span>] & </span><span style=color:#d08770>0b0111_1000</span><span>) >> </span><span style=color:#d08770>3</span><span>,
+</span><span>            aa: (buf[</span><span style=color:#d08770>2</span><span>] & </span><span style=color:#d08770>0b0000_0100</span><span>) != </span><span style=color:#d08770>0</span><span>,
+</span><span>            tc: (buf[</span><span style=color:#d08770>2</span><span>] & </span><span style=color:#d08770>0b0000_0010</span><span>) != </span><span style=color:#d08770>0</span><span>,
+</span><span>            rd: (buf[</span><span style=color:#d08770>2</span><span>] & </span><span style=color:#d08770>0b0000_0001</span><span>) != </span><span style=color:#d08770>0</span><span>,
+</span><span>            ra: (buf[</span><span style=color:#d08770>3</span><span>] & </span><span style=color:#d08770>0b1000_0000</span><span>) != </span><span style=color:#d08770>0</span><span>,
+</span><span>            z: (buf[</span><span style=color:#d08770>3</span><span>] & </span><span style=color:#d08770>0b0111_0000</span><span>) >> </span><span style=color:#d08770>4</span><span>,
+</span><span>            rcode: buf[</span><span style=color:#d08770>3</span><span>] & </span><span style=color:#d08770>0b0000_1111</span><span>,
+</span><span>            qdcount: </span><span style=color:#b48ead>u16</span><span>::from_be_bytes([buf[</span><span style=color:#d08770>4</span><span>], buf[</span><span style=color:#d08770>5</span><span>]]),
+</span><span>            ancount: </span><span style=color:#b48ead>u16</span><span>::from_be_bytes([buf[</span><span style=color:#d08770>6</span><span>], buf[</span><span style=color:#d08770>7</span><span>]]),
+</span><span>            nscount: </span><span style=color:#b48ead>u16</span><span>::from_be_bytes([buf[</span><span style=color:#d08770>8</span><span>], buf[</span><span style=color:#d08770>9</span><span>]]),
+</span><span>            arcount: </span><span style=color:#b48ead>u16</span><span>::from_be_bytes([buf[</span><span style=color:#d08770>10</span><span>], buf[</span><span style=color:#d08770>11</span><span>]]),
+</span><span>        })
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Since we added an Error type to the deserialization function we need to include <code>thiserror</code> and define them. I will define the ErrorCondition enum at the top of the file.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span style=color:#b48ead>use </span><span>thiserror::Error;
+</span><span>
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(Debug, Error)]
+</span><span style=color:#b48ead>pub enum </span><span>ErrorCondition {
+</span><span>    #[</span><span style=color:#bf616a>error</span><span>("</span><span style=color:#a3be8c>Serialization Error: {0}</span><span>")]
+</span><span>    SerializationErr(String),
+</span><span>
+</span><span>    #[</span><span style=color:#bf616a>error</span><span>("</span><span style=color:#a3be8c>Deserialization Error: {0}</span><span>")]
+</span><span>    DeserializationErr(String),
+</span><span>}
+</span><span>
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(Debug)]
+</span><span style=color:#b48ead>pub struct </span><span>Header {
+</span><span> ...
+</span><span> ...
+</span><span>}
+</span></code></pre><p>Now we are going to implement the main loop where we will receive DNS queries from clients and send back responses. To start, we’ll implement a simple DNS server that decodes the DNS header and prints the query.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/main.rs
+</span><span style=color:#b48ead>use </span><span>std::net::UdpSocket;
+</span><span>
+</span><span style=color:#b48ead>mod </span><span>dns;
+</span><span style=color:#b48ead>use </span><span>dns::Header;
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> socket = UdpSocket::bind("</span><span style=color:#a3be8c>0.0.0.0:1053</span><span>").</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not bind to port 1053</span><span>");
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> buf = [</span><span style=color:#d08770>0</span><span>; </span><span style=color:#d08770>512</span><span>];
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>DNS server is running at port 1053</span><span>");
+</span><span>
+</span><span>    </span><span style=color:#b48ead>loop </span><span>{
+</span><span>        </span><span style=color:#b48ead>let </span><span>(len, addr) = socket.</span><span style=color:#96b5b4>recv_from</span><span>(&</span><span style=color:#b48ead>mut</span><span> buf).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not receive data</span><span>");
+</span><span>        </span><span style=color:#b48ead>let</span><span> header = Header::from_bytes(&buf[..len]).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not parse DNS header</span><span>");
+</span><span>        println!("</span><span style=color:#a3be8c>Received query from </span><span style=color:#d08770>{} {:?}</span><span>", addr, header);
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Our current code contains several <code>expect</code> calls, which we’ll refine later. This exemplifies one of Rust’s key strengths: explicit error handling, ensuring that nothing is left to implicit behavior.<p>In the main function, we create a UDP socket bound to port 1053 and initialize a 512-byte buffer. We then print a message indicating that the DNS server is running. Inside the loop, the server listens for incoming requests, parses the DNS header, and prints the query details, continuously processing requests until stopped with <code>Ctrl+C</code>.<p>Now, let’s run the server! Open a terminal and start the DNS server: <code>cargo run</code>. Open another terminal and run <code>dig @localhost -p 1053 rust-trends.com</code><p>Since we have not implemented DNS query processing, <code>dig</code> won’t receive a valid response. Instead, it may retry a few times before giving up. Because <strong>UDP</strong> is an unreliable protocol, dig simply attempts the query again if no response is received.<p>Example output from our server:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>$</span><span> cargo run
+</span><span>
+</span><span style=color:#bf616a>DNS</span><span> server is running at port 1053
+</span><span style=color:#bf616a>Received</span><span> query from 127.0.0.1:63928 Header { id: 22295, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
+</span></code></pre><p>Code for this part can be found in the <a href=https://github.com/Rust-Trends/dns-server-tutorial target=_blank>Github</a> Repository under <code>step 1</code>.<p>Wow! We’re running a DNS server in Rust! Are you curious how the rest of the request looks like? Let's print it out!<h2 id=printing-the-dns-request>Printing the DNS Request</h2><p>Before parsing the full DNS request, let’s first inspect the raw data. The function below prints the incoming bytes in a structured hex format, similar to how hex editors display binary files. This helps us visualize the request and debug potential issues.<p>If you’ve done low-level programming before, you’re probably familiar with hex editors. It has a convenient layout of printing bytes. An example of such a great editor can be found at <a href=https://hexed.it/ target=_blank>hexed.it</a><p>Let’s take inspiration from this and extend main.rs to print the DNS request.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/main.rs
+</span><span style=color:#b48ead>use </span><span>std::net::UdpSocket;
+</span><span>
+</span><span style=color:#b48ead>mod </span><span>dns;
+</span><span style=color:#b48ead>use </span><span>dns::Header;
+</span><span>
+</span><span style=color:#65737e>// Debug print hex bytes of a buffer 16 bytes width followed by the ASCII representation of the bytes
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>debug_print_bytes</span><span>(</span><span style=color:#bf616a>buf</span><span>: &[</span><span style=color:#b48ead>u8</span><span>]) {
+</span><span>    </span><span style=color:#b48ead>for </span><span>(i, chunk) in buf.</span><span style=color:#96b5b4>chunks</span><span>(</span><span style=color:#d08770>16</span><span>).</span><span style=color:#96b5b4>enumerate</span><span>() {
+</span><span>        print!("</span><span style=color:#d08770>{:08x}</span><span style=color:#a3be8c>: </span><span>", i * </span><span style=color:#d08770>16</span><span>);
+</span><span>        </span><span style=color:#b48ead>for</span><span> byte in chunk {
+</span><span>            print!("</span><span style=color:#d08770>{:02x} </span><span>", byte);
+</span><span>        }
+</span><span>        </span><span style=color:#b48ead>for </span><span>_ in </span><span style=color:#d08770>0</span><span>..(</span><span style=color:#d08770>16 </span><span>- chunk.</span><span style=color:#96b5b4>len</span><span>()) {
+</span><span>            print!("   ");
+</span><span>        }
+</span><span>        print!("  ");
+</span><span>        </span><span style=color:#b48ead>for</span><span> byte in chunk {
+</span><span>            </span><span style=color:#b48ead>if </span><span>*byte >= </span><span style=color:#d08770>32 </span><span>&& *byte &lt;= </span><span style=color:#d08770>126 </span><span>{
+</span><span>                print!("</span><span style=color:#d08770>{}</span><span>", *byte as </span><span style=color:#b48ead>char</span><span>);
+</span><span>            } </span><span style=color:#b48ead>else </span><span>{
+</span><span>                print!("</span><span style=color:#a3be8c>.</span><span>");
+</span><span>            }
+</span><span>        }
+</span><span>        println!();
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> socket = UdpSocket::bind("</span><span style=color:#a3be8c>0.0.0.0:1053</span><span>").</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not bind to port 1053</span><span>");
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> buf = [</span><span style=color:#d08770>0</span><span>; </span><span style=color:#d08770>512</span><span>];
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>DNS server is running at port 1053</span><span>");
+</span><span>
+</span><span>    </span><span style=color:#b48ead>loop </span><span>{
+</span><span>        </span><span style=color:#b48ead>let </span><span>(len, addr) = socket.</span><span style=color:#96b5b4>recv_from</span><span>(&</span><span style=color:#b48ead>mut</span><span> buf).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not receive data</span><span>");
+</span><span>
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>Received query from </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> with length </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> bytes</span><span>", addr, len);
+</span><span>        </span><span style=color:#96b5b4>debug_print_bytes</span><span>(&buf[..len]);
+</span><span>
+</span><span>        </span><span style=color:#b48ead>let</span><span> header = Header::from_bytes(&buf[..len]).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not parse DNS header</span><span>");
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#d08770>{:?}</span><span>", header);
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Now, let’s run the server and send a DNS request using dig <code>dig @localhost -p 1053 rust-trends.com</code>.<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>DNS</span><span> server is running at port 1053
+</span><span>
+</span><span style=color:#bf616a>Received</span><span> query from 127.0.0.1:62942 with length 44 bytes
+</span><span style=color:#bf616a>00000000:</span><span> 3e 3f 01 20 00 01 00 00 00 00 00 01 0b 72 75 73   >?. .........rus
+</span><span style=color:#bf616a>00000010:</span><span> 74 2d 74 72 65 6e 64 73 03 63 6f 6d 00 00 01 00   t-trends.com....
+</span><span style=color:#bf616a>00000020:</span><span> 01 00 00 29 10 00 00 00 00 00 00 00               ...)</span><span style=color:#bf616a>........
+</span><span>
+</span><span style=color:#bf616a>Header </span><span>{ id: 15935, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
+</span></code></pre><p>Each line in the output represents 16 bytes of the request. The first column is the byte offset (e.g., 00000000). The next columns show the hexadecimal values of the bytes. Finally, the rightmost column prints the ASCII representation of printable characters, replacing non-printable bytes with dots (.).<p>This debug information is useful for understanding the DNS request. Did you notice the quirk where z is set to 2? It's a reserved field that can be used for future extensions and was expected to be zero. Huh!? What's that about? You can read more about it at <a href=https://unix.stackexchange.com/questions/591203/understanding-the-digs-dns-query-does-dig-set-non-zero-value-for-z-field target=_blank>StackExchange</a>. Apperently RFC's get amended. For now, we’ll ignore it and move on....<p>Since the DNS header is always 12 bytes, and our total request length is 44 bytes, we can infer that the remaining 32 bytes correspond to the Question Section. Next, we’ll decode it to extract the domain name being queried.<p>Code for this part can be found in the <a href=https://github.com/Rust-Trends/dns-server-tutorial target=_blank>Github</a> Repository under <code>step 1</code>.<h2 id=defining-the-dns-question-structure>Defining the DNS Question Structure</h2><p>In the Domain Name System (DNS), a question is a structured query that specifies the domain name and the type of record being requested. This structure is fundamental to DNS resolution and is formally defined in <a href=https://www.rfc-editor.org/rfc/rfc1035#section-4.1.2 target=_blank>RFC 1035, Section 4.1.2</a>.<p>A DNS question consists of three fields:<ul><li>QNAME: The domain name being queried, represented as a sequence of labels. Each label is encoded as a length-prefixed string, and the entire name is terminated with a zero byte.<li>QTYPE: Specifies the type of DNS record being requested (e.g., A for IPv4 addresses, AAAA for IPv6 addresses, MX for mail exchange records).<li>QCLASS: Indicates the class of the query, with the most common value being IN (Internet).</ul><h3 id=qname-encoding-details>QNAME Encoding Details</h3><p>DNS uses a compact encoding for domain names: 1. Each label (e.g., “www”, “rust-trends”, “com”) is prefixed by a single byte indicating its length. 2. Labels are concatenated sequentially. 3. The entire sequence is terminated with a zero byte (0x00).<h3 id=example-dns-question-for-www-rust-trends-com>Example DNS Question for www.rust-trends.com</h3><p>A DNS query for <code>www.rust-trends.com</code> requesting an A record (IPv4 address) in the Internet class would be structured as follows:<h4 id=qname-encoding>QNAME Encoding</h4><p>The domain name "www.rust-trends.com" is split into labels: • "www" → 3 characters • "rust-trends" → 11 characters • "com" → 3 characters<p>DNS encoding rules: • Each label is prefixed by its length as a single byte. • The entire domain is terminated with a 0x00 byte.<h4 id=encoded-qname>Encoded QNAME:</h4><pre style=color:#c0c5ce;background-color:#2b303b><code><span>[03] 'w' 'w 'w' [0B] 'r' 'u' 's' 't' '-' 't' 'r' 'e' 'n' 'd' 's' [03] 'c' 'o' 'm' [00]
+</span><span>
+</span><span>## in bytes
+</span><span>03 77 77 77 0B 72 75 73 74 2D 74 72 65 6E 64 73 03 63 6F 6D 00
+</span></code></pre><p>Breaking it down: - 03 → Length of "www", followed by ASCII 77 77 77 (www). - 0B → Length of "rust-trends", followed by ASCII 72 75 73 74 2D 74 72 65 6E 64 73 (rust-trends). - 03 → Length of "com", followed by ASCII 63 6F 6D (com). - 00 → End of QNAME.<h4 id=complete-dns-question-structure>Complete DNS Question Structure</h4><p>A complete DNS question includes: - QNAME → Encoded domain name. - QTYPE → 00 01 (A record). - QCLASS → 00 01 (Internet class).<p><strong>Final binary representation:</strong><pre style=color:#c0c5ce;background-color:#2b303b><code><span>[03] 'w' 'w 'w' [0B] 'r' 'u' 's' 't' '-' 't' 'r' 'e' 'n' 'd' 's' [03] 'c' 'o' 'm' [00] [00] [01] [00] [01]
+</span><span>03 77 77 77 0B 72 75 73 74 2D 74 72 65 6E 64 73 03 63 6F 6D 00  00 01  00 01
+</span></code></pre><p>This is how a DNS client would structure a query to resolve www.rust-trends.com into an IPv4 address.<p>How should we structure this? Instead of storing the domain name as a single string, we break it down into its individual labels (e.g., www, rust-trends, com). This allows for more efficient processing when serializing and handling compressed DNS messages later. We can represent QTYPE and QCLASS as enums.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span>...
+</span><span>
+</span><span style=color:#b48ead>pub struct </span><span>Question {
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>name</span><span>: Vec&lt;Label>,
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>qtype</span><span>: Type,
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>qclass</span><span>: Class,
+</span><span>}
+</span><span>
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(Debug, Clone)]
+</span><span style=color:#b48ead>pub struct </span><span>Label(String);
+</span></code></pre><p>For the Types we can look at <a href=https://www.rfc-editor.org/rfc/rfc1035#section-3.2.3 target=_blank>section 3.2.3</a> and <a href=https://www.rfc-editor.org/rfc/rfc1035#section-3.2.2 target=_blank>section 3.2.2</a> of the RFC. Note that Types used in Resource Records are a subset of Types used in Questions, so for sake of simplicity we will use the same enum for both.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span>...
+</span><span>
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(Debug, Clone)]
+</span><span style=color:#b48ead>pub enum </span><span>Type {
+</span><span>    </span><span style=color:#65737e>// Below are Resource Record Types and QTYPES
+</span><span>    A = </span><span style=color:#d08770>1</span><span>, </span><span style=color:#65737e>// a host address
+</span><span>    </span><span style=color:#d08770>NS </span><span>= </span><span style=color:#d08770>2</span><span>, </span><span style=color:#65737e>// an authoritative name server
+</span><span>    </span><span style=color:#d08770>MD </span><span>= </span><span style=color:#d08770>3</span><span>, </span><span style=color:#65737e>// a mail destination (Obsolete - use MX)
+</span><span>    </span><span style=color:#d08770>MF </span><span>= </span><span style=color:#d08770>4</span><span>, </span><span style=color:#65737e>// a mail forwarder (Obsolete - use MX)
+</span><span>    </span><span style=color:#d08770>CNAME </span><span>= </span><span style=color:#d08770>5</span><span>, </span><span style=color:#65737e>// the canonical name for an alias
+</span><span>    </span><span style=color:#d08770>SOA </span><span>= </span><span style=color:#d08770>6</span><span>, </span><span style=color:#65737e>// marks the start of a zone of authority
+</span><span>    </span><span style=color:#d08770>MB </span><span>= </span><span style=color:#d08770>7</span><span>, </span><span style=color:#65737e>// a mailbox domain name (EXPERIMENTAL)
+</span><span>    </span><span style=color:#d08770>MG </span><span>= </span><span style=color:#d08770>8</span><span>, </span><span style=color:#65737e>// a mail group member (EXPERIMENTAL)
+</span><span>    </span><span style=color:#d08770>MR </span><span>= </span><span style=color:#d08770>9</span><span>, </span><span style=color:#65737e>// a mail rename domain name (EXPERIMENTAL)
+</span><span>    </span><span style=color:#d08770>NULL </span><span>= </span><span style=color:#d08770>10</span><span>, </span><span style=color:#65737e>// a null RR (EXPERIMENTAL)
+</span><span>    </span><span style=color:#d08770>WKS </span><span>= </span><span style=color:#d08770>11</span><span>, </span><span style=color:#65737e>// a well known service description
+</span><span>    </span><span style=color:#d08770>PTR </span><span>= </span><span style=color:#d08770>12</span><span>, </span><span style=color:#65737e>// a domain name pointer
+</span><span>    </span><span style=color:#d08770>HINFO </span><span>= </span><span style=color:#d08770>13</span><span>, </span><span style=color:#65737e>// host information
+</span><span>    </span><span style=color:#d08770>MINFO </span><span>= </span><span style=color:#d08770>14</span><span>, </span><span style=color:#65737e>// mailbox or mail list information
+</span><span>    </span><span style=color:#d08770>MX </span><span>= </span><span style=color:#d08770>15</span><span>, </span><span style=color:#65737e>// mail exchange
+</span><span>    </span><span style=color:#d08770>TXT </span><span>= </span><span style=color:#d08770>16</span><span>, </span><span style=color:#65737e>// text strings
+</span><span>
+</span><span>    </span><span style=color:#65737e>// Below are only QTYPES
+</span><span>    </span><span style=color:#d08770>AXFR </span><span>= </span><span style=color:#d08770>252</span><span>, </span><span style=color:#65737e>// A request for a transfer of an entire zone
+</span><span>    </span><span style=color:#d08770>MAILB </span><span>= </span><span style=color:#d08770>253</span><span>, </span><span style=color:#65737e>// A request for mailbox-related records (MB, MG or MR)
+</span><span>    </span><span style=color:#d08770>MAILA </span><span>= </span><span style=color:#d08770>254</span><span>, </span><span style=color:#65737e>// A request for mail agent RRs (Obsolete - see MX)
+</span><span>    </span><span style=color:#d08770>_ALL_ </span><span>= </span><span style=color:#d08770>255</span><span>, </span><span style=color:#65737e>// A request for all records
+</span><span>}
+</span></code></pre><p>Finally, we define the QCLASS enum, as described in <a href=https://www.rfc-editor.org/rfc/rfc1035#section-3.2.4 target=_blank>section 3.2.4</a>, we will only be using the Internet class, but for the sake of completeness, we will add the other values in the enum:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span>...
+</span><span>
+</span><span style=color:#b48ead>pub enum </span><span>Class {
+</span><span>    </span><span style=color:#d08770>IN </span><span>= </span><span style=color:#d08770>1</span><span>, </span><span style=color:#65737e>// the Internet
+</span><span>    </span><span style=color:#d08770>CS </span><span>= </span><span style=color:#d08770>2</span><span>, </span><span style=color:#65737e>// the CSNET class (Obsolete - used only for examples in some obsolete RFCs)
+</span><span>    </span><span style=color:#d08770>CH </span><span>= </span><span style=color:#d08770>3</span><span>, </span><span style=color:#65737e>// the CHAOS class
+</span><span>    </span><span style=color:#d08770>HS </span><span>= </span><span style=color:#d08770>4</span><span>, </span><span style=color:#65737e>// Hesiod [Dyer 87]
+</span><span>}
+</span></code></pre><p>Let's add the functionality to and deserialize the Question part of DNS query:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span style=color:#b48ead>impl </span><span>Question {
+</span><span>    </span><span style=color:#65737e>// The from_bytes() function reconstructs a Question struct by iterating through the buffer, extracting labels,
+</span><span>    </span><span style=color:#65737e>// parsing the query type and class.
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>from_bytes</span><span>(</span><span style=color:#bf616a>buf</span><span>: &[</span><span style=color:#b48ead>u8</span><span>]) -> Result&lt;</span><span style=color:#b48ead>Self</span><span>, ErrorCondition> {
+</span><span>        </span><span style=color:#b48ead>let mut</span><span> index = </span><span style=color:#d08770>0</span><span>;
+</span><span>        </span><span style=color:#b48ead>let mut</span><span> labels: Vec&lt;Label> = Vec::new();
+</span><span>
+</span><span>        println!("</span><span style=color:#a3be8c>Labels:</span><span>");
+</span><span>        </span><span style=color:#b48ead>while</span><span> buf[index] != </span><span style=color:#d08770>0 </span><span>{
+</span><span>            </span><span style=color:#b48ead>let</span><span> len = buf[index] as </span><span style=color:#b48ead>usize</span><span>;
+</span><span>            index += </span><span style=color:#d08770>1</span><span>;
+</span><span>            labels.</span><span style=color:#96b5b4>push</span><span>(Label::new(&buf[index..index + len])?);
+</span><span>            println!("</span><span style=color:#d08770>{:?}</span><span>", labels); </span><span style=color:#65737e>// For debugging purposes
+</span><span>            index += len;
+</span><span>        }
+</span><span>
+</span><span>        index += </span><span style=color:#d08770>1</span><span>;
+</span><span>
+</span><span>        </span><span style=color:#b48ead>let</span><span> qtype = Type::from_bytes(&buf[index..index + </span><span style=color:#d08770>2</span><span>])?;
+</span><span>        index += </span><span style=color:#d08770>2</span><span>;
+</span><span>        </span><span style=color:#b48ead>let</span><span> qclass = Class::from_bytes(&buf[index..index + </span><span style=color:#d08770>2</span><span>])?;
+</span><span>
+</span><span>        Ok(Question {
+</span><span>            name: labels,
+</span><span>            qtype,
+</span><span>            qclass,
+</span><span>        })
+</span><span>    }
+</span><span>
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>to_bytes</span><span>(&</span><span style=color:#bf616a>self</span><span>) -> Vec&lt;</span><span style=color:#b48ead>u8</span><span>> {
+</span><span>        </span><span style=color:#b48ead>let mut</span><span> buf = Vec::new();
+</span><span>
+</span><span>        </span><span style=color:#65737e>// Write the labels to the buffer and add . inbetween and end with 0
+</span><span>        </span><span style=color:#b48ead>for</span><span> label in &</span><span style=color:#bf616a>self</span><span>.name {
+</span><span>            buf.</span><span style=color:#96b5b4>push</span><span>(label.</span><span style=color:#96b5b4>len</span><span>() as </span><span style=color:#b48ead>u8</span><span>);
+</span><span>            buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(label.</span><span style=color:#d08770>0.</span><span style=color:#96b5b4>as_bytes</span><span>());
+</span><span>        }
+</span><span>        buf.</span><span style=color:#96b5b4>push</span><span>(</span><span style=color:#d08770>0</span><span>);
+</span><span>
+</span><span>        </span><span style=color:#65737e>// Write the question type and class to the buffer
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.qtype.</span><span style=color:#96b5b4>to_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.qclass.</span><span style=color:#96b5b4>to_bytes</span><span>());
+</span><span>
+</span><span>        buf
+</span><span>    }
+</span><span>}
+</span></code></pre><p>The code uses functions to serialize and deserialize Type (field qtype) and Class (field qclass) into bytes and back into their respective types, requiring proper implementation for from_bytes and to_bytes see below.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span>
+</span><span style=color:#b48ead>impl </span><span>Type {
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>from_bytes</span><span>(</span><span style=color:#bf616a>bytes</span><span>: &[</span><span style=color:#b48ead>u8</span><span>]) -> Result&lt;Type, ErrorCondition> {
+</span><span>        </span><span style=color:#b48ead>match u16</span><span>::from_be_bytes([bytes[</span><span style=color:#d08770>0</span><span>], bytes[</span><span style=color:#d08770>1</span><span>]]) {
+</span><span>            </span><span style=color:#d08770>1 </span><span>=> Ok(Type::A),
+</span><span>            </span><span style=color:#d08770>2 </span><span>=> Ok(Type::</span><span style=color:#d08770>NS</span><span>),
+</span><span>            </span><span style=color:#d08770>3 </span><span>=> Ok(Type::</span><span style=color:#d08770>MD</span><span>),
+</span><span>            </span><span style=color:#d08770>4 </span><span>=> Ok(Type::</span><span style=color:#d08770>MF</span><span>),
+</span><span>            </span><span style=color:#d08770>5 </span><span>=> Ok(Type::</span><span style=color:#d08770>CNAME</span><span>),
+</span><span>            </span><span style=color:#d08770>6 </span><span>=> Ok(Type::</span><span style=color:#d08770>SOA</span><span>),
+</span><span>            </span><span style=color:#d08770>7 </span><span>=> Ok(Type::</span><span style=color:#d08770>MB</span><span>),
+</span><span>            </span><span style=color:#d08770>8 </span><span>=> Ok(Type::</span><span style=color:#d08770>MG</span><span>),
+</span><span>            </span><span style=color:#d08770>9 </span><span>=> Ok(Type::</span><span style=color:#d08770>MR</span><span>),
+</span><span>            </span><span style=color:#d08770>10 </span><span>=> Ok(Type::</span><span style=color:#d08770>NULL</span><span>),
+</span><span>            </span><span style=color:#d08770>11 </span><span>=> Ok(Type::</span><span style=color:#d08770>WKS</span><span>),
+</span><span>            </span><span style=color:#d08770>12 </span><span>=> Ok(Type::</span><span style=color:#d08770>PTR</span><span>),
+</span><span>            </span><span style=color:#d08770>13 </span><span>=> Ok(Type::</span><span style=color:#d08770>HINFO</span><span>),
+</span><span>            </span><span style=color:#d08770>14 </span><span>=> Ok(Type::</span><span style=color:#d08770>MINFO</span><span>),
+</span><span>            </span><span style=color:#d08770>15 </span><span>=> Ok(Type::</span><span style=color:#d08770>MX</span><span>),
+</span><span>            </span><span style=color:#d08770>16 </span><span>=> Ok(Type::</span><span style=color:#d08770>TXT</span><span>),
+</span><span>            </span><span style=color:#d08770>252 </span><span>=> Ok(Type::</span><span style=color:#d08770>AXFR</span><span>),
+</span><span>            </span><span style=color:#d08770>253 </span><span>=> Ok(Type::</span><span style=color:#d08770>MAILB</span><span>),
+</span><span>            </span><span style=color:#d08770>254 </span><span>=> Ok(Type::</span><span style=color:#d08770>MAILA</span><span>),
+</span><span>            </span><span style=color:#d08770>255 </span><span>=> Ok(Type::</span><span style=color:#d08770>_ALL_</span><span>),
+</span><span>            n => Err(ErrorCondition::DeserializationErr(
+</span><span>                format!("</span><span style=color:#a3be8c>Unknown Question Type </span><span style=color:#d08770>{}</span><span>", n).</span><span style=color:#96b5b4>to_string</span><span>(),
+</span><span>            )),
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>to_bytes</span><span>(&</span><span style=color:#bf616a>self</span><span>) -> [</span><span style=color:#b48ead>u8</span><span>; </span><span style=color:#d08770>2</span><span>] {
+</span><span>        </span><span style=color:#b48ead>let</span><span> num = </span><span style=color:#b48ead>match </span><span style=color:#bf616a>self </span><span>{
+</span><span>            Type::A => </span><span style=color:#d08770>1</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>NS </span><span>=> </span><span style=color:#d08770>2</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MD </span><span>=> </span><span style=color:#d08770>3</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MF </span><span>=> </span><span style=color:#d08770>4</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>CNAME </span><span>=> </span><span style=color:#d08770>5</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>SOA </span><span>=> </span><span style=color:#d08770>6</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MB </span><span>=> </span><span style=color:#d08770>7</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MG </span><span>=> </span><span style=color:#d08770>8</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MR </span><span>=> </span><span style=color:#d08770>9</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>NULL </span><span>=> </span><span style=color:#d08770>10</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>WKS </span><span>=> </span><span style=color:#d08770>11</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>PTR </span><span>=> </span><span style=color:#d08770>12</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>HINFO </span><span>=> </span><span style=color:#d08770>13</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MINFO </span><span>=> </span><span style=color:#d08770>14</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MX </span><span>=> </span><span style=color:#d08770>15</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>TXT </span><span>=> </span><span style=color:#d08770>16</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>AXFR </span><span>=> </span><span style=color:#d08770>252</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MAILB </span><span>=> </span><span style=color:#d08770>253</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>MAILA </span><span>=> </span><span style=color:#d08770>254</span><span>,
+</span><span>            Type::</span><span style=color:#d08770>_ALL_ </span><span>=> </span><span style=color:#d08770>255</span><span>,
+</span><span>        };
+</span><span>
+</span><span>        </span><span style=color:#b48ead>u16</span><span>::to_be_bytes(num)
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>impl </span><span>Class {
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>from_bytes</span><span>(</span><span style=color:#bf616a>buf</span><span>: &[</span><span style=color:#b48ead>u8</span><span>]) -> Result&lt;</span><span style=color:#b48ead>Self</span><span>, ErrorCondition> {
+</span><span>        </span><span style=color:#b48ead>let</span><span> num = </span><span style=color:#b48ead>u16</span><span>::from_be_bytes([buf[</span><span style=color:#d08770>0</span><span>], buf[</span><span style=color:#d08770>1</span><span>]]);
+</span><span>        </span><span style=color:#b48ead>match</span><span> num {
+</span><span>            </span><span style=color:#d08770>1 </span><span>=> Ok(Class::</span><span style=color:#d08770>IN</span><span>),
+</span><span>            </span><span style=color:#d08770>2 </span><span>=> Ok(Class::</span><span style=color:#d08770>CS</span><span>),
+</span><span>            </span><span style=color:#d08770>3 </span><span>=> Ok(Class::</span><span style=color:#d08770>CH</span><span>),
+</span><span>            </span><span style=color:#d08770>4 </span><span>=> Ok(Class::</span><span style=color:#d08770>HS</span><span>),
+</span><span>            _ => Err(ErrorCondition::DeserializationErr(
+</span><span>                format!("</span><span style=color:#a3be8c>Unknown Question Class </span><span style=color:#d08770>{}</span><span>", num).</span><span style=color:#96b5b4>to_string</span><span>(),
+</span><span>            )),
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>to_bytes</span><span>(&</span><span style=color:#bf616a>self</span><span>) -> [</span><span style=color:#b48ead>u8</span><span>; </span><span style=color:#d08770>2</span><span>] {
+</span><span>        </span><span style=color:#b48ead>let</span><span> num = </span><span style=color:#b48ead>match </span><span style=color:#bf616a>self </span><span>{
+</span><span>            Class::</span><span style=color:#d08770>IN </span><span>=> </span><span style=color:#d08770>1</span><span>,
+</span><span>            Class::</span><span style=color:#d08770>CS </span><span>=> </span><span style=color:#d08770>2</span><span>,
+</span><span>            Class::</span><span style=color:#d08770>CH </span><span>=> </span><span style=color:#d08770>3</span><span>,
+</span><span>            Class::</span><span style=color:#d08770>HS </span><span>=> </span><span style=color:#d08770>4</span><span>,
+</span><span>            Class::</span><span style=color:#d08770>_ALL_ </span><span>=> </span><span style=color:#d08770>255</span><span>,
+</span><span>        };
+</span><span>
+</span><span>        </span><span style=color:#b48ead>u16</span><span>::to_be_bytes(num)
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre><p>We have all the plumbing in place to deserialize the question, we need to modify <code>main.rs</code> to handle the incoming DNS queries and print them.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/main.rs
+</span><span style=color:#b48ead>use </span><span>std::net::UdpSocket;
+</span><span>
+</span><span style=color:#b48ead>mod </span><span>dns;
+</span><span style=color:#b48ead>use </span><span>dns::{Header, Question};
+</span><span>
+</span><span style=color:#65737e>// Debug print hex bytes of a buffer 16 bytes width followed by the ASCII representation of the bytes
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>debug_print_bytes</span><span>(</span><span style=color:#bf616a>buf</span><span>: &[</span><span style=color:#b48ead>u8</span><span>]) {
+</span><span>    ...
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> socket = UdpSocket::bind("</span><span style=color:#a3be8c>0.0.0.0:1053</span><span>").</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not bind to port 1053</span><span>");
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> buf = [</span><span style=color:#d08770>0</span><span>; </span><span style=color:#d08770>512</span><span>];
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>DNS server is running at port 1053</span><span>");
+</span><span>
+</span><span>    </span><span style=color:#b48ead>loop </span><span>{
+</span><span>        </span><span style=color:#b48ead>let </span><span>(len, addr) = socket.</span><span style=color:#96b5b4>recv_from</span><span>(&</span><span style=color:#b48ead>mut</span><span> buf).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not receive data</span><span>");
+</span><span>
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>Received query from </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> with length </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> bytes</span><span>", addr, len);
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>### DNS Query: ###</span><span>");
+</span><span>        </span><span style=color:#96b5b4>debug_print_bytes</span><span>(&buf[..len]);
+</span><span>
+</span><span>        </span><span style=color:#b48ead>let</span><span> header = Header::from_bytes(&buf[..</span><span style=color:#d08770>12</span><span>]).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not parse DNS header</span><span>");
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#d08770>{:?}</span><span>", header);
+</span><span>
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>### Question: ###</span><span>");
+</span><span>        </span><span style=color:#96b5b4>debug_print_bytes</span><span>(&buf[</span><span style=color:#d08770>12</span><span>..len]);
+</span><span>        println!();
+</span><span>
+</span><span>        </span><span style=color:#b48ead>let</span><span> question = Question::from_bytes(&buf[</span><span style=color:#d08770>12</span><span>..len]).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not parse DNS question</span><span>");
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#d08770>{:?}</span><span>", question);
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Now that we can deserialize both the Header and Question, let’s restart the server and send a DNS request to observe the deserialization in action.<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>dig</span><span> @localhost</span><span style=color:#bf616a> -p</span><span> 1053 www.rust-trends.com
+</span></code></pre><pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> run
+</span><span>
+</span><span style=color:#bf616a>DNS</span><span> server is running at port 1053
+</span><span>
+</span><span style=color:#bf616a>Received</span><span> query from 127.0.0.1:64228 with length 48 bytes
+</span><span>
+</span><span style=color:#65737e>#### DNS Query: ###
+</span><span style=color:#bf616a>00000000:</span><span> ef 60 01 20 00 01 00 00 00 00 00 01 03 77 77 77   .`</span><span style=color:#96b5b4>.</span><span> .........www
+</span><span style=color:#bf616a>00000010:</span><span> 0b 72 75 73 74 2d 74 72 65 6e 64 73 03 63 6f 6d   .rust-trends.com
+</span><span style=color:#bf616a>00000020:</span><span> 00 00 01 00 01 00 00 29 10 00 00 00 00 00 00 00   .......)</span><span style=color:#bf616a>........
+</span><span>
+</span><span style=color:#bf616a>Header </span><span>{ id: 61280, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
+</span><span>
+</span><span style=color:#65737e>#### Question: ###
+</span><span style=color:#bf616a>00000000:</span><span> 03 77 77 77 0b 72 75 73 74 2d 74 72 65 6e 64 73   .www.rust-trends
+</span><span style=color:#bf616a>00000010:</span><span> 03 63 6f 6d 00 00 01 00 01 00 00 29 10 00 00 00   .com.......)</span><span style=color:#bf616a>....
+</span><span style=color:#bf616a>00000020:</span><span> 00 00 00 00                                       ....
+</span><span>
+</span><span style=color:#bf616a>Labels:
+</span><span style=color:#bf616a>[Label</span><span>("</span><span style=color:#a3be8c>www</span><span>")</span><span style=color:#bf616a>]
+</span><span style=color:#bf616a>[Label</span><span>("</span><span style=color:#a3be8c>www</span><span>")</span><span style=color:#bf616a>,</span><span> Label("</span><span style=color:#a3be8c>rust-trends</span><span>")</span><span style=color:#bf616a>]
+</span><span style=color:#bf616a>[Label</span><span>("</span><span style=color:#a3be8c>www</span><span>")</span><span style=color:#bf616a>,</span><span> Label("</span><span style=color:#a3be8c>rust-trends</span><span>")</span><span style=color:#bf616a>,</span><span> Label("</span><span style=color:#a3be8c>com</span><span>")</span><span style=color:#bf616a>]
+</span><span>
+</span><span style=color:#bf616a>Question </span><span>{ name: </span><span style=color:#b48ead>[</span><span>Label("</span><span style=color:#a3be8c>www</span><span>"), Label("</span><span style=color:#a3be8c>rust-trends</span><span>"), Label("</span><span style=color:#a3be8c>com</span><span>")</span><span style=color:#b48ead>]</span><span>, qtype: A, qclass: IN }
+</span></code></pre><p>Code for this part can be found in the <a href=https://github.com/Rust-Trends/dns-server-tutorial target=_blank>Github</a> Repository under <code>step 2</code>.<p>We see the label sequence and Question struct. We still do not have an answer for this DNS request so next we are going to implement a reply.<h2 id=defining-dns-answer-structure>Defining DNS Answer structure</h2><p>The answer section in a DNS query reply is also called a <a href=https://www.rfc-editor.org/rfc/rfc1035#section-4.1.3 target=_blank>Resource record</a>. It includes several fields, such as the domain name, time-to-live (TTL), the Type and Class we previously defined for the question part and the actual data, which can contain an IP address or other relevant information. Below you can find the structure in code:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(Debug, Clone)]
+</span><span style=color:#b48ead>pub struct </span><span>ResourceRecord {
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>name</span><span>: String,
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>rtype</span><span>: Type,
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>rclass</span><span>: Class,
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>ttl</span><span>: </span><span style=color:#b48ead>u32</span><span>,
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>rdlength</span><span>: </span><span style=color:#b48ead>u16</span><span>,
+</span><span>    </span><span style=color:#b48ead>pub </span><span style=color:#bf616a>rdata</span><span>: Vec&lt;</span><span style=color:#b48ead>u8</span><span>>,
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>impl </span><span>ResourceRecord {
+</span><span>    </span><span style=color:#b48ead>pub fn </span><span style=color:#8fa1b3>to_bytes</span><span>(&</span><span style=color:#bf616a>self</span><span>) -> Vec&lt;</span><span style=color:#b48ead>u8</span><span>> {
+</span><span>        </span><span style=color:#b48ead>let mut</span><span> buf = Vec::with_capacity(</span><span style=color:#d08770>MAX_DNS_MESSAGE_SIZE</span><span>);
+</span><span>
+</span><span>        </span><span style=color:#bf616a>self</span><span>.name.</span><span style=color:#96b5b4>split</span><span>('</span><span style=color:#a3be8c>.</span><span>').</span><span style=color:#96b5b4>for_each</span><span>(|</span><span style=color:#bf616a>label</span><span>| {
+</span><span>            buf.</span><span style=color:#96b5b4>push</span><span>(label.</span><span style=color:#96b5b4>len</span><span>() as </span><span style=color:#b48ead>u8</span><span>);
+</span><span>            buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(label.</span><span style=color:#96b5b4>as_bytes</span><span>());
+</span><span>        });
+</span><span>
+</span><span>        buf.</span><span style=color:#96b5b4>push</span><span>(</span><span style=color:#d08770>0</span><span>);
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.rtype.</span><span style=color:#96b5b4>to_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.rclass.</span><span style=color:#96b5b4>to_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.ttl.</span><span style=color:#96b5b4>to_be_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.rdlength.</span><span style=color:#96b5b4>to_be_bytes</span><span>());
+</span><span>        buf.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&</span><span style=color:#bf616a>self</span><span>.rdata);
+</span><span>
+</span><span>        buf
+</span><span>    }
+</span><span>}
+</span></code></pre><p>With the above method, we can easily construct a ResourceRecord as part of the reply. Ready to answer the query?<h2 id=constructing-a-hardcoded-reply>Constructing a (hardcoded) reply</h2><p>A valid DNS response consists of three main parts:<ul><li>Header: Includes metadata, response flags, and record counts. <ul><li>Question: Echoes the original query back to the client.<li>Answer: Contains the resolved IP address for the requested domain.</ul></ul><p>For now, our server will always return the fixed IP address 172.67.221.148 when queried for <code>www.rust-trends.com</code>.<p>We will use Rust’s Default trait to define a default ResourceRecord. This provides a simple and reusable way to hardcode a response for now.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/dns.rs
+</span><span style=color:#b48ead>impl </span><span>Default </span><span style=color:#b48ead>for </span><span>ResourceRecord {
+</span><span>    </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>default</span><span>() -> </span><span style=color:#b48ead>Self </span><span>{
+</span><span>        ResourceRecord {
+</span><span>            name: String::from("</span><span style=color:#a3be8c>www.rust-trends.com</span><span>"),
+</span><span>            rtype: Type::A,
+</span><span>            rclass: Class::</span><span style=color:#d08770>IN</span><span>,
+</span><span>            ttl: </span><span style=color:#d08770>60</span><span>,
+</span><span>            rdlength: </span><span style=color:#d08770>4</span><span>,
+</span><span>            rdata: Vec::from([</span><span style=color:#d08770>172</span><span>,</span><span style=color:#d08770>67</span><span>,</span><span style=color:#d08770>221</span><span>,</span><span style=color:#d08770>148</span><span>]),
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Next, we adapt <code>main.rs</code> to send a response. We need to add the ResourceRecord in the use statement.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/main.rs
+</span><span style=color:#b48ead>use </span><span>std::net::UdpSocket;
+</span><span>
+</span><span style=color:#b48ead>mod </span><span>dns;
+</span><span style=color:#b48ead>use </span><span>dns::{Header, Question, ResourceRecord};
+</span></code></pre><p>After printing the query, we construct the response.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// src/main.rs
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> socket = UdpSocket::bind("</span><span style=color:#a3be8c>0.0.0.0:1053</span><span>").</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not bind to port 1053</span><span>");
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> buf = [</span><span style=color:#d08770>0</span><span>; </span><span style=color:#d08770>512</span><span>];
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>DNS server is running at port 1053</span><span>");
+</span><span>
+</span><span>    </span><span style=color:#b48ead>loop </span><span>{
+</span><span>        </span><span style=color:#b48ead>let </span><span>(len, addr) = socket.</span><span style=color:#96b5b4>recv_from</span><span>(&</span><span style=color:#b48ead>mut</span><span> buf).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not receive data</span><span>");
+</span><span>
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>Received query from </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> with length </span><span style=color:#d08770>{}</span><span style=color:#a3be8c> bytes</span><span>", addr, len);
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>### DNS Query: ###</span><span>");
+</span><span>        </span><span style=color:#96b5b4>debug_print_bytes</span><span>(&buf[..len]);
+</span><span>
+</span><span>        </span><span style=color:#b48ead>let</span><span> header = Header::from_bytes(&buf[..</span><span style=color:#d08770>12</span><span>]).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not parse DNS header</span><span>");
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#d08770>{:?}</span><span>", header);
+</span><span>
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>### Question: ###</span><span>");
+</span><span>        </span><span style=color:#96b5b4>debug_print_bytes</span><span>(&buf[</span><span style=color:#d08770>12</span><span>..len]);
+</span><span>        println!();
+</span><span>
+</span><span>        </span><span style=color:#b48ead>let</span><span> question = Question::from_bytes(&buf[</span><span style=color:#d08770>12</span><span>..len]).</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not parse DNS question</span><span>");
+</span><span>        println!("</span><span style=color:#96b5b4>\n</span><span style=color:#d08770>{:?}</span><span>", question);
+</span><span>
+</span><span>        </span><span style=color:#65737e>// We parsed the DNS query and question, now we can respond to it
+</span><span>        </span><span style=color:#b48ead>let</span><span> answer = ResourceRecord::default();
+</span><span>
+</span><span>        println!("</span><span style=color:#d08770>{:?}</span><span>", answer);
+</span><span>
+</span><span>        </span><span style=color:#b48ead>let</span><span> response_header = Header {
+</span><span>            id: header.id,
+</span><span>            qr: </span><span style=color:#d08770>true</span><span>,              </span><span style=color:#65737e>// It is a query response
+</span><span>            opcode: header.opcode, </span><span style=color:#65737e>// Standard query
+</span><span>            aa: </span><span style=color:#d08770>false</span><span>,             </span><span style=color:#65737e>// Not authoritative
+</span><span>            tc: </span><span style=color:#d08770>false</span><span>,             </span><span style=color:#65737e>// Not truncated
+</span><span>            rd: header.rd,         </span><span style=color:#65737e>// Recursion desired
+</span><span>            ra: </span><span style=color:#d08770>false</span><span>,             </span><span style=color:#65737e>// Recursion not available
+</span><span>            z: </span><span style=color:#d08770>0</span><span>,                  </span><span style=color:#65737e>// Reserved
+</span><span>            rcode: </span><span style=color:#b48ead>if</span><span> header.opcode == </span><span style=color:#d08770>0 </span><span>{ </span><span style=color:#d08770>0 </span><span>} </span><span style=color:#b48ead>else </span><span>{ </span><span style=color:#d08770>4 </span><span>},
+</span><span>            qdcount: </span><span style=color:#d08770>1</span><span>, </span><span style=color:#65737e>// Question count we assume is 1
+</span><span>            ancount: </span><span style=color:#d08770>1</span><span>, </span><span style=color:#65737e>// Answer count is 1
+</span><span>            nscount: </span><span style=color:#d08770>0</span><span>, </span><span style=color:#65737e>// Name server count is 0
+</span><span>            arcount: </span><span style=color:#d08770>0</span><span>, </span><span style=color:#65737e>// Additional record count is 0
+</span><span>        };
+</span><span>
+</span><span>        </span><span style=color:#65737e>// Create a response message with the header and question
+</span><span>        </span><span style=color:#b48ead>let mut</span><span> response: Vec&lt;</span><span style=color:#b48ead>u8</span><span>> = Vec::new();
+</span><span>        response.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&response_header.</span><span style=color:#96b5b4>to_bytes</span><span>());
+</span><span>        response.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&question.</span><span style=color:#96b5b4>to_bytes</span><span>());
+</span><span>        response.</span><span style=color:#96b5b4>extend_from_slice</span><span>(&answer.</span><span style=color:#96b5b4>to_bytes</span><span>());
+</span><span>
+</span><span>        </span><span style=color:#65737e>// Send the response back to the client
+</span><span>        socket
+</span><span>            .</span><span style=color:#96b5b4>send_to</span><span>(&response, addr)
+</span><span>            .</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not send response</span><span>");
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Code for this part can be found in the Github Repository under <code>step 3</code>.<p>Our response reuses some fields from the incoming query but updates specific values: - qr = true → Indicates this is a response. - rcode = 0 (or 4 for unsupported opcode) → Specifies success or failure. - ancount = 1 → Indicates that one answer is included.<p>The deserialized question is re-serialized and included in the response. This ensures that the client can match the response to its original query.<p>A complete DNS response consists of:<ul><li>Header – Metadata and response flags<li>Question – Echoed back from the request<li>Answer – The resolved IP address or relevant data</ul><p>Note: including the question section in the response is a standard part of the DNS protocol, allowing clients to verify the response corresponds to their request.<p>Last step is putting it in one byte array and sending it to the client.<p>Now let's test our DNS server! Fire up dig and start the server<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>dig</span><span> @localhost</span><span style=color:#bf616a> -p</span><span> 1053 www.rust-trends.com
+</span></code></pre><pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> run
+</span><span>
+</span><span style=color:#bf616a>DNS</span><span> server is running at port 1053
+</span><span>
+</span><span style=color:#bf616a>Received</span><span> query from 127.0.0.1:54734 with length 48 bytes
+</span><span>
+</span><span style=color:#65737e>#### DNS Query: ###
+</span><span style=color:#bf616a>00000000:</span><span> 2e 1f 01 20 00 01 00 00 00 00 00 01 03 77 77 77   ... .........www
+</span><span style=color:#bf616a>00000010:</span><span> 0b 72 75 73 74 2d 74 72 65 6e 64 73 03 63 6f 6d   .rust-trends.com
+</span><span style=color:#bf616a>00000020:</span><span> 00 00 01 00 01 00 00 29 10 00 00 00 00 00 00 00   .......)</span><span style=color:#bf616a>........
+</span><span>
+</span><span style=color:#bf616a>Header </span><span>{ id: 11807, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: false, z: 2, rcode: 0, qdcount: 1, ancount: 0, nscount: 0, arcount: 1 }
+</span><span>
+</span><span style=color:#65737e>#### Question: ###
+</span><span style=color:#bf616a>00000000:</span><span> 03 77 77 77 0b 72 75 73 74 2d 74 72 65 6e 64 73   .www.rust-trends
+</span><span style=color:#bf616a>00000010:</span><span> 03 63 6f 6d 00 00 01 00 01 00 00 29 10 00 00 00   .com.......)</span><span style=color:#bf616a>....
+</span><span style=color:#bf616a>00000020:</span><span> 00 00 00 00                                       ....
+</span><span>
+</span><span style=color:#bf616a>Labels:
+</span><span style=color:#bf616a>[Label</span><span>("</span><span style=color:#a3be8c>www</span><span>")</span><span style=color:#bf616a>]
+</span><span style=color:#bf616a>[Label</span><span>("</span><span style=color:#a3be8c>www</span><span>")</span><span style=color:#bf616a>,</span><span> Label("</span><span style=color:#a3be8c>rust-trends</span><span>")</span><span style=color:#bf616a>]
+</span><span style=color:#bf616a>[Label</span><span>("</span><span style=color:#a3be8c>www</span><span>")</span><span style=color:#bf616a>,</span><span> Label("</span><span style=color:#a3be8c>rust-trends</span><span>")</span><span style=color:#bf616a>,</span><span> Label("</span><span style=color:#a3be8c>com</span><span>")</span><span style=color:#bf616a>]
+</span><span>
+</span><span style=color:#bf616a>Question </span><span>{ name: </span><span style=color:#b48ead>[</span><span>Label("</span><span style=color:#a3be8c>www</span><span>"), Label("</span><span style=color:#a3be8c>rust-trends</span><span>"), Label("</span><span style=color:#a3be8c>com</span><span>")</span><span style=color:#b48ead>]</span><span>, qtype: A, qclass: IN }
+</span><span style=color:#bf616a>ResourceRecord </span><span>{ name: "</span><span style=color:#a3be8c>www.rust-trends.com</span><span>", rtype: A, rclass: IN, ttl: 60, rdlength: 4, rdata: </span><span style=color:#b48ead>[</span><span>172, 67, 221, 148</span><span style=color:#b48ead>] </span><span>}
+</span></code></pre><p>And looking at the dig output:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>dig</span><span> @localhost</span><span style=color:#bf616a> -p</span><span> 1053 www.rust-trends.com
+</span><span>
+</span><span>; &lt;&lt;>> DiG </span><span style=color:#bf616a>9.10.6 </span><span>&lt;&lt;>> @localhost</span><span style=color:#bf616a> -p</span><span> 1053 www.rust-trends.com
+</span><span>; (</span><span style=color:#bf616a>2</span><span> servers found)
+</span><span>;; </span><span style=color:#bf616a>global</span><span> options: +cmd
+</span><span>;; </span><span style=color:#bf616a>Got</span><span> answer:
+</span><span>;; </span><span style=color:#bf616a>-</span><span>>>HEADER&lt;&lt;- </span><span style=color:#b48ead>opcode</span><span>: QUERY, status: NOERROR, id: 11807
+</span><span style=color:#a3be8c>;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+</span><span style=color:#a3be8c>;; WARNING: recursion requested but not available
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>;; QUESTION SECTION:
+</span><span style=color:#a3be8c>;www.rust-trends.com.		IN	A
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>;; ANSWER SECTION:
+</span><span style=color:#a3be8c>www.rust-trends.com.	60	IN	A	172.67.221.148
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>;; Query time: 0 msec
+</span><span style=color:#a3be8c>;; SERVER: 127.0.0.1#1053(127.0.0.1)
+</span><span style=color:#a3be8c>;; WHEN: Fri Feb 28 12:44:09 CET 2025
+</span><span style=color:#a3be8c>;; MSG SIZE  rcvd: 72
+</span></code></pre><p>Wow it works! we can see it received the header, query and answer. Also note is show a warning about recursion requested but not available. By default, dig requests recursion, but our server does not perform recursive queries. The warning <code>WARNING: recursion requested but not available</code>simply indicates that recursion was requested but not supported. To remove this warning, use: <code>dig @localhost -p 1053 www.rust-trends.com +norecurse</code>.<p>You got your reply and can visit <a href=https://www.rust-trends.com target=_blank>www.rust-trends.com</a>.<h2 id=conclusion>Conclusion</h2><p>We are coming to the end of Part 1 of this series. You've built a basic DNS server that can parse queries and return a hardcoded IP address. In the next part we will add support for DNS decompression and send the request to a resolver, collect the response, and construct a reply to the client.<p>This tutorial is inspired by the Codecrafters challenge of building your own DNS server. If you enjoy hands-on learning, use <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Trends" target=_blank>my referral link</a> to get a 40% discount and support my content. You can even try it for free no strings attached!<p>Have questions or feedback? Drop a comment or reach out, I’d love to hear how your DNS server is coming along! Stay tuned for Part 2!<h2 id=disclaimer>Disclaimer</h2><p>This project is intended for <strong>educational purposes</strong> and is not fully optimized for production use.<p>When running <code>cargo check</code> or <code>cargo run</code>, you may notice warnings about <strong>unused code</strong>, such as <code>from_bytes</code> and <code>to_bytes</code> functions or unused enum variants. These have been <strong>intentionally left in place</strong> for <strong>illustrative purposes</strong> and to maintain <strong>code symmetry</strong>.<p>Contributions and improvements are always welcome! 🚀<h2 id=acknowledgments>Acknowledgments</h2><p>A huge thanks to the <strong>Codecrafters team</strong> for their support and guidance throughout this project.</p><center> <h2 id=share>Share</h2> <p><a href="https://news.ycombinator.com/submitlink?u=https://rust-trends.com/posts/building-a-dns-server-in-rust/">Hacker News</a>    <a href="https://reddit.com/r/rust/submit?url=https://rust-trends.com/posts/building-a-dns-server-in-rust/">Reddit</a>   <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://rust-trends.com/posts/building-a-dns-server-in-rust/">LinkedIn</a></p> </center></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

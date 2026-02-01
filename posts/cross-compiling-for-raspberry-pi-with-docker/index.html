@@ -1,0 +1,190 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Cross-Compiling for Raspberry Pi with Docker
+        
+    </title><meta content="Cross-Compiling for Raspberry Pi with Docker" property=og:title><meta content="How I used Docker to easily cross-compile Rust projects for Raspberry Pi 4 with the right libraries and environment." property=og:description><meta content="How I used Docker to easily cross-compile Rust projects for Raspberry Pi 4 with the right libraries and environment." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Cross-Compiling for Raspberry Pi with Docker" name=twitter:title><meta content="How I used Docker to easily cross-compile Rust projects for Raspberry Pi 4 with the right libraries and environment." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-04-25 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cross-Compiling for Raspberry Pi with Docker",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-04-25",
+  "dateModified": "2025-04-25",
+  "description": "How I used Docker to easily cross-compile Rust projects for Raspberry Pi 4 with the right libraries and environment.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;cross-compiling-for-raspberry-pi-with-docker&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;cross-compiling-for-raspberry-pi-with-docker&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Cross-Compiling for Raspberry Pi with Docker",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;cross-compiling-for-raspberry-pi-with-docker&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cross-Compiling for Raspberry Pi with Docker",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-04-25",
+  "dateModified": "2025-04-25",
+  "description": "How I used Docker to easily cross-compile Rust projects for Raspberry Pi 4 with the right libraries and environment.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;cross-compiling-for-raspberry-pi-with-docker&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;cross-compiling-for-raspberry-pi-with-docker&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Cross-Compiling for Raspberry Pi with Docker",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;cross-compiling-for-raspberry-pi-with-docker&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Cross-Compiling for Raspberry Pi with Docker</ol></nav><main><article><div class=title><div class=page-header>Cross-Compiling for Raspberry Pi with Docker<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-04-25</time></div></div><h1>Table of Contents</h1><ul><li><a href=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/#the-dockerfile>The Dockerfile</a><li><a href=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/#why-docker>Why Docker?</a><li><a href=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/#share>Share</a></ul><section class=body><p>So, I recently had to cross-compile a Rust project targeting a Raspberry Pi 4. Now, if you've ever wrestled with getting all the right libraries, sysroots, and toolchains lined up for ARM64, you know it can get messy faster than a <code>cargo check</code> on a broken dependency tree.<p>Instead of going down the rabbit hole of manually setting up sysroots or trying to copy over dev libraries from my Pi (been there, done that), I spun up a Docker container to emulate the environment. Not only did this isolate all the dependencies neatly, but it also let me keep my host setup clean and reproducible.<h2 id=the-dockerfile>The Dockerfile</h2><p>We start from <code>debian:bookworm-slim</code> and install a bunch of goodies:<ul><li>The <code>gcc-aarch64-linux-gnu</code> toolchain for compiling to ARM64<li>Rust via <code>rustup</code><li>Dev libraries like <code>libasound2-dev</code> and <code>libssl-dev</code> (which my project needed)</ul><p>We also add the <code>aarch64-unknown-linux-gnu</code> Rust target and set up the linker to match.<pre class=language-dockerfile data-lang=dockerfile style=color:#c0c5ce;background-color:#2b303b><code class=language-dockerfile data-lang=dockerfile><span style=color:#b48ead>FROM</span><span> debian:bookworm-slim
+</span><span style=color:#b48ead>RUN </span><span>apt-get update && apt-get install -y \
+</span><span>    curl gcc-aarch64-linux-gnu build-essential pkg-config \
+</span><span>    libasound2-dev libssl-dev ca-certificates \
+</span><span>    && rm -rf /var/lib/apt/lists/*
+</span><span style=color:#b48ead>RUN </span><span>curl https://sh.rustup.rs -sSf | sh -s -- -y
+</span><span style=color:#b48ead>ENV </span><span>PATH="</span><span style=color:#a3be8c>/root/.cargo/bin:${PATH}</span><span>"
+</span><span style=color:#b48ead>RUN </span><span>rustup target add aarch64-unknown-linux-gnu
+</span><span style=color:#b48ead>ENV </span><span>CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc
+</span><span style=color:#b48ead>WORKDIR </span><span>/workspace
+</span></code></pre><p>To build the image, you need to have <a href=https://www.docker.com/>Docker</a> installed and standing in the same directory as the Dockerfile.<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>docker</span><span> build</span><span style=color:#bf616a> -t</span><span> rust-pi-cross .
+</span></code></pre><p>And to jump inside the container and open a shell, in this case bash:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>docker</span><span> run</span><span style=color:#bf616a> --rm -it -v</span><span> /your/project/path:/workspace rust-pi-cross bash
+</span></code></pre><ul><li><code>/your/project/path</code> the location of your project on your host machine.<li><code>/workspace</code> the location of your project inside the container.<li><code>rust-pi-cross</code> the name of the Docker image.<li><code>bash</code> the command to run inside the container.</ul><p>Inside the container, just cd into your project and run:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#65737e>## Inside the container
+</span><span style=color:#bf616a>cargo</span><span> build</span><span style=color:#bf616a> --release --target</span><span> aarch64-unknown-linux-gnu
+</span></code></pre><h2 id=why-docker>Why Docker?</h2><p>You can cross-compile without Docker using cross or manually installing sysroots, but I liked this approach because: • I needed dev versions of libasound2, and this gave me a full Debian userland to work with. • It’s reproducible. Anyone on the team can build the same image and get the exact same result. • No pollution on my host machine—bliss.<p>The resulting binary lives inside the container at:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#65737e>## Inside the container
+</span><span style=color:#bf616a>/workspace/target/aarch64-unknown-linux-gnu/release/</span><span>&lt;your-binary>
+</span></code></pre><p>Or on your host machine via the mounted volume:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#65737e>## On your host machine
+</span><span style=color:#bf616a>/your/project/path/target/aarch64-unknown-linux-gnu/release/</span><span>&lt;your-binary>
+</span></code></pre><p>That is it for this short tutorial. Let me know what your thoughts are on this approach and drop a message.</p><center> <h2 id=share>Share</h2> <p><a href="https://news.ycombinator.com/submitlink?u=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/">Hacker News</a>    <a href="https://reddit.com/r/rust/submit?url=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/">Reddit</a>   <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://rust-trends.com/posts/cross-compiling-for-raspberry-pi-with-docker/">LinkedIn</a></p> </center></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

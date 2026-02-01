@@ -1,0 +1,164 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth
+        
+    </title><meta content="20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth" property=og:title><meta content="This edition of the Rust Trends newsletter dives into Google's recent exploration into Rust, debunking myths about learning time and discussing challenges faced by developers. It also highlights valuable resources for Rust programmers and explores Rust's 'zero-cost abstractions' principle." property=og:description><meta content="This edition of the Rust Trends newsletter dives into Google's recent exploration into Rust, debunking myths about learning time and discussing challenges faced by developers. It also highlights valuable resources for Rust programmers and explores Rust's 'zero-cost abstractions' principle." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/master-rust-in-just-2-months-google-debunks-learning-curve-myth/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth" name=twitter:title><meta content="This edition of the Rust Trends newsletter dives into Google's recent exploration into Rust, debunking myths about learning time and discussing challenges faced by developers. It also highlights valuable resources for Rust programmers and explores Rust's 'zero-cost abstractions' principle." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/master-rust-in-just-2-months-google-debunks-learning-curve-myth/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-07-05 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-07-05",
+  "dateModified": "2023-07-05",
+  "description": "This edition of the Rust Trends newsletter dives into Google&#x27;s recent exploration into Rust, debunking myths about learning time and discussing challenges faced by developers. It also highlights valuable resources for Rust programmers and explores Rust&#x27;s &#x27;zero-cost abstractions&#x27; principle.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;master-rust-in-just-2-months-google-debunks-learning-curve-myth&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;master-rust-in-just-2-months-google-debunks-learning-curve-myth&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;master-rust-in-just-2-months-google-debunks-learning-curve-myth&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth",
+  "description": "This edition of the Rust Trends newsletter dives into Google&#x27;s recent exploration into Rust, debunking myths about learning time and discussing challenges faced by developers. It also highlights valuable resources for Rust programmers and explores Rust&#x27;s &#x27;zero-cost abstractions&#x27; principle.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;master-rust-in-just-2-months-google-debunks-learning-curve-myth&#x2F;",
+  "datePublished": "2023-07-05",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;master-rust-in-just-2-months-google-debunks-learning-curve-myth&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth</ol></nav><main><article><div class=title><div class=page-header>20 - Master Rust in Just 2 Months: Google Debunks Learning Curve Myth<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-07-05</time></div></div><section class=body><br><blockquote><p><q>Learn from Google and improve your journey to learn Rust faster</q></blockquote><p>Hello, Rustaceans!<p>Welcome to this week's edition of the Rust Trends newsletter. We've curated a collection of insightful articles for you, overflowing with the latest updates and discoveries from the Rust programming landscape.<p>In this edition, we spotlight Google's recent exploration into Rust, debunking myths and confirming truths about the language. We also delve into the challenges and triumphs experienced by Google developers as they navigate Rust, from compiler speed to code quality.<p>So, prepare your favorite brew, settle in, and let's embark on this enlightening journey into the world of Rust!<h2 id=fast-track-your-rust-skills-google-shatters-6-month-learning-myth>Fast-Track Your Rust Skills: Google shatters 6-month learning myth</h2><p><a href=https://opensource.googleblog.com/2023/06/rust-fact-vs-fiction-5-insights-from-googles-rust-journey-2022.html target=_blank><img alt="A crab learning to code" src=../20/Cartoon_crab.webp style=width:50%;margin-left:auto;margin-right:auto;display:block></a><p>Google's recent exploration into Rust has debunked a major myth: Rust does not take more than six months to learn. In fact, developers can become productive in Rust in just two months or less, a timeline comparable to adopting other languages.<p>In the same study, Google confirmed a few truths and debunked other rumors about Rust. Slow build speeds were identified as the top challenge, confirming complaints about the Rust compiler's speed. However, the quality of Rust's compiler error messages and the high quality of Rust code were both confirmed, with over 85% of developers confident in their Rust code's correctness.<p>The study also revealed that the top challenges for Google developers using Rust were Macros, Ownership and borrowing, and Async programming, rather than writing unsafe code and handling C/C++ interop. These insights provide a more nuanced understanding of the Rust experience, helping both current and prospective Rust developers navigate the language more effectively.<p>To read the <a href=https://opensource.googleblog.com/2023/06/rust-fact-vs-fiction-5-insights-from-googles-rust-journey-2022.html target=_blank>full article click here</a><h2 id=crate-mastery-discover-the-websites-every-rust-programmer-needs>Crate Mastery: Discover the websites every Rust programmer needs</h2><img alt="A crab learning to code" src=../20/crab_crate_lifting.webp style=width:30%;margin-left:auto;margin-right:auto;display:block> Whether you are a beginner just starting out or an experienced programmer looking to stay updated, these websites are sure to be invaluable tools in your journey. <p>The first website, <a href=https://blessed.rs/crates target=_blank>Blessed.rs</a>, offers an overview of popular and well-maintained Rust crates. It's a fantastic starting point for beginners, providing a curated list of reliable crates to explore and learn from.<p>Our second recommendation is <a href=https://lib.rs/ target=_blank>Lib.rs</a>, another excellent resource for discovering and evaluating Rust crates. This site provides crates sorted by category, new trending and popular, helping you make informed decisions about which crates to use in your projects.<p>We believe these resources will greatly assist you in navigating the Rust ecosystem, enhancing your understanding and efficiency.<h2 id=zero-cost-abstractions>Zero-cost abstractions</h2><div class=row><div class=column>Rust's core principle of 'zero-cost abstractions' is a powerful concept that extends beyond programming. It is the idea that you can have high-level abstractions that make programming easier, without sacrificing the low-level control that is necessary for performance. <p>In Rust, iterators are a zero-cost abstraction. They allow you to work with sequences of elements in a high-level, abstract way, without sacrificing performance.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>let</span><span> sum = vec![</span><span style=color:#d08770>1</span><span>, </span><span style=color:#d08770>2</span><span>, </span><span style=color:#d08770>3</span><span>, </span><span style=color:#d08770>4</span><span>].</span><span style=color:#96b5b4>iter</span><span>().</span><span style=color:#96b5b4>sum</span><span>();
+</span><span>println!("</span><span style=color:#d08770>{}</span><span>", sum); </span><span style=color:#65737e>// Prints 10
+</span></code></pre><p>In this code, we are using the iter() method to create an iterator over a vector, and the sum() method to add up the elements. This is a high-level, easy-to-read way of working with sequences, but it is also efficient: the Rust compiler can optimize this code to be as fast as the equivalent low-level loop.<p>One of the great benefits of Rust!</div><div class=column><img alt="A crab learning to code" src=../20/Iterator.webp style=width:100%;margin-left:auto;margin-right:auto;display:block></div></div><hr><p>Do not hesitate to explore new possibilities in Rust. Pushing yourself out of your comfort zone can be a great way to learn and grow as a programmer.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         59 - Rust for Scientists? Plus, Async Closures & If/Let Chains Explained
+        
+    </title><meta content="59 - Rust for Scientists? Plus, Async Closures & If/Let Chains Explained" property=og:title><meta content="The latest edition covers async closures, if/let while chains, and insights from the 2024 State of Rust Survey. Plus, is Rust useful for scientists?" property=og:description><meta content="The latest edition covers async closures, if/let while chains, and insights from the 2024 State of Rust Survey. Plus, is Rust useful for scientists?" name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/rust-for-scientists-async-closures-if-let-chains/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="59 - Rust for Scientists? Plus, Async Closures & If/Let Chains Explained" name=twitter:title><meta content="The latest edition covers async closures, if/let while chains, and insights from the 2024 State of Rust Survey. Plus, is Rust useful for scientists?" name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-for-scientists-async-closures-if-let-chains/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-02-15 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "59 - Rust for Scientists? Plus, Async Closures &amp; If&#x2F;Let Chains Explained",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-02-15",
+  "dateModified": "2025-02-15",
+  "description": "The latest edition covers async closures, if&#x2F;let while chains, and insights from the 2024 State of Rust Survey. Plus, is Rust useful for scientists?",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-for-scientists-async-closures-if-let-chains&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-for-scientists-async-closures-if-let-chains&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "59 - Rust for Scientists? Plus, Async Closures &amp; If&#x2F;Let Chains Explained",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-for-scientists-async-closures-if-let-chains&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "59 - Rust for Scientists? Plus, Async Closures &amp; If&#x2F;Let Chains Explained",
+  "description": "The latest edition covers async closures, if&#x2F;let while chains, and insights from the 2024 State of Rust Survey. Plus, is Rust useful for scientists?",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-for-scientists-async-closures-if-let-chains&#x2F;",
+  "datePublished": "2025-02-15",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "59 - Rust for Scientists? Plus, Async Closures &amp; If&#x2F;Let Chains Explained",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-for-scientists-async-closures-if-let-chains&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>59 - Rust for Scientists? Plus, Async Closures & If/Let Chains Explained</ol></nav><main><article><div class=title><div class=page-header>59 - Rust for Scientists? Plus, Async Closures & If/Let Chains Explained<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-02-15</time></div></div><section class=body><br> After an unexpected battle with the flu (spoiler: it won, but only temporarily), I’m finally back with a fresh edition of Rust Trends! Thanks for your patience—I promise this one’s worth the wait. <p>This week, we’re diving into some exciting Rust updates: the 2024 State of Rust Survey results are in, async closures are on the horizon, and if/let while chains are set to clean up your control flow. There’s plenty to catch up on, so let’s get right to it!<h2 id=the-2024-state-of-rust-survey-key-takeaways-for-rustaceans>The 2024 State of Rust Survey: Key Takeaways for Rustaceans</h2><p>The Rust Survey Team has released the 2024 State of Rust Survey Results, offering a comprehensive look into the language’s growth and the community’s evolving dynamics.<p><strong>Key Insights</strong><ol><li><strong>Global Reach:</strong> Rust’s community remains diverse, with the United States (22%), Germany (14%), and the United Kingdom (6%) leading in participation. Notably, countries like China (5%) and the Netherlands (3%) also have significant representation.<li><strong>Increased Workplace Adoption:</strong> There’s a notable rise in Rust usage at work, with 38% of respondents using Rust for the majority of their coding—a 4 percentage point increase from the previous year.<li><strong>Learning Resources:</strong> The Rust documentation and “The Rust Programming Language” book continue to be primary learning tools. Additionally, many developers benefit from reading the source code of Rust crates, highlighting the community’s collaborative spirit.<li><strong>Challenges Faced:</strong> While Rust’s runtime performance and documentation are praised, areas like slow compilation times and debugging support have been identified as productivity hurdles.<li><strong>Desired Features:</strong> The community eagerly anticipates features like <strong>async closures</strong> and <strong>if/let while chains</strong>. Fortunately, <strong>async closures</strong> are set to be stabilized in Rust 1.85, with <strong>if/let while chains</strong> expected to follow soon.</ol><p>For a deeper dive into the survey results, you can read the <a href=https://blog.rust-lang.org/2025/02/13/2024-State-Of-Rust-Survey-results.html target=_blank>full report on the Rust Blog</a>.<h2 id=rust-s-next-ergonomic-boost-async-closures-if-let-while-chains>Rust’s Next Ergonomic Boost: Async Closures & If/Let While Chains</h2><p>Rust is about to get even smoother with two powerful new features: <strong>async closures</strong> (planned for Rust 1.85) and <strong>if/let while chains</strong>. These changes promise to make Rust code cleaner, more expressive, and easier to write, whether you’re dealing with async logic or complex conditionals.<p>Async closures will finally let you write concise async functions without awkward workarounds, while if/let while chains will eliminate unnecessary nesting in conditional expressions and loops.<p>Curious about how these features will improve your Rust experience? Check out these two articles:<ul><li><a href=https://www.rust-trends.com/posts/rust-s-async-closures/ target=_blank>Async Closures: A New Way to Handle Asynchronous Logic</a><li><a href=https://www.rust-trends.com/posts/rust-s-if-let-while-chains/ target=_blank>If/Let While Chains: Cleaner Control Flow is Coming!</a></ul><p>Rust keeps evolving—are you ready to take advantage of what’s next?<h2 id=rust-useful-for-scientists-key-insights-from-the-community>Rust Useful for Scientists? Key Insights from the Community</h2><p>A recent Reddit discussion—“Is RUST useful for a scientist?”—delves into the applicability of Rust in scientific fields. Here are some key takeaways:<ol><li><strong>Performance Enhancement via Python Integration:</strong> Rust can be used to develop high-performance Python libraries using tools like <a href=https://github.com/PyO3/pyo3 target=_blank>PyO3</a>, enabling faster computations.<li><strong>Learning for Enjoyment:</strong> For those learning programming for pleasure, Rust is often recommended over C++ due to its modern features and safety guarantees.<li><strong>SIMD Utilization:</strong> Rust’s standard library includes a portable SIMD module, which can be leveraged for performance improvements in scientific computations.<li><strong>Community Resources:</strong> Websites like <a href=https://www.arewelearningyet.com/ target=_blank>Are We Learning Yet?</a> provide insights into Rust’s capabilities in machine learning and scientific computing, aiding in decision-making.<li><strong>Personal Development:</strong> Engaging with Rust can be intellectually stimulating, offering a deeper understanding of systems programming and staying mentally active.</ol><p>In summary, while Rust may not be essential for every scientific project, it offers valuable tools and learning opportunities for those interested in exploring its potential in scientific computing.<h2 id=snippets>Snippets</h2><ul><li><a href=https://www.phoronix.com/news/Linux-6.14-Driver-Core-Rust target=_blank>“We Are Almost At The 'Write A Real Driver In Rust' Stage Now” (Linux 6.14)</a><li><a href=https://scorpiosoftware.net/2025/02/08/writing-a-simple-driver-in-rust/ target=_blank>Writing a Simple Windows Driver in Rust</a><li><a href=https://dzone.com/articles/build-serverless-applications-rust-aws-lambda target=_blank>Build Serverless Applications Using Rust on AWS Lambda</a></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

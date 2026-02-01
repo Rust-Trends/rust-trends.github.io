@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         5 - Writing Your own Apps in Rust
+        
+    </title><meta content="5 - Writing Your own Apps in Rust" property=og:title><meta content="This edition of the Rust trends newsletter is centered around setting up your own Rust project, whether it be an app with a Graphical User Interface (GUI) or a Command Line Interface (CLI). Discover how to use Rust's package manager `cargo' for project setup and understand Rust's module system. Explore how you can create your own GUI app with 'Tauri', a popular toolkit, and how to harness the power of Rust for CLI using the 'Clap' crate." property=og:description><meta content="This edition of the Rust trends newsletter is centered around setting up your own Rust project, whether it be an app with a Graphical User Interface (GUI) or a Command Line Interface (CLI). Discover how to use Rust's package manager `cargo' for project setup and understand Rust's module system. Explore how you can create your own GUI app with 'Tauri', a popular toolkit, and how to harness the power of Rust for CLI using the 'Clap' crate." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/writing-your-own-apps-in-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="5 - Writing Your own Apps in Rust" name=twitter:title><meta content="This edition of the Rust trends newsletter is centered around setting up your own Rust project, whether it be an app with a Graphical User Interface (GUI) or a Command Line Interface (CLI). Discover how to use Rust's package manager `cargo' for project setup and understand Rust's module system. Explore how you can create your own GUI app with 'Tauri', a popular toolkit, and how to harness the power of Rust for CLI using the 'Clap' crate." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/writing-your-own-apps-in-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2022-11-20 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "5 - Writing Your own Apps in Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2022-11-20",
+  "dateModified": "2022-11-20",
+  "description": "This edition of the Rust trends newsletter is centered around setting up your own Rust project, whether it be an app with a Graphical User Interface (GUI) or a Command Line Interface (CLI). Discover how to use Rust&#x27;s package manager `cargo&#x27; for project setup and understand Rust&#x27;s module system. Explore how you can create your own GUI app with &#x27;Tauri&#x27;, a popular toolkit, and how to harness the power of Rust for CLI using the &#x27;Clap&#x27; crate.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;writing-your-own-apps-in-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;writing-your-own-apps-in-rust&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "5 - Writing Your own Apps in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;writing-your-own-apps-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "5 - Writing Your own Apps in Rust",
+  "description": "This edition of the Rust trends newsletter is centered around setting up your own Rust project, whether it be an app with a Graphical User Interface (GUI) or a Command Line Interface (CLI). Discover how to use Rust&#x27;s package manager `cargo&#x27; for project setup and understand Rust&#x27;s module system. Explore how you can create your own GUI app with &#x27;Tauri&#x27;, a popular toolkit, and how to harness the power of Rust for CLI using the &#x27;Clap&#x27; crate.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;writing-your-own-apps-in-rust&#x2F;",
+  "datePublished": "2022-11-20",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "5 - Writing Your own Apps in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;writing-your-own-apps-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>5 - Writing Your own Apps in Rust</ol></nav><main><article><div class=title><div class=page-header>5 - Writing Your own Apps in Rust<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2022-11-20</time></div></div><section class=body><br><blockquote><p><q>From Command Line Interface to Graphical User Interface</q></blockquote><p>The Rust community is active and has tons of nice articles, tutorials, applications, and repositories but we have to choose. This fifth email is all about setting up your project for a GUI app or CLI utility. Let’s dive in …<p><strong>In today’s email:</strong><ul><li><strong>Setting up your own Rust project</strong><li><strong>Want to make your own app with a GUI?</strong><li><strong>Command Line Interface:</strong> unleash the power of Rust</ul><h2 id=setting-up-your-own-rust-project>Setting up your own Rust project</h2><div class=row><div class=column>When starting a new Rust project, the package manager <a href=https://doc.rust-lang.org/cargo/ target=_blank>cargo</a> for Rust has you covered. With a simple command in your terminal <code>cargo new project_name</code> you are ready to write your Rust application. <p>But what if you want to add additional files or directories to your project? Rust uses a module system, with modules and submodules. Then questions arise on how to include those modules. Do I know where to put my unit tests and integration tests? That’s why I created a dummy project to show the possibilities, please check it out on <a href=https://github.com/Rust-Trends/example_project_structure target=_blank>GitHub</a>.<p>Other nice reads are a blog article on Hackernoon, and for testing, you can also have a look at the documentation of Rust by Example <a href=https://doc.rust-lang.org/stable/rust-by-example/testing.html target=_blank>here</a>.<p>The great thing about Rust is that testing, benchmarking, examples, and package management are not an afterthought but rather integrated from the start.</div><div class=column><img alt="Project structure" src=../5/project-structure.webp style=border:1px;width:100%;margin-left:auto;margin-right:auto;display:block></div></div><h2 id=want-to-make-your-own-app-with-a-gui>Want to make your own app with a GUI?</h2><div class=row><div class=column><a href=https://tauri.app/about/intro target=_blank><img alt="Tauri for GUI apps" src=../5/ferris-app.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div><div class=column>The ecosystem of Rust is ever-growing. One popular toolkit is <a href=https://tauri.app/about/intro target=_blank>Tauri</a>. With this toolkit, you can build <a href=https://awesomeapp.org/ target=_blank>Awesome</a> graphical applications for macOS, Linux, and Windows. <p>The GUI/frontend is based on web technology like javascript/typescript and HTML.<p>Tauri is really worth looking at if you want to develop a (simple) desktop application.</div></div><h2 id=command-line-interface-unleash-the-power-of-rust>Command Line Interface: unleash the power of Rust</h2><div class=row><div class=column>Command line programs are popular among Rust developers. It is an easy starting point if you want to make something in Rust. <p>There is a free getting-started book called <a href=https://rust-cli.github.io/book/index.html target=_blank>Command Line Applications in Rust</a>.<p>The <a href=https://docs.rs/clap/latest/clap/ target=_blank>Clap</a> crate is an easy-to-use command line parser and a great fit for your next CLI project.<p>For more inspiration have a look at existing CLI utilities on <a href=https://lib.rs/command-line-utilities target=_blank>lib.rs</a>.</div><div class=column><a href=https://rust-cli.github.io/book/index.html target=_blank><img alt="CLI terminal" src=../5/command-line.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div></div><hr><p>Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         9 - Algorithms, Networking and Operating Systems
+        
+    </title><meta content="9 - Algorithms, Networking and Operating Systems" property=og:title><meta content="In this edition, we explore the implementation of algorithms in Rust, building an Operating System (OS) using Rust on Raspberry Pi, and network programming with Rust crates. Whether you're looking to delve deeper into computer science fundamentals with Rust, exploring new domains, or seeking to enhance your networking skills, there's something for everyone." property=og:description><meta content="In this edition, we explore the implementation of algorithms in Rust, building an Operating System (OS) using Rust on Raspberry Pi, and network programming with Rust crates. Whether you're looking to delve deeper into computer science fundamentals with Rust, exploring new domains, or seeking to enhance your networking skills, there's something for everyone." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/algorithms-networking-and-operating-systems/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="9 - Algorithms, Networking and Operating Systems" name=twitter:title><meta content="In this edition, we explore the implementation of algorithms in Rust, building an Operating System (OS) using Rust on Raspberry Pi, and network programming with Rust crates. Whether you're looking to delve deeper into computer science fundamentals with Rust, exploring new domains, or seeking to enhance your networking skills, there's something for everyone." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/algorithms-networking-and-operating-systems/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-01-15 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "9 - Algorithms, Networking and Operating Systems",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-01-15",
+  "dateModified": "2023-01-15",
+  "description": "In this edition, we explore the implementation of algorithms in Rust, building an Operating System (OS) using Rust on Raspberry Pi, and network programming with Rust crates. Whether you&#x27;re looking to delve deeper into computer science fundamentals with Rust, exploring new domains, or seeking to enhance your networking skills, there&#x27;s something for everyone.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;algorithms-networking-and-operating-systems&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;algorithms-networking-and-operating-systems&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "9 - Algorithms, Networking and Operating Systems",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;algorithms-networking-and-operating-systems&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "9 - Algorithms, Networking and Operating Systems",
+  "description": "In this edition, we explore the implementation of algorithms in Rust, building an Operating System (OS) using Rust on Raspberry Pi, and network programming with Rust crates. Whether you&#x27;re looking to delve deeper into computer science fundamentals with Rust, exploring new domains, or seeking to enhance your networking skills, there&#x27;s something for everyone.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;algorithms-networking-and-operating-systems&#x2F;",
+  "datePublished": "2023-01-15",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "9 - Algorithms, Networking and Operating Systems",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;algorithms-networking-and-operating-systems&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>9 - Algorithms, Networking and Operating Systems</ol></nav><main><article><div class=title><div class=page-header>9 - Algorithms, Networking and Operating Systems<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-01-15</time></div></div><section class=body><br><blockquote><p><q>Looking at algorithms, network programming, and other related topics, with a focus on the Rust programming language.</q></blockquote><p>We are back with another exciting edition of the Rust-Trends newsletter! Whether you are looking to learn more about the language, stay up-to-date with the latest developments, or just get some inspiration for your next project, we’ve got you covered. So please grab a cup of coffee and join us as we explore the world of Rust!<p><strong>In today’s email:</strong><ul><li><strong>Algorithms written in Rust</strong><li><strong>Will this be your next Operating System in Rust?</strong><li><strong>Networking with Rust crates</strong></ul><h2 id=algorithms-written-in-rust>Algorithms written in Rust</h2><img alt=Algorithms src=../9/algorithms.webp style=border:0;width:70%;margin-left:auto;margin-right:auto;display:block> Algorithms are a crucial part of computer science, and they play a vital role in many areas of software development. From sorting data to searching for information, algorithms help us solve problems and perform tasks efficiently. <p>If you are a Rust programmer looking to learn more about algorithms, a great resource to check out is <a href=https://the-algorithms.com/language/rust target=_blank>this website</a>. The website is accompanied by this <a href=https://github.com/TheAlgorithms/Rust target=_blank>repository</a> that showcases the collection of algorithms written in Rust.<p>The “TheAlgorithms/Rust” repository contains a wide range of algorithms, including those for sorting, searching, and ciphers. It also includes implementations of various data structures, such as lists, trees, and graphs. The repository is maintained by contributors who are committed to keeping it up-to-date and relevant for Rust programmers.<p>If you are interested in learning more about algorithms and how they can be implemented in Rust, be sure to check it out. The nice thing about the website is that it uses the <a href=https://github.com/integer32llc/rust-playground target=_blank>online playground</a> platform, so you do not need to have Rust installed to try it out.<h2 id=will-this-be-your-next-operating-system-in-rust>Will this be your next Operating System in Rust?</h2><div class=row><div class=column><img alt="Raspberry Pi and Rust programming" src=../9/Raspberry-pi.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></div><div class=column>Rust is a language that is gaining popularity in Operating System (OS) development and the Raspberry Pi is a low-cost and powerful platform that can be used to learn and experiment with building an OS. <p>There are several <a href=https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials target=_blank>tutorials</a> and resources available for learning how to develop an OS in Rust on the Raspberry Pi, including creating a custom kernel, developing drivers, and creating a minimal operating system. There are also projects like <a href=https://www.tockos.org/ target=_blank>TockOS</a>, which uses Rust to create a secure and efficient embedded operating system.<p>The Rust programming language provides a powerful and safe alternative for building an OS on the Raspberry Pi. The growing community and resources available make it an attractive choice for those interested in this field.</div></div><h2 id=networking-with-rust-crates>Networking with Rust crates</h2><p>Rust is a system programming language, that provides a safe and efficient way to build networked systems. One of the key features of Rust for network programming is its low-level control over memory, which allows for building high-performance and efficient networked systems. Additionally, Rust provides built-in support for low-level network programming, such as socket programming, which enables developers to handle network protocols such as TCP, UDP, and other transport protocols.<p>To get started with network programming in Rust, you can use the standard library‘s support for low-level network programming, such as the <code>std::net module</code>, or use specialized libraries such as <strong>mio</strong> and <strong>tokio</strong> which provide more high-level abstractions and are built on top of the standard library.<p>Here are a few resources that you may find helpful when getting started with network programming in Rust:<p>The Rust documentation on <a href=https://doc.rust-lang.org/std/net/ target=_blank>Network Programming</a> The <a href=https://tokio.rs/>Tokio project</a> and the starter <a href=https://tokio.rs/tokio/tutorial target=_blank>tutorial</a> <a href=https://github.com/tokio-rs/mio target=_blank>Mio</a>: minimalistic, efficient async I/O library for Rust.<hr><p>Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

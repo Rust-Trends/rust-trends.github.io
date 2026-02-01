@@ -1,0 +1,489 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Building a Honeypot in Rust and Deploy it to Oracle for Free
+        
+    </title><meta content="Building a Honeypot in Rust and Deploy it to Oracle for Free" property=og:title><meta content="Learn how to build a honeypot in Rust and deploy it to Oracle Cloud for free! This step-by-step guide covers coding, deployment, and tips for leveraging Rust’s safety and performance for cybersecurity projects." property=og:description><meta content="Learn how to build a honeypot in Rust and deploy it to Oracle Cloud for free! This step-by-step guide covers coding, deployment, and tips for leveraging Rust’s safety and performance for cybersecurity projects." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Building a Honeypot in Rust and Deploy it to Oracle for Free" name=twitter:title><meta content="Learn how to build a honeypot in Rust and deploy it to Oracle Cloud for free! This step-by-step guide covers coding, deployment, and tips for leveraging Rust’s safety and performance for cybersecurity projects." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-01-05 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Building a Honeypot in Rust and Deploy it to Oracle for Free",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-01-05",
+  "dateModified": "2025-01-05",
+  "description": "Learn how to build a honeypot in Rust and deploy it to Oracle Cloud for free! This step-by-step guide covers coding, deployment, and tips for leveraging Rust’s safety and performance for cybersecurity projects.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Building a Honeypot in Rust and Deploy it to Oracle for Free",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Building a Honeypot in Rust and Deploy it to Oracle for Free",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-01-05",
+  "dateModified": "2025-01-05",
+  "description": "Learn how to build a honeypot in Rust and deploy it to Oracle Cloud for free! This step-by-step guide covers coding, deployment, and tips for leveraging Rust’s safety and performance for cybersecurity projects.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Building a Honeypot in Rust and Deploy it to Oracle for Free",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Building a Honeypot in Rust and Deploy it to Oracle for Free</ol></nav><main><article><div class=title><div class=page-header>Building a Honeypot in Rust and Deploy it to Oracle for Free<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-01-05</time></div></div><h1>Table of Contents</h1><ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#introduction>Introduction</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#1-prerequisites>1. Prerequisites</a> <ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#1-1-oracle-cloud-account>1.1 Oracle Cloud Account</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#1-2-ubuntu-vm-in-oci>1.2 Ubuntu VM in OCI</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#1-3-rust-installed-locally>1.3 Rust Installed Locally</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#1-4-basic-terminal-ssh-skills>1.4 Basic Terminal / SSH Skills</a></ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#2-coding-the-honeypot-in-rust>2. Coding the Honeypot in Rust</a> <ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#2-1-project-setup>2.1 Project Setup</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#2-2-minimal-tcp-server-code>2.2 Minimal TCP Server Code</a></li><ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#2-2-1-handling-connections>2.2.1 Handling Connections</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#2-2-2-logging-data>2.2.2 Logging Data</a></ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#2-3-enhancing-the-honeypot>2.3 Enhancing the Honeypot</a></ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#3-building-and-packaging>3. Building and Packaging</a> <ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#3-1-native-vs-cross-compilation>3.1 Native vs. Cross-Compilation</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#3-2-testing-locally>3.2 Testing Locally</a></ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#4-deploying-to-oracle-cloud>4. Deploying to Oracle Cloud</a> <ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#4-1-orcale-cloud-infrastructure-network-configuration>4.1 Orcale Cloud Infrastructure Network Configuration</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#4-2-uploading-the-honeypot-binary>4.2 Uploading the Honeypot Binary</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#4-3-installation-script>4.3 Installation Script</a></ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#5-testing-and-monitoring>5. Testing and Monitoring</a> <ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#5-1-live-logs>5.1 Live Logs</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#5-2-simulating-an-attack>5.2 Simulating an Attack</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#5-3-gathering-intelligence>5.3 Gathering Intelligence</a></ul><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#conclusion>Conclusion</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#github-repository>GitHub Repository</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#author>Author</a><li><a href=https://rust-trends.com/posts/building-a-honeypot-in-rust-and-deploy-it-to-oracle-for-free/#further-reading>Further Reading</a></ul><section class=body><h2 id=introduction>Introduction</h2><p>Looking for a fun and educational hands-on project that combines Rust coding with cloud deployment? In this guide, we will build a simple honeypot—a minimal TCP server in Rust that listens on a specific port and logs every incoming request—then deploy it to an Ubuntu instance on Oracle Cloud Infrastructure (OCI) for FREE. A honeypot offers a fascinating window into the malicious scans and attacks traveling the internet while also providing a playful way to practice coding, cross-compiling, and network configuration. By following these steps, you will gain valuable Rust experience, learn how to set up OCI for external traffic, and come away with deeper insight into real-world attack patterns.<ul><li>Note 1: I am using a Apple M1 Pro MacBook for development and cross-compiling for x86_64 architecture.</ul><hr><h2 id=1-prerequisites>1. Prerequisites</h2><p>Welcome to the warm-up lap before our Rust honeypot grand adventure! Here’s what you need to get started:<h3 id=1-1-oracle-cloud-account>1.1 Oracle Cloud Account</h3><p>First things first: snag an <a href=https://www.oracle.com/cloud/free/ target=_blank>Oracle Cloud account</a> (free is our favorite price). The Always Free tier is pretty sweet since it gives you a no-cost VM to play around with. Perfect for deploying a honeypot without emptying your wallet.<ul><li>Note 1: you can of course use any cloud provider or your own server for this project. But Oracle Cloud offers an "Always Free" tier that allows you to run a small VM at no cost and I was looking for an excuse to try it out. Initially I was interested in the ARM architecture but those are limited in my region of choice so I am using a AMD64 instance for this project.</ul><h3 id=1-2-ubuntu-vm-in-oci>1.2 Ubuntu VM in OCI</h3><p>Go to the Oracle Cloud console and <a href=https://cloud.oracle.com/compute/instances target=_blank>spin up an Ubuntu instance</a>. Make sure you’ve got your SSH key set up and can <strong>actually get in</strong>. Some additional information on how to use SSH can be found in the <a href=https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/accessinginstance.htm target=_blank>Oracle Cloud documentation</a>.<h3 id=1-3-rust-installed-locally>1.3 Rust Installed Locally</h3><p>If you do not have Rust installed look here for the <a href=https://www.rust-lang.org/learn/get-started target=_blank>basic setup steps</a>. To add another architecture Rust up your local environment with the following:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>rustup</span><span> update
+</span><span>
+</span><span style=color:#65737e>## Add the target for x86_64 architecture
+</span><span style=color:#bf616a>rustup</span><span> target add x86_64-unknown-linux-gnu
+</span></code></pre><p>Personally I am using <strong>stable-aarch64-apple-darwin</strong> on an Apple Silicon Mac for development and cross-compilation. Because I wanted to cross-compile to <code>x86_64</code> the architecture of AMD64 (a usual suspect for cloud VMs), I installed this handy toolchain:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>brew</span><span> install messense/macos-cross-toolchains/x86_64-unknown-linux-gnu
+</span></code></pre><p>If your setup is different, fear not—just make sure you have some way to compile your Rust code into a binary that your Ubuntu server recognizes.<h3 id=1-4-basic-terminal-ssh-skills>1.4 Basic Terminal / SSH Skills</h3><p>Brush up on your command line wizardry and SSH know-how. If you can SSH into your server, open files in your favorite terminal editor you’re set! If you are not there yet, no worries—there are plenty of tutorials out there to help you get up to speed, e.g. <a href=https://www.pluralsight.com/resources/blog/cloud/ssh-and-scp-howto-tips-tricks target=_blank>here</a>.<hr><h2 id=2-coding-the-honeypot-in-rust>2. Coding the Honeypot in Rust</h2><h3 id=2-1-project-setup>2.1 Project Setup</h3><p>To get started, we’ll create a fresh Rust project for our honeypot:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> new honeypot
+</span></code></pre><p>This initializes a new folder named honeypot containing your basic Cargo scaffolding. For a minimal approach, we won’t require any external crates at this stage—plain Rust’s standard library has all we need for simple socket listening and logging. Below is an example Cargo.toml you might use:<pre class=language-toml data-lang=toml style=color:#c0c5ce;background-color:#2b303b><code class=language-toml data-lang=toml><span>[package]
+</span><span style=color:#bf616a>name </span><span>= "</span><span style=color:#a3be8c>honeypot</span><span>"
+</span><span style=color:#bf616a>authors </span><span>= ["</span><span style=color:#a3be8c>Bob Peters &lt;contact@rust-trends.com></span><span>"]
+</span><span style=color:#bf616a>version </span><span>= "</span><span style=color:#a3be8c>0.1.0</span><span>"
+</span><span style=color:#bf616a>edition </span><span>= "</span><span style=color:#a3be8c>2021</span><span>"
+</span><span>
+</span><span>[dependencies]
+</span></code></pre><p>That’s it, no dependencies listed because Rust’s standard library already includes the core networking (std::net) and concurrency (std::thread) features we need for this basic honeypot. Of course, if you decide to add extra functionality (like logging libraries, async runtimes, or protocol parsers), this is where you’d specify them under [dependencies].<p>Next, open <code>src/main.rs</code>, and you will find a bare-bones “Hello, world!” file. We will soon replace that with our honeypot logic.<h3 id=2-2-minimal-tcp-server-code>2.2 Minimal TCP Server Code</h3><p>Here’s a simple TCP server that listens on port 2222, for every connection a thread is spawned. Each thread logs incoming data to a file and stdout.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>use </span><span>std::io::{Read, Write};
+</span><span style=color:#b48ead>use </span><span>std::net::{TcpListener, TcpStream};
+</span><span style=color:#b48ead>use </span><span>std::thread;
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> listener = TcpListener::bind("</span><span style=color:#a3be8c>0.0.0.0:2222</span><span>").</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not bind to address</span><span>");
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>Honeypot is Listening on port 2222</span><span>");
+</span><span>
+</span><span>    </span><span style=color:#b48ead>for</span><span> stream in listener.</span><span style=color:#96b5b4>incoming</span><span>() {
+</span><span>        </span><span style=color:#b48ead>match</span><span> stream {
+</span><span>            Ok(stream) => {
+</span><span>                thread::spawn(|| {
+</span><span>                    </span><span style=color:#96b5b4>handle_client</span><span>(stream);
+</span><span>                });
+</span><span>            }
+</span><span>            Err(e) => {
+</span><span>                eprintln!("</span><span style=color:#a3be8c>Error: </span><span style=color:#d08770>{}</span><span>", e);
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>handle_client</span><span>(</span><span style=color:#b48ead>mut </span><span style=color:#bf616a>stream</span><span>: TcpStream) {
+</span><span>    </span><span style=color:#b48ead>let</span><span> peer_addr = </span><span style=color:#b48ead>match</span><span> stream.</span><span style=color:#96b5b4>peer_addr</span><span>() {
+</span><span>        Ok(addr) => addr.</span><span style=color:#96b5b4>to_string</span><span>(),
+</span><span>        Err(_) => "</span><span style=color:#a3be8c>Unknown</span><span>".</span><span style=color:#96b5b4>to_string</span><span>(),
+</span><span>    };
+</span><span>
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> buffer = [</span><span style=color:#d08770>0</span><span>; </span><span style=color:#d08770>1024</span><span>];
+</span><span>    </span><span style=color:#b48ead>let</span><span> now = </span><span style=color:#96b5b4>get_epoch_time</span><span>();
+</span><span>
+</span><span>    println!("</span><span style=color:#a3be8c>Received connection from </span><span style=color:#d08770>{}</span><span>", peer_addr);
+</span><span>
+</span><span>    </span><span style=color:#65737e>// Open a (new) file to log the request
+</span><span>    </span><span style=color:#b48ead>let</span><span> filename = format!("</span><span style=color:#a3be8c>/opt/honeypot/</span><span style=color:#d08770>{}</span><span style=color:#a3be8c>_</span><span style=color:#d08770>{}</span><span style=color:#a3be8c>.log</span><span>", now, peer_addr);
+</span><span>
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> file = std::fs::OpenOptions::new()
+</span><span>        .</span><span style=color:#96b5b4>append</span><span>(</span><span style=color:#d08770>true</span><span>)
+</span><span>        .</span><span style=color:#96b5b4>create</span><span>(</span><span style=color:#d08770>true</span><span>)
+</span><span>        .</span><span style=color:#96b5b4>open</span><span>(filename)
+</span><span>        .</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not open file</span><span>");
+</span><span>
+</span><span>    </span><span style=color:#b48ead>loop </span><span>{
+</span><span>        </span><span style=color:#b48ead>match</span><span> stream.</span><span style=color:#96b5b4>read</span><span>(&</span><span style=color:#b48ead>mut</span><span> buffer) {
+</span><span>            Ok(n) => {
+</span><span>                </span><span style=color:#b48ead>if</span><span> n == </span><span style=color:#d08770>0 </span><span>{
+</span><span>                    println!("</span><span style=color:#a3be8c>Connection closed by </span><span style=color:#d08770>{}</span><span>", peer_addr);
+</span><span>                    </span><span style=color:#b48ead>break</span><span>;
+</span><span>                }
+</span><span>
+</span><span>                </span><span style=color:#65737e>// Try if the request is a valid string
+</span><span>                </span><span style=color:#65737e>// If it is a valid string, it will be printed
+</span><span>                </span><span style=color:#65737e>// If it is binary data, it will be printed as a string
+</span><span>                </span><span style=color:#b48ead>let</span><span> request = String::from_utf8_lossy(&buffer[..n]);
+</span><span>                println!("</span><span style=color:#a3be8c>Received request from </span><span style=color:#d08770>{}</span><span style=color:#a3be8c>: </span><span style=color:#d08770>{}</span><span>", peer_addr, request);
+</span><span>
+</span><span>                </span><span style=color:#65737e>// Write the request to the file
+</span><span>                file.</span><span style=color:#96b5b4>write_all</span><span>(&buffer[..n])
+</span><span>                    .</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not write to file</span><span>");
+</span><span>
+</span><span>                </span><span style=color:#65737e>// Close the file
+</span><span>                file.</span><span style=color:#96b5b4>sync_all</span><span>().</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Could not sync file</span><span>");
+</span><span>            }
+</span><span>            Err(e) => {
+</span><span>                eprintln!("</span><span style=color:#a3be8c>Error reading from </span><span style=color:#d08770>{}</span><span style=color:#a3be8c>: </span><span style=color:#d08770>{}</span><span>", peer_addr, e);
+</span><span>                </span><span style=color:#b48ead>break</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>get_epoch_time</span><span>() -> </span><span style=color:#b48ead>u64 </span><span>{
+</span><span>    std::time::SystemTime::now()
+</span><span>        .</span><span style=color:#96b5b4>duration_since</span><span>(std::time::</span><span style=color:#d08770>UNIX_EPOCH</span><span>)
+</span><span>        .</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Time went backwards</span><span>")
+</span><span>        .</span><span style=color:#96b5b4>as_secs</span><span>()
+</span><span>}
+</span></code></pre><h4 id=2-2-1-handling-connections>2.2.1 Handling Connections</h4><p>Each incoming connection is handled in a separate thread to avoid blocking the main loop. This way, the honeypot can handle multiple connections simultaneously. The <code>handle_client</code> function reads data from the incoming stream, logs it to a file, and prints it to the console. The <code>get_epoch_time</code> function generates a timestamp for the log file name.<p>The TcpListener is bound to <code>0.0.0.0:2222</code>, which means it listens on all available network interfaces on port 2222. This allows the honeypot to accept connections from any IP address. The <code>listener.incoming()</code> method returns an iterator over incoming connections (infinitely), which we loop over to handle each connection. Great job! You’ve set up your first TCP listener.<p>The TcpStream represents the connection to a client. We use <code>stream.peer_addr()</code> to get the IP address of the client. If the address is successfully retrieved, we convert it to a string; otherwise, we use "Unknown". We then create a buffer to read data from the stream and a file to log the incoming data.<h4 id=2-2-2-logging-data>2.2.2 Logging Data</h4><p>The <code>handle_client</code> function reads data from the stream into the buffer and writes it to the log file. If the read operation returns 0 bytes, the connection is closed, and the function breaks out of the loop. We use <code>String::from_utf8_lossy</code> to convert the buffer to a string, handling invalid UTF-8 sequences gracefully. This allows us to log binary data like �, as well as text.<h3 id=2-3-enhancing-the-honeypot>2.3 Enhancing the Honeypot</h3><p>This can be extended in many ways, for example, you could add a banner to mimic a real service, or you could add a database to store the logs. Adding more ports, or even emulating a specific protocol. But for now, this is a good starting point.<hr><h2 id=3-building-and-packaging>3. Building and Packaging</h2><h3 id=3-1-native-vs-cross-compilation>3.1 Native vs. Cross-Compilation</h3><p>Since we want to deploy our honeypot on an Ubuntu AMD64 server, we need to compile our Rust code for the x86_64 architecture. If your development machine has the same architecture, you can compile natively <code>cargo build --release</code>. Otherwise, you’ll need to cross-compile for the target architecture. It is one of the benefits of Rust that it is easy to cross-compile.<p>In my case, I am using an Apple M1 Pro MacBook, so I need to cross-compile for x86_64. Here’s how you can do it:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> build</span><span style=color:#bf616a> --release --target</span><span> x86_64-unknown-linux-gnu
+</span></code></pre><p>This creates a binary optimized for the x86_64 architecture, which you can then transfer to your Ubuntu server. It is located in <code>target/x86_64-unknown-linux-gnu/release/honeypot</code>.<p>Why not use the debug build? The debug build includes additional symbols and debugging information, making the binary larger and slower. The release build is optimized for performance and size, making it more suitable for deployment.<h3 id=3-2-testing-locally>3.2 Testing Locally</h3><p>Before deploying to Oracle Cloud, you can test your honeypot locally. Build it and run it with <code>cargo run --release</code> the binary on your development machine and connect to it using <code>telnet localhost 2222</code> or <code>nc localhost 2222</code>. You should see the connection logs in your terminal and a new log file created in the current directory.<hr><h2 id=4-deploying-to-oracle-cloud>4. Deploying to Oracle Cloud</h2><h3 id=4-1-orcale-cloud-infrastructure-network-configuration>4.1 Orcale Cloud Infrastructure Network Configuration</h3><p>By default, Oracle Cloud blocks inbound traffic on custom ports. You need to create an <strong>Ingress Rule</strong> in the <strong>Security List</strong> or <strong>Network Security Group</strong> for your instance’s subnet. Example: Open port <code>2222</code> to <code>0.0.0.0/0</code> via TCP.<ul><li>Go to the Oracle Cloud console and navigate to your instance<li>Open your instance’s <strong>VNIC</strong> details<li>Click on the <strong>Security Lists</strong> or <strong>Network Security Groups</strong> link<li>Add a new <strong>Ingress Rule</strong> to allow traffic on port <code>2222</code> from <code>0.0.0.0/0</code> this is not recommended for production, but for a honeypot it is fine. This notation is called CIDR and it means all IP addresses.<li>Save the changes and wait for them to take effect.</ul><p>Additional tip is to close the actual SSH port on 22 after you have deployed and tested the honeypot service, so that attackers aren’t attempting to brute-force your "real" SSH port.<h3 id=4-2-uploading-the-honeypot-binary>4.2 Uploading the Honeypot Binary</h3><p>To upload the binary to the server, you can use <code>scp</code> or a deployment script. I choose to use a deployment script to automate the process, because I will be doing this multiple times.<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#65737e>#!/usr/bin/env bash
+</span><span>
+</span><span style=color:#65737e>##############################################################################
+</span><span style=color:#65737e>## Configuration
+</span><span style=color:#65737e>##############################################################################
+</span><span>
+</span><span style=color:#65737e>## Path to your SSH private key
+</span><span style=color:#bf616a>SSH_KEY</span><span>="$</span><span style=color:#bf616a>HOME</span><span style=color:#a3be8c>/.ssh/id_ssh_key</span><span>" </span><span style=color:#65737e># Change this to your private key
+</span><span>
+</span><span style=color:#65737e>## SSH username and server IP
+</span><span style=color:#bf616a>SERVER_USER</span><span>="</span><span style=color:#a3be8c>ubuntu</span><span>"
+</span><span style=color:#bf616a>SERVER_HOST</span><span>="</span><span style=color:#a3be8c>xxx.xxx.xxx.xxx</span><span>" </span><span style=color:#65737e># Change this to your server's IP
+</span><span>
+</span><span style=color:#65737e>## Local paths
+</span><span style=color:#bf616a>LOCAL_BINARY</span><span>="</span><span style=color:#a3be8c>./target/x86_64-unknown-linux-gnu/release/honeypot</span><span>"                  </span><span style=color:#65737e># Compiled honeypot binary
+</span><span style=color:#bf616a>LOCAL_INSTALL_SCRIPT</span><span>="</span><span style=color:#a3be8c>./install_honeypot_service.sh</span><span>"
+</span><span>
+</span><span style=color:#65737e>## Remote locations
+</span><span style=color:#bf616a>REMOTE_DIR</span><span>="</span><span style=color:#a3be8c>/home/ubuntu</span><span>"                  </span><span style=color:#65737e># Temporary location for uploads
+</span><span style=color:#bf616a>REMOTE_BINARY_PATH</span><span>="$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>REMOTE_DIR</span><span style=color:#a3be8c>}/honeypot</span><span>"
+</span><span style=color:#bf616a>REMOTE_INSTALL_SCRIPT</span><span>="$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>REMOTE_DIR</span><span style=color:#a3be8c>}/install_honeypot_service.sh</span><span>"
+</span><span>
+</span><span style=color:#65737e>##############################################################################
+</span><span style=color:#65737e>## 0. Build the binary
+</span><span style=color:#65737e>##############################################################################
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Building the honeypot binary... ===</span><span>"
+</span><span style=color:#bf616a>cargo</span><span> build</span><span style=color:#bf616a> --release --target</span><span> x86_64-unknown-linux-gnu
+</span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span>$</span><span style=color:#bf616a>? -ne</span><span> 0 </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>Error: Failed to build the honeypot binary.</span><span>"
+</span><span>  </span><span style=color:#96b5b4>exit</span><span> 1
+</span><span style=color:#b48ead>fi
+</span><span>
+</span><span style=color:#65737e>##############################################################################
+</span><span style=color:#65737e>## 1. Upload the new binary
+</span><span style=color:#65737e>##############################################################################
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Uploading the honeypot binary to </span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_USER</span><span style=color:#a3be8c>}@</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_HOST</span><span style=color:#a3be8c>}... ===</span><span>"
+</span><span style=color:#bf616a>scp -i </span><span>"$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SSH_KEY</span><span style=color:#a3be8c>}</span><span>" "$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>LOCAL_BINARY</span><span style=color:#a3be8c>}</span><span>" "$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_USER</span><span style=color:#a3be8c>}@</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_HOST</span><span style=color:#a3be8c>}:</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>REMOTE_BINARY_PATH</span><span style=color:#a3be8c>}</span><span>"
+</span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span>$</span><span style=color:#bf616a>? -ne</span><span> 0 </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>Error: Failed to upload the honeypot binary.</span><span>"
+</span><span>  </span><span style=color:#96b5b4>exit</span><span> 1
+</span><span style=color:#b48ead>fi
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Successfully uploaded binary. ===</span><span>"
+</span><span>
+</span><span style=color:#65737e>##############################################################################
+</span><span style=color:#65737e>## 2. Upload the install script
+</span><span style=color:#65737e>##############################################################################
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Uploading install script to </span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_USER</span><span style=color:#a3be8c>}@</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_HOST</span><span style=color:#a3be8c>}... ===</span><span>"
+</span><span style=color:#bf616a>scp -i </span><span>"$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SSH_KEY</span><span style=color:#a3be8c>}</span><span>" "$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>LOCAL_INSTALL_SCRIPT</span><span style=color:#a3be8c>}</span><span>" "$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_USER</span><span style=color:#a3be8c>}@</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_HOST</span><span style=color:#a3be8c>}:</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>REMOTE_INSTALL_SCRIPT</span><span style=color:#a3be8c>}</span><span>"
+</span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span>$</span><span style=color:#bf616a>? -ne</span><span> 0 </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>Error: Failed to upload install script.</span><span>"
+</span><span>  </span><span style=color:#96b5b4>exit</span><span> 1
+</span><span style=color:#b48ead>fi
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Successfully uploaded install script. ===</span><span>"
+</span><span>
+</span><span style=color:#65737e>##############################################################################
+</span><span style=color:#65737e>## 3. Run install script remotely
+</span><span style=color:#65737e>##############################################################################
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Running install script on the remote server... ===</span><span>"
+</span><span style=color:#bf616a>ssh -i </span><span>"$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SSH_KEY</span><span style=color:#a3be8c>}</span><span>" "$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_USER</span><span style=color:#a3be8c>}@</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVER_HOST</span><span style=color:#a3be8c>}</span><span>" &lt;&lt; </span><span style=color:#b48ead>EOF
+</span><span style=color:#a3be8c>  set -e  # Exit on any command error
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>  # Make sure script is executable
+</span><span style=color:#a3be8c>  chmod +x "</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>REMOTE_INSTALL_SCRIPT</span><span style=color:#a3be8c>}"
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>  # Run it with sudo privileges (prompts if needed)
+</span><span style=color:#a3be8c>  sudo "</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>REMOTE_INSTALL_SCRIPT</span><span style=color:#a3be8c>}"
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>  # Done
+</span><span style=color:#b48ead>EOF
+</span><span>
+</span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span>$</span><span style=color:#bf616a>? -eq</span><span> 0 </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Deployment successful! ===</span><span>"
+</span><span style=color:#b48ead>else
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>=== Deployment encountered an error. ===</span><span>"
+</span><span>  </span><span style=color:#96b5b4>exit</span><span> 1
+</span><span style=color:#b48ead>fi
+</span></code></pre><p>This script automates the process of building the binary, uploading it to the server, and running an installation script. You can customize it to fit your needs.<h3 id=4-3-installation-script>4.3 Installation Script</h3><p>Create an installation script to set up the honeypot on the server. Here’s an example script that installs the honeypot as a systemd service. It’s idempotent, meaning you can run it multiple times without causing issues.<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#65737e>#!/usr/bin/env bash
+</span><span style=color:#65737e>#
+</span><span style=color:#65737e>## install_honeypot_service.sh
+</span><span style=color:#65737e>#
+</span><span style=color:#65737e>## Idempotent script to install/upgrade the 'honeypot' systemd service.
+</span><span style=color:#65737e>## Safe to run multiple times.
+</span><span style=color:#65737e>#
+</span><span style=color:#65737e>## Steps:
+</span><span style=color:#65737e>## 1. Create 'honeypot' user if missing
+</span><span style=color:#65737e>## 2. Create /opt/honeypot dir if missing
+</span><span style=color:#65737e>## 3. Copy local binary to /opt/honeypot if it differs
+</span><span style=color:#65737e>## 4. Create or update systemd unit file
+</span><span style=color:#65737e>## 5. Reload & restart service
+</span><span>
+</span><span style=color:#96b5b4>set</span><span> -euo pipefail
+</span><span>
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#65737e>## Configurable parameters
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#bf616a>SERVICE_NAME</span><span>="</span><span style=color:#a3be8c>honeypot</span><span>"
+</span><span style=color:#bf616a>HONEYPOT_USER</span><span>="</span><span style=color:#a3be8c>honeypot</span><span>"
+</span><span style=color:#bf616a>HONEYPOT_GROUP</span><span>="</span><span style=color:#a3be8c>honeypot</span><span>"
+</span><span style=color:#bf616a>INSTALL_DIR</span><span>="</span><span style=color:#a3be8c>/opt/honeypot</span><span>"
+</span><span style=color:#bf616a>BINARY_NAME</span><span>="</span><span style=color:#a3be8c>honeypot</span><span>"              </span><span style=color:#65737e># The name of your compiled binary
+</span><span style=color:#bf616a>LOCAL_BINARY_PATH</span><span>="</span><span style=color:#a3be8c>./honeypot</span><span>"      </span><span style=color:#65737e># Where your compiled binary is locally
+</span><span style=color:#bf616a>SYSTEMD_UNIT_PATH</span><span>="</span><span style=color:#a3be8c>/etc/systemd/system/</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>}.service</span><span>"
+</span><span style=color:#bf616a>PERMISSIONS</span><span>="</span><span style=color:#a3be8c>750</span><span>"                   </span><span style=color:#65737e># Permissions for $INSTALL_DIR
+</span><span>
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#65737e>## 1. Create user and group if they do not exist
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Checking if user '</span><span>$</span><span style=color:#bf616a>HONEYPOT_USER</span><span style=color:#a3be8c>' exists...</span><span>"
+</span><span style=color:#b48ead>if </span><span style=color:#bf616a>id </span><span>"$</span><span style=color:#bf616a>HONEYPOT_USER</span><span>" &>/dev/null; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   User '</span><span>$</span><span style=color:#bf616a>HONEYPOT_USER</span><span style=color:#a3be8c>' already exists.</span><span>"
+</span><span style=color:#b48ead>else
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Creating system user '</span><span>$</span><span style=color:#bf616a>HONEYPOT_USER</span><span style=color:#a3be8c>'...</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> useradd</span><span style=color:#bf616a> -r -s</span><span> /usr/sbin/nologin "$</span><span style=color:#bf616a>HONEYPOT_USER</span><span>"
+</span><span style=color:#b48ead>fi
+</span><span>
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#65737e>## 2. Create /opt/honeypot directory if missing
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Ensuring </span><span>$</span><span style=color:#bf616a>INSTALL_DIR</span><span style=color:#a3be8c> directory exists...</span><span>"
+</span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span>! </span><span style=color:#bf616a>-d </span><span>"$</span><span style=color:#bf616a>INSTALL_DIR</span><span>" </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Creating directory </span><span>$</span><span style=color:#bf616a>INSTALL_DIR</span><span style=color:#a3be8c>...</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> mkdir</span><span style=color:#bf616a> -p </span><span>"$</span><span style=color:#bf616a>INSTALL_DIR</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> chown "$</span><span style=color:#bf616a>HONEYPOT_USER</span><span>":"$</span><span style=color:#bf616a>HONEYPOT_GROUP</span><span>" "$</span><span style=color:#bf616a>INSTALL_DIR</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> chmod "$</span><span style=color:#bf616a>PERMISSIONS</span><span>" "$</span><span style=color:#bf616a>INSTALL_DIR</span><span>"
+</span><span style=color:#b48ead>else
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Directory </span><span>$</span><span style=color:#bf616a>INSTALL_DIR</span><span style=color:#a3be8c> already exists.</span><span>"
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Ensuring correct ownership & permissions...</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> chown "$</span><span style=color:#bf616a>HONEYPOT_USER</span><span>":"$</span><span style=color:#bf616a>HONEYPOT_GROUP</span><span>" "$</span><span style=color:#bf616a>INSTALL_DIR</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> chmod "$</span><span style=color:#bf616a>PERMISSIONS</span><span>" "$</span><span style=color:#bf616a>INSTALL_DIR</span><span>"
+</span><span style=color:#b48ead>fi
+</span><span>
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#65737e>## 3. Copy binary to /opt/honeypot if it differs
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Checking if </span><span>$</span><span style=color:#bf616a>BINARY_NAME</span><span style=color:#a3be8c> needs to be updated...</span><span>"
+</span><span style=color:#bf616a>LOCAL_CHECKSUM</span><span>=$</span><span style=color:#a3be8c>(</span><span style=color:#bf616a>sha256sum </span><span>"$</span><span style=color:#bf616a>LOCAL_BINARY_PATH</span><span>" | </span><span style=color:#bf616a>awk </span><span>'</span><span style=color:#a3be8c>{print $1}</span><span>'</span><span style=color:#a3be8c>)
+</span><span style=color:#bf616a>REMOTE_PATH</span><span>="$</span><span style=color:#bf616a>INSTALL_DIR</span><span style=color:#a3be8c>/</span><span>$</span><span style=color:#bf616a>BINARY_NAME</span><span>"
+</span><span>
+</span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span style=color:#bf616a>-f </span><span>"$</span><span style=color:#bf616a>REMOTE_PATH</span><span>" </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#bf616a>REMOTE_CHECKSUM</span><span>=$</span><span style=color:#a3be8c>(</span><span style=color:#bf616a>sudo</span><span style=color:#a3be8c> sha256sum </span><span>"$</span><span style=color:#bf616a>REMOTE_PATH</span><span>" | </span><span style=color:#bf616a>awk </span><span>'</span><span style=color:#a3be8c>{print $1}</span><span>'</span><span style=color:#a3be8c>)
+</span><span>  </span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span>"$</span><span style=color:#bf616a>LOCAL_CHECKSUM</span><span>" = "$</span><span style=color:#bf616a>REMOTE_CHECKSUM</span><span>" </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>    </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Binary already matches the existing one; no copy needed.</span><span>"
+</span><span>  </span><span style=color:#b48ead>else
+</span><span>    </span><span style=color:#65737e># Verify if the service is already running
+</span><span>    </span><span style=color:#65737e># If it is, we need to stop it first
+</span><span>    </span><span style=color:#b48ead>if </span><span style=color:#bf616a>sudo</span><span> systemctl is-active</span><span style=color:#bf616a> --quiet </span><span>"$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>.service</span><span>"; </span><span style=color:#b48ead>then
+</span><span>        </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Stopping </span><span>$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c> service...</span><span>"
+</span><span>        </span><span style=color:#bf616a>sudo</span><span> systemctl stop "$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>.service</span><span>"
+</span><span>    </span><span style=color:#b48ead>fi
+</span><span>
+</span><span>    </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Copying updated binary to </span><span>$</span><span style=color:#bf616a>REMOTE_PATH</span><span style=color:#a3be8c>...</span><span>"
+</span><span>    </span><span style=color:#bf616a>sudo</span><span> cp "$</span><span style=color:#bf616a>LOCAL_BINARY_PATH</span><span>" "$</span><span style=color:#bf616a>REMOTE_PATH</span><span>"
+</span><span>    </span><span style=color:#bf616a>sudo</span><span> chown "$</span><span style=color:#bf616a>HONEYPOT_USER</span><span>":"$</span><span style=color:#bf616a>HONEYPOT_GROUP</span><span>" "$</span><span style=color:#bf616a>REMOTE_PATH</span><span>"
+</span><span>    </span><span style=color:#bf616a>sudo</span><span> chmod +x "$</span><span style=color:#bf616a>REMOTE_PATH</span><span>"
+</span><span>  </span><span style=color:#b48ead>fi
+</span><span style=color:#b48ead>else
+</span><span>  </span><span style=color:#65737e># Verify if the service is already running
+</span><span>  </span><span style=color:#65737e># If it is, we need to stop it first
+</span><span>  </span><span style=color:#b48ead>if </span><span style=color:#bf616a>sudo</span><span> systemctl is-active</span><span style=color:#bf616a> --quiet </span><span>"$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>.service</span><span>"; </span><span style=color:#b48ead>then
+</span><span>    </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Stopping </span><span>$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c> service...</span><span>"
+</span><span>    </span><span style=color:#bf616a>sudo</span><span> systemctl stop "$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>.service</span><span>"
+</span><span>  </span><span style=color:#b48ead>fi
+</span><span>
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   No existing binary at </span><span>$</span><span style=color:#bf616a>REMOTE_PATH</span><span style=color:#a3be8c>, copying now...</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> cp "$</span><span style=color:#bf616a>LOCAL_BINARY_PATH</span><span>" "$</span><span style=color:#bf616a>REMOTE_PATH</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> chown "$</span><span style=color:#bf616a>HONEYPOT_USER</span><span>":"$</span><span style=color:#bf616a>HONEYPOT_GROUP</span><span>" "$</span><span style=color:#bf616a>REMOTE_PATH</span><span>"
+</span><span>  </span><span style=color:#bf616a>sudo</span><span> chmod +x "$</span><span style=color:#bf616a>REMOTE_PATH</span><span>"
+</span><span style=color:#b48ead>fi
+</span><span>
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#65737e>## 4. Create or update systemd service file
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Installing or updating systemd unit file at </span><span>$</span><span style=color:#bf616a>SYSTEMD_UNIT_PATH</span><span style=color:#a3be8c>...</span><span>"
+</span><span style=color:#bf616a>SERVICE_FILE_CONTENT</span><span>="</span><span style=color:#a3be8c>[Unit]
+</span><span style=color:#a3be8c>Description=Honeypot Service
+</span><span style=color:#a3be8c>After=network.target
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>[Service]
+</span><span style=color:#a3be8c>Type=simple
+</span><span style=color:#a3be8c>WorkingDirectory=/opt/honeypot
+</span><span style=color:#a3be8c>User=</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>HONEYPOT_USER</span><span style=color:#a3be8c>}
+</span><span style=color:#a3be8c>Group=</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>HONEYPOT_GROUP</span><span style=color:#a3be8c>}
+</span><span style=color:#a3be8c>ExecStart=</span><span>$</span><span style=color:#a3be8c>{</span><span style=color:#bf616a>REMOTE_PATH</span><span style=color:#a3be8c>}
+</span><span style=color:#a3be8c>StandardOutput=file:/var/log/honeypot.log
+</span><span style=color:#a3be8c>StandardError=file:/var/log/honeypot_err.log
+</span><span style=color:#a3be8c>Restart=on-failure
+</span><span style=color:#a3be8c>
+</span><span style=color:#a3be8c>[Install]
+</span><span style=color:#a3be8c>WantedBy=multi-user.target
+</span><span>"
+</span><span>
+</span><span style=color:#65737e>## If the file doesn't exist OR the content differs, overwrite it
+</span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span style=color:#bf616a>-f </span><span>"$</span><span style=color:#bf616a>SYSTEMD_UNIT_PATH</span><span>" </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>  </span><span style=color:#bf616a>CURRENT_CONTENT</span><span>=$</span><span style=color:#a3be8c>(</span><span style=color:#bf616a>sudo</span><span style=color:#a3be8c> cat </span><span>"$</span><span style=color:#bf616a>SYSTEMD_UNIT_PATH</span><span>"</span><span style=color:#a3be8c>)
+</span><span>  </span><span style=color:#b48ead>if </span><span style=color:#96b5b4>[ </span><span>"$</span><span style=color:#bf616a>CURRENT_CONTENT</span><span>" != "$</span><span style=color:#bf616a>SERVICE_FILE_CONTENT</span><span>" </span><span style=color:#96b5b4>]</span><span>; </span><span style=color:#b48ead>then
+</span><span>    </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Updating systemd service file because content changed...</span><span>"
+</span><span>    </span><span style=color:#96b5b4>echo </span><span>"$</span><span style=color:#bf616a>SERVICE_FILE_CONTENT</span><span>" | </span><span style=color:#bf616a>sudo</span><span> tee "$</span><span style=color:#bf616a>SYSTEMD_UNIT_PATH</span><span>" >/dev/null
+</span><span>  </span><span style=color:#b48ead>else
+</span><span>    </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Systemd unit file already up-to-date.</span><span>"
+</span><span>  </span><span style=color:#b48ead>fi
+</span><span style=color:#b48ead>else
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>   Creating new systemd service file...</span><span>"
+</span><span>  </span><span style=color:#96b5b4>echo </span><span>"$</span><span style=color:#bf616a>SERVICE_FILE_CONTENT</span><span>" | </span><span style=color:#bf616a>sudo</span><span> tee "$</span><span style=color:#bf616a>SYSTEMD_UNIT_PATH</span><span>" >/dev/null
+</span><span style=color:#b48ead>fi
+</span><span>
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#65737e>## 5. Reload & restart systemd service
+</span><span style=color:#65737e>###############################################################################
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Reloading systemd daemon...</span><span>"
+</span><span style=color:#bf616a>sudo</span><span> systemctl daemon-reload
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Enabling </span><span>$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c> service to start on boot...</span><span>"
+</span><span style=color:#bf616a>sudo</span><span> systemctl enable "$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>.service</span><span>"
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Restarting </span><span>$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c> service...</span><span>"
+</span><span style=color:#bf616a>sudo</span><span> systemctl restart "$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>.service</span><span>"
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Checking </span><span>$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c> status...</span><span>"
+</span><span style=color:#bf616a>sudo</span><span> systemctl status "$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c>.service</span><span>"</span><span style=color:#bf616a> --no-pager </span><span>|| </span><span style=color:#bf616a>true
+</span><span>
+</span><span style=color:#96b5b4>echo </span><span>"</span><span style=color:#a3be8c>>> Done! The </span><span>$</span><span style=color:#bf616a>SERVICE_NAME</span><span style=color:#a3be8c> service is set up and running.</span><span>"
+</span></code></pre><p>This script installs the honeypot binary, creates a systemd service, and starts the service. It also ensures that the service is stopped before updating the binary or service file. The service logs are written to <code>/var/log/honeypot.log</code> and <code>/var/log/honeypot_err.log</code>.<p>The binary is run under the privileges of the <code>honeypot</code> user, which is created if it doesn’t exist. The honeypot binary is copied to <code>/opt/honeypot</code>, and the systemd service file is created or updated. The service is then reloaded, enabled, and restarted.<p>A pro-tip I got from Daniel Thompson-Yvetot was to assume the box will be powned and to make it more interesting for the attacker. For example, you change the name of the honeypot sevice to <code>fastxmrminer.service</code> and the binary to <code>fastxmrminer</code> and the attacker will think they hit the jackpot.<p>In the current version I kept it simple and straightforward for educational purposes, but you can expand on this idea.<hr><h2 id=5-testing-and-monitoring>5. Testing and Monitoring</h2><h3 id=5-1-live-logs>5.1 Live Logs</h3><p>You can monitor the honeypot logs in real-time using <code>tail -f</code>. Here’s how to check the logs:<ul><li>SSH into your server.<li>Use <code>tail -f /var/log/honeypot.log</code> to monitor incoming requests.<li>Use <code>tail -f /var/log/honeypot_err.log</code> to monitor errors.</ul><p>I separated the logs to make it easier to distinguish between regular logs and errors. You can customize the log paths and contents to suit your needs.<p>The <code>stderr</code> could benefit from <code>structured logging</code> or <code>tracing</code>, but for this simple honeypot, we’ll keep it basic.<h3 id=5-2-simulating-an-attack>5.2 Simulating an Attack</h3><p>You can test your honeypot by connecting to it using <code>telnet</code> or <code>nc</code> from your local machine. Here’s how:<ul><li>From your local machine, run <code>telnet &lt;server_ip> 2222</code> or <code>nc &lt;server_ip> 2222</code> to connect to the honeypot.<li>Enter some random text and press Enter.<li>Check the logs on the server to see the incoming request.</ul><h3 id=5-3-gathering-intelligence>5.3 Gathering Intelligence</h3><p>Over time, your honeypot will encounter a variety of malicious activities, including port scans, SSH brute-force attempts, and automated exploit scripts. By storing these logs for analysis, you can gain valuable insights into who’s probing your system and what they’re attempting to achieve.<p>Setting up alerts or notifications can help you identify specific patterns in real-time. Tools like the ELK Stack or Splunk are excellent for log analysis and can be configured to trigger alerts based on defined criteria.<p>For example, I observed numerous SSH brute-force attempts and port scans targeting my honeypot. It was fascinating to watch the diversity of attacks unfold in real time. One notable instance involved a “Makiko” client—a Rust-based SSH client—attempting to connect, showcasing that Rust is also being utilized for malicious purposes. Shortly after, I detected a Go-based client attempting to connect as well—although, admittedly, Go might not be the ideal language for this kind of job :)<hr><h2 id=conclusion>Conclusion</h2><p>Deploying a custom Rust honeypot on an always-free Oracle Cloud instance gives you hands-on insight into real-world malicious activity. You’ve learned how to code a simple TCP server in Rust, configure Oracle’s networking, manage an OCI's firewall, and centralize logging. With a bit of creativity, you can expand your honeypot to emulate common protocols, capture richer data, or integrate with threat intelligence pipelines. Happy hacking—safely, of course!<hr><h2 id=github-repository>GitHub Repository</h2><p>You can find the code for this project on my GitHub repository <a href=https://github.com/Rust-Trends/honeypot target=_blank>Rust Honeypot</a>. Feel free to fork, modify, and experiment with it and if you star it - I will be very happy - I may be tempted to write more guides like this one it has been fun to write.<h2 id=author>Author</h2><p>Bob Peters - <a href=https://rust-trends.com target=_blank>Rust Trends</a> - <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a><h2 id=further-reading>Further Reading</h2><ul><li><a href=https://www.oracle.com/cloud/free/ target=_blank>Oracle Cloud Free Tier</a><li><a href=https://doc.rust-lang.org/std/ target=_blank>Rust Standard Library</a><li>Nice inspiration <a href=https://github.com/cowrie/cowrie target=_blank>Cowrie - Medium to High interaction Honeypot</a>*</ul><p>*Thank you for the tip Dario Lencina Talarico</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

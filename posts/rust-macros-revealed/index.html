@@ -1,0 +1,223 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Rust Macros Revealed!
+        
+    </title><meta content="Rust Macros Revealed!" property=og:title><meta content="Delve into Rust macros' transformative potential. See how tools like 'cargo expand' unveil macro magic, illustrated with Actix Web & Tokio runtime. Simplify boilerplate and master Rust meta-programming." property=og:description><meta content="Delve into Rust macros' transformative potential. See how tools like 'cargo expand' unveil macro magic, illustrated with Actix Web & Tokio runtime. Simplify boilerplate and master Rust meta-programming." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/rust-macros-revealed/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Rust Macros Revealed!" name=twitter:title><meta content="Delve into Rust macros' transformative potential. See how tools like 'cargo expand' unveil macro magic, illustrated with Actix Web & Tokio runtime. Simplify boilerplate and master Rust meta-programming." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/rust-macros-revealed/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-08-06 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust Macros Revealed!",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-08-06",
+  "dateModified": "2023-08-06",
+  "description": "Delve into Rust macros&#x27; transformative potential. See how tools like &#x27;cargo expand&#x27; unveil macro magic, illustrated with Actix Web &amp; Tokio runtime. Simplify boilerplate and master Rust meta-programming.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-macros-revealed&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-macros-revealed&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust Macros Revealed!",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-macros-revealed&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust Macros Revealed!",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-08-06",
+  "dateModified": "2023-08-06",
+  "description": "Delve into Rust macros&#x27; transformative potential. See how tools like &#x27;cargo expand&#x27; unveil macro magic, illustrated with Actix Web &amp; Tokio runtime. Simplify boilerplate and master Rust meta-programming.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-macros-revealed&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-macros-revealed&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust Macros Revealed!",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-macros-revealed&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Rust Macros Revealed!</ol></nav><main><article><div class=title><div class=page-header>Rust Macros Revealed!<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-08-06</time></div></div><h1>Table of Contents</h1><ul><li><a href=https://rust-trends.com/posts/rust-macros-revealed/#macros-in-rust>Macros in Rust</a> <ul><li><a href=https://rust-trends.com/posts/rust-macros-revealed/#why-use-cargo-expand>Why Use cargo expand?</a><li><a href=https://rust-trends.com/posts/rust-macros-revealed/#using-cargo-expand-with-your-code>Using cargo expand with Your Code</a><li><a href=https://rust-trends.com/posts/rust-macros-revealed/#summary>Summary:</a></ul></ul><section class=body><img alt="Rust Macros Revealed!" src=../../newsletter/23/transformers.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block><h2 id=macros-in-rust>Macros in Rust</h2><p>In the world of programming, repetition is often seen as a bad thing. Rust macros provide a way to avoid repetitive code, allowing you to define reusable code templates. Unlike functions, macros don't operate on values; instead, they operate on the code itself.<p>Macros in Rust work like meta-programming. They are a way to define reusable chunks of code that get "expanded" or "transformed" into more detailed code at compile time. This is like giving the compiler a recipe to generate specific chunks of code on the fly.<p>For instance, you might have used the <code>println!()</code> macro. The <code>!</code> indicates it's a macro. With macros, you can achieve functionalities that functions can't offer, like variadic arguments or pattern-based code generation. Another example of a macros are expressions like <code>#[tokio::main]</code>, called an attribute macro.<h3 id=why-use-cargo-expand>Why Use <code>cargo expand</code>?</h3><p>When working with macros, you might wonder what the actual code generated by these macros looks like. This is where <code>cargo expand</code> comes in handy. It allows you to see the result of all the macro expansions, giving you a peek into the detailed, often boilerplate-heavy, code that gets generated.<h3 id=using-cargo-expand-with-your-code>Using <code>cargo expand</code> with Your Code</h3><p>Consider the simple <a href=https://actix.rs/>Actix Web server</a> code provided below:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>use </span><span>actix_web::{web, App, HttpServer, Responder, HttpResponse};
+</span><span>
+</span><span>async </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>health_check</span><span>() -> impl Responder {
+</span><span>   HttpResponse::Ok()
+</span><span>}
+</span><span>
+</span><span>#[</span><span style=color:#bf616a>tokio</span><span>::</span><span style=color:#bf616a>main</span><span>]
+</span><span>async </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() -> Result&lt;(), std::io::Error> {
+</span><span>     HttpServer::new(|| {
+</span><span>        App::new()
+</span><span>            .</span><span style=color:#96b5b4>route</span><span>("</span><span style=color:#a3be8c>/health_check</span><span>", web::get().</span><span style=color:#96b5b4>to</span><span>(health_check))
+</span><span>    })
+</span><span>    .</span><span style=color:#96b5b4>bind</span><span>("</span><span style=color:#a3be8c>127.0.0.1:8000</span><span>")?
+</span><span>    .</span><span style=color:#96b5b4>run</span><span>()
+</span><span>    .await
+</span><span>}
+</span></code></pre><p>Here, the <code>#[tokio::main]</code> is an attribute macro provided by the <a href=https://tokio.rs/>Tokio crate</a>. Tokio is an asynchronous runtime for the Rust programming language. It provides the building blocks needed for writing network applications. The attribute macro sets up the necessary boilerplate to run asynchronous code in the main function. But what does this boilerplate look like?<p>To find out, you'd first need to install <a href=https://github.com/dtolnay/cargo-expand>cargo expand</a>:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>$</span><span> cargo install cargo-expand
+</span></code></pre><p>Then, in the root of your Rust project, run:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>$</span><span> cargo expand
+</span></code></pre><p>The output will be the code after all macros, including <code>#[tokio::main]</code>, have been expanded. This "expanded" version will show you the underlying boilerplate introduced by the macro, revealing all the magic that happens behind the scenes.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span>#![</span><span style=color:#bf616a>feature</span><span>(prelude_import)]
+</span><span>#[</span><span style=color:#bf616a>prelude_import</span><span>]
+</span><span style=color:#b48ead>use </span><span>std::prelude::rust_2021::*;
+</span><span>#[</span><span style=color:#bf616a>macro_use</span><span>]
+</span><span style=color:#b48ead>extern crate</span><span> std;
+</span><span style=color:#b48ead>use </span><span>actix_web::{web, App, HttpServer, Responder, HttpResponse};
+</span><span>async </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>health_check</span><span>() -> impl Responder {
+</span><span>    HttpResponse::Ok()
+</span><span>}
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() -> Result&lt;(), std::io::Error> {
+</span><span>    </span><span style=color:#b48ead>let</span><span> body = async {
+</span><span>        HttpServer::new(|| {
+</span><span>                App::new().</span><span style=color:#96b5b4>route</span><span>("</span><span style=color:#a3be8c>/health_check</span><span>", web::get().</span><span style=color:#96b5b4>to</span><span>(health_check))
+</span><span>            })
+</span><span>            .</span><span style=color:#96b5b4>bind</span><span>("</span><span style=color:#a3be8c>127.0.0.1:8000</span><span>")?
+</span><span>            .</span><span style=color:#96b5b4>run</span><span>()
+</span><span>            .await
+</span><span>    };
+</span><span>    #[</span><span style=color:#bf616a>allow</span><span>(clippy::expect_used, clippy::diverging_sub_expression)]
+</span><span>    {
+</span><span>        </span><span style=color:#b48ead>return </span><span>tokio::runtime::Builder::new_multi_thread()
+</span><span>            .</span><span style=color:#96b5b4>enable_all</span><span>()
+</span><span>            .</span><span style=color:#96b5b4>build</span><span>()
+</span><span>            .</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Failed building the Runtime</span><span>")
+</span><span>            .</span><span style=color:#96b5b4>block_on</span><span>(body);
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Let's break down the transformation that has occurred due to the #[tokio::main] macro:<ol><li><strong>Async Block</strong>: The entire async part of the original main function has been encapsulated inside an async block, and this block is assigned to the <code>body</code> variable:</ol><pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>let</span><span> body = async { ... };
+</span></code></pre><p>This <code>body</code> variable holds the asynchronous logic, but by itself, it doesn't execute anything. It merely describes the asynchronous computation.<ol start=2><li><strong>Tokio Runtime Setup</strong>: For the asynchronous code to be executed, a runtime is required. This runtime manages the low-level details of task scheduling, IO, etc. The expanded code sets up this runtime explicitly:</ol><pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span>tokio::runtime::Builder::new_multi_thread()
+</span><span>    .</span><span style=color:#96b5b4>enable_all</span><span>()
+</span><span>    .</span><span style=color:#96b5b4>build</span><span>()
+</span><span>    .</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>Failed building the Runtime</span><span>")
+</span></code></pre><p>Here, a multi-threaded Tokio runtime is being built with all features enabled.<ol start=3><li><strong>Blocking on Async</strong>: The following line:</ol><pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span>.</span><span style=color:#96b5b4>block_on</span><span>(body);
+</span></code></pre><p>Tells the runtime to execute the async block (<code>body</code>) and block the current thread until this asynchronous computation has finished.<ol start=4><li><strong>Clippy Allowance</strong>: The line <code>#[allow(clippy::expect_used, clippy::diverging_sub_expression)]</code> is a hint to the Clippy linting tool to ignore certain potential warnings about the subsequent code. This is added to ensure the generated code doesn't trigger linting warnings.</ol><h3 id=summary>Summary:</h3><p>In essence, the <code>#[tokio::main]</code> macro abstracts away the complexities of setting up the Tokio runtime and managing the transition between synchronous and asynchronous code. By using this macro, developers can focus on the core asynchronous logic without getting bogged down by boilerplate. The expanded version reveals all the "magic" that happens behind the scenes to make the async main function work seamlessly.<p>In essence, <code>cargo expand</code> offers an invaluable tool for anyone diving deep into Rust's powerful macro system, helping developers demystify and understand the inner workings of their code. You can try it your self on <code>#[derive()]</code> Traits. By adding <code>#[derive(Debug)]</code> to one of your custom structs or enums. Use <code>cargo expand</code> to see what code is generated, and then use the <code>println!("{:?}", instance_of_your_struct);</code> to print the debug representation. Similarly, explore with <code>#[derive(PartialEq)]</code> and test it by comparing two instances of your struct with <code>==</code> and <code>!=</code>. Happy coding!</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

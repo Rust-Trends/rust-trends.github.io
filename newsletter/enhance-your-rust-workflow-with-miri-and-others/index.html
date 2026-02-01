@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         43 - Enhance your Rust Workflow with Miri and others
+        
+    </title><meta content="43 - Enhance your Rust Workflow with Miri and others" property=og:title><meta content="Detect undefined behavior in your code and speedup build times with tools we all should use." property=og:description><meta content="Detect undefined behavior in your code and speedup build times with tools we all should use." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/enhance-your-rust-workflow-with-miri-and-others/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="43 - Enhance your Rust Workflow with Miri and others" name=twitter:title><meta content="Detect undefined behavior in your code and speedup build times with tools we all should use." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/enhance-your-rust-workflow-with-miri-and-others/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2024-06-15 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "43 - Enhance your Rust Workflow with Miri and others",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-06-15",
+  "dateModified": "2024-06-15",
+  "description": "Detect undefined behavior in your code and speedup build times with tools we all should use.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;enhance-your-rust-workflow-with-miri-and-others&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;enhance-your-rust-workflow-with-miri-and-others&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "43 - Enhance your Rust Workflow with Miri and others",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;enhance-your-rust-workflow-with-miri-and-others&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "43 - Enhance your Rust Workflow with Miri and others",
+  "description": "Detect undefined behavior in your code and speedup build times with tools we all should use.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;enhance-your-rust-workflow-with-miri-and-others&#x2F;",
+  "datePublished": "2024-06-15",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "43 - Enhance your Rust Workflow with Miri and others",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;enhance-your-rust-workflow-with-miri-and-others&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>43 - Enhance your Rust Workflow with Miri and others</ol></nav><main><article><div class=title><div class=page-header>43 - Enhance your Rust Workflow with Miri and others<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2024-06-15</time></div></div><section class=body><br> We’re thrilled to present the latest edition of Rust Trends, bringing you the freshest updates and insights from the Rust community. <p>Next, dive into our feature article on Miri, the Rust interpreter, and see how it can help you find undefined behavior in your code. Last but not least some tips and tricks on how to improve build times.<p>Thank you for being part of our growing community. Enjoy and Happy coding!<h2 id=understanding-miri-a-crucial-tool-for-rust-developers>Understanding Miri: A Crucial Tool for Rust Developers</h2><img alt=Miri src=../43/miri.webp style=border:0;width:70%;margin-left:auto;margin-right:auto;display:block><p>Rust is celebrated for its memory safety guarantees, and one of the key tools that help enforce these guarantees is Miri. In this article, we’ll dive into what Miri is, why it’s an essential tool for Rust developers, and when you should consider using it.<h3 id=what-is-miri>What is Miri?</h3><p>Miri is an interpreter for Rust’s Mid-level Intermediate Representation (MIR). MIR is a simplified version of Rust code that the compiler uses for various analyses and optimizations before generating machine code. Miri interprets MIR, allowing it to execute Rust code and check for undefined behavior at runtime. This makes it an invaluable tool for debugging and ensuring code correctness.<h3 id=why-use-miri>Why Use Miri?</h3><p>Detecting Undefined Behavior: Miri can detect many forms of undefined behavior, such as:<ul><li>Use of uninitialized memory.<li>Out-of-bounds array access.<li>Violations of pointer aliasing rules.<li>Misuse of unsafe code blocks.</ul><p>Undefined behavior can lead to unpredictable and often dangerous consequences in software, including security vulnerabilities and crashes. Miri’s ability to catch these issues early can save countless hours of debugging and increase the reliability of your code.<p><strong>Debugging Unsafe Code:</strong> Unsafe code in Rust allows developers to perform operations that are not checked by the compiler for safety. While this can be necessary for performance or interfacing with hardware, it also introduces risks. Miri provides a way to execute and test unsafe code paths with additional checks, making it easier to ensure they do not introduce undefined behavior.<p><strong>Teaching and Learning:</strong> Miri is an excellent educational tool. For those learning Rust, understanding how and why certain operations can lead to undefined behavior helps deepen their comprehension of Rust’s safety guarantees and the importance of following best practices.<h3 id=when-to-use-miri>When to Use Miri?</h3><p>During Development: Integrate Miri into your development workflow to catch undefined behavior as early as possible. This is particularly useful when working with complex algorithms or unsafe code blocks. Running Miri on your tests can help identify subtle bugs that might not be caught by regular testing.<p><strong>Code Reviews and Audits:</strong> When reviewing code, especially those containing unsafe blocks or interfacing with low-level system components, using Miri can provide an additional layer of assurance. It helps reviewers identify potential issues that might not be obvious from code inspection alone.<p>**Educational Settings: **For educators and students, using Miri to explore how Rust enforces memory safety and handles low-level operations can provide valuable insights. It’s a practical tool for demonstrating the consequences of undefined behavior and the importance of safe coding practices.<h3 id=conclusion>Conclusion</h3><p>Miri is a powerful tool for Rust developers, providing an extra layer of safety and debugging capabilities. By integrating Miri into your workflow, you can catch undefined behavior early, ensure the safety of your unsafe code, and deepen your understanding of Rust’s safety guarantees. Whether you are a seasoned developer or just starting with Rust, Miri is an essential tool that can help you write safer, more reliable code.<p>For more information and detailed documentation, visit the <a href=https://github.com/rust-lang/miri target=_blank>official Miri repository</a><p>References:<ol><li><a href=https://github.com/rust-lang/miri target=_blank>Miri GitHub Repository</a><li><a href=https://rust-unofficial.github.io/too-many-lists/fifth-miri.html target=_blank>Learning Rust With Entirely Too Many Linked Lists: Miri</a><li><a href=https://www.ralfj.de/blog/2022/07/02/miri.html target=_blank>Ralf Jung’s Blog on Miri</a><li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021" target=_blank>Rust's playground</a> also supports Miri (see tools menu)</ol><h2 id=speeding-up-rust-compile-times>Speeding Up Rust Compile Times></h2><img alt="Speeding up building times" src=../43/speeding-up-build-times.webp style=border:0;width:50%;margin-left:auto;margin-right:auto;display:block><p>Compiling Rust code can sometimes feel slow, but there are numerous strategies to optimize it. Here are key tips derived from recent articles:<ol><li><strong>Use cargo check</strong>: This command checks your code without producing a binary, speeding up the process significantly.<li>Incremental Compilation: Enable incremental compilation to only recompile changed parts.<li>Parallel Compilation: Use Rust’s nightly compiler with the <strong>-Z</strong> threads flag to leverage multiple cores.<li>Optimize Dependencies: Remove unused dependencies and update existing ones regularly.</ol><p>Use <strong>sccache</strong>: Cache compiled dependencies to avoid recompiling unchanged code.<p>For more detailed tips, check out the full articles on <a href=https://blog.rust.careers/post/compile_rust_faster/ target=_blank>Rust Careers</a> and <a href="https://corrode.dev/blog/tips-for-faster-rust-compile-times/?lid=30234" target=_blank>Corrode Dev</a>.<h2 id=snippets>Snippets</h2><ul><li><a href=https://blog.rust-lang.org/2024/06/13/Rust-1.79.0.html target=_blank>Rust 1.79.0 release</a><li><a href="https://www.youtube.com/watch?v=qfknfCsICUM&ab_channel=RustNationUK" target=_blank>Towards Impeccable Rust</a> (Rust Nation UK)<li><a href=https://filtra.io/rust-may-24 target=_blank>Rust Jobs Report of May</a> (by Filtra)</ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

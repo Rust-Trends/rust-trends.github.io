@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions
+        
+    </title><meta content="30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions" property=og:title><meta content="Foundation's training program, expert insights on production use, and the new Rust 1.74.0 release. Join us for key updates!" property=og:description><meta content="Foundation's training program, expert insights on production use, and the new Rust 1.74.0 release. Join us for key updates!" name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/evolving-with-rust-oxidizing-ideas-corroding-conventions/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions" name=twitter:title><meta content="Foundation's training program, expert insights on production use, and the new Rust 1.74.0 release. Join us for key updates!" name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/evolving-with-rust-oxidizing-ideas-corroding-conventions/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-11-22 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-11-22",
+  "dateModified": "2023-11-22",
+  "description": "Foundation&#x27;s training program, expert insights on production use, and the new Rust 1.74.0 release. Join us for key updates!",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;evolving-with-rust-oxidizing-ideas-corroding-conventions&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;evolving-with-rust-oxidizing-ideas-corroding-conventions&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;evolving-with-rust-oxidizing-ideas-corroding-conventions&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions",
+  "description": "Foundation&#x27;s training program, expert insights on production use, and the new Rust 1.74.0 release. Join us for key updates!",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;evolving-with-rust-oxidizing-ideas-corroding-conventions&#x2F;",
+  "datePublished": "2023-11-22",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;evolving-with-rust-oxidizing-ideas-corroding-conventions&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions</ol></nav><main><article><div class=title><div class=page-header>30 - Evolving with Rust: Oxidizing Ideas, Corroding Conventions<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-11-22</time></div></div><section class=body><br> Hello, Rust Enthusiasts! <p>Welcome to the latest edition of Rust Trends, your go-to source for everything happening in the world of Rust programming.<p>In this issue, we delve into the fascinating insights of Matthias Endler, a renowned Rust consultant, as he explores the increasing adoption of Rust in production environments, especially among tech giants.<p>We discuss the Rust Foundation's latest initiative: a training and certification program. This program, aimed at bolstering Rust's growing popularity and demand, is set to enrich the community with quality educational resources and certification opportunities, further solidifying Rust's position in the tech industry.<p>Additionally, we're excited to announce the release of Rust 1.74.0. This release continues to demonstrate Rust's commitment to innovation and stability, offering developers even more tools and capabilities to build robust, efficient applications.<p>Stay tuned for more updates and insights in the dynamic world of Rust programming.<h2 id=article-on-corrode-why-rust-in-production>Article on Corrode: Why Rust in Production?</h2><img alt="Corrode Why Rust in Production" src=../30/hero.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block><h3 id=why-rust-in-production>Why Rust in Production?</h3><p>Matthias Endler's article, "<a href=https://corrode.dev/why-rust/ target=_blank>Why Rust in Production?</a>" on Corrode, is a comprehensive and insightful exploration of the increasing interest in Rust, especially among tech giants like Microsoft, Google, and Amazon. The article addresses a common gap in the dialogue about Rust: the skewed understanding of its application in production settings, particularly for small and medium-sized businesses.<p>Matthias, through his role as a Rust consultant, brings a wealth of experience from working with various companies. He emphasizes that businesses often prioritize productivity, stability, and long-term maintainability over mere performance. His insights are backed by public data and surveys, adding credibility to his observations.<p>The article delves into the reasons for using Rust in production, highlighting its reliability, stability, predictable runtime behavior, cost savings, and developer ergonomics. It also touches upon the focus on long-term sustainability and the increasing popularity of Rust among developers.<p>However, he doesn't shy away from discussing the challenges associated with Rust, such as its immature ecosystem, the scarcity of experienced developers, and the steep learning curve. He provides a balanced view, acknowledging the commitment required to integrate Rust into a technology stack.<p>For anyone considering Rust for their projects or simply curious about its growing popularity, Matthias Endler's article is an essential read.<h3 id=who-is-matthias-endler>Who is Matthias Endler?</h3><p>In the dynamic world of Rust programming, Matthias Endler stands out as a notable figure. A seasoned Rust developer and open-source maintainer, Matthias has been instrumental in advancing the Rust ecosystem. His journey with Rust began in 2015, and since 2019, he has been professionally involved in the Rust community. His expertise is not just limited to development; he extends his knowledge through training, consulting, and contracting, focusing on delivering idiomatic Rust code that is straightforward and lacking of unnecessary complexities.<p>His contributions to the Rust community are significant, with popular Rust crates like <a href=https://github.com/tinysearch/tinysearch target=_blank>tinysearch</a>, <a href=https://github.com/mre/hyperjson target=_blank>hyperjson</a>, and <a href=https://github.com/lycheeverse/lychee target=_blank>lychee</a> credited to his name. Matthias is also a familiar face in the Rust conference circuit, having spoken at events like FOSDEM in Brussels, Cod{e}motion in Amsterdam, and BrisTech in Bristol, among others. He has also conducted workshops at various conferences, sharing his Rust expertise with a wider audience.<h2 id=rust-foundation-initiative-for-a-training-and-certification-program>Rust Foundation Initiative for a Training and Certification Program</h2><img alt="Training and Certification Program" src=../30/crab-certification.webp style=border:0;width:50%;margin-left:auto;margin-right:auto;display:block><p>The Rust Foundation has announced its plan to develop a <a href=https://foundation.rust-lang.org/news/the-rust-foundation-to-develop-training-and-certification-program/ target=_blank>training and certification program</a> for the Rust programming language. This initiative reflects the language's growing popularity, as evidenced by its repeated recognition as the most-loved programming language and the increasing demand for Rust courses. The Foundation aims to use the proceeds from this program to support the Rust community and ecosystem.<p>This program is in its early planning stages and involves collaboration with Rust community experts, including Tim McNamara, an experienced Rust educator. The Foundation's goal is to supplement existing Rust education resources, empower educators, and provide a means for professionals to verify their Rust skills. Details on course pricing and structure are still being developed, with a focus on directing all proceeds towards supporting Rust Foundation initiatives and the Rust Project.<h2 id=snippets>Snippets</h2><ul><li><a href=https://blog.rust-lang.org/2023/11/16/Rust-1.74.0.html target=_blank>Rust 1.74.0</a> is released, do not forget to run <code>rustup update</code><li><a href=https://github.com/bitswired/rustgpt target=_blank>RustGPT</a> a Rust-built web clone of ChatGPT.<li><a href=https://jsoverson.medium.com/was-rust-worth-it-f43d171fb1b3 target=_blank>Was Rust worth it?</a> Article on Medium</ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p><strong>🔗 Stay Connected:</strong><p>Feel free to connect with our editor, Bob Peters, on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a> for more Rust insights and updates.</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

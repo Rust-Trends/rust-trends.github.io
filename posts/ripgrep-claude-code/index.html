@@ -1,0 +1,182 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Why Claude Code Chose ripgrep Over Vector Search
+        
+    </title><meta content="Why Claude Code Chose ripgrep Over Vector Search" property=og:title><meta content="How a Rust-powered text search tool became the backbone of AI coding assistants" property=og:description><meta content="How a Rust-powered text search tool became the backbone of AI coding assistants" name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/ripgrep-claude-code/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Why Claude Code Chose ripgrep Over Vector Search" name=twitter:title><meta content="How a Rust-powered text search tool became the backbone of AI coding assistants" name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/ripgrep-claude-code/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-01-29 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Claude Code Chose ripgrep Over Vector Search",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-01-29",
+  "dateModified": "2026-01-29",
+  "description": "How a Rust-powered text search tool became the backbone of AI coding assistants",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;ripgrep-claude-code&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;ripgrep-claude-code&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Why Claude Code Chose ripgrep Over Vector Search",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;ripgrep-claude-code&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Claude Code Chose ripgrep Over Vector Search",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-01-29",
+  "dateModified": "2026-01-29",
+  "description": "How a Rust-powered text search tool became the backbone of AI coding assistants",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;ripgrep-claude-code&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;ripgrep-claude-code&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Why Claude Code Chose ripgrep Over Vector Search",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;ripgrep-claude-code&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Why Claude Code Chose ripgrep Over Vector Search</ol></nav><main><article><div class=title><div class=page-header>Why Claude Code Chose ripgrep Over Vector Search<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2026-01-29</time></div></div><section class=body><p>Here's a question worth pondering: when every AI coding tool is rushing to implement vector databases and embeddings, why did Anthropic choose a command-line grep replacement instead?<p>Claude Code, Anthropic's agentic coding assistant, relies on <a href=https://github.com/BurntSushi/ripgrep target=_blank>ripgrep</a> for code search. Not embeddings. Not RAG pipelines. Just fast, reliable text search written in Rust.<p>This isn't a minor implementation detail. It reveals something important about how effective AI coding assistants actually work.</p><span id=continue-reading></span><h1 id=what-makes-ripgrep-different>What Makes ripgrep Different</h1><p>ripgrep (command: <code>rg</code>) is a line-oriented search tool created by Andrew Gallant. He first released it in September 2016 after spending 2.5 years working on text search in Rust. The tool combines the usability of The Silver Searcher with the raw performance of GNU grep.<p>The performance comes from deliberate engineering decisions:<ul><li><strong>Rust's regex engine</strong> uses finite automata, SIMD instructions, and aggressive literal optimizations<li><strong>Smart defaults</strong>: respects <code>.gitignore</code> files, skips binary files, and ignores hidden directories automatically<li><strong>Intelligent search strategy</strong>: automatically chooses between memory mapping (better for single files) and buffered reads (better for large directories)<li><strong>UTF-8 decoding built into the DFA</strong>: maintains full Unicode support without the typical performance penalty</ul><p>The regex engine alone represents a significant effort. It guarantees linear time matching on all inputs through its finite automata implementation. No pathological inputs that cause exponential blowup.<p><strong>Takeaways:</strong><ul><li>2.5 years of focused work on a single problem produced something exceptional<li>Smart defaults matter as much as raw speed<li>Linear time guarantees eliminate entire categories of edge cases</ul><h1 id=how-claude-code-uses-ripgrep>How Claude Code Uses ripgrep</h1><p>Claude Code's "Grep" tool is powered by ripgrep out of the box. No configuration needed. The naming is somewhat misleading since it's not GNU grep at all. The system prompt explicitly instructs Claude:<blockquote><p>"If you <em>still</em> need to run <code>grep</code>, STOP. ALWAYS USE ripgrep at <code>rg</code> first, which all Claude Code users have pre-installed."</blockquote><p>Claude Code bundles ripgrep via the <code>@vscode/ripgrep</code> npm package. This is the same package VS Code uses for its search functionality. It works automatically on all supported platforms.<p><strong>Takeaways:</strong><ul><li>ripgrep is enabled by default, no setup required<li>Claude Code ships ripgrep as a bundled dependency<li>The same battle-tested package that powers VS Code search</ul><h1 id=why-not-vector-search>Why Not Vector Search?</h1><p>This is the interesting part. Most AI coding tools use RAG (Retrieval-Augmented Generation) with embeddings. You chunk the codebase, create vector embeddings, store them in a database, and do similarity search.<p>Claude Code took a different approach: just search the text directly.<p>The advantages are significant:<ul><li><strong>No indexing required</strong>: ripgrep works immediately on any codebase<li><strong>Exact matches</strong>: regex search finds precisely what you're looking for<li><strong>Git-aware</strong>: automatically respects <code>.gitignore</code><li><strong>Predictable</strong>: you know exactly what it's searching</ul><p>One Hacker News commenter noted this is still technically a form of RAG. It just uses Information Retrieval techniques that have existed for decades rather than vector search. Sometimes the old approaches work better.<p><strong>Takeaways:</strong><ul><li>Zero indexing time means instant productivity on new codebases<li>Exact text matching avoids the semantic drift of embeddings<li>Proven techniques often beat newer alternatives</ul><h1 id=the-vs-code-connection>The VS Code Connection</h1><p>ripgrep's adoption in Claude Code follows an established pattern. In March 2017, Visual Studio Code (version 1.11) switched to ripgrep for its text search functionality. This was a significant endorsement. VS Code's search now handles millions of searches daily across codebases of all sizes.<p>Microsoft maintains the <code>vscode-ripgrep</code> npm package specifically for this integration. Claude Code uses this same package, essentially inheriting years of production testing.<p><strong>Takeaways:</strong><ul><li>VS Code validated ripgrep at massive scale<li>Claude Code benefits from that battle-testing<li>Reusing proven infrastructure reduces risk</ul><h1 id=configuration-tips>Configuration Tips</h1><p>ripgrep works out of the box with Claude Code. No configuration is required for most users.<p><strong>For Alpine Linux and musl-based distributions</strong>, the bundled ripgrep binary doesn't work. You'll need to install ripgrep separately and tell Claude Code to use it:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>apk</span><span> add libgcc libstdc++ ripgrep
+</span><span style=color:#b48ead>export </span><span style=color:#bf616a>USE_BUILTIN_RIPGREP</span><span>=</span><span style=color:#a3be8c>0
+</span></code></pre><p><strong>Optional performance optimization</strong>: By default, Claude Code uses a bundled ripgrep that runs through a Node.js wrapper. Community members report that using your system's ripgrep directly can be faster in large codebases. To try this:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#65737e># Install ripgrep
+</span><span style=color:#bf616a>brew</span><span> install ripgrep  </span><span style=color:#65737e># macOS
+</span><span style=color:#bf616a>apt</span><span> install ripgrep   </span><span style=color:#65737e># Ubuntu/Debian
+</span><span>
+</span><span style=color:#65737e># Tell Claude Code to use system ripgrep instead of bundled
+</span><span style=color:#b48ead>export </span><span style=color:#bf616a>USE_BUILTIN_RIPGREP</span><span>=</span><span style=color:#a3be8c>0
+</span><span>
+</span><span style=color:#65737e># Add to ~/.zshrc or ~/.bashrc for persistence
+</span></code></pre><p>Note: This optimization is not officially documented by Anthropic and results may vary.<h1 id=build-your-own-grep>Build Your Own grep</h1><p>If you want to understand how tools like ripgrep work under the hood, <a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>CodeCrafters</a> offers a "Build your own grep" challenge where you implement a regex engine from scratch.<p>The challenge covers:<ul><li>Character classes and quantifiers<li>Anchors and wildcards<li>Backreferences<li>File search and recursive directory traversal<li>Match highlighting</ul><p>It's available in 16 languages including Rust. The stages progress from matching literal characters (5 minutes) to implementing nested backreferences (1+ hours). A solid way to understand both regex internals and Rust's approach to systems programming.<h1 id=the-rust-ecosystem-effect>The Rust Ecosystem Effect</h1><p>ripgrep is one of the clearest examples of Rust delivering on its promise: C-level performance with memory safety and a pleasant developer experience. The tool has nearly 59,000 GitHub stars and powers search in some of the most widely-used developer tools.<p>For the Rust ecosystem, this creates a virtuous cycle:<ol><li>High-profile tools like ripgrep demonstrate Rust's capabilities<li>These tools become dependencies for other projects (VS Code, Claude Code)<li>More developers encounter Rust through these tools<li>The ecosystem grows</ol><p>Andrew Gallant continues to maintain ripgrep along with several other foundational Rust crates: the regex crate, aho-corasick, bstr, and the recently released jiff datetime library.<p><strong>Takeaways:</strong><ul><li>ripgrep demonstrates Rust's value proposition clearly<li>Foundational tools drive ecosystem adoption<li>One maintainer's consistent work can have outsized impact</ul><hr><p>The choice of ripgrep over vector search in Claude Code reminds us that sometimes the best solution isn't the newest one. It's the one that's been battle-tested and does exactly what you need.<h1 id=links>Links</h1><ul><li><a href=https://github.com/BurntSushi/ripgrep target=_blank>ripgrep on GitHub</a><li><a href=https://burntsushi.net/ target=_blank>Andrew Gallant's blog</a><li><a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>CodeCrafters</a> (use this link for a discount)<li><a href=https://code.claude.com/docs/en/setup target=_blank>Claude Code setup documentation</a></ul></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

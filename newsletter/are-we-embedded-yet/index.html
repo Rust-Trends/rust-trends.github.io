@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         19 - Are we Embedded yet?
+        
+    </title><meta content="19 - Are we Embedded yet?" property=og:title><meta content="This week's Rust Trends newsletter delves into the challenges and developments in Rust for embedded systems. The post discusses roadblocks to Rust adoption, industry responses, and an introduction to a hex viewer tool written in Rust for binary data analysis." property=og:description><meta content="This week's Rust Trends newsletter delves into the challenges and developments in Rust for embedded systems. The post discusses roadblocks to Rust adoption, industry responses, and an introduction to a hex viewer tool written in Rust for binary data analysis." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/are-we-embedded-yet/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="19 - Are we Embedded yet?" name=twitter:title><meta content="This week's Rust Trends newsletter delves into the challenges and developments in Rust for embedded systems. The post discusses roadblocks to Rust adoption, industry responses, and an introduction to a hex viewer tool written in Rust for binary data analysis." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/are-we-embedded-yet/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-06-21 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "19 - Are we Embedded yet?",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-06-21",
+  "dateModified": "2023-06-21",
+  "description": "This week&#x27;s Rust Trends newsletter delves into the challenges and developments in Rust for embedded systems. The post discusses roadblocks to Rust adoption, industry responses, and an introduction to a hex viewer tool written in Rust for binary data analysis.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;are-we-embedded-yet&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;are-we-embedded-yet&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "19 - Are we Embedded yet?",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;are-we-embedded-yet&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "19 - Are we Embedded yet?",
+  "description": "This week&#x27;s Rust Trends newsletter delves into the challenges and developments in Rust for embedded systems. The post discusses roadblocks to Rust adoption, industry responses, and an introduction to a hex viewer tool written in Rust for binary data analysis.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;are-we-embedded-yet&#x2F;",
+  "datePublished": "2023-06-21",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "19 - Are we Embedded yet?",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;are-we-embedded-yet&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>19 - Are we Embedded yet?</ol></nav><main><article><div class=title><div class=page-header>19 - Are we Embedded yet?<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-06-21</time></div></div><section class=body><br><blockquote><p><q>This edition is to check in on the state of Rust for Embedded Systems</q></blockquote><p>Hello, Rustaceans!<p>Welcome to this week's edition of the Rust Trends newsletter. We have an exciting lineup of articles prepared for you, packed with valuable insights and updates from the world of Rust programming.<p>In this edition, we focus on embedded systems and the roadblocks that stand in the way of Rust adoption. We will also introduce you to a hex viewer written in Rust, for your binary data analysis needs.<p>So grab your favorite beverage, sit back, and let's dive right in!<h2 id=embedded-systems-and-the-5-roadblocks-to-rust-adoption>Embedded Systems and the 5 Roadblocks to Rust Adoption</h2><img alt=Microcontroller src=../19/microcontroller.webp style=width:40%;margin-left:auto;margin-right:auto;display:block><p>Rust has been making progress as a language for adoption in the embedded systems world. However, several significant roadblocks hinder its widespread acceptance. This <a href=https://www.embedded.com/5-roadblocks-to-rust-adoption-in-embedded-systems/ target=_blank>article on Embedded.com</a> highlights 5 roadblocks to Rust adoption in embedded systems. These are the takeaways:<ol><li>Rust faces roadblocks in embedded systems adoption due to limited commercial support from microcontroller vendors, leaving developers to figure things out on their own.<li>The learning curve for Rust is steeper than other languages, leading to higher training costs and longer development times for teams interested in using it for embedded systems.<li>Conservative adoption of technologies in the embedded industry, coupled with the investment in existing workflows and talent, makes switching to Rust less appealing for many companies.<li>Rust's integration with existing toolchains and development processes in embedded systems may require significant rework, potentially leading to lost insights and additional development time.<li>The lack of a formal specification and standardization in Rust poses challenges for commercial support and consistency, particularly in safety-critical applications with long product lifetimes.</ol><p>Moreover, the author mentions, <em>"I hate to say it, but an experienced professional can do the same things in C or C++ that a Rust programmer can do just as safely."</em> I strongly disagree with this statement. The reason why embedded firmware has so many vulnerabilities is that languages like C and C++ do not provide inherent protection against making mistakes in the first place. As humans, we are prone to errors, and in my opinion, enforcing programming practices that ensure the correct approach is the only truly safe way forward.<p>The key food for thought is: How can the industry strike a balance between risk aversion and embracing new technologies to drive progress?<h2 id=embedded-rust-the-lay-of-the-land>Embedded Rust: the lay of the land</h2><img alt="Microcontroller with Rust" src=../19/rust-micro.webp style=width:40%;margin-left:auto;margin-right:auto;display:block><p>For starters a nice overview for Embedded Rust is the repository <a href=https://github.com/rust-embedded/awesome-embedded-rust target=_blank>Awesome Embedded Rust</a>. <a href=https://docs.rust-embedded.org/book/ target=_blank>The official Embedded Rust Book</a> and a great <a href=https://blog.mbedded.ninja/programming/languages/rust/running-rust-on-microcontrollers/ target=_blank>blogpost by the Mbedded Ninja</a>.<p>Moreover several microcontroller vendors have started providing support (un) officially for the Rust programming language. Here are a few notable ones:<ul><li><p>Nordic Semiconductor support for Rust for their nrf52, and nrf53 series of microcontrollers. They provide a Rust-enabled software hardware abstraction layer called <a href=https://github.com/nrf-rs/nrf-hal target=_blank>nrf-hal</a>, which allows developers to write firmware using Rust for their microcontrollers.</p><li><p>STMicroelectronics Rust support for their STM32 microcontroller family. They offer a Rust-specific hardware abstraction layer (HAL) called <a href=https://github.com/stm32-rs/stm32-rs target=_blank>stm32-rs</a>, enabling developers to write embedded software in Rust for STM32 microcontrollers.</p><li><p>NXP Semiconductors Rust support for their i.MX RT series of microcontrollers. They offer the <a href=https://github.com/imxrt-rs/imxrt-hal target=_blank>imxrt-rs crate</a>, which is a Rust API for programming i.MX RT microcontrollers, allowing developers to leverage the Rust language for embedded development.</p><li><p>Espressif official support for the popular ESP32 controllers. They offer <a href=https://github.com/esp-rs target=_blank>esp-rs crate</a> and the <a href=https://esp-rs.github.io/book/ target=_blank>ESP32 book</a>.</p><li><p>Infineon official support for Rust for their <a href=https://www.electronicsmedia.info/2023/03/09/microcontrollers-supporting-rust-ecosystem/ target=_blank>(Automotive) Microcontrollers</a>.</p></ul><p>It's important to note that the availability and extent of Rust support may vary among different microcontroller vendors and their specific microcontroller families. It's always recommended to consult the official documentation and resources provided by the respective vendors for the most up-to-date information on Rust support.<h2 id=hex-viewer-empowering-binary-data-analysis-with-rust>Hex Viewer: Empowering Binary Data Analysis with Rust</h2><img alt="Pac-Man kill screen" src=../19/Pac-man.webp style=width:40%;margin-left:auto;margin-right:auto;display:block><p>Hex editors play a crucial role in low-level data analysis and manipulation. Every embedded system developer should have one in their toolkit.<p><a href=https://github.com/sharkdp/hexyl target=_blank>Hexyl</a>, a powerful hex viewer for the terminal, is written entirely in Rust. It utilizes colored output to differentiate various categories of bytes, offering an efficient and intuitive approach to working with binary data.<p>An example of a well-known hack that involved the use of a hex editor:<p>Is the case of the "Pac-Man Kill Screen" in the classic arcade game Pac-Man. In the original Pac-Man arcade machine, a bug caused the game to reach an unplayable level 256, known as the "kill screen." This bug occurred due to an integer overflow issue, where the game's code was unable to handle a higher level number.<p>In order to bypass this issue and reach the kill screen intentionally, some skilled players and hackers used a hex editor to modify the game's code. By locating the specific section of code responsible for the level counter and adjusting it, they were able to bypass the limitations and continue playing beyond level 256. If you want to learn more about it watch this <a href="https://www.youtube.com/watch?v=NKKfW8X9uYk&ab_channel=RetroGameMechanicsExplained" target=_blank>youtube movie</a>.<hr><p>Do not hesitate to explore new possibilities in Rust. Pushing yourself out of your comfort zone can be a great way to learn and grow as a programmer.<p>Thanks for reading! Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a><p>Ps. Did someone forward this email to you? Sign up here for our newsletter.</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

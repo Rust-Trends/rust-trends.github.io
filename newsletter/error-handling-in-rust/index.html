@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         11 - Error Handling in Rust
+        
+    </title><meta content="11 - Error Handling in Rust" property=og:title><meta content="Explore how to handle errors in Rust through this comprehensive guide. Dive into the world of error handling in Rust, understand the importance of the Result type and the ? operator, and learn about the match operator. Gain insights on how Rust makes error handling explicit, ensuring robust and efficient programming." property=og:description><meta content="Explore how to handle errors in Rust through this comprehensive guide. Dive into the world of error handling in Rust, understand the importance of the Result type and the ? operator, and learn about the match operator. Gain insights on how Rust makes error handling explicit, ensuring robust and efficient programming." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/error-handling-in-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="11 - Error Handling in Rust" name=twitter:title><meta content="Explore how to handle errors in Rust through this comprehensive guide. Dive into the world of error handling in Rust, understand the importance of the Result type and the ? operator, and learn about the match operator. Gain insights on how Rust makes error handling explicit, ensuring robust and efficient programming." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/error-handling-in-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-02-12 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "11 - Error Handling in Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-02-12",
+  "dateModified": "2023-02-12",
+  "description": "Explore how to handle errors in Rust through this comprehensive guide. Dive into the world of error handling in Rust, understand the importance of the Result type and the ? operator, and learn about the match operator. Gain insights on how Rust makes error handling explicit, ensuring robust and efficient programming.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;error-handling-in-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;error-handling-in-rust&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "11 - Error Handling in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;error-handling-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "11 - Error Handling in Rust",
+  "description": "Explore how to handle errors in Rust through this comprehensive guide. Dive into the world of error handling in Rust, understand the importance of the Result type and the ? operator, and learn about the match operator. Gain insights on how Rust makes error handling explicit, ensuring robust and efficient programming.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;error-handling-in-rust&#x2F;",
+  "datePublished": "2023-02-12",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "11 - Error Handling in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;error-handling-in-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>11 - Error Handling in Rust</ol></nav><main><article><div class=title><div class=page-header>11 - Error Handling in Rust<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-02-12</time></div></div><section class=body><br><blockquote><p><q>We all make errors. But how to handle them?</q></blockquote><p>I am excited to bring you a new edition of our newsletter, focused on a topic that is crucial to every programmer: error handling in Rust. No matter how experienced or talented you are, errors are an inevitable part of the programming process. But do not worry, Rust provides a robust and efficient way to handle them.<p>In this edition, we will dive into the world of error handling in Rust and explore how you can handle errors in your programs with ease. From the Result type and the ? operator, to the match operator and beyond, we will cover all the essential elements of error handling in Rust. So, without further ado, let’s dive in!<h2 id=introduction-to-error-handling>Introduction to Error Handling</h2><div class=row><div class=column>The idea behind error handling in Rust is to make it explicit and unavoidable for the programmer to deal with errors. If you look at other programming languages handling errors is optional. E.g. if you do not use a Try and Except in Python you can still run your script. This can lead to subtle bugs that are difficult to debug and fix. <p>Rust achieves strict handling of errors by using its type system to force it at compile time. In other words, the code will not compile and therefore not run. Which makes writing incorrect code harder from the start.<p>Errors in Rust can be classified into two categories:<ul><li>Recoverable errors<li>Unrecoverable errors</ul><p><strong>Recoverable errors</strong> are errors that can be handled and recovered from within the program. These errors are usually indicated by the Result type, which represents the result of an operation that might fail.<p><strong>Unrecoverable errors</strong>, on the other hand, are errors that cannot be handled within the program and cause the program to terminate immediately. These errors are usually indicated by using the panic! macro or assert macro that calls panic!, which stops the program and displays an error message. Unrecoverable errors are typically used for cases where something unexpected has occurred, such as an assertion failure or a bug in the code.<p>In my opinion, there is no justification for intentionally causing a panic. This is because panics can always be replaced with recoverable errors, which provide a more flexible and controlled method of handling errors. So we will focus on the recoverable errors.</div><div class=column><img alt="Error icon" src=../11/error_icon.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block></div></div><h2 id=recoverable-errors>Recoverable errors</h2><div class=row><div class=column><img alt="Error head" src=../11/error-head.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></div><div class=column>In Rust, errors are represented as values of the `Result` type, which is an enumeration with two variants: Ok and Err. <p>When an operation returns Ok(T), it means that the operation was successful and the value of type T is returned.<p>When an operation returns Err(E), it means that the operation failed and an error of type E is returned.<p>The programmer can then handle the error by using techniques such as <a href=https://doc.rust-lang.org/book/ch06-02-match.html target=_blank>pattern matching</a>, propagating the error up the call stack with <a href=https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the--operator target=_blank>the ? operator</a>, or by using error-handling functions such as unwrap() or expect().<p>Besides the <code>Result</code> type there is another important type called <code>Option</code>. In Rust, the <code>Option</code> type is a way to represent the presence or absence of a value. It is a generic enum with two variants: Some(T) and None. Some(T) holds a value of type T, while None represents the absence of a value.<p>For example, you can use an <code>Option</code> value to represent the result of a function that may or may not find a value, like searching a vector for an item. Instead of returning an error code or throwing an exception, the function would return Some(T) if a value was found and None otherwise.<p>In this way, the <code>Option</code> type can be seen as part of error handling because it provides a way to handle the absence of a value in a type-safe and explicit way, without relying on error codes or exceptions.<p>The following links might be useful to you to dive deeper into the discussed topics:<ol><li>The Rust Book: <a href=https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html target=_blank>Recoverable Errors</a><li><a href=https://doc.rust-lang.org/src/std/io/error.rs.html#68-70 target=_blank>Error struct</a> in the standard library<li>The <a href=https://doc.rust-lang.org/std/result/enum.Result.html target=_blank><code>Result</code> type</a> in the standard library<li>Great <a href=https://blog.burntsushi.net/rust-error-handling/ target=_blank>blog post by Burntsushi (Andrew Gallant)</a><li>Another <a href=https://doc.rust-lang.org/std/result/enum.Result.html target=_blank>blog post on unwrap by Burntsushi</a></ol></div></div><h2 id=snippets>Snippets</h2><ul><li><a href=https://www.thoughtworks.com/en-in/insights/blog/programming-languages/rust-automotive-software target=_blank>Rust as a programming language for automotive software?</a><li><a href=https://www.linkedin.com/company/rust-trends target=_blank>Did you know there is also a Rust Trends LinkedIn Page?</a><li><a href=https://blog.rust-lang.org/2023/02/09/Rust-1.67.1.html target=_blank>Rust 1.67.1</a>, February the 9th. Do not forget to run <code>rustup update</code></ul><hr><p>Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

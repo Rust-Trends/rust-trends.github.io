@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         12 - Emulators and memory management visualization
+        
+    </title><meta content="12 - Emulators and memory management visualization" property=og:title><meta content="Join us in exploring Nintendo emulators in Rust and memory management visualization tools in this exciting issue. Learn about the unique gaming experience brought by NES emulators in Rust and the nuances of Stack and Heap in memory management. Discover the Aquascope tool to understand Rust's borrow checker visually." property=og:description><meta content="Join us in exploring Nintendo emulators in Rust and memory management visualization tools in this exciting issue. Learn about the unique gaming experience brought by NES emulators in Rust and the nuances of Stack and Heap in memory management. Discover the Aquascope tool to understand Rust's borrow checker visually." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/emulators-and-memory-management-visualization/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="12 - Emulators and memory management visualization" name=twitter:title><meta content="Join us in exploring Nintendo emulators in Rust and memory management visualization tools in this exciting issue. Learn about the unique gaming experience brought by NES emulators in Rust and the nuances of Stack and Heap in memory management. Discover the Aquascope tool to understand Rust's borrow checker visually." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/emulators-and-memory-management-visualization/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-02-26 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "12 - Emulators and memory management visualization",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-02-26",
+  "dateModified": "2023-02-26",
+  "description": "Join us in exploring Nintendo emulators in Rust and memory management visualization tools in this exciting issue. Learn about the unique gaming experience brought by NES emulators in Rust and the nuances of Stack and Heap in memory management. Discover the Aquascope tool to understand Rust&#x27;s borrow checker visually.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;emulators-and-memory-management-visualization&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;emulators-and-memory-management-visualization&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "12 - Emulators and memory management visualization",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;emulators-and-memory-management-visualization&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "12 - Emulators and memory management visualization",
+  "description": "Join us in exploring Nintendo emulators in Rust and memory management visualization tools in this exciting issue. Learn about the unique gaming experience brought by NES emulators in Rust and the nuances of Stack and Heap in memory management. Discover the Aquascope tool to understand Rust&#x27;s borrow checker visually.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;emulators-and-memory-management-visualization&#x2F;",
+  "datePublished": "2023-02-26",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "12 - Emulators and memory management visualization",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;emulators-and-memory-management-visualization&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>12 - Emulators and memory management visualization</ol></nav><main><article><div class=title><div class=page-header>12 - Emulators and memory management visualization<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-02-26</time></div></div><section class=body><br><blockquote><p><q>Understand your program by having a mental picture</q></blockquote><p>Who said programming should be boring? In this edition, we will bring back the good old times with retro gaming in Rust! Moreover, this newsletter showcases a visualization tool for a better understanding of Rust programs in terms of borrowing, heap, and stack. Grab some coffee and let’s dive in…<h2 id=nintendo-emulator-in-rust>Nintendo Emulator in Rust</h2><div class=row><div class=column>An emulator is a software program that is designed to emulate the behavior of the Nintendo Entertainment System (NES), a popular video game console that was first released in the mid-1980s. The purpose of an emulator is to allow you to play Nintendo games on your computer or e.g. your Raspberry Pico without the need for the original console. <p>When you run an NES emulator, written in Rust, on your computer or other devices, it creates a virtual environment that mimics the hardware of the original NES console. The emulator includes software that emulates the various components of the console, such as the CPU, and the graphics processing unit. The emulator also includes software that can read and interpret the code of NES game cartridges, which you can download <a href=https://www.consoleroms.com/roms/nes target=_blank>here</a> and play in the <a href=https://henrikpersson.github.io/nes/index.html target=_blank>NES wasm emulator</a> in your browser.<p>Once the emulator is up and running, you can load the virtual game cartridges into the emulator, and it will execute the code of the game as if it were being played on the original console. The emulator will output the video that the game would generate on the original hardware, allowing you to play the game on your computer.<p>Overall, an NES emulator is a powerful tool that allows users to enjoy classic NES games on modern hardware, preserving the experience of playing these games for future generations.</div><div class=column><img alt="Super Mario" src=../12/super-mario.webp style=border:1px;width:100%;margin-left:auto;margin-right:auto;display:block></div></div><h2 id=memory-management-what-the-hack-is-a-stack-and-heap>Memory management: what the hack is a Stack and Heap?</h2><div class=row><div class=column><img alt="Stack memory" src=../12/memory-stack.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></div><div class=column>The stack and the heap are two areas of memory that a program can use to store data. <p>The stack is a memory region that is used to keep track of function calls and local variables. It works like a stack of plates: you add a new plate (or item) to the top of the stack, and when you are done with it, you remove it from the top. This order is called Last In First Out (LIFO). The simplicity makes it fast because it can be managed easily and either lives in RAM (fast) or cache (faster) of your CPU. Moreover, the stack is limited in size<p>The heap, on the other hand, is a larger and more flexible area of memory that can be used to store data that is too large to fit on the stack or needs to be dynamically allocated during the program’s execution (e.g. mutable vectors or Boxed variables).<p>Overall, the stack is faster and more efficient, but it has less memory available and is less flexible. The heap is slower and more complex, but it can be used to store larger amounts of data and is more flexible. Knowing when to use each of these memory regions is an important part of writing efficient and effective computer programs. To understand the choices that are made on memory management in Rust (e.g. <a href=https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html target=_blank>ownership</a>), knowing what a Stack and Heap are is a must.<p><strong>Some nice reading material:</strong><ul><li>A stack and heap discussion on <a href=https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap target=_blank>StackOverflow</a><li><a href=https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/the-stack-and-the-heap.html target=_blank>The Stack and the Heap in Rust</a><li><a href=https://en.wikipedia.org/wiki/Stack-based_memory_allocation target=_blank>Stack based memory allocation</a> on Wikipedia<li><a href=https://en.wikipedia.org/wiki/Memory_management#Manual_memory_management target=_blank>Heap based memory allocation</a> on Wikipedia</ul></div></div><h2 id=understanding-code-with-help-of-a-visualization-tool>Understanding code with help of a visualization tool</h2><div class=row><div class=column>The Rust borrow checker is a key component of the Rust programming language that enforces ownership and borrowing rules at compile-time, ensuring that programs are free from certain kinds of memory errors such as data races and null pointer dereferences. The borrow checker analyzes a Rust program’s use of mutable and immutable references to ensure that they are used correctly and that the lifetime of the references is valid throughout the program’s execution. By enforcing these rules, the borrow checker helps Rust programs achieve memory safety and prevents common programming errors that can lead to crashes or security vulnerabilities. <p>To get a better understanding of this topic <a href=https://github.com/cognitive-engineering-lab/aquascope target=_blank>Aquascope</a> can be a very useful tool.<p>“Aquascope is a tool that generates interactive visualizations of Rust programs. These visualizations show how Rust’s borrow checker “thinks” about a program, and how a Rust program actually executes.”<p>Go ahead and give it a try!</div><div class=column><img alt="Aquascope visualization tool borrow checker" src=../12/aquascope.webp style=border:0;width:90%;margin-left:auto;margin-right:auto;display:block></div></div><hr><p>Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

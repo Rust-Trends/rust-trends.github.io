@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         35 - Rust Redis & Design Patterns
+        
+    </title><meta content="35 - Rust Redis & Design Patterns" property=og:title><meta content="Insights on cutting-edge Rust projects, expert tips on design patterns, and the latest community news." property=og:description><meta content="Insights on cutting-edge Rust projects, expert tips on design patterns, and the latest community news." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/rust-redis-design-patterns/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="35 - Rust Redis & Design Patterns" name=twitter:title><meta content="Insights on cutting-edge Rust projects, expert tips on design patterns, and the latest community news." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-redis-design-patterns/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2024-02-15 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "35 - Rust Redis &amp; Design Patterns",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-02-15",
+  "dateModified": "2024-02-15",
+  "description": "Insights on cutting-edge Rust projects, expert tips on design patterns, and the latest community news.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-redis-design-patterns&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-redis-design-patterns&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "35 - Rust Redis &amp; Design Patterns",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-redis-design-patterns&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "35 - Rust Redis &amp; Design Patterns",
+  "description": "Insights on cutting-edge Rust projects, expert tips on design patterns, and the latest community news.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-redis-design-patterns&#x2F;",
+  "datePublished": "2024-02-15",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "35 - Rust Redis &amp; Design Patterns",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-redis-design-patterns&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>35 - Rust Redis & Design Patterns</ol></nav><main><article><div class=title><div class=page-header>35 - Rust Redis & Design Patterns<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2024-02-15</time></div></div><section class=body><br> In this issue of Rust Trends, we're bringing you the most exciting developments in Rust. From innovative applications to key programming insights, this edition is tailored to enhance your understanding and skills in Rust, whether you're a beginner or an advanced user. <h2 id=boost-your-rust-skills-with-the-redis-challenge>Boost Your Rust Skills with the Redis Challenge!</h2><img alt="Redis In-Memory data structure store" src=../35/Memory.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block><p>Great news for those looking to upskill in Rust! Until the end of March, seize the chance to join Codecrafters' "Build Your Own Redis" challenge for free. It's not just a coding task; it's a deep dive into building Redis, a popular in-memory data structure store, using Rust.<p><strong>Why It's Worth Your Time:</strong><ul><li><strong>Skill Enhancement:</strong> Perfect for honing your Rust skills.<li><strong>Professional Development:</strong> Using Rust in a practical real-world application<li><strong>Fun and Engaging:</strong> A rewarding experience that balances learning with enjoyment.</ul><p><strong>What's More - Try It for Free!</strong> You don't have to take my word for it. <strong>Start the challenge for free</strong> and see the impact on your Rust expertise. The nice thing about Codecrafters is that it guides you with right amount of information to start coding and also provides more background if you want to learn more about a subject.<p><strong>Get Started:</strong><ul><li><strong>Explore the Challenge:</strong> Head over to <a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>Codecrafters</a> and sign up with the use my referral link to support me with Rust-Trends at no extra cost.<li><strong>Dive Into Rust:</strong> Begin your journey at your own pace and enjoy the process.<li><strong>Want to learn more about Redis:</strong> Head over to the <a href=https://redis.io/ target=_blank>Redis website</a>.</ul><p>Happy coding! 🚀🦀💼<h2 id=exploring-design-patterns-in-rust-a-curated-list>Exploring Design Patterns in Rust: A Curated List</h2><img alt="Architect Design Patterns" src=../35/Architect.webp style=border:0;width:50%;margin-left:auto;margin-right:auto;display:block><p>Design patterns in Rust streamline code development, ensuring robust, maintainable solutions. They standardize approaches to common problems, enhancing code clarity and facilitating easier communication among developers. Below you can find a comprehensive list:<p><a href=https://rust-unofficial.github.io/patterns/ target=_blank>Rust Design Patterns - Unofficial</a>: An unofficial collection of design patterns for Rust, hosted on GitHub, offering a range of patterns and idioms.<p><a href=https://dpc.pw/posts/how-i-structure-my-apps-in-rust-and-other-languages target=_blank>Structuring Apps in Rust</a>: D. P. Chowaniec's post discusses their approach to structuring applications in Rust, offering valuable insights and techniques.<p><a href=https://github.com/lpxxn/rust-design-pattern target=_blank>Rust Design Pattern Examples</a>: A comprehensive collection of design pattern examples in Rust, maintained by L. X. on GitHub, essential for practical application.<p><a href=https://cliffle.com/blog/rust-typestate/ target=_blank>Rust Typestate Pattern</a>: Cliff Biffle's blog post delves into the Typestate pattern in Rust, highlighting its utility and implementation nuances.<p><a href="https://www.youtube.com/watch?v=VFmPwvhubow&pp=ygUUZGVzaWduIHBhdHRlcm5zIHJ1c3Q%3D" target=_blank>Rust State Design Pattern</a>: Explore the State Design Pattern in Rust with Let's Get Rusty's concise tutorial on YouTube. This video provides a practical demonstration of implementing the State pattern in Rust programming.<p><a href="https://www.youtube.com/watch?v=5DWU-56mjmg&ab_channel=Let%27sGetRusty" target=_blank>Discover the Builder Pattern in Rust</a>: Let's Get Rusty's tutorial video is a quick guide on its implementation in idiomatic Rust.<h2 id=snippets>Snippets</h2><ul><li><p><a href=https://security.googleblog.com/2024/02/improving-interoperability-between-rust-and-c.html target=_blank>Google's latest initiative donates $1 million to the Rust Foundation</a>, aiming to enhance Rust's interoperability with C++ and bolster software memory safety.</p><li><p>Explore the New Horizons: <a href=https://blog.rust-lang.org/2024/02/08/Rust-1.76.0.html target=_blank>Rust 1.76.0</a> is Here! Discover the latest enhancements and features in the Rust programming language by checking out the release notes. Do not forget to run <code>rustup update</code>.</p><li><p>Discover Why Rust is the Premier Choice for Robotics: Matic Robots shares insights on how Rust's safety, performance, and error handling elevate their robot development. Learn more about their journey with Rust at <a href=https://maticrobots.com/blog/why-rust-its-the-safe-choice/ target=_blank>Matic Robots Blog</a>.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

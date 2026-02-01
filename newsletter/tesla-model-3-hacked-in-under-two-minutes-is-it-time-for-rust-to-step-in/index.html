@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?
+        
+    </title><meta content="15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?" property=og:title><meta content="In this edition, we discuss the implications of the recent Tesla Model 3 hack, the potential of the Rust programming language in secure system development, the use of Rust in space applications, and the new build system, Buck2, made by Meta. We also share updates from Twitter and upcoming Rust conferences." property=og:description><meta content="In this edition, we discuss the implications of the recent Tesla Model 3 hack, the potential of the Rust programming language in secure system development, the use of Rust in space applications, and the new build system, Buck2, made by Meta. We also share updates from Twitter and upcoming Rust conferences." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/tesla-model-3-hacked-in-under-two-minutes-is-it-time-for-rust-to-step-in/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?" name=twitter:title><meta content="In this edition, we discuss the implications of the recent Tesla Model 3 hack, the potential of the Rust programming language in secure system development, the use of Rust in space applications, and the new build system, Buck2, made by Meta. We also share updates from Twitter and upcoming Rust conferences." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/tesla-model-3-hacked-in-under-two-minutes-is-it-time-for-rust-to-step-in/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-04-12 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-04-12",
+  "dateModified": "2023-04-12",
+  "description": "In this edition, we discuss the implications of the recent Tesla Model 3 hack, the potential of the Rust programming language in secure system development, the use of Rust in space applications, and the new build system, Buck2, made by Meta. We also share updates from Twitter and upcoming Rust conferences.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;tesla-model-3-hacked-in-under-two-minutes-is-it-time-for-rust-to-step-in&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;tesla-model-3-hacked-in-under-two-minutes-is-it-time-for-rust-to-step-in&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;tesla-model-3-hacked-in-under-two-minutes-is-it-time-for-rust-to-step-in&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?",
+  "description": "In this edition, we discuss the implications of the recent Tesla Model 3 hack, the potential of the Rust programming language in secure system development, the use of Rust in space applications, and the new build system, Buck2, made by Meta. We also share updates from Twitter and upcoming Rust conferences.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;tesla-model-3-hacked-in-under-two-minutes-is-it-time-for-rust-to-step-in&#x2F;",
+  "datePublished": "2023-04-12",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;tesla-model-3-hacked-in-under-two-minutes-is-it-time-for-rust-to-step-in&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?</ol></nav><main><article><div class=title><div class=page-header>15 - Tesla Model 3 hacked in under two minutes, is it time for Rust to step in?<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-04-12</time></div></div><section class=body><br><blockquote><p><q>Security, Twitter and more …</q></blockquote><p>We are excited to announce that we will now be publishing our bi-weekly newsletter on Wednesdays instead of Sundays. We hope this change will better accommodate your busy schedules and provide ample time to read and digest our valuable insights.<p>In this edition, we are focusing on the important topic of security and safety, which is becoming increasingly critical in today’s digital and connected world.<p>In addition to this, we will also be bringing you the latest news and updates from the world of Rust programming, so be sure to read on and stay up to date with the latest developments.<p>Let’s dive into today’s topics and discover the latest and greatest in the world of Rust programming! <br><h2 id=could-rust-be-the-ideal-language-for-secure-systems>Could Rust be the ideal language for Secure Systems?</h2><img alt="Tesla 3 Dashboard" src=../15/Tesla-Model-3-Dashboard-Display.webp style=width:80%;margin-left:auto;margin-right:auto;display:block><p>As a systems programming language, Rust has been gaining popularity in recent years due to its unique ownership and borrowing system that prevents common classes of programming errors such as buffer overflows and data races. This has led to Rust being identified by the National Institute of Standards and Technology (NIST) as a <a href=https://foundation.rust-lang.org/news/rust-identified-as-safer-coding-tool-by-nist/ target=_blank>safer coding tool</a>.<p>In March 2023, NIST added Rust to its list of Safer Languages on the grounds of its ownership model, which “guarantees both memory safety and thread safety, at compile-time, without requiring a garbage collector.” NIST points out that Rust “allows users to write high-performance code while eliminating many bug classes,” and while Rust does have an “unsafe” mode, the institute explains that risk is mitigated through the narrow scope of actions allowed.<p>The recent hacking of the Tesla Model 3 at the Pwn2Own contest, <a href=https://www.darkreading.com/vulnerabilities-threats/tesla-model-3-hacked-2-minutes-pwn2own-contest target=_blank>in under 2 minutes</a>, highlights the importance of secure coding practices, particularly in safety-critical applications such as those in the automotive industry. This contest was organized by the <a href=https://www.zerodayinitiative.com/blog/2023/3/21/pwn2own-vancouver-schedule-2023 target=_blank>Zero Day Initiative</a>.<p>Rust’s safety features make it an ideal language for developing <a href=https://www.thoughtworks.com/en-de/insights/blog/programming-languages/rust-automotive-software target=_blank>secure systems</a>, but there is one major hurdle to overcome before it can be widely adopted in these applications: ISO 26262 compliance.<p>ISO 26262 is an international standard for functional safety in the automotive industry that sets requirements for the development of safety-critical systems. Rust is not currently ISO 26262 compliant, but <a href=https://ferrous-systems.com/blog/sealed-rust-the-pitch/ target=_blank>Ferrous Systems aims to develop a safety-critical subset of the language</a> that meets the standard’s requirements. If successful, this could make Rust a more attractive option for developing secure systems in the automotive industry and other safety-critical applications.<p>In conclusion, Rust’s unique features make it a safer coding tool than traditional programming languages, and its potential for use in safety-critical applications is significant. With ongoing efforts to bring Rust up to standard, it could become the ideal language for developing secure systems in the future. The recent recognition of Rust’s safety features by NIST, combined with the need for secure coding practices highlighted by the Tesla Model 3 hack, reinforces the importance of prioritizing security in software development. <br><h2 id=rust-in-space-and-beyond>Rust in Space and Beyond</h2><div class=row><div class=column><img alt="Test Satellite" src=../15/Gama_satellite.webp style=margin-left:auto;margin-right:auto;display:block></div><div class=column>Another area for safety-critical application is space. Tweede Golf, a member of the <a href=https://foundation.rust-lang.org/members/ target=_blank>Rust Foundation</a>, gave a <a href=https://tweedegolf.nl/en/blog/89/rust-at-nlr target=_blank>presentation on Rust</a> to the Royal Netherlands Aerospace Centre. <p>Additionally, since the SpaceX launch of 3 January 2023, French company Gama has had a <a href=https://www.sail-world.com/news/257330/Gama-launches-its-Gama-Alpha-solar-sail-mission target=_blank>test satellite</a> in orbit that runs largely on Rust software.</div></div><h2 id=build-system-made-in-rust>Build System made in Rust</h2><div class=row><div class=column>Meta, the social media company behind Facebook, has announced the release of their new open-source build system called Buck2. <a href=https://github.com/facebook/buck2 target=_blank>Buck2</a> is designed to improve the build experience for developers and make it faster and more efficient. <p>In Meta’s internal tests, Buck2 completed builds two times faster than its predecessor, Buck1, written in Java. Buck2 is written in Rust, and its design is based on principles that include a complete separation of core and language-specific rules, increased parallelism, integration with remote execution and virtual file systems, and a redesigned console output.<p>The open-source release of Buck2 is almost identical to the internal version, with the only differences being the toolchains and remote execution, which have open-source alternatives supplied. Buck2 also supports virtual file systems, making it faster and more efficient.<p>In real-world usage, Buck2 is significantly faster than Buck1, making it an excellent choice for developers looking to speed up their builds. Thousands of developers at Meta are already using Buck2, performing millions of builds per day, with hopes that the wider industry will see benefits as well.</div><div class=column><a href=https://github.com/facebook/buck2 target=_blank><img alt=Buck2 src=../15/Buck2-Hero.webp style=margin-left:auto;margin-right:auto;display:block></a></div></div><h2 id=snippets>Snippets</h2><ul><li>Twitter open-sourced its stack, <a href="https://opensource.twitter.dev/projects/?q=rust" target=_blank>these</a> are the parts that use Rust. Part of the-algorithm repo is Navi (High-Performance Machine Learning Serving Server)<li><a href=https://2023.rustnl.org/ target=_blank>RustNL 2023 conference</a>, 10 May 2023<li>Recently an online conference was held, Ukrainian Rust Conference 2023, for more info look at their <a href=https://github.com/rust-lang-ua/learn_rust_together#-learn-rust-together- target=_blank>Github repo</a>, and do not forget to check out the <a href=https://github.com/rust-lang-ua/learn_rust_together/blob/master/cheat_sheets.md target=_blank>cheatsheets</a>.</ul><hr><p>Do not hesitate to explore new possibilities in Rust. Pushing yourself out of your comfort zone can be a great way to learn and grow as a programmer.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

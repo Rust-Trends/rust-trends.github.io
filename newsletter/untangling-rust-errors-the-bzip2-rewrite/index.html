@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         67 - Untangling Rust Errors & the bzip2 Rewrite
+        
+    </title><meta content="67 - Untangling Rust Errors & the bzip2 Rewrite" property=og:title><meta content="Two approaches to Rust error organization that actually work, bzip2 drops C for 15% speed boost, and your chance to improve rustc performance." property=og:description><meta content="Two approaches to Rust error organization that actually work, bzip2 drops C for 15% speed boost, and your chance to improve rustc performance." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/untangling-rust-errors-the-bzip2-rewrite/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="67 - Untangling Rust Errors & the bzip2 Rewrite" name=twitter:title><meta content="Two approaches to Rust error organization that actually work, bzip2 drops C for 15% speed boost, and your chance to improve rustc performance." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/untangling-rust-errors-the-bzip2-rewrite/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-06-22 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "67 - Untangling Rust Errors &amp; the bzip2 Rewrite",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-06-22",
+  "dateModified": "2025-06-22",
+  "description": "Two approaches to Rust error organization that actually work, bzip2 drops C for 15% speed boost, and your chance to improve rustc performance.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;untangling-rust-errors-the-bzip2-rewrite&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;untangling-rust-errors-the-bzip2-rewrite&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "67 - Untangling Rust Errors &amp; the bzip2 Rewrite",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;untangling-rust-errors-the-bzip2-rewrite&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "67 - Untangling Rust Errors &amp; the bzip2 Rewrite",
+  "description": "Two approaches to Rust error organization that actually work, bzip2 drops C for 15% speed boost, and your chance to improve rustc performance.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;untangling-rust-errors-the-bzip2-rewrite&#x2F;",
+  "datePublished": "2025-06-22",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "67 - Untangling Rust Errors &amp; the bzip2 Rewrite",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;untangling-rust-errors-the-bzip2-rewrite&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>67 - Untangling Rust Errors & the bzip2 Rewrite</ol></nav><main><article><div class=title><div class=page-header>67 - Untangling Rust Errors & the bzip2 Rewrite<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-06-22</time></div></div><section class=body><br> Ever stared at a 500-line error enum and wondered where it all went wrong? This week we're diving into error organization (because yes, there's actually a right way to do it). Plus, bzip2 goes full-Rust and the compiler team wants your performance feedback. <p>Let's jump in.<h2 id=deep-dive-organizing-errors-without-losing-your-mind>Deep Dive – Organizing Errors Without Losing Your Mind</h2><p>Let's be honest, Rust's error system is powerful, but once your project gets big, it can turn into spaghetti. Two great writeups tackle this: <a href=https://sabrinajewson.org/blog/errors target=_blank>Sabrina Jewson</a> shares how to modularize errors in medium-sized codebases, and <a href=https://kerkour.com/rust-organize-errors-large-projects target=_blank>Sylvain Kerkour</a> dives into managing errors across large, multi-crate systems.<h3 id=the-problem>The Problem</h3><p>A single Error enum for everything starts out fine… until it bloats. You lose context, leak internal details, and tightly couple your modules. Suddenly, moving one module breaks everything.<h4 id=sabrina-s-approach-modular-errors>Sabrina's Approach: Modular Errors</h4><p>Keep errors local. Each module defines its own error enum. Only expose higher-level errors at public boundaries.<p>Why it works:<ul><li>Keeps context specific<li>Avoids leaky abstractions<li>Encourages clean, reusable modules</ul><p>Takeaway: Let your modules own their errors. It's like keeping tools in the right drawer.<h4 id=sylvain-s-approach-scalable-crate-level-errors>Sylvain's Approach: Scalable Crate-Level Errors</h4><p>For bigger systems, define per-crate errors and bubble them up with context using tools like snafu.<p>Why it works:<ul><li>Maintains backtrace and call context<li>Keeps crate boundaries clean<li>Scales well with many moving parts</ul><p>Takeaway: Wrap errors up the stack with context. Your future self debugging a production issue will thank you.<h3 id=my-3-key-takeaways>My 3 Key Takeaways:</h3><ol><li>Start modular: Even small projects benefit from localized error types<li>Scale with context: Use crates like <a href=https://crates.io/crates/snafu target=_blank>snafu</a> or <a href=https://crates.io/crates/thiserror target=_blank>thiserror</a> to add clarity without boilerplate<li>Errors are architecture: Clean error design helps you reason about your system as a whole</ol><p>Got a project that's growing fast? This is the moment to invest in smart error handling—it'll save you hours later.<h2 id=bzip2-goes-all-rust>bzip2 Goes All-Rust</h2><p>The <a href=https://trifectatech.org/blog/bzip2-crate-switches-from-c-to-rust/ target=_blank>bzip2 crate</a> just dropped C and went full-Rust with version 0.6.0, thanks to the Trifecta Tech Foundation. Under the hood, it now defaults to libbz2-rs-sys—a pure Rust reimplementation. The old C version? Still there if you need it, but Rust is the new default.<h3 id=why-this-rocks>Why This Rocks</h3><ul><li><strong>Faster</strong>: Compression is ~10–15% quicker, decompression ~5–10%. Real, measurable gains<li><strong>Cross-compilation friendly</strong>: No more dealing with C toolchains. WebAssembly, Android, Windows, it all just works<li><strong>Clean & Safe</strong>: MIRI-compliant, symbol-safe, and audited by Radically Open Security</ul><p>If your project depends on .bz2, this update gives you speed, simplicity, and less C-induced pain. It's a drop-in upgrade with real perks.<p>What I love here is how this project takes a crusty old C tool and gives it new life in Rust, without breaking things or adding complexity. It's a solid reminder that "rewrite in Rust" can actually work—especially when done with care.<h2 id=community-call-rust-compiler-performance-survey-2025>Community Call – Rust Compiler Performance Survey 2025</h2><p>Rust compile times still too slow for your taste? Now's your chance to help fix that. The Rust team just launched the 2025 Compiler Performance Survey, and they want your feedback on how rustc performs in the real world.<p>It's quick (about 10 minutes), totally anonymous, and open until July 7. Whether you're a daily cargo build warrior or just annoyed by slow incremental builds, your input will help shape future compiler improvements.<p>👉 <a href=https://blog.rust-lang.org/2025/06/16/rust-compiler-performance-survey-2025/ target=_blank>Take the survey here</a><p>Let's help make Rust compile faster than your morning coffee brew.<h2 id=snippets>Snippets</h2><ul><li><a href=https://zed.dev/blog/debugger target=_blank>Zed Debugger</a><li><a href="https://www.efinancialcareers.com/news/rust-replacing-c-programming-language-hedge-fund?_bhlid=f1533afd4f488671c72d3c031c6cb50189713c84" target=_blank>Rust replacing C programming language</a><li><a href=https://blogs.gnome.org/sophieh/2025/06/13/making-gnomes-gdkpixbuf-image-loading-safer/ target=_blank>Making GDKPixbuf image loading safer</a></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

@@ -1,0 +1,202 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Rust’s Async Closures: A New Way to Handle Asynchronous Logic
+        
+    </title><meta content="Rust’s Async Closures: A New Way to Handle Asynchronous Logic" property=og:title><meta content="Discover how async closures in Rust (coming in Rust 1.85) will make handling asynchronous logic more ergonomic. Learn what closures are, why async closures matter, and see simple examples of how they improve Rust’s async experience." property=og:description><meta content="Discover how async closures in Rust (coming in Rust 1.85) will make handling asynchronous logic more ergonomic. Learn what closures are, why async closures matter, and see simple examples of how they improve Rust’s async experience." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/rust-s-async-closures/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Rust’s Async Closures: A New Way to Handle Asynchronous Logic" name=twitter:title><meta content="Discover how async closures in Rust (coming in Rust 1.85) will make handling asynchronous logic more ergonomic. Learn what closures are, why async closures matter, and see simple examples of how they improve Rust’s async experience." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/rust-s-async-closures/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-02-14 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust’s Async Closures: A New Way to Handle Asynchronous Logic",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-02-14",
+  "dateModified": "2025-02-14",
+  "description": "Discover how async closures in Rust (coming in Rust 1.85) will make handling asynchronous logic more ergonomic. Learn what closures are, why async closures matter, and see simple examples of how they improve Rust’s async experience.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-async-closures&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-async-closures&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust’s Async Closures: A New Way to Handle Asynchronous Logic",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-async-closures&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust’s Async Closures: A New Way to Handle Asynchronous Logic",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-02-14",
+  "dateModified": "2025-02-14",
+  "description": "Discover how async closures in Rust (coming in Rust 1.85) will make handling asynchronous logic more ergonomic. Learn what closures are, why async closures matter, and see simple examples of how they improve Rust’s async experience.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-async-closures&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-async-closures&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust’s Async Closures: A New Way to Handle Asynchronous Logic",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-s-async-closures&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Rust’s Async Closures: A New Way to Handle Asynchronous Logic</ol></nav><main><article><div class=title><div class=page-header>Rust’s Async Closures: A New Way to Handle Asynchronous Logic<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-02-14</time></div></div><h1>Table of Contents</h1><ul><li><a href=https://rust-trends.com/posts/rust-s-async-closures/#what-are-closures-in-rust>What Are Closures in Rust?</a> <ul><li><a href=https://rust-trends.com/posts/rust-s-async-closures/#example-of-a-basic-closure>Example of a Basic Closure:</a><li><a href=https://rust-trends.com/posts/rust-s-async-closures/#closures-capturing-variables>Closures Capturing Variables:</a></ul><li><a href=https://rust-trends.com/posts/rust-s-async-closures/#why-do-we-need-async-closures>Why Do We Need Async Closures?</a> <ul><li><a href=https://rust-trends.com/posts/rust-s-async-closures/#example-using-an-async-closure>Example: Using an Async Closure</a><li><a href=https://rust-trends.com/posts/rust-s-async-closures/#example-using-an-async-closure-in-tokio>Example: Using an Async Closure in Tokio</a></ul><li><a href=https://rust-trends.com/posts/rust-s-async-closures/#what-s-next>What’s Next?</a></ul><section class=body><p>Rust’s upcoming async closures are an exciting feature set to land in <strong>Rust 1.85</strong>. If you’ve ever tried to write a closure inside an async function, you’ve likely hit a wall. Until now, closures couldn’t be async themselves, forcing developers to work around the limitation with named async functions. But with async closures, Rustaceans will finally get the closure they’ve been seeking!<h2 id=what-are-closures-in-rust>What Are Closures in Rust?</h2><p>Closures in Rust are anonymous functions that can capture variables from their surrounding scope. They’re often used for short, throwaway functions, making code more concise and expressive. Closures in Rust can be assigned to variables, passed as arguments, and even return values.<h3 id=example-of-a-basic-closure>Example of a Basic Closure:</h3><pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#8fa1b3>add_one </span><span>= |</span><span style=color:#bf616a>x</span><span>: </span><span style=color:#b48ead>i32</span><span>| x + </span><span style=color:#d08770>1</span><span>;
+</span><span>    println!("</span><span style=color:#d08770>{}</span><span>", </span><span style=color:#96b5b4>add_one</span><span>(</span><span style=color:#d08770>5</span><span>)); </span><span style=color:#65737e>// Output: 6
+</span><span>}
+</span></code></pre><p>Here, add_one is a closure that takes an i32 increments it with 1 and returns the resulting i32.<h3 id=closures-capturing-variables>Closures Capturing Variables:</h3><pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> multiplier = </span><span style=color:#d08770>3</span><span>;
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#8fa1b3>multiply </span><span>= |</span><span style=color:#bf616a>x</span><span>: </span><span style=color:#b48ead>i32</span><span>| x * multiplier; </span><span style=color:#65737e>// Capturing `multiplier`
+</span><span>    println!("</span><span style=color:#d08770>{}</span><span>", </span><span style=color:#96b5b4>multiply</span><span>(</span><span style=color:#d08770>4</span><span>)); </span><span style=color:#65737e>// Output: 12
+</span><span>}
+</span></code></pre><p>This closure captures multiplier from its environment.<h2 id=why-do-we-need-async-closures>Why Do We Need Async Closures?</h2><p>Previously, if you wanted to write an async function inside another function, you had to define it separately:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span>async </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>fetch_data</span><span>(</span><span style=color:#bf616a>url</span><span>: &</span><span style=color:#b48ead>str</span><span>) -> String {
+</span><span>    reqwest::get(url).await.</span><span style=color:#96b5b4>unwrap</span><span>().</span><span style=color:#96b5b4>text</span><span>().await.</span><span style=color:#96b5b4>unwrap</span><span>()
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#8fa1b3>fetcher </span><span>= |</span><span style=color:#bf616a>url</span><span>: &</span><span style=color:#b48ead>str</span><span>| </span><span style=color:#96b5b4>fetch_data</span><span>(url); </span><span style=color:#65737e>// Not truly async
+</span><span>}
+</span></code></pre><p>This is clunky! Async closures will allow a more natural syntax.<h3 id=example-using-an-async-closure>Example: Using an Async Closure</h3><pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> fetcher = async |url: &</span><span style=color:#b48ead>str</span><span>| reqwest::get(url).await.</span><span style=color:#96b5b4>unwrap</span><span>().</span><span style=color:#96b5b4>text</span><span>().await.</span><span style=color:#96b5b4>unwrap</span><span>();
+</span><span>}
+</span></code></pre><p>Now fetcher is a true async closure that can be used inside async contexts seamlessly.<h3 id=example-using-an-async-closure-in-tokio>Example: Using an Async Closure in Tokio</h3><pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>use </span><span>tokio::time::{sleep, Duration};
+</span><span>
+</span><span>#[</span><span style=color:#bf616a>tokio</span><span>::</span><span style=color:#bf616a>main</span><span>]
+</span><span>async </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> delayed_print = async |msg: &</span><span style=color:#b48ead>str</span><span>| {
+</span><span>        </span><span style=color:#96b5b4>sleep</span><span>(Duration::from_secs(</span><span style=color:#d08770>2</span><span>)).await;
+</span><span>        println!("</span><span style=color:#d08770>{}</span><span>", msg);
+</span><span>    };
+</span><span>
+</span><span>    </span><span style=color:#96b5b4>delayed_print</span><span>("</span><span style=color:#a3be8c>Hello, async closures!</span><span>").await;
+</span><span>}
+</span></code></pre><p>Here, we define an async closure that waits for two seconds before printing a message. Want to try it out? Here is a <a href="https://play.rust-lang.org/?version=beta&mode=debug&edition=2021&gist=7770a1e098415137296f767cbd3273fe" target=_blank>Rust playground link</a> to the code snippet. Note that for now Beta Rust is required to run async closures.<h2 id=what-s-next>What’s Next?</h2><p>With Rust 1.85, async closures will make writing asynchronous code more ergonomic. They’ll be useful in scenarios like async iterators, event handling, and networking.<p>So, Rustaceans, are you ready to embrace async closures? They’re coming soon—probably faster than your coffee cools down!</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

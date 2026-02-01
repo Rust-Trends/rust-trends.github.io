@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust
+        
+    </title><meta content="4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust" property=og:title><meta content="In this edition of the Rust trends newsletter, discover the role of web frameworks in developing and running web applications using Rust. Understand why Rust is known as a safe language, and its significant implications for the rest of the language. Explore how blockchains and Rust make a perfect match, with blockchains like Solana and Polkadot using Rust as their primary language." property=og:description><meta content="In this edition of the Rust trends newsletter, discover the role of web frameworks in developing and running web applications using Rust. Understand why Rust is known as a safe language, and its significant implications for the rest of the language. Explore how blockchains and Rust make a perfect match, with blockchains like Solana and Polkadot using Rust as their primary language." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/web-frameworks-why-is-rust-safe-and-blockchains-that-use-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust" name=twitter:title><meta content="In this edition of the Rust trends newsletter, discover the role of web frameworks in developing and running web applications using Rust. Understand why Rust is known as a safe language, and its significant implications for the rest of the language. Explore how blockchains and Rust make a perfect match, with blockchains like Solana and Polkadot using Rust as their primary language." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/web-frameworks-why-is-rust-safe-and-blockchains-that-use-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2022-11-06 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2022-11-06",
+  "dateModified": "2022-11-06",
+  "description": "In this edition of the Rust trends newsletter, discover the role of web frameworks in developing and running web applications using Rust. Understand why Rust is known as a safe language, and its significant implications for the rest of the language. Explore how blockchains and Rust make a perfect match, with blockchains like Solana and Polkadot using Rust as their primary language.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;web-frameworks-why-is-rust-safe-and-blockchains-that-use-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;web-frameworks-why-is-rust-safe-and-blockchains-that-use-rust&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;web-frameworks-why-is-rust-safe-and-blockchains-that-use-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust",
+  "description": "In this edition of the Rust trends newsletter, discover the role of web frameworks in developing and running web applications using Rust. Understand why Rust is known as a safe language, and its significant implications for the rest of the language. Explore how blockchains and Rust make a perfect match, with blockchains like Solana and Polkadot using Rust as their primary language.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;web-frameworks-why-is-rust-safe-and-blockchains-that-use-rust&#x2F;",
+  "datePublished": "2022-11-06",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;web-frameworks-why-is-rust-safe-and-blockchains-that-use-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust</ol></nav><main><article><div class=title><div class=page-header>4 - Web Frameworks, why is Rust Safe, and Blockchains that use Rust<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2022-11-06</time></div></div><section class=body><br><blockquote><p><q>Making your own API or run your smart contract but do it safe with Rust</q></blockquote><p>The newsletter is growing steadily, and this is already the fourth edition of your dose of Rust Trends. Let’s dive into the content.<p><strong>In today’s email:</strong><ul><li><strong>Web Frameworks:</strong> make the life of a developer easier<li><strong>Why is Rust safe:</strong> improve your coding habits with Rust<li><strong>Blockchains and Rust:</strong> a definite match</ul><h2 id=web-frameworks>Web Frameworks</h2><div class=row><div class=column>A web framework enables developers to build and run applications for the web without having to write all the code from scratch. <p>Since Rust is a system language, it has several WFs for an overview look at this <a href=https://github.com/flosse/rust-web-framework-comparison target=_blank>GitHub</a> repository, and a blog post by <a href=https://kerkour.com/rust-web-framework-2022 target=_blank>Sylvain Kerkour</a>.<p>My favorite is <a href=https://actix.rs/ target=_blank>Actix</a>, an active community with many code examples and excellent documentation.</div><div class=column><a href=https://github.com/flosse/rust-web-framework-comparison target=_blank><img alt="Web Frameworks" src=../4/WebFramework.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div></div><h2 id=why-is-rust-safe>Why is Rust safe?</h2><div class=row><div class=column><img alt="Rust a Safe Language" src=../4/rust-a-safe-language.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></div><div class=column>Multiple features make the Rust language Safe. A quote from the Rust Language Book “Ownership is Rust’s most unique feature and has deep implications for the rest of the language. It enables Rust to make memory safety guarantees without needing a garbage collector, so it’s important to understand how ownership works.” <p>Most design decisions in Rust do not leave room for interpretation, which forces good programming habits. Characteristics like <a href=https://doc.rust-lang.org/reference/types.html>Strongly typed</a>, immutable variables by default, <a href=https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html target=_blank>ownership</a>, safe concurrency, etc, make <a href=https://www.linkedin.com/pulse/why-rust-safest-language-you-cant-use-develop-software-ken-barker/ target=_blank>Rust one of the safest languages</a> and removes possible security vulnerabilities and bugs in your code. Most of it happens at compile time, which is way better than in production at runtime.</div></div><h2 id=blockchains-and-rust>Blockchains and Rust</h2><div class=row><div class=column>Blockchain, the technology behind Bitcoin and many other decentralized digital currencies, benefits from a secure language like Rust. <p>There are at least five well-known blockchains using Rust as their primary language. The most popular ones are <a href=https://solana.com/ target=_blank>Solana</a> and <a href=https://polkadot.network/ target=_blank>Polkadot</a>. To see all five blockchains click <a href=https://definoobs.com/these-blockchains-use-rust-programming-language/ target=_blank>here</a>. This article refers to another great article <a href=https://definoobs.com/rust-vs-go-for-blockchain/ target=_blank>Rust vs. Go for Blockchain</a>, and highlights some nice criteria for both languages.</div><div class=column><a href=https://definoobs.com/these-blockchains-use-rust-programming-language/ target=_blank><img alt=BlockChain src=../4/blockchain.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div></div><hr><p>Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

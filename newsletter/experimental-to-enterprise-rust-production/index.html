@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         72 - From Experimental to Enterprise: Rust's Production Moment
+        
+    </title><meta content="72 - From Experimental to Enterprise: Rust's Production Moment" property=og:title><meta content="AWS Lambda promotes Rust to Generally Available with SLA support. Google reveals 1000x fewer memory vulnerabilities in Android Rust code while improving development velocity. Plus: why Rust and Python are partners, not competitors, and the maturing SIMD landscape." property=og:description><meta content="AWS Lambda promotes Rust to Generally Available with SLA support. Google reveals 1000x fewer memory vulnerabilities in Android Rust code while improving development velocity. Plus: why Rust and Python are partners, not competitors, and the maturing SIMD landscape." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/experimental-to-enterprise-rust-production/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="72 - From Experimental to Enterprise: Rust's Production Moment" name=twitter:title><meta content="AWS Lambda promotes Rust to Generally Available with SLA support. Google reveals 1000x fewer memory vulnerabilities in Android Rust code while improving development velocity. Plus: why Rust and Python are partners, not competitors, and the maturing SIMD landscape." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/experimental-to-enterprise-rust-production/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2025-11-16 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "72 - From Experimental to Enterprise: Rust&#x27;s Production Moment",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2025-11-16",
+  "dateModified": "2025-11-16",
+  "description": "AWS Lambda promotes Rust to Generally Available with SLA support. Google reveals 1000x fewer memory vulnerabilities in Android Rust code while improving development velocity. Plus: why Rust and Python are partners, not competitors, and the maturing SIMD landscape.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;experimental-to-enterprise-rust-production&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;experimental-to-enterprise-rust-production&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "72 - From Experimental to Enterprise: Rust&#x27;s Production Moment",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;experimental-to-enterprise-rust-production&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "72 - From Experimental to Enterprise: Rust&#x27;s Production Moment",
+  "description": "AWS Lambda promotes Rust to Generally Available with SLA support. Google reveals 1000x fewer memory vulnerabilities in Android Rust code while improving development velocity. Plus: why Rust and Python are partners, not competitors, and the maturing SIMD landscape.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;experimental-to-enterprise-rust-production&#x2F;",
+  "datePublished": "2025-11-16",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "72 - From Experimental to Enterprise: Rust&#x27;s Production Moment",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;experimental-to-enterprise-rust-production&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>72 - From Experimental to Enterprise: Rust's Production Moment</ol></nav><main><article><div class=title><div class=page-header>72 - From Experimental to Enterprise: Rust's Production Moment<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2025-11-16</time></div></div><section class=body><p>Sometimes enterprise adoption happens quietly, then all at once.<p>This week, AWS promoted Rust from "experimental" to generally available on Lambda, backed by their full SLA. Google published data showing Rust code in Android has <strong>1000x fewer memory vulnerabilities</strong> than C/C++, while simultaneously improving development velocity by every meaningful metric. And JetBrains explored why Rust and Python are becoming partners rather than competitors.<p>These aren't just announcements, they're data points in a larger story: Rust is crossing the production chasm. From serverless functions to mobile operating systems, the "memory-safe future" isn't theoretical anymore. It's shipping at scale, backed by SLAs, and proving that faster development is safer development.<p>Let's look at the numbers.<h1 id=improve-your-rust-build-times-sponsored>Improve your Rust build times [sponsored]</h1><p>Building the Zed code editor reveals just how much build times can vary. We cut build time from 43 to 26 minutes, a 61% improvement by using Depot's GitHub Action Runners. <a href=https://fandf.co/3Li2r1p target=_blank>Let's enhance your Rust build speed</a><h1 id=aws-lambda-officially-supports-rust-with-production-sla>AWS Lambda Officially Supports Rust with Production SLA</h1><p>AWS Lambda has promoted Rust from "experimental" to <strong>Generally Available</strong> status, complete with AWS Support and the full Lambda availability SLA. <a href=https://aws.amazon.com/blogs/compute/building-serverless-applications-with-rust-on-aws-lambda/ target=_blank>The announcement</a> marks a fundamental shift: Rust is now officially backed for business-critical serverless applications across all AWS Regions, including GovCloud and China.<p>The runtime uses Amazon Linux 2023 (<code>provided.al2023</code> or <code>provided.al2</code>) since Rust compiles to native machine code rather than requiring a language-specific runtime. You'll use the <a href=https://crates.io/crates/lambda_runtime target=_blank>lambda_runtime crate</a> to handle the Lambda event processing, and AWS recommends <strong>Cargo Lambda</strong> for streamlined development, testing, and deployment workflows.<p>What changed? This isn't a new technical capability, Rust has worked on Lambda for years. What's new is AWS putting their name behind it with SLA guarantees and roadmap commitments. That's the difference between "experimentally supported" and "bet your production workload on it."<p>For teams evaluating Rust for serverless architectures, the calculation just shifted. You're no longer early adopters. You're using a GA service with enterprise support.<h1 id=google-security-rust-in-android-delivers-1000x-fewer-vulnerabilities>Google Security: Rust in Android Delivers 1000x Fewer Vulnerabilities</h1><p>Here's the data that settles the memory safety debate. Google's Android Security team published <a href=https://security.googleblog.com/2025/11/rust-in-android-move-fast-fix-things.html target=_blank>comprehensive metrics</a> on Rust adoption in Android, and the numbers are staggering. Memory safety vulnerabilities in Rust code occur at a rate of <strong>0.2 per million lines of code</strong>. In C/C++? Around <strong>1,000 per million lines</strong>. That's not 10% better or 2x better, it's a <strong>1000x reduction</strong> in vulnerability density.<p>But here's what makes this story remarkable: Rust isn't just safer. It's faster to develop.<p>Google measured development velocity using the DORA framework and found that Rust changes require <strong>20% fewer revisions</strong> than equivalent C++ code, spend <strong>25% less time in code review</strong>, and have a <strong>4x lower rollback rate</strong> for medium and large changes. Their conclusion: "Secure code development is simultaneously faster development."<p>Android now has roughly 5 million lines of Rust in production, powering everything from the Nearby Presence protocol to MLS encryption for RCS, Chromium parsers for PNG and JSON, and even the first production Rust driver in Linux kernel 6.12 (an Arm GPU driver collaboration).<p>The article includes a fascinating near-miss case study: <strong>CVE-2025-48530</strong>, a linear buffer overflow in the CrabbyAVIF library caught before release. The vulnerability would have been exploitable in C/C++, but Android's Scudo hardened allocator made it non-exploitable. Defense in depth works, but starting with memory-safe code is the better strategy.<p>The takeaway? Memory safety vulnerabilities have dropped below <strong>20% of total Android vulnerabilities</strong> for the first time in 2025. This isn't incremental progress. It's a sea change in platform security, backed by data across millions of lines of production code.<h1 id=jetbrains-analysis-rust-vs-python-partners-not-competitors>JetBrains Analysis: Rust vs Python—Partners, Not Competitors</h1><p>The Python vs Rust debate misses the point. They're increasingly complementary, not competitive.<p><a href=https://blog.jetbrains.com/rust/2025/11/10/rust-vs-python-finding-the-right-balance-between-speed-and-simplicity/ target=_blank>JetBrains' analysis</a> highlights the philosophical divide: Python prioritizes rapid iteration and accessibility (57% developer adoption, up from 32% in 2017). Rust prioritizes compile-time safety and performance (11% adoption with 80%+ retention for 9 consecutive years as "Most Admired").<p>The technical differences are fundamental:<ul><li><strong>Memory</strong>: Rust's ownership rules prevent null pointers and dangling references at compile time. Python relies on garbage collection with unpredictable pauses.<li><strong>Concurrency</strong>: Rust enables true multicore parallelism. Python's GIL limits CPU-bound concurrency.<li><strong>Type systems</strong>: Rust catches errors before execution with static typing. Python trades early detection for flexibility with dynamic typing.</ul><p>But here's the trend that matters: <strong>Rust is powering high-performance components inside Python applications</strong>. Tools like <strong>Polars</strong> (DataFrames), <strong>Ruff</strong> (linting), and <strong>uv</strong> (package management) deliver "modest to dramatic speed-ups" by compiling Rust to native machine code with zero-cost abstractions and no GC overhead.<p>The future isn't "Rust or Python." It's "Python for rapid development, Rust where performance matters," often within the same application. That's not compromise, it's choosing the right tool for each layer of the stack.<h1 id=the-state-of-simd-in-rust-safer-more-mature-still-evolving>The State of SIMD in Rust: Safer, More Mature, Still Evolving</h1><p>SIMD in Rust crossed a major usability threshold: <strong>most intrinsics are no longer unsafe to call</strong> as of Rust 1.87.<p><a href=https://shnatsel.medium.com/the-state-of-simd-in-rust-in-2025-32c263e5f53d target=_blank>Shnatsel's 2025 analysis</a> breaks down four approaches to SIMD in ascending order of effort: autovectorization, intrinsics, portable SIMD abstractions, and manual assembly.<p>The decision framework is straightforward:<ul><li><strong>Zero dependencies, minimal hassle?</strong> → Autovectorization (let LLVM handle it)<li><strong>Porting C code or targeting specific hardware?</strong> → Intrinsics (now much safer)<li><strong>Everything else?</strong> → Portable SIMD abstractions</ul><p>The portable SIMD library ecosystem is maturing but still fragmented. <strong>pulp</strong> offers built-in multiversioning and powers the <code>faer</code> linear algebra library, with support for NEON, AVX2, and AVX-512. <strong>macerator</strong> (a pulp fork) adds better generic programming support and expanded instruction sets. <strong>wide</strong> is noted as mature and complete for broader use cases.<p>The barrier to entry dropped significantly with safer intrinsics, but choosing the right abstraction layer still requires understanding your performance constraints and target platforms. SIMD in Rust is production-ready—just know which tool matches your needs.<h1 id=snippets>Snippets</h1><ul><li><p><strong><a href=https://blog.rust-lang.org/2025/11/10/Rust-1.91.1/ target=_blank>Rust 1.91.1 Released</a></strong> Point release fixing critical WebAssembly linker failures and Cargo file locking on illumos systems.</p><li><p><strong><a href=https://rustfoundation.org/media/announcing-the-rust-foundation-maintainers-fund/ target=_blank>Rust Foundation Announces Maintainers Fund</a></strong> New fund for long-term support of Rust maintainers, starting with $100K focused on Compiler and Language teams.</p><li><p><strong><a href=https://smallcultfollowing.com/babysteps/blog/2025/11/10/just-call-clone/ target=_blank>Niko Matsakis: Just Call Clone (or Alias)</a></strong> Memory optimization insights from Rust language team member on when cloning is the right choice.</p><li><p><strong><a href=https://fasterthanli.me/articles/engineering-a-rust-optimization-quiz target=_blank>Engineering a Rust Optimization Quiz</a></strong> Fasterthanlime's deep dive into compiler optimizations with interactive examples.</p><li><p><strong><a href=https://corrode.dev/blog/defensive-programming/ target=_blank>Patterns for Defensive Programming in Rust</a></strong> Comprehensive guide to writing robust, error-resistant Rust code.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

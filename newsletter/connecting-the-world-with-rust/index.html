@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         10 - Connecting the world with Rust
+        
+    </title><meta content="10 - Connecting the world with Rust" property=og:title><meta content="In this edition, we delve into creating your own API in Rust, introduce Lapce - a new Rust-built editor, and talk about the mission and achievements of the Rust Foundation. Whether you're an aspiring API developer or looking for a new code editor, we have some exciting insights for you." property=og:description><meta content="In this edition, we delve into creating your own API in Rust, introduce Lapce - a new Rust-built editor, and talk about the mission and achievements of the Rust Foundation. Whether you're an aspiring API developer or looking for a new code editor, we have some exciting insights for you." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/connecting-the-world-with-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="10 - Connecting the world with Rust" name=twitter:title><meta content="In this edition, we delve into creating your own API in Rust, introduce Lapce - a new Rust-built editor, and talk about the mission and achievements of the Rust Foundation. Whether you're an aspiring API developer or looking for a new code editor, we have some exciting insights for you." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/connecting-the-world-with-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-01-29 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "10 - Connecting the world with Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-01-29",
+  "dateModified": "2023-01-29",
+  "description": "In this edition, we delve into creating your own API in Rust, introduce Lapce - a new Rust-built editor, and talk about the mission and achievements of the Rust Foundation. Whether you&#x27;re an aspiring API developer or looking for a new code editor, we have some exciting insights for you.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;connecting-the-world-with-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;connecting-the-world-with-rust&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "10 - Connecting the world with Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;connecting-the-world-with-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "10 - Connecting the world with Rust",
+  "description": "In this edition, we delve into creating your own API in Rust, introduce Lapce - a new Rust-built editor, and talk about the mission and achievements of the Rust Foundation. Whether you&#x27;re an aspiring API developer or looking for a new code editor, we have some exciting insights for you.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;connecting-the-world-with-rust&#x2F;",
+  "datePublished": "2023-01-29",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "10 - Connecting the world with Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;connecting-the-world-with-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>10 - Connecting the world with Rust</ol></nav><main><article><div class=title><div class=page-header>10 - Connecting the world with Rust<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-01-29</time></div></div><section class=body><br><blockquote><p><q>Making your own API, a new editor in Rust and more …</q></blockquote><p>Welcome to the tenth edition of our newsletter! The Rust community is thriving and has an abundance of informative articles, tutorials, applications, and repositories. However, with so much to choose from, it can be overwhelming. We have handpicked the best of the best for you, so let’s dive in!<p><strong>In today’s email:</strong><ul><li><strong>Connecting the world with Rust</strong><li><strong>Introducing Lapce: a new editor built with the power of Rust</strong><li><strong>The Rust Foundation</strong></ul><h2 id=connecting-the-world-with-rust>Connecting the world with Rust</h2><div class=row><div class=column>Writing your own API (Application Programming Interface) can be a rewarding and challenging task. An API allows you to expose specific functionality of your software to other developers, enabling them to interact with your application in a predictable and standardized way. In this article, we will take a look at what it takes to write your own API in Rust. <p>Before you start writing your API, it is important to think about what you want to achieve with it. Do you want to expose specific functionality of your application to other developers? Do you want to allow other applications to access data stored in your application? Answering these questions will help you determine the scope and functionality of your API.<p>Once you have a clear idea of what you want your API to do, the next step is to choose a framework for building it. There are several popular options for building APIs in Rust, the most popular ones are <a href=https://rocket.rs/ target=_blank>Rocket</a> and <a href=https://actix.rs/ target=_blank>Actix</a>. Each of these frameworks has its own set of features and benefits, so it is worth doing some research to determine which one is the best fit for your needs.<p>Once you have chosen a framework, you can start designing the structure and functionality of your API. This will involve creating endpoints, which are specific points of access for interacting with your API, and defining the input and output of each endpoint. You will also need to consider how you want to handle authentication, error handling, and other important aspects of API development. To learn more see some links below:<ul><li><a href=https://swagger.io/resources/articles/best-practices-in-api-design/ target=_blank>Best practices in API design</a><li><a href=https://blog.logrocket.com/current-state-rust-web-frameworks/ target=_blank>The current state of Rust web frameworks</a><li><a href=https://rocket.rs/v0.5-rc/guide/ target=_blank>Rocket Guide</a><li><a href=https://actix.rs/docs/ target=_blank>Actix Documenation</a></ul><p>With these resources and a little bit of practice, you will be well on your way to writing your own API in Rust. Happy coding!</div><div class=column><img alt="Connecting the world" src=../10/connect-the-world.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></div></div><h2 id=introducing-lapce-a-new-editor-built-with-the-power-of-rust>Introducing Lapce: a new editor built with the power of Rust</h2><div class=row><div class=column><a href=https://lapce.dev/ target=_blank><img alt="Lapce editor" src=../10/Lapce-editor.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div><div class=column>We are excited to highlight a new editor for programming in Rust: <a href=https://lapce.dev/ target=_blank>Lapce</a>. This graphical editor, is built in Rust and utilizes the power of Droid and OpenGL. <p>One of the things that sets Lapce apart is its clean and user-friendly interface. Additionally, it offers optional <a href=https://docs.lapce.dev/get-started/modal-editing target=_blank>modal-editing</a> with Vim-like modes, making it a great choice for those who prefer this type of editing.<p>Another feature we really liked is called <a href=https://docs.lapce.dev/features/code-lens target=_blank>Code Lens</a>, which allows for a more efficient way of folding code and getting a general overview of a file. Keep in mind that Lapce is currently still in its pre-alpha stage.<p>With ~23k Github stars and 129 contributors, Lapce is definitely worth checking, for a quick <a href="https://www.youtube.com/watch?v=_52ZUg-QmW0" target=_blank>youtube movie on Lapce</a> follow the link.<p>Other editors we have highlighted in previous newsletters are <a href=https://rust-trends.com/your-dev-environment-on-steroids/#helix target=_blank>Helix</a> (also written in Rust) and <a href=https://rust-trends.com/your-dev-environment-on-steroids/#vscode target=_blank>Visual Studio Code</a>.</div></div><h2 id=snippets>Snippets</h2><ul><li><a href=https://blog.rust-lang.org/2023/01/26/Rust-1.67.0.html target=_blank>Rust 1.67.0 released</a>. Want to see the release details?<li><a href=https://github.com/rust-lang/mdBook target=_blank>mdBook</a> create online books from Markdown files. Made in Rust.<li>Strengthen your <a href=https://exercism.org/tracks/rust target=_blank>Rust skills with Exercism</a> and choose the Rust Track.</ul><h2 id=the-rust-foundation>The Rust Foundation</h2><p>The Rust programming language is widely known for its focus on safety and reliability, making it a popular choice for systems programming and other performance-critical applications. <a href=https://foundation.rust-lang.org/ target=_blank>The Rust foundation</a> aims to support the continued development and growth of the Rust programming language by providing resources and infrastructure to the community of volunteer developers who maintain the language.<p>Some specific ways the Rust foundation supports the Rust project include:<p>Providing funding for development and infrastructure costs, such as hosting and testing services. Supporting community events, such as Rust conferences and meetups, to foster collaboration and learning among Rust developers. Managing the trademark and branding of the Rust programming language to ensure consistency and protect against misuse. The Rust foundation also seeks to advance the state of the art in systems programming by supporting research and development in areas such as memory safety, performance, and language design. Overall, the goal of the Rust foundation is to ensure that the Rust programming language can continue to evolve and improve, while also providing a stable and sustainable platform for developers to build on. Moreover, <a href=https://foundation.rust-lang.org/grants/ target=_blank>the foundation gives out grants</a> to the public to fund initiatives related to Rust.<p>They recently released their <a href=https://foundation.rust-lang.org/news/rust-foundation-annual-report-2022/ target=_blank>annual report for 2022</a> that highlights the financials and important milestones.<hr><p>Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

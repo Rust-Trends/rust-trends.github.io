@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         18 - Lightning fast search, and the state of Rust and ML
+        
+    </title><meta content="18 - Lightning fast search, and the state of Rust and ML" property=og:title><meta content="A search engine written in Rust, a comprehensive overview of Rust and ML, and the state of the Rust Ecosystem" property=og:description><meta content="A search engine written in Rust, a comprehensive overview of Rust and ML, and the state of the Rust Ecosystem" name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/lightning-fast-search-and-the-state-of-rust-and-ml/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="18 - Lightning fast search, and the state of Rust and ML" name=twitter:title><meta content="A search engine written in Rust, a comprehensive overview of Rust and ML, and the state of the Rust Ecosystem" name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/lightning-fast-search-and-the-state-of-rust-and-ml/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-06-07 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "18 - Lightning fast search, and the state of Rust and ML",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-06-07",
+  "dateModified": "2023-06-07",
+  "description": "A search engine written in Rust, a comprehensive overview of Rust and ML, and the state of the Rust Ecosystem",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;lightning-fast-search-and-the-state-of-rust-and-ml&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;lightning-fast-search-and-the-state-of-rust-and-ml&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "18 - Lightning fast search, and the state of Rust and ML",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;lightning-fast-search-and-the-state-of-rust-and-ml&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "18 - Lightning fast search, and the state of Rust and ML",
+  "description": "A search engine written in Rust, a comprehensive overview of Rust and ML, and the state of the Rust Ecosystem",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;lightning-fast-search-and-the-state-of-rust-and-ml&#x2F;",
+  "datePublished": "2023-06-07",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "18 - Lightning fast search, and the state of Rust and ML",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;lightning-fast-search-and-the-state-of-rust-and-ml&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>18 - Lightning fast search, and the state of Rust and ML</ol></nav><main><article><div class=title><div class=page-header>18 - Lightning fast search, and the state of Rust and ML<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-06-07</time></div></div><section class=body><br><blockquote><p><q>A search engine written in Rust, a comprehensive overview of Rust and ML, and the state of the Rust Ecosystem</q></blockquote><p>Welcome to the new edition of Rust Trends! First things first, we must address the elephant in the virtual room. You may have noticed a slight delay in our newsletter delivery recently. Well, let’s just say that the Rust community has gained a new recruit, and we couldn’t be more thrilled (and sleep-deprived) about it! Yes, dear readers, a tiny Rustacean has entered the world, and we were temporarily distracted by the cuteness overload. I became a father for the first time.<p>Let’s dive into today’s topics and discover the latest and greatest in the world of Rust programming! <br><h2 id=a-lightning-fast-search-engine-written-in-rust>A Lightning-Fast Search Engine written in Rust!</h2><img alt="Lightning fast search engine Meilisearch" src=../18/Lightning.webp style=width:60%;margin-left:auto;margin-right:auto;display:block><p>Are you tired of sluggish search functionality in your website projects? Look no further! Meilisearch is an open-source, lightning-fast search engine designed specifically for developers and written in Rust. Meilisearch empowers developers to deliver seamless and efficient search experiences in their applications. Let’s dive into the exciting world of Meilisearch!<p>GitHub Repository: <a href=https://github.com/meilisearch/meilisearch target=_blank>Link to Meilisearch on GitHub</a><p>Built with a focus on speed and simplicity, Meilisearch utilizes highly efficient indexing and search algorithms, ensuring rapid search results regardless of dataset size. Powered by Rust, Meilisearch leverages the language’s performance and safety guarantees, delivering exceptional search performance for your applications.<p>Ready to harness the power of Meilisearch? We have got you covered! Follow the comprehensive tutorial from Digital Ocean to seamlessly integrate Meilisearch into your web projects and unlock its impressive search capabilities. Whether you are building a web application, command-line tool, or any other (Rust) project, Meilisearch can supercharge your search functionality.<p>Tutorial: <a href=https://www.digitalocean.com/community/tutorials/how-to-deploy-and-configure-meilisearch-on-ubuntu-22-04 target=_blank>Link to Meilisearch Tutorial</a><p>The step-by-step tutorial will guide you through the process of setting up Meilisearch, with the help of Docker, indexing your data, and performing lightning-fast searches. You will discover the Meilisearch frontend client library (Node.js), which offers a straightforward interface for interacting with the search engine. With detailed explanations and code snippets, you will quickly master Meilisearch integration. You can also have a look at the Meilisearch <a href=https://www.meilisearch.com/docs/learn/getting_started/quick_start>documentation</a> and <a href=https://github.com/meilisearch/meilisearch-rust target=_blank>Rust SDK</a>.<p>Do not let sluggish searches hinder your (Rust) projects any longer. Embrace Meilisearch and provide your users with exceptional search experiences. Get ready to revolutionize the performance and efficiency of your search operations with Meilisearch powered by Rust! <br><h2 id=the-rise-of-rust-a-growing-community-and-promising-future>The Rise of Rust: A Growing Community and Promising Future</h2><img alt=Ecosystem src=../18/eco_system.webp style=width:60%;margin-left:auto;margin-right:auto;display:block><p>We are excited to present key takeaways from an insightful article on the Rust programming language and its dynamic community. Rust’s popularity continues to surge, with a growing user base and increasing usage across industries. Its seamless integration with other programming languages makes it an excellent choice for mixed-language projects.<p>Although Rust is relatively young, many developers who specialize in other programming languages have embraced it, bringing their professional experience to the Rust ecosystem. While there are still some drawbacks in terms of tooling and ecosystem maturity, significant progress has been made.<p>Rust is widely regarded as a language that delivers on its promises of memory safety and performance. The Rust community is actively involved in various surveys, providing valuable insights into the community and the technology’s potential. Interestingly, most Rust developers have recently started their journey with the language, indicating a growing interest and the need for employers to adapt their expectations when hiring.<p>In terms of technology domains, Rust excels in server-side projects, cloud computing infrastructure, and distributed applications. The Linux platform is a popular choice for Rust developers, while CLI tools dominate the Rust project landscape due to the availability of CLI libraries.<p>Rust’s adoption by tech giants like Microsoft, Google, Amazon, and Meta further solidifies its position. However, most Rust developers currently use the language outside of their official work, suggesting a potential for further industry adoption.<p>Rust’s performance characteristics, security features, and documentation receive high praise from developers. Nevertheless, some developers find Rust more challenging to program in and requires more effort to learn compared to other languages. Areas that require improvement include debugging, profiling, and enhancing the library ecosystem.<p>In conclusion, Rust’s community is young and growing rapidly. Industry adoption is on the rise, supported by enthusiastic developers and evolving tooling. While Rust presents unique challenges, its future looks promising. As a company considering Rust, it’s crucial to have senior engineers with Rust experience to guide the transition and invest in educating and training developers to maximize productivity.<p>Read the <a href=https://www.infoq.com/articles/rust-ecosystem-review-2023/ target=_blank>full article from InfoQ</a>.<h2 id=the-growing-landscape-of-machine-learning-in-rust>The Growing Landscape of Machine Learning in Rust</h2><div class=row><div class=column>Machine Learning (ML) in Rust is gaining momentum as an alternative ecosystem to established languages like Python. With its impressive performance, low-level control, and zero-cost abstractions, Rust offers a compelling choice for ML enthusiasts. Although still in its early stages, the Rust ML ecosystem has seen the emergence of ambitious projects and meta-crates, providing developers with practical solutions. <p><strong>A Growing Ecosystem</strong><br> Rust ML offers individual implementations of various ML methods and algorithms, along with meta-crates like <a href=https://github.com/rust-ml/linfa>linfa</a> and <a href=https://smartcorelib.org/ target=_blank>smartcore</a>, which bundle multiple algorithms for convenience. These developments provide a strong foundation for developers looking to explore ML in Rust.<p><strong>Opportunities for Contributors</strong><br> The Rust ML community encourages contributions to existing projects and the creation of new ones. With ample opportunities for developers to make a difference, the ecosystem is open for collaboration. The unofficial Working Group in the ML domain and the Zulip chat provide avenues for seeking help and engaging with like-minded individuals.<p><strong>The Path Ahead</strong><br> The Rust ML ecosystem is still young but holds significant potential. Rust’s unique features, such as memory safety and concurrency, contribute to the development of robust and efficient ML solutions. As the community grows and more developers explore Rust’s capabilities, we can expect further advancements in ML within the Rust ecosystem.<p><strong>Conclusion</strong><br> Machine Learning in Rust is an exciting frontier that offers an alternative to established ecosystems. With ambitious projects, bundled solutions, and room for contributors, the Rust ML ecosystem is steadily evolving. Rust’s performance and high-level abstractions make it an appealing choice for ML practitioners. As the ecosystem continues to mature, we anticipate further growth and innovation in the field of ML in Rust.<p>Learn more at <a href=https://www.arewelearningyet.com/ target=_blank>Are we learning yet?</a></div><div class=column><a href=https://www.arewelearningyet.com/ target=_blank> <img alt="Are we learning yet" src=../18/Are_We_Learning_yet.webp style=margin-left:auto;margin-right:auto;display:block> </a></div></div><hr><p>Do not hesitate to explore new possibilities in Rust. Pushing yourself out of your comfort zone can be a great way to learn and grow as a programmer.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

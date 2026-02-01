@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass
+        
+    </title><meta content="24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass" property=og:title><meta content="Our newsletter offers the latest updates, best practices, and community insights. From new guidelines on Cargo.lock files to optimized compile times." property=og:description><meta content="Our newsletter offers the latest updates, best practices, and community insights. From new guidelines on Cargo.lock files to optimized compile times." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/navigating-the-evolving-landscape-of-rust-your-biweekly-compass/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass" name=twitter:title><meta content="Our newsletter offers the latest updates, best practices, and community insights. From new guidelines on Cargo.lock files to optimized compile times." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/navigating-the-evolving-landscape-of-rust-your-biweekly-compass/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2023-08-30 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2023-08-30",
+  "dateModified": "2023-08-30",
+  "description": "Our newsletter offers the latest updates, best practices, and community insights. From new guidelines on Cargo.lock files to optimized compile times.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;navigating-the-evolving-landscape-of-rust-your-biweekly-compass&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;navigating-the-evolving-landscape-of-rust-your-biweekly-compass&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;navigating-the-evolving-landscape-of-rust-your-biweekly-compass&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass",
+  "description": "Our newsletter offers the latest updates, best practices, and community insights. From new guidelines on Cargo.lock files to optimized compile times.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;navigating-the-evolving-landscape-of-rust-your-biweekly-compass&#x2F;",
+  "datePublished": "2023-08-30",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;navigating-the-evolving-landscape-of-rust-your-biweekly-compass&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass</ol></nav><main><article><div class=title><div class=page-header>24 - Navigating the Evolving Landscape of Rust: Your Biweekly Compass<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2023-08-30</time></div></div><section class=body><br><blockquote><p><q>Our newsletter offers the latest updates, best practices, and community insights. From new guidelines on Cargo.lock files to optimized compile times.</q></blockquote><p>Hello, Rust Enthusiasts!<p>Welcome to another enriching edition of Rust Trends, your biweekly compass for navigating the ever-evolving Rust ecosystem. As Rust continues to solidify its position in the world of programming, we are here to keep you updated on the latest developments, best practices, and community dialogues.<p>In this issue, we delve deep into the much-discussed change in Rust's guidance on committing <code>Cargo.lock</code> files — a shift that reflects the language's growing maturity and diverse user base. We also bring you insights on how Rust compile times are optimized, a topic that resonates with every Rustacean out there.<p>Whether you are a seasoned developer or a newcomer eager to explore, we have curated content that caters to all levels of expertise. So, fasten your seat belts as we embark on another exciting journey through the Rust universe!<p>Let's get started!<h2 id=updated-best-practices-for-committing-cargo-lock-files>Updated Best Practices for Committing Cargo.lock Files</h2><p><a href=https://blog.rust-lang.org/2023/08/29/committing-lockfiles.html target=_blank><img alt="Cargo.lock file" src=../24/cargo-lock-file.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block></a><p>The Rust Cargo team has updated its guidance on committing <code>Cargo.lock</code> files. Previously, the team advised committing this file for packages with binaries but not for libraries. The new recommendation is more flexible, suggesting that developers should do what is best for their individual projects. This change is aimed at accommodating the evolving needs of the Rust community, especially as the language gains mainstream adoption. The <code>cargo new</code> command will also no longer ignore <code>Cargo.lock</code> for libraries starting from nightly-2023-08-24. The team emphasizes the importance of regular testing against the latest dependencies, regardless of whether the <code>Cargo.lock</code> file is committed.<p><strong>The update addresses several issues:</strong><ul><li><strong>Background:</strong> The old guidelines helped maintain high quality in Rust's package ecosystem but also had downsides like making it harder to bisect code history.<li><strong>Why the Change:</strong> Rust's growing mainstream adoption and the need for a better onboarding experience for new developers have necessitated this change.<li><strong>Wider Ecosystem:</strong> Advances in CI and tools like Dependabot have provided alternative ways to manage dependencies, making the old guidance less relevant.</ul><p>For more details and to provide feedback, you can read the full blog post on the <a href=https://blog.rust-lang.org/2023/08/29/committing-lockfiles.html target=_blank>Rust Blog</a> and the updated <a href=https://doc.rust-lang.org/nightly/cargo/faq.html#why-have-cargolock-in-version-control target=_blank>Cargo Book</a><h2 id=speeding-up-rust-compile-times-insights-from-august-2023>Speeding Up Rust Compile Times: Insights from August 2023</h2><p><a href=https://nnethercote.github.io/2023/08/25/how-to-speed-up-the-rust-compiler-in-august-2023.html target=_blank><img alt="Rust compiler" src=../24/compiler.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block></a><p>The Rust programming language is known for its focus on safety and performance, but compile times can sometimes be a bottleneck for developers. <strong>Nicholas Nethercote</strong>, a contributor to the Rust compiler, recently published an <a href=https://nnethercote.github.io/2023/08/25/how-to-speed-up-the-rust-compiler-in-august-2023.html target=_blank>article</a> detailing various improvements made to speed up the Rust compiler as of August 2023. Here's a summary of key takeaways to help you speed up your Rust compile times.<p><strong>Hash Algorithm Update for Incremental Compilation</strong> In the realm of incremental compilation, a notable enhancement was introduced through pull request <a href=https://github.com/rust-lang/rust/pull/107925 target=_blank>#107925</a>. This update modified the hashing algorithm responsible for detecting changes in code fragments. Specifically, the algorithm was transitioned from SipHash-2-4 to SipHash-1-3. As a result, the average wall-time for compilation was reduced by 1.63%. This optimization is particularly beneficial for incremental builds, where the hash function plays a crucial role in identifying code changes that require recompilation.<p><strong>LLVM Version Upgrades Boost Rust Compiler Efficiency</strong> The Low-Level Virtual Machine (LLVM) plays a pivotal role in the Rust compiler's back-end, handling tasks like code optimization and generation. Two separate pull requests (<a href=https://github.com/rust-lang/rust/pull/109474 target=_blank>#109474</a> and an update to LLVM 17) were responsible for upgrading the LLVM version used by the Rust compiler. These upgrades led to a reduction in average wall-time by 1.19% and 1.91%, respectively. The enhancements are attributed to both the increased efficiency of LLVM itself and the superior quality of the code it produces.<p><strong>Streamlining Code Checks for Faster Compilation</strong> Lints in Rust are essentially code checks that help identify issues like syntax errors or potential bugs. A specific update, made through pull request <a href=https://github.com/rust-lang/rust/pull/113734 target=_blank>#113734</a>, optimized the way these code checks (lints) are executed. This led to a 1.05% reduction in the average time it takes to compile a project. Just like some of the other updates, this one also particularly benefits incremental builds, where only parts of the code that have changed are recompiled.<p><strong>Enhancements in Codegen Units and Parallelization</strong> The Rust compiler has been fine-tuned to better utilize parallelization, particularly in its back-end operations. A minimum size for Codegen Units (CGUs) has been introduced in non-incremental builds. This change helps in reducing both peak memory (up to 19%) usage and the size of the compiled binary. However, the author points out that perfecting this aspect is challenging, given the multiple metrics that sometimes conflict with each other.<p><strong>Final Thoughts</strong> While the improvements may seem incremental, they add up over time and contribute to a more efficient compilation process. The article also touches on other areas like runtime benchmarking and future improvements, making it a comprehensive read for anyone interested in Rust compiler performance.<h2 id=navigating-the-serde-controversy-a-lesson-in-community-trust-and-security-for-rust-developers>Navigating the Serde Controversy: A Lesson in Community Trust and Security for Rust Developers</h2><p><a href=https://www.bleepingcomputer.com/news/security/rust-devs-push-back-as-serde-project-ships-precompiled-binaries/ target=_blank><img alt="Serde serialization" src=../24/serde-serialization.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block></a><p><strong>What Happened:</strong> The Serde project, a popular serialization library in Rust, faced backlash from the community for shipping precompiled binaries. The issue arose when the project's maintainers decided to include precompiled binaries in the package, which is against the norms of the Rust ecosystem. The binaries were intended to speed up the build process, but they raised concerns about security and trust within the community. The situation led to a heated debate, with some developers even considering forking the project (source: <a href=https://www.bleepingcomputer.com/news/security/rust-devs-push-back-as-serde-project-ships-precompiled-binaries/ target=_blank>BleepingComputer</a>).<p><strong>How It Was Recovered:</strong> The Serde project took immediate action to address the concerns raised by the community. An issue was opened on GitHub to discuss the matter transparently. They acknowledged the community's concerns and decided to revert the changes that included precompiled binaries. The issue was marked as resolved, and the project moved forward with its regular development cycle, ensuring to maintain the trust and security standards expected in the Rust ecosystem (<a href=https://github.com/serde-rs/serde/issues/2538 target=_blank>GitHub Issue #2538</a>)<p>The proposed forking by some community members would have been a poor outcome, leading to fragmentation and potential confusion. Personally, I am very pleased with how the situation was handled and resolved, reinforcing the importance of community trust and collaboration.<p>This incident serves as a lesson for the Rust community about the importance of maintaining trust and security while making changes that could potentially affect many projects.<p><strong>Release Note:</strong> <a href=https://github.com/serde-rs/serde/releases/tag/v1.0.184 target=_blank>Serde release v1.0.184</a>: Restore from-source serde_derive build on all platforms - eventually we'd like to use a first-class precompiled macro if such a thing becomes supported by cargo / crates.io<h2 id=snippets>Snippets</h2><ul><li><a href=https://blog.rust-lang.org/2023/08/24/Rust-1.72.0.html target=_blank>Rust 1.72.0 stable is out</a><li><a href=https://www.shuttle.rs/blog/2023/08/23/rust-web-framework-comparison target=_blank>Best Rust Web Frameworks to Use in 2023</a><li><a href=https://blog.phylum.io/rust-malware-staged-on-crates-io/ target=_blank>Rust Malware Staged on Crates.io</a></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p><strong>🔗 Stay Connected:</strong><p>Feel free to connect with our editor, Bob Peters, on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a> for more Rust insights and updates.</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

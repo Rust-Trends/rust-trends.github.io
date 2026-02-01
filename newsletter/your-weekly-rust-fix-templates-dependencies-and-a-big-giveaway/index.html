@@ -1,0 +1,164 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!
+        
+    </title><meta content="55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!" property=og:title><meta content="Dive into Rust Trends for insights on cargo-generate, Deps.rs, and the 2024 State of Rust Survey. Plus, a chance to win CodeCrafters subscriptions!" property=og:description><meta content="Dive into Rust Trends for insights on cargo-generate, Deps.rs, and the 2024 State of Rust Survey. Plus, a chance to win CodeCrafters subscriptions!" name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/your-weekly-rust-fix-templates-dependencies-and-a-big-giveaway/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!" name=twitter:title><meta content="Dive into Rust Trends for insights on cargo-generate, Deps.rs, and the 2024 State of Rust Survey. Plus, a chance to win CodeCrafters subscriptions!" name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/your-weekly-rust-fix-templates-dependencies-and-a-big-giveaway/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2024-12-07 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-12-07",
+  "dateModified": "2024-12-07",
+  "description": "Dive into Rust Trends for insights on cargo-generate, Deps.rs, and the 2024 State of Rust Survey. Plus, a chance to win CodeCrafters subscriptions!",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-weekly-rust-fix-templates-dependencies-and-a-big-giveaway&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-weekly-rust-fix-templates-dependencies-and-a-big-giveaway&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-weekly-rust-fix-templates-dependencies-and-a-big-giveaway&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!",
+  "description": "Dive into Rust Trends for insights on cargo-generate, Deps.rs, and the 2024 State of Rust Survey. Plus, a chance to win CodeCrafters subscriptions!",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-weekly-rust-fix-templates-dependencies-and-a-big-giveaway&#x2F;",
+  "datePublished": "2024-12-07",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-weekly-rust-fix-templates-dependencies-and-a-big-giveaway&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!</ol></nav><main><article><div class=title><div class=page-header>55 - Your Weekly Rust Fix: Templates, Dependencies, and a Big Giveaway!<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2024-12-07</time></div></div><section class=body><br> Welcome to this week’s edition of Rust Trends, where we dive into all things Rust — tools, updates, and community happenings. This week, we’ve got some exciting topics lined up: - A deep dive into the power of cargo-generate for project templates. - Why Deps.rs should be your go-to for dependency health checks. - A special announcement for CodeCrafters enthusiasts (hint: giveaways!). - And, of course, a call to action to shape Rust’s future through the 2024 State of Rust Survey. <p>Grab a coffee (or your beverage of choice), and let’s jump in!<h2 id=rocket-let-s-build-systems-and-win-big>🚀 Let’s Build Systems and Win Big!</h2><p>Hey Rustaceans! 🚀 Let’s Build Systems and Win Big!<p>Our CodeCrafters Giveaway is here, round two! 🎉 If you’ve been itching to dive deep into Rust while building your own versions of systems like Git, Docker, and more, this is your chance. CodeCrafters makes it fun, challenging, and totally rewarding—and now you can snag some sweet perks while you’re at it.<p>1️⃣ One Week Free Trial - No strings attached Sign up using <a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>my exclusive referral link</a>, and you’ll score a whole week of CodeCrafters goodness for free. Test it out, level up your Rust game, and see what all the hype is about.<p>2️⃣ Win 3 Months Free Every sign-up through my referral link is automatically entered into a draw to win one of three 3-month subscriptions to CodeCrafters! No hoops to jump through—just sign up, code, and you’re in.<p>It’s That Simple:<ul><li><a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>Sign up with the link</a>.<li>Start your Rust journey.<li>Win big (maybe)!</ul><p>Let’s make some Rust magic together! 🌟 Winners will be announced soon, so don’t wait—get started now and take your Rust skills to the next level.<h2 id=rust-project-templates-made-easy-exploring-cargo-generate>Rust Project Templates Made Easy: Exploring cargo-generate</h2><p>Starting a new Rust project is as simple as running cargo new, but when your project requires specific configurations, like for embedded development, this simplicity can become a double-edged sword. That’s where cargo-generate steps in, acting as a versatile project templating tool that streamlines the setup of Rust projects with custom templates.<h3 id=what-is-cargo-generate>What is cargo-generate?</h3><p>cargo-generate is a developer tool that enables you to create new Rust projects from existing templates stored in Git repositories. By leveraging these templates, you can quickly scaffold projects that include predefined configurations, dependencies, and file structures tailored to your needs.<h3 id=why-use-cargo-generate>Why Use cargo-generate?</h3><ul><li>Consistency Across Projects: By using templates, you ensure that all your projects start with a consistent structure and configuration, reducing setup errors and saving time.<li>Simplified Setup for Complex Configurations: For projects that require additional files like build.rs, rust-toolchain.toml, or .cargo/config.toml, common in embedded development, cargo-generate includes these files out of the box, which cargo new or cargo init do not provide.<li>Customization Through Placeholders and Hooks: Templates can define placeholders and hooks, allowing you to customize aspects of the project during generation, such as naming conventions or enabling specific features.</ul><h3 id=getting-started-with-cargo-generate>Getting Started with cargo-generate</h3><p>Install cargo-generate using Cargo:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> install cargo-generate
+</span></code></pre><h3 id=generating-a-new-project>Generating a New Project:</h3><p>Use cargo-generate with a template repository:<pre class=language-bash data-lang=bash style=color:#c0c5ce;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#bf616a>cargo</span><span> generate</span><span style=color:#bf616a> --git</span><span> https://github.com/username/template-repo.git
+</span></code></pre><p>You’ll be prompted to provide details like the project name and other template-specific options.<h3 id=takeaways>Takeaways</h3><p>Incorporating cargo-generate into your workflow can significantly enhance productivity, especially for projects with specialized requirements. By automating the inclusion of necessary configuration files and ensuring a consistent project structure, it allows you to focus more on development and less on setup.<p>For embedded Rust projects, where additional configuration files are often essential, cargo-generate proves to be an invaluable tool, simplifying the setup process and ensuring that all necessary components are in place from the start.<p>So, the next time you’re about to start a new Rust project, consider whether cargo-generate can help you hit the ground running with a tailored template.<p>For more information see the <a href=https://github.com/cargo-generate/cargo-generate target=_blank>Github repository of cargo generate</a><h2 id=why-every-rust-developer-should-know-about-deps-rs>Why Every Rust Developer Should Know About Deps.rs</h2><p>Managing dependencies in Rust projects can be a daunting task, especially when ensuring that all are up-to-date and free from security vulnerabilities. Enter Deps.rs, a dedicated service for the Rust community that simplifies this process by analyzing your project’s Cargo.toml file to detect outdated or insecure dependencies.<h3 id=what-is-deps-rs>What is Deps.rs?</h3><p>Deps.rs is an open-source tool that examines the dependencies specified in your Rust project’s Cargo.toml file. It compares them against the latest versions available on <a href=https://crates.io target=_blank>crates.io</a> and checks for any known security vulnerabilities using the RustSec Security Advisory Database. This analysis provides a clear overview of which dependencies are outdated or potentially insecure.<h3 id=key-features>Key Features</h3><ul><li>Dependency Status Reports: Deps.rs offers detailed reports indicating the current status of each dependency, highlighting those that are outdated or have known security issues.<li>Repository and Crate Support: You can analyze dependencies for both individual crates and entire repositories hosted on platforms like GitHub, GitLab, Bitbucket, SourceHut, Codeberg, and Gitea.<li>Embeddable Badges: Deps.rs provides SVG badges that display the status of your dependencies. These can be embedded in your project’s README.md, offering a quick visual indicator of dependency health.</ul><h3 id=why-use-deps-rs>Why Use Deps.rs?</h3><ul><li>Maintain Up-to-Date Dependencies: By regularly checking your project with Deps.rs, you can ensure that all dependencies are current, benefiting from the latest features and bug fixes.<li>Enhance Security: Deps.rs identifies dependencies with known vulnerabilities, allowing you to address security risks promptly.<li>Simplify Dependency Management: Deps.rs automates the monitoring of dependencies, reducing the manual effort required to keep track of updates and security advisories.</ul><h3 id=conclusion>Conclusion</h3><p>Incorporating Deps.rs into your development workflow is a proactive step toward maintaining a healthy and secure Rust project. By providing clear insights into the state of your dependencies, it empowers you to make informed decisions and keep your project robust.<p>For more information or to contribute to the project, <a href=https://github.com/deps-rs/deps.rs target=_blank>visit the Deps.rs GitHub repository</a>.<h2 id=2024-state-of-rust-survey>2024 State of Rust Survey</h2><p>The 2024 State of Rust Survey is live, and we need your input to shape the future of Rust!<p>Why Take the Survey?<ul><li>Help the Rust Project understand what’s working and what’s not.<li>Share your experiences, whether you’re a pro or just starting out.</ul><p>Details:<ul><li>⏱ Takes 10-25 minutes.<li>🌐 Available in multiple languages.<li>📅 Deadline: December 23, 2024.<li>👉 Take the Survey Here</ul><p>Your feedback is crucial—thank you for helping Rust grow!<h2 id=snippets>Snippets</h2><ul><li><a href=https://corrode.dev/blog/rust-conferences-2025/ target=_blank>Overview of Rust Conferences in 2025</a><li><a href=https://www.rustfinity.com/advent-of-rust target=_blank>Advent of Rust</a><li><a href=https://adventofcode.com/ target=_blank>The real Advent of Code</a><li><a href=https://www.reddit.com/r/rust/comments/1h3bqv0/why_is_ringbuf_crate_so_fast/ target=_blank>Why is <code>ringbuf</code> crate so fast? (Reddit)</a></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

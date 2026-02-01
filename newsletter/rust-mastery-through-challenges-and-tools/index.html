@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         37 - Rust Mastery through Challenges and Tools
+        
+    </title><meta content="37 - Rust Mastery through Challenges and Tools" property=og:title><meta content="Featuring streams like Jon Gjengset's exploration of Git with Rust and the practicalities of API testing with Slumber." property=og:description><meta content="Featuring streams like Jon Gjengset's exploration of Git with Rust and the practicalities of API testing with Slumber." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/rust-mastery-through-challenges-and-tools/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="37 - Rust Mastery through Challenges and Tools" name=twitter:title><meta content="Featuring streams like Jon Gjengset's exploration of Git with Rust and the practicalities of API testing with Slumber." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-mastery-through-challenges-and-tools/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2024-03-16 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "37 - Rust Mastery through Challenges and Tools",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-03-16",
+  "dateModified": "2024-03-16",
+  "description": "Featuring streams like Jon Gjengset&#x27;s exploration of Git with Rust and the practicalities of API testing with Slumber.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-mastery-through-challenges-and-tools&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-mastery-through-challenges-and-tools&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "37 - Rust Mastery through Challenges and Tools",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-mastery-through-challenges-and-tools&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "37 - Rust Mastery through Challenges and Tools",
+  "description": "Featuring streams like Jon Gjengset&#x27;s exploration of Git with Rust and the practicalities of API testing with Slumber.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-mastery-through-challenges-and-tools&#x2F;",
+  "datePublished": "2024-03-16",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "37 - Rust Mastery through Challenges and Tools",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-mastery-through-challenges-and-tools&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>37 - Rust Mastery through Challenges and Tools</ol></nav><main><article><div class=title><div class=page-header>37 - Rust Mastery through Challenges and Tools<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2024-03-16</time></div></div><section class=body><br> In this edition of Rust Trends, we're excited to share the latest and most significant developments in the Rust programming world. Whether you're just starting out or you're an experienced Rustacean, this issue is packed with innovative applications and essential programming insights designed to deepen your knowledge and enhance your skills in Rust. Stay tuned for a comprehensive journey through the evolving landscape of Rust programming! <h2 id=exploring-git-with-rust-jon-gjengset-s-stream>Exploring Git with Rust: Jon Gjengset's Stream</h2><img alt="Git written in Rust" src=../37/Git.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block><p>Featuring Jon Gjengset's detailed stream, <a href="https://www.youtube.com/watch?v=u0VotuGzD_w&ab_channel=JonGjengset" target=_blank>Implementing (parts of) git from scratch in Rust</a> we delve into a practical application of Rust's efficiency and safety in recreating aspects of the git version control system. This stream, drawing inspiration from the codecrafters challenges, serves as a fantastic learning tool for Rust enthusiasts.<p>Additionally, you have the opportunity this month to participate in the free Redis challenge. Engaging with this challenge through our <a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>referral link</a> not only boosts your Rust expertise but also supports Rust Trends at no cost, allowing us to continue providing insightful content.<h2 id=we-want-your-rust-embedded-project-ideas>We Want Your Rust Embedded Project Ideas!</h2><img alt="Rust Embedded Projects" src=../37/Embedded.webp style=border:0;width:50%;margin-left:auto;margin-right:auto;display:block><p><strong>Got a Brilliant Idea for a Rust-Powered Embedded Project?</strong><br> We're excited to explore the potential of Rust in embedded systems and need your innovative ideas! Whether it's a smart gadget, an IoT solution, or something entirely different, if it involves Rust and embedded development, we're all ears.<p><strong>Here’s How to Share:</strong><br> Simply reply to this email with your project idea. Describe what it's about and why Rust is the perfect choice for it. Don't worry about the scale of your idea – we're looking for creativity and passion for Rust.<p><strong>Next Steps:</strong><br> We'll collect your ideas and choose one to develop publicly, sharing the journey with the Rust community.<p>Ready to inspire? Send us your idea now! 🚀🔧🤖<h2 id=slumber-a-compact-rust-built-terminal-rest-client-and-an-inspiration-for-terminal-application-developers>Slumber: A Compact Rust-Built Terminal REST Client and an Inspiration for Terminal Application Developers</h2><img alt="Slumbler CLI API testing tool" src=../37/slumber.webp style=border:0;width:70%;margin-left:auto;margin-right:auto;display:block><p>Slumber stands out not just as a tool for API testing but also as a source of inspiration for those developing terminal applications. This Rust-based terminal REST client combines functionality and simplicity, offering a model for creating efficient and user-friendly terminal tools.<p>Highlights of Slumber:<ul><li>User-Friendly API Testing: Define, execute, and share HTTP requests with ease.<li>Secure Local Storage: Ensures your data and configurations are stored safely.<li>Rust & Ratatui Construction: Guarantees performance and reliability.<li>Sharing Capabilities: Ideal for collaborative work in API testing.<li>Inspirational Design: A great example for developers in the realm of terminal-based applications.</ul><p>For developers focused on API testing or those seeking inspiration for building terminal applications, Slumber is a noteworthy tool. Discover its capabilities and get inspired on <a href=https://github.com/LucasPickering/slumber target=_blank>GitHub: LucasPickering/slumber</a><h2 id=snippets>Snippets</h2><ul><li><p>Rust-Flashcards, offers a unique and interactive way to learn and reinforce Rust programming concepts. This resource comprises a collection of digital flashcards, ideal for both newcomers and experienced developers seeking to polish their Rust knowledge. It's a practical tool for those who prefer bite-sized, on-the-go learning. For a detailed view, visit the <a href="https://github.com/ad-si/Rust-Flashcards?tab=readme-ov-file" target=_blank>Rust-Flashcards GitHub page</a>.</p><li><p>Crates.io has made significant changes to <a href=https://blog.rust-lang.org/2024/03/11/crates-io-download-changes.html target=_blank>how crate downloads are managed</a>, aiming to improve download reliability and speed. Starting from March 12, 2024, cargo will download crates directly from CDN servers, ensuring better performance.</p><li><p>The Rustup team has released version 1.27.0 of Rustup, introducing noteworthy enhancements. Key updates include basic support for the fish shell, allowing automatic PATH configuration during installation, and added support for loongarch64-unknown-linux-gnu as a host platform. The update can be applied by running <code>rustup self update</code> or <code>rustup update</code> for automatic updates at the end of a toolchain update. For more details, visit the <a href=https://blog.rust-lang.org/2024/03/11/Rustup-1.27.0.html target=_blank>Rust blog</a>.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

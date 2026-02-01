@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         7 - Your Dev Environment on Steroids
+        
+    </title><meta content="7 - Your Dev Environment on Steroids" property=og:title><meta content="Take your developer environment to the next level with enhanced Visual Studio Code extensions for Rust, AI-powered programming assistance from ChatGPT and GitHub's Copilot, and an exploration into Helix, a text editor written in Rust itself. Discover how these tools and technologies can enrich your Rust coding experience and boost your productivity in the last Rust trends newsletter of 2022." property=og:description><meta content="Take your developer environment to the next level with enhanced Visual Studio Code extensions for Rust, AI-powered programming assistance from ChatGPT and GitHub's Copilot, and an exploration into Helix, a text editor written in Rust itself. Discover how these tools and technologies can enrich your Rust coding experience and boost your productivity in the last Rust trends newsletter of 2022." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/your-dev-environment-on-steroids/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="7 - Your Dev Environment on Steroids" name=twitter:title><meta content="Take your developer environment to the next level with enhanced Visual Studio Code extensions for Rust, AI-powered programming assistance from ChatGPT and GitHub's Copilot, and an exploration into Helix, a text editor written in Rust itself. Discover how these tools and technologies can enrich your Rust coding experience and boost your productivity in the last Rust trends newsletter of 2022." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/your-dev-environment-on-steroids/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2022-12-18 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "7 - Your Dev Environment on Steroids",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2022-12-18",
+  "dateModified": "2022-12-18",
+  "description": "Take your developer environment to the next level with enhanced Visual Studio Code extensions for Rust, AI-powered programming assistance from ChatGPT and GitHub&#x27;s Copilot, and an exploration into Helix, a text editor written in Rust itself. Discover how these tools and technologies can enrich your Rust coding experience and boost your productivity in the last Rust trends newsletter of 2022.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-dev-environment-on-steroids&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-dev-environment-on-steroids&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "7 - Your Dev Environment on Steroids",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-dev-environment-on-steroids&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "7 - Your Dev Environment on Steroids",
+  "description": "Take your developer environment to the next level with enhanced Visual Studio Code extensions for Rust, AI-powered programming assistance from ChatGPT and GitHub&#x27;s Copilot, and an exploration into Helix, a text editor written in Rust itself. Discover how these tools and technologies can enrich your Rust coding experience and boost your productivity in the last Rust trends newsletter of 2022.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-dev-environment-on-steroids&#x2F;",
+  "datePublished": "2022-12-18",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "7 - Your Dev Environment on Steroids",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;your-dev-environment-on-steroids&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>7 - Your Dev Environment on Steroids</ol></nav><main><article><div class=title><div class=page-header>7 - Your Dev Environment on Steroids<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2022-12-18</time></div></div><section class=body><br><blockquote><p><q>Improving your tools will help to improve your code</q></blockquote><p>The last newsletter of 2022 the next one will be published on the 1st of January 2023. Time flies when you are having fun with Rust. Let’s dive in…<p><strong>In today’s email:</strong><ul><li><strong>Enhanced Visual Studio Code</strong><li><strong>ChatGPT a glimpse into the future</strong><li><strong>The editor written in Rust</strong></ul><h2 id=enhanced-visual-studio-code>Enhanced Visual Studio Code</h2><div class=row><div class=column>As a developer, you need a development environment or editor to write and debug your code. A popular editor is <a href=https://code.visualstudio.com/ target=_blank>VSCode</a>, which can be enhanced with extensions. The most downloaded Rust extension is <a href=https://code.visualstudio.com/docs/languages/rust target=_blank>rust-analyzer</a>. If you want a more thorough <a href=https://code.visualstudio.com/docs/languages/rust#_linting target=_blank>static code analysis</a>, consider using `clippy` instead of the default `check` tool. While check only verifies that your code compiles, clippy analyzes your code and provides useful information and tips. <p>For debugging, you can use the <a href="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb" target=_blank>CodeLLdb</a> extension. With this debugger, you can step through your code, put in watches, inspect variables, and see your call stack, among other features.</div><div class=column><a href=https://code.visualstudio.com/docs/languages/rust target=_blank><img alt=VSCode src=../7/VScode.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div></div><h2 id=chatgpt-a-glimpse-into-the-future>ChatGPT a glimpse into the future</h2><div class=row><div class=column><a href=https://github.com/features/copilot target=_blank><img alt="Copilot AI programmer" src=../7/ai-programmer.webp style=border:0;width:100%;margin-left:auto;margin-right:auto;display:block></a></div><div class=column>ChatGPT, developed by OpenAI, is an artificial intelligence chatbot that is capable of performing many tasks, including writing code or refactoring existing code. You can find a <a href=https://github.com/mpociot/chatgpt-vscode target=_blank>VSCode plugin</a> that uses ChatGPT here (note: the plugin is still a bit hacky because there is no official API for ChatGPT yet). If you would like to see a demo video on YouTube, click <a href=https://gpt3demo.com/apps/chatgpt-for-vscode target=_blank>here</a>. <p>If you want to chat with GPT follow <a href=https://chat.openai.com/chat target=_blank>this</a> link. You will need to sign-up but it is definitively worth it.<p>Another AI tool that is used in production and helps you write code is <a href=https://github.com/features/copilot target=_blank>Copilot</a>. They call it the AI pair programmer.<p>AI will be the future of in-editor resources, such as StackOverflow, as well as a pair programmer and reviewer all in one…​</div></div><h2 id=the-editor-written-in-rust>The editor written in Rust</h2><div class=row><div class=column>Are you interested in trying something new? Consider giving <a href=https://helix-editor.com/ target=_blank>Helix</a> a try – it is an editor written in Rust. To get started, watch this <a href=https://youtu.be/xHebvTGOdH8 target=_blank>YouTube video</a>. If you’d like to see the manual, click <a href=https://docs.helix-editor.com/ target=_blank>here</a>. <p>Helix is designed to be used without a mouse, keeping your hands on the keyboard. If you’re already familiar with editors like Vim, the transition to Helix should be easy.<p>Consider giving Helix a try in your next hobby project and let me know your experience with it.<p>Helix the editor written in Rust</div><div class=column><a href=https://helix-editor.com/ target=_blank><img alt="Helix Text Editor written in Rust" src=../7/Helix.webp style=border:0;width:70%;margin-left:auto;margin-right:auto;display:block></a></div></div><hr><p>Enjoy your Sunday, and have a great week ahead.<p>Thanks for reading!<br> Bob Peters<p>Feel free to connect with me on <a href=https://www.linkedin.com/in/bjhpeters/ target=_blank>LinkedIn</a></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

@@ -1,0 +1,292 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Unpacking Rust's match Operator with Community Insights
+        
+    </title><meta content="Unpacking Rust's match Operator with Community Insights" property=og:title><meta content="Explores the usage of the match operator in Rust, discusses community feedback on a shared code snippet, and presents several code improvements." property=og:description><meta content="Explores the usage of the match operator in Rust, discusses community feedback on a shared code snippet, and presents several code improvements." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Unpacking Rust's match Operator with Community Insights" name=twitter:title><meta content="Explores the usage of the match operator in Rust, discusses community feedback on a shared code snippet, and presents several code improvements." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2024-04-26 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unpacking Rust&#x27;s match Operator with Community Insights",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-04-26",
+  "dateModified": "2024-04-26",
+  "description": "Explores the usage of the match operator in Rust, discusses community feedback on a shared code snippet, and presents several code improvements.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;unpacking-rust-s-match-operator-with-community-insights&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;unpacking-rust-s-match-operator-with-community-insights&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Unpacking Rust&#x27;s match Operator with Community Insights",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;unpacking-rust-s-match-operator-with-community-insights&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unpacking Rust&#x27;s match Operator with Community Insights",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-04-26",
+  "dateModified": "2024-04-26",
+  "description": "Explores the usage of the match operator in Rust, discusses community feedback on a shared code snippet, and presents several code improvements.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;unpacking-rust-s-match-operator-with-community-insights&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;unpacking-rust-s-match-operator-with-community-insights&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Unpacking Rust&#x27;s match Operator with Community Insights",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;unpacking-rust-s-match-operator-with-community-insights&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Unpacking Rust's match Operator with Community Insights</ol></nav><main><article><div class=title><div class=page-header>Unpacking Rust's match Operator with Community Insights<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2024-04-26</time></div></div><h1>Table of Contents</h1><ul><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#introduction>Introduction</a><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#the-original-code-snippet>The Original Code Snippet</a><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#elevate-your-rust-skills-with-codecrafters-rocket-advertisement>Elevate Your Rust Skills with CodeCrafters! 🚀 [advertisement]</a><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#community-insights>Community Insights</a> <ul><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#eliminate-mutable-declaration>Eliminate Mutable Declaration</a><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#implement-display-trait>Implement Display Trait</a><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#use-the-crates-strum-and-strum-macros>Use the crates strum and strum_macros</a><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#encapsulate-behavior-within-the-enum>Encapsulate Behavior within the Enum</a><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#how-to-generate-such-great-code-snippets>How to generate such great code snippets?</a></ul><li><a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights/#conclusion>Conclusion</a></ul><section class=body><h2 id=introduction>Introduction</h2><p>In the dynamic world of software development, sharing and <a href="https://www.linkedin.com/feed/update/urn:li:activity:7188597915068608512?utm_source=share&utm_medium=member_desktop" target=_blank>discussing code snippets on platforms like LinkedIn</a> can provide immense value, both through receiving insightful feedback and fostering community engagement. This post is inspired by an (overly) simplified Rust example using the match operator — a powerful tool in Rust's arsenal. Below, I'll break down the code snippet I posted, explore the constructive feedback received, and discuss general tips for writing better Rust code shared by our community.<h2 id=the-original-code-snippet>The Original Code Snippet</h2><p>Here's a brief code snippet to illustrate the usage of the match operator in Rust:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>enum </span><span>TrafficLight {
+</span><span>    Red,
+</span><span>    Yellow,
+</span><span>    Green,
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>action</span><span>(</span><span style=color:#bf616a>light</span><span>: TrafficLight) -> &</span><span style=color:#b48ead>'static str </span><span>{
+</span><span>    </span><span style=color:#b48ead>match</span><span> light {
+</span><span>        TrafficLight::Red => "</span><span style=color:#a3be8c>Stop</span><span>",
+</span><span>        TrafficLight::Yellow => "</span><span style=color:#a3be8c>Caution</span><span>",
+</span><span>        TrafficLight::Green => "</span><span style=color:#a3be8c>Go</span><span>",
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let mut</span><span> light = TrafficLight::Green;
+</span><span>    println!("</span><span style=color:#a3be8c>The light says: </span><span style=color:#d08770>{}</span><span>", </span><span style=color:#96b5b4>action</span><span>(light));
+</span><span>
+</span><span>    light = TrafficLight::Yellow;
+</span><span>    println!("</span><span style=color:#a3be8c>The light says: </span><span style=color:#d08770>{}</span><span>", </span><span style=color:#96b5b4>action</span><span>(light));
+</span><span>
+</span><span>    light = TrafficLight::Red;
+</span><span>    println!("</span><span style=color:#a3be8c>The light says: </span><span style=color:#d08770>{}</span><span>", </span><span style=color:#96b5b4>action</span><span>(light));
+</span><span>}
+</span></code></pre><p>Playground <a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=44e42a468bc89c711643299885e88533" target=_blank>link</a><p><strong>Use of match for Control Flow:</strong> The match operator is akin to a switch statement but more powerful. It allows a value to be compared against a series of patterns and execute code based on which pattern matches. This is particularly useful for enums in Rust, as demonstrated in our TrafficLight example.<h2 id=elevate-your-rust-skills-with-codecrafters-rocket-advertisement>Elevate Your Rust Skills with CodeCrafters! 🚀 [advertisement]</h2><p>Join us in partnership with CodeCrafters to build your own HTTP server for FREE! Sign up easily with GitHub—no payment info required.<p>📅 Hurry, as April's special offer is ending soon! WIN one of two yearly subscriptions worth $990 each. Plus, subscribers receive a 40% discount on all paid plans.<p>Don't miss out—enhance your skills and win big. <a href="https://app.codecrafters.io/join?via=Rust-Trends" target=_blank>Sign up now</a><p>P.S. it helps us to keep the lights on and continue to provide valuable content and for you it is FREE. Thank you for your support! 🙏<p>Let's continue with the article!<h2 id=community-insights>Community Insights</h2><p>The LinkedIn post generated a lot of engagement, with several community members sharing their thoughts and suggestions. Here are some key insights:<h3 id=eliminate-mutable-declaration>Eliminate <code>Mutable</code> Declaration</h3><p>One community member suggested eliminating the need for a mutable declaration for <code>light</code> by only assigning it once. This can be achieved by using a loop to iterate over the values of the enumeration and printing directly within the iteration without reassigning <code>light</code>.<p>My interpretation of this suggestion is as follows:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>enum </span><span>TrafficLight {
+</span><span>    Red,
+</span><span>    Yellow,
+</span><span>    Green,
+</span><span>}
+</span><span>
+</span><span style=color:#65737e>// Update the function signature to take a reference
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>action</span><span>(</span><span style=color:#bf616a>light</span><span>: &TrafficLight) -> &</span><span style=color:#b48ead>'static str </span><span>{
+</span><span>    </span><span style=color:#b48ead>match </span><span>*light {  </span><span style=color:#65737e>// Dereference here to match against the enum variants
+</span><span>        TrafficLight::Red => "</span><span style=color:#a3be8c>Stop</span><span>",
+</span><span>        TrafficLight::Yellow => "</span><span style=color:#a3be8c>Caution</span><span>",
+</span><span>        TrafficLight::Green => "</span><span style=color:#a3be8c>Go</span><span>",
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>for</span><span> light in &[TrafficLight::Green, TrafficLight::Yellow, TrafficLight::Red] {
+</span><span>        </span><span style=color:#65737e>// Pass a reference to `action`, no need to dereference here
+</span><span>        println!("</span><span style=color:#a3be8c>The light says: </span><span style=color:#d08770>{}</span><span>", </span><span style=color:#96b5b4>action</span><span>(light));
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Playground <a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=ec71038ae74ab6610cbb48d1cb92810e" target=_blank>link</a><p>Explanation of Key Parts:<ul><li><strong>Function Signature:</strong> The <code>action</code> function now accepts a reference to a <code>TrafficLight</code> (&TrafficLight) instead of owning it. This is a more flexible approach, especially when you don't need to take ownership of the value.<li><strong>Matching Inside action:</strong> Inside the <code>action</code> function, the match statement now needs to dereference the light argument to access the enum values (*light).</ul><h3 id=implement-display-trait>Implement <code>Display</code> Trait</h3><p>Another community member suggested implementing the Display trait for the <code>TrafficLight</code> enum to allow for more readable output.<p>This can be achieved by adding the following code:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// Trait to allow custom formatting of the enum variants.
+</span><span style=color:#b48ead>use </span><span>std::fmt;
+</span><span>
+</span><span style=color:#b48ead>enum </span><span>TrafficLight {
+</span><span>    Red,
+</span><span>    Yellow,
+</span><span>    Green,
+</span><span>}
+</span><span>
+</span><span style=color:#65737e>// Implement the Display trait for TrafficLight.
+</span><span style=color:#b48ead>impl </span><span>fmt::Display </span><span style=color:#b48ead>for </span><span>TrafficLight {
+</span><span>    </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>fmt</span><span>(&</span><span style=color:#bf616a>self</span><span>, </span><span style=color:#bf616a>f</span><span>: &</span><span style=color:#b48ead>mut </span><span>fmt::Formatter&lt;'_>) -> fmt::Result {
+</span><span>        </span><span style=color:#b48ead>let</span><span> text = </span><span style=color:#b48ead>match </span><span style=color:#bf616a>self </span><span>{
+</span><span>            TrafficLight::Red => "</span><span style=color:#a3be8c>Stop</span><span>",
+</span><span>            TrafficLight::Yellow => "</span><span style=color:#a3be8c>Caution</span><span>",
+</span><span>            TrafficLight::Green => "</span><span style=color:#a3be8c>Go</span><span>",
+</span><span>        };
+</span><span>        write!(f, "</span><span style=color:#d08770>{}</span><span>", text)
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>for</span><span> light in &[TrafficLight::Green, TrafficLight::Yellow, TrafficLight::Red] {
+</span><span>        </span><span style=color:#65737e>// Automatically uses the Display trait for printing.
+</span><span>        println!("</span><span style=color:#a3be8c>The light says: </span><span style=color:#d08770>{}</span><span>", light);
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Playground <a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9df958812ad767f59466c88ba0462014" target=_blank>link</a><p>Documentation <a href=https://doc.rust-lang.org/std/fmt/trait.Display.html target=_blank>std::fmt</a><p>Explanation of Key Parts:<ul><li><strong>Use Statement:</strong> The use std::fmt; is necessary to bring the fmt module into scope, which contains the <code>Display</code> trait and <code>Formatter</code> struct needed for implementing custom display behavior.<li><strong>Implementing Display:</strong> The <code>impl fmt::Display</code> for <code>TrafficLight</code> block defines how to convert each variant of the <code>TrafficLight</code> enum to a String. The method fmt takes a mutable reference to a <code>Formatter</code> object and returns a <code>Result</code> that indicates whether the operation was successful or not.<li><strong>Match Statement:</strong> Inside the fmt method, a match expression determines what string corresponds to each enum variant. <code>write!</code> Macro: This macro is used to write the formatted string into the provided buffer (f), which is part of the functionality provided by the <code>Formatter</code>.</ul><h3 id=use-the-crates-strum-and-strum-macros>Use the crates <code>strum</code> and <code>strum_macros</code></h3><p>Yes, you probably thought it already — if you are doing something like this in Rust, there's a crate for that! Turns out strum is here, and a helpful community member pointed out that it can be used to simplify the code. <code>strum</code> and its companion <code>strum_macros</code> bring additional functionalities that make working with enums much more flexible and expressive.<p>Here is how you can use it, my interpretation of the suggestion:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#65737e>// Trait to allow iteration over the enum variants.
+</span><span style=color:#b48ead>use </span><span>strum::IntoEnumIterator;
+</span><span style=color:#65737e>// Macros to derive display and iterator functionalities.
+</span><span style=color:#b48ead>use </span><span>strum_macros::{Display, EnumIter};
+</span><span>
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(EnumIter, Display)]
+</span><span style=color:#b48ead>enum </span><span>TrafficLight {
+</span><span>    #[</span><span style=color:#bf616a>strum</span><span>(serialize = "</span><span style=color:#a3be8c>Stop</span><span>")]
+</span><span>    Red,
+</span><span>    #[</span><span style=color:#bf616a>strum</span><span>(serialize = "</span><span style=color:#a3be8c>Caution</span><span>")]
+</span><span>    Yellow,
+</span><span>    #[</span><span style=color:#bf616a>strum</span><span>(serialize = "</span><span style=color:#a3be8c>Go</span><span>")]
+</span><span>    Green,
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#65737e>// Use the iter() function provided by EnumIter.
+</span><span>    </span><span style=color:#b48ead>for</span><span> light in TrafficLight::iter() {
+</span><span>        </span><span style=color:#65737e>// Automatically uses the Display trait for printing.
+</span><span>        println!("</span><span style=color:#a3be8c>The light says: </span><span style=color:#d08770>{}</span><span>", light);
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Documentation <a href=https://docs.rs/strum/latest/strum/ target=_blank>strum</a><p>This code snippet leverages <code>strum</code> to automatically implement the <code>Display</code> trait for the <code>TrafficLight</code> enum, customizing the output string for each variant using the <code>serialize</code> attribute. Moreover, <code>EnumIter</code> is used to create an iterator over the enum, which simplifies looping through its values. This combination not only reduces boilerplate but also enhances the readability and maintainability of your code. Thanks to <code>strum</code>, managing enums in Rust becomes a breeze, focusing more on what you want your code to do rather than how to set up basic functionalities.<h3 id=encapsulate-behavior-within-the-enum>Encapsulate Behavior within the Enum</h3><p>A suggestion from another community member highlighted a more integrated approach: they prefer to encapsulate the behavior directly within the enum. Additionally, they recommended making the <code>action</code> function constant (const).<p>Here’s an implementation based on that suggestion:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>use </span><span>strum::IntoEnumIterator;
+</span><span style=color:#b48ead>use </span><span>strum_macros::EnumIter;
+</span><span>#[</span><span style=color:#bf616a>derive</span><span>(EnumIter)]
+</span><span style=color:#b48ead>enum </span><span>TrafficLight {
+</span><span>    Red,
+</span><span>    Yellow,
+</span><span>    Green,
+</span><span>}
+</span><span>
+</span><span style=color:#65737e>// Implementing a constant function action for the TrafficLight enum.
+</span><span style=color:#b48ead>impl </span><span>TrafficLight {
+</span><span>    </span><span style=color:#b48ead>const fn </span><span style=color:#8fa1b3>action</span><span>(&</span><span style=color:#bf616a>self</span><span>) -> &</span><span style=color:#b48ead>'static str </span><span>{
+</span><span>        </span><span style=color:#b48ead>match </span><span style=color:#bf616a>self </span><span>{
+</span><span>            TrafficLight::Red => "</span><span style=color:#a3be8c>Stop</span><span>",
+</span><span>            TrafficLight::Yellow => "</span><span style=color:#a3be8c>Caution</span><span>",
+</span><span>            TrafficLight::Green => "</span><span style=color:#a3be8c>Go</span><span>",
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>for</span><span> light in TrafficLight::iter() {
+</span><span>        </span><span style=color:#65737e>// Use the constant function action directly on the enum variant.
+</span><span>        println!("</span><span style=color:#a3be8c>The light says: </span><span style=color:#d08770>{}</span><span>", light.</span><span style=color:#96b5b4>action</span><span>());
+</span><span>    }
+</span><span>}
+</span></code></pre><p>Note in this example I am still using <code>strum</code> to iterate over the enum variants, because it makes the code more concise and readable.<h3 id=how-to-generate-such-great-code-snippets>How to generate such great code snippets?</h3><img alt="Code snippet match-operator" src=../../newsletter/40/match-operator.webp style=border:0;width:50%;margin-left:auto;margin-right:auto;display:block><p>One community member asked how to generate such great code snippets images I use ray.so for generating code snippets. It's a fantastic tool for creating beautiful code images for sharing on social media platforms like LinkedIn, Twitter, etc. You can check it out <a href=https://ray.so/ target=_blank>here</a>.<h2 id=conclusion>Conclusion</h2><p>Sharing code snippets and engaging with the community can lead to valuable insights and improvements in your coding practices. By exploring the feedback and suggestions provided by the community, you can enhance your understanding of Rust and learn new ways to write more efficient and readable code. Remember, the Rust community is always ready to help and share knowledge, so don't hesitate to participate and contribute to the vibrant ecosystem of Rust developers.<p>While the match operator was the main focus, the ensuing discussions and improvements turned out to be even more intriguing and significant.<p>Happy coding! 🦀<p>P.s. if you have any questions or suggestions, feel free to drop me a message. Let's keep the conversation going! Do not forget to sign up for my newsletter 🚀</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>

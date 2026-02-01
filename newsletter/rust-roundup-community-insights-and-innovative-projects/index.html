@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         40 - Rust Roundup: Community Insights and Innovative Projects
+        
+    </title><meta content="40 - Rust Roundup: Community Insights and Innovative Projects" property=og:title><meta content="Discover how Rust empowers both Thunderbird's Exchange support and drone technology, exploring match operators and community insights." property=og:description><meta content="Discover how Rust empowers both Thunderbird's Exchange support and drone technology, exploring match operators and community insights." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/rust-roundup-community-insights-and-innovative-projects/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="40 - Rust Roundup: Community Insights and Innovative Projects" name=twitter:title><meta content="Discover how Rust empowers both Thunderbird's Exchange support and drone technology, exploring match operators and community insights." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-roundup-community-insights-and-innovative-projects/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2024-04-27 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "40 - Rust Roundup: Community Insights and Innovative Projects",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2024-04-27",
+  "dateModified": "2024-04-27",
+  "description": "Discover how Rust empowers both Thunderbird&#x27;s Exchange support and drone technology, exploring match operators and community insights.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-roundup-community-insights-and-innovative-projects&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-roundup-community-insights-and-innovative-projects&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "40 - Rust Roundup: Community Insights and Innovative Projects",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-roundup-community-insights-and-innovative-projects&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "40 - Rust Roundup: Community Insights and Innovative Projects",
+  "description": "Discover how Rust empowers both Thunderbird&#x27;s Exchange support and drone technology, exploring match operators and community insights.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-roundup-community-insights-and-innovative-projects&#x2F;",
+  "datePublished": "2024-04-27",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "40 - Rust Roundup: Community Insights and Innovative Projects",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-roundup-community-insights-and-innovative-projects&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>40 - Rust Roundup: Community Insights and Innovative Projects</ol></nav><main><article><div class=title><div class=page-header>40 - Rust Roundup: Community Insights and Innovative Projects<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2024-04-27</time></div></div><section class=body><br> Welcome to the latest edition of Rust Trends, Edition #40! In this issue, we dive into diverse topics from exploring the nuances of Rust's match operator to adventurous projects like building a drone and significant developments like Thunderbird's new Exchange support. <p>Join us as we traverse these technical terrains, offering insights, challenges, and community-driven enhancements that showcase the versatility and power of Rust.<p>Engage with our articles to elevate your programming skills and connect with the Rust community's innovative spirit.<h2 id=explore-the-power-of-rust-s-match-operator-with-community-insights>Explore the Power of Rust's Match Operator with Community Insights</h2><img alt="Unpacking Rust's Match Operator with Community Insights" src=../40/match-operator.webp style=border:0;width:60%;margin-left:auto;margin-right:auto;display:block> In our latest blog post, <a href=https://rust-trends.com/posts/unpacking-rust-s-match-operator-with-community-insights>Unpacking Rust's Match Operator with Community Insights</a> we delve into the practical applications and community-driven enhancements of Rust's versatile match operator. Inspired by real-world code discussions on platforms like LinkedIn, this article breaks down a simple Rust code snippet and incorporates valuable feedback from the Rust community. Whether you're looking to refine your understanding of control flow in Rust or searching for tips to write cleaner code, this post is packed with expert advice and coding improvements. <p>Dive into the article here and join the conversation to elevate your Rust programming skills!<h2 id=building-a-drone-with-rust-a-public-embedded-project-journey>Building a Drone with Rust: A Public Embedded Project Journey</h2><img alt="Embedded project: Drone" src=../40/drone.webp style=border:0;width:50%;margin-left:auto;margin-right:auto;display:block> In a recent call to our community for embedded programming ideas using Rust, your enthusiasm and innovative suggestions stood out. After much deliberation, I'm excited to announce the project we'll be tackling together: **building a drone**. More precisely a Flight Controller. This journey won't just be a personal challenge—I plan to build this project in public, sharing each step of the process to enhance our community's learning and engagement. <h3 id=choosing-the-right-framework>Choosing the Right Framework</h3><p>The first step in this adventure was to decide on the programming environment: RTOS, bare metal, or async programming. While <a href=https://tockos.org/ target=_blank>Tock OS</a>, <a href=https://rtic.rs/2/book/en/preface.html target=_blank>RTic</a>, and <a href=(https://hubris.oxide.computer/ target=_blank>Hubris with its accompanying debugger Humility</a>) from <a href=https://rust-trends.com/newsletter/rust-beyond-software-a-hardware-company-s-journey-with-rust/ target=_blank>Oxide Computer</a> were strong contenders, each offering unique strengths, I decided to embark on a path less traveled within our context.<p>Given my background with the RTOS <a href=https://zephyrproject.org/ target=_blank>Zephyr</a>, which is primarily written in C, the allure of exploring new territories was irresistible. <strong>I've chosen to work with</strong> <a href=https://embassy.dev/ target=_blank><strong>Embassy</strong></a>, a framework that supports <a href=https://rust-lang.github.io/async-book/ target=_blank>async programming</a>. This choice is particularly exciting as it <strong>bridges the gap</strong> for those transitioning from high level Web development or Systems Programming to Embedded Development in Rust. The async model in <strong>Embassy</strong> will help us manage multiple tasks efficiently, which is crucial for controlling a drone's various functions concurrently.<h3 id=why-not-bare-metal>Why Not Bare Metal?</h3><p>While bare metal programming offers direct hardware control and efficiency, it lacks the built-in concept of task prioritization and asynchronous operations—features that are critical for a drone's operational requirements. The complexity of managing a drone's multiple sensors, motors, and safety checks makes bare metal a less suitable option for this project.<h3 id=what-s-next>What’s Next?</h3><p>I am thrilled to start coding, compiling, and flashing the drone. Stay tuned for regular updates, insights, and tutorials in the coming editions of Rust Trends. Together, we'll navigate the challenges and celebrate the milestones of this exciting project.<p>Let's soar to new heights with Rust!<h2 id=adventures-in-rust-bringing-exchange-support-to-thunderbird>Adventures In Rust: Bringing Exchange Support To Thunderbird</h2><img alt="Thunderbird Rust" src=../40/Tb-rust1.webp style=border:0;width:80%;margin-left:auto;margin-right:auto;display:block> In the latest post on the Thunderbird blog, the team discusses their adventures in implementing Exchange support using Rust, a journey that marks a significant milestone for Thunderbird. For over two decades, Thunderbird had not introduced support for a new mail protocol, making this development particularly notable. The choice of Rust was driven by several advantages such as memory safety, performance, modularity, and its vibrant ecosystem. Notably, Thunderbird benefits from its integration with Firefox's codebase and infrastructure, which already supports Rust, easing some aspects of development despite the challenges posed by legacy code and architectural hurdles. <p>This endeavor is part of Thunderbird's broader effort to modernize its architecture, addressing technical debts and enhancing maintainability for future expansions. The implementation focuses on interfacing with Microsoft's Exchange Web Services (EWS), utilizing Rust's capabilities to manage complex features and ensure robust security practices. Despite initial challenges with the build system and integrating Rust code, the team has successfully navigated these issues, setting a foundation for further development and integration of Rust within Thunderbird's architecture.<p>For more details on this transformative journey and the technical insights behind it, you can read the full blog post <a href=https://blog.thunderbird.net/2024/04/adventures-in-rust-bringing-exchange-support-to-thunderbird/ target=_blank>here</a>.<hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers, Bob Peters</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202602010646" defer></script>
