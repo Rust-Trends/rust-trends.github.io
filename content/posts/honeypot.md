@@ -196,7 +196,7 @@ Before deploying to Oracle Cloud, you can test your honeypot locally. Build it a
 
 ## 4. Deploying to Oracle Cloud
 
-### 4.1 Orcale Cloud Infrastructure Network Configuration
+### 4.1 Oracle Cloud Infrastructure Network Configuration
 By default, Oracle Cloud blocks inbound traffic on custom ports. You need to create an **Ingress Rule** in the **Security List** or **Network Security Group** for your instance’s subnet. Example: Open port `2222` to `0.0.0.0/0` via TCP.
 
 - Go to the Oracle Cloud console and navigate to your instance
@@ -450,7 +450,7 @@ This script installs the honeypot binary, creates a systemd service, and starts 
 
 The binary is run under the privileges of the `honeypot` user, which is created if it doesn’t exist. The honeypot binary is copied to `/opt/honeypot`, and the systemd service file is created or updated. The service is then reloaded, enabled, and restarted.
 
-A pro-tip I got from Daniel Thompson-Yvetot was to assume the box will be powned and to make it more interesting for the attacker. For example, you change the name of the honeypot sevice to `fastxmrminer.service` and the binary to `fastxmrminer` and the attacker will think they hit the jackpot.
+A pro-tip I got from Daniel Thompson-Yvetot was to assume the box will be powned and to make it more interesting for the attacker. For example, you change the name of the honeypot service to `fastxmrminer.service` and the binary to `fastxmrminer` and the attacker will think they hit the jackpot.
 
 In the current version I kept it simple and straightforward for educational purposes, but you can expand on this idea.
 
