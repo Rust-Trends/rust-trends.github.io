@@ -886,7 +886,9 @@ We are coming to the end of Part 1 of this series. You've built a basic DNS serv
 
 This tutorial is inspired by the Codecrafters challenge of building your own DNS server. If you enjoy hands-on learning, use <a href="https://app.codecrafters.io/join-track/rust?via=Rust-Trends" target="_blank">my referral link</a> to get a 40% discount and support my content. You can even try it for free no strings attached!
 
-Have questions or feedback? Drop a comment or reach out, I’d love to hear how your DNS server is coming along! Stay tuned for Part 2!
+Have questions or feedback? Drop a comment or reach out, I’d love to hear how your DNS server is coming along!
+Ready to go further? Continue with [Part 2](https://rust-trends.com/posts/building-dns-server-in-rust-part-2/),
+where we add packet decompression and query forwarding to external resolvers.
 
 ## Disclaimer
 This project is intended for **educational purposes** and is not fully optimized for production use.
