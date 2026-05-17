@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         75 - Rust Is Becoming the AI Runtime
+        
+    </title><meta content="75 - Rust Is Becoming the AI Runtime" property=og:title><meta content="Pydantic's Monty hits 0.06ms cold starts for AI agents, LocalGPT ships in 27MB, Turso rewrites SQLite, and Voxtral runs speech-to-text in the browser." property=og:description><meta content="Pydantic's Monty hits 0.06ms cold starts for AI agents, LocalGPT ships in 27MB, Turso rewrites SQLite, and Voxtral runs speech-to-text in the browser." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/rust-is-becoming-the-ai-runtime/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="75 - Rust Is Becoming the AI Runtime" name=twitter:title><meta content="Pydantic's Monty hits 0.06ms cold starts for AI agents, LocalGPT ships in 27MB, Turso rewrites SQLite, and Voxtral runs speech-to-text in the browser." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-is-becoming-the-ai-runtime/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-02-15 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "75 - Rust Is Becoming the AI Runtime",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-02-15",
+  "dateModified": "2026-02-15",
+  "description": "Pydantic&#x27;s Monty hits 0.06ms cold starts for AI agents, LocalGPT ships in 27MB, Turso rewrites SQLite, and Voxtral runs speech-to-text in the browser.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-is-becoming-the-ai-runtime&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-is-becoming-the-ai-runtime&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "75 - Rust Is Becoming the AI Runtime",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-is-becoming-the-ai-runtime&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "75 - Rust Is Becoming the AI Runtime",
+  "description": "Pydantic&#x27;s Monty hits 0.06ms cold starts for AI agents, LocalGPT ships in 27MB, Turso rewrites SQLite, and Voxtral runs speech-to-text in the browser.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-is-becoming-the-ai-runtime&#x2F;",
+  "datePublished": "2026-02-15",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "75 - Rust Is Becoming the AI Runtime",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-is-becoming-the-ai-runtime&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>75 - Rust Is Becoming the AI Runtime</ol></nav><main><article><div class=title><div class=page-header>75 - Rust Is Becoming the AI Runtime<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2026-02-15</time></div></div><section class=body><p>When Pydantic needed a sandboxed Python runtime for AI agents, they wrote it in Rust. When someone wanted a 27MB local AI assistant, they chose Rust. When Turso wanted to fix SQLite's concurrency model, they rewrote it in Rust. The pattern is hard to ignore.<p>In this issue: Pydantic's Python interpreter written in Rust for AI agents, a local-first AI assistant in a 27MB binary, Turso's SQLite rewrite, and running a 4B parameter speech model in the browser with WASM.<h1 id=pydantic-builds-a-python-interpreter-in-rust-for-ai>Pydantic Builds a Python Interpreter in Rust for AI</h1><p>The team behind Pydantic released <a href=https://github.com/pydantic/monty target=_blank>Monty</a>, a minimal Python interpreter written in Rust. It's not a general-purpose Python runtime. It's built specifically for executing AI-generated code with microsecond startup times.<p>The numbers tell the story: 0.06ms cold start versus 195ms for Docker and 2,800ms for Pyodide. That's over 3,000x faster than container-based sandboxing.<p>The real use case is what Pydantic calls "Code Mode" for AI agents. When an LLM chains multiple tool calls, sending every intermediate result back to the model wastes tokens and adds latency. Monty lets agents generate Python code that runs locally, pausing at external function calls for the host to resolve. Only the final result returns to the LLM. Less token usage, less round-tripping.<p>The security model is deliberately restrictive. No filesystem access, no network, no environment variables unless explicitly exposed through external functions. Memory limits, stack depth enforcement, and execution timeouts are built in. The interpreter serializes its state for pause and resume across process boundaries. That enables distributed execution.<p>The HN thread was mixed. Simon Willison got Monty running in WebAssembly and built a working demo. Critics questioned whether restricting Python features (no classes yet) is the right approach versus OS-level sandboxing. The E2B team argued only VMs provide real security guarantees. Fair points, but they miss the target use case. Monty isn't competing with Docker for security. It's competing on latency in agentic loops where microseconds matter.<p><strong>Takeaways:</strong><ul><li>0.06ms cold start makes Monty viable for embedding in AI agent reasoning loops where container overhead is prohibitive<li>If you're building agentic tooling, the snapshot/resume pattern is worth borrowing for your own sandboxed execution<li>Currently experimental with no class support yet, but the "Code Mode" pattern for reducing LLM token usage is worth exploring</ul><h1 id=localgpt-a-27mb-ai-assistant-written-in-rust>LocalGPT: A 27MB AI Assistant Written in Rust</h1><p><a href=https://github.com/localgpt-app/localgpt target=_blank>LocalGPT</a> is a Rust-based AI assistant that ships as a single 27MB binary with zero external dependencies. No Node.js, no Docker, no Python runtime. It launched on February 1 and already has over 800 stars.<p>The architecture is straightforward. Axum handles HTTP, SQLite with FTS5 provides keyword search, sqlite-vec adds semantic search with local embeddings, and eframe delivers a desktop GUI. The project includes CLI, web UI, desktop, and Telegram bot interfaces. You can build it headless with <code>--no-default-features</code> for servers.<p>The memory system stands out. Three markdown files define the assistant's behavior: MEMORY.md for persistent knowledge, HEARTBEAT.md for autonomous background tasks, and SOUL.md for personality. The hybrid search combines vector similarity with BM25 keyword matching.<p>The project positions itself as a lightweight alternative to <a href=https://github.com/openclaw/openclaw target=_blank>OpenClaw</a>, the popular open-source AI assistant. That means roughly 15,000 lines of Rust versus OpenClaw's 460,000 lines of TypeScript, with about 45 crates versus a far larger dependency tree.<p>Commenters on HN raised valid concerns. "Local-first" is misleading when most users need an Anthropic or OpenAI API key. The naming confused people since another "LocalGPT" project already exists. But the technical foundation is solid. Ollama tool calling, a Telegram bot, and a security policy module all shipped within the first ten days. The development pace alone is impressive.<p><strong>Takeaways:</strong><ul><li>The three-file memory system (MEMORY.md, HEARTBEAT.md, SOUL.md) is a simple pattern worth borrowing for any local AI assistant<li>The hybrid SQLite FTS5 + vector search pattern is worth studying for other Rust projects that need local knowledge retrieval<li>Compatible with OpenClaw's workspace format, making migration straightforward</ul><h1 id=deep-dive-into-turso-the-sqlite-rewrite-in-rust>Deep Dive into Turso: The SQLite Rewrite in Rust</h1><p>Sylvain Kerkour published a <a href=https://kerkour.com/turso-sqlite target=_blank>detailed look at Turso</a>, which is rewriting SQLite's engine in Rust while maintaining file format compatibility.<p>The motivation goes beyond memory safety. SQLite's single-writer limitation blocks modern use cases. Its proprietary TH3 test harness (roughly 45x larger than the public TCL test suite) prevents external contributors from making confident architectural changes. Column typing is weak. Schema modifications are painful. These are real friction points that Rust alone doesn't solve, but a full rewrite can address.<p>Turso adds MVCC for concurrent writes, built-in encryption, and async I/O via io_uring. It works both as an in-process embedded database and as a networked database for cloud deployments. That dual capability fills a gap between SQLite's simplicity and PostgreSQL's scalability.<p>The HN thread was cautiously skeptical. A major concern was testing. SQLite's proprietary TH3 test harness covers decades of production edge cases. A rewrite without access to that suite will have stability gaps. One developer mentioned mirroring data between SQLite and Turso to catch divergences before production. That speaks to the trust gap Turso still needs to close.<p>Business model sustainability was the other major concern. Turso is VC-backed, and HN commenters cited Elasticsearch's license change as a cautionary tale. The SQLite team has maintained their project for over 25 years. Can a startup match that kind of stewardship?<p>Worth watching, but not ready for production workloads yet.<p><strong>Takeaways:</strong><ul><li>Turso addresses real SQLite limitations: concurrent writes, encryption, and async I/O<li>The testing gap is the biggest technical risk. SQLite's proprietary TH3 harness is roughly 45x larger than the public TCL test suite.<li>The dual embedded/networked architecture fills a real gap for projects that start simple and need to scale</ul><h1 id=running-a-4b-parameter-speech-model-in-the-browser-with-rust>Running a 4B Parameter Speech Model in the Browser with Rust</h1><p><a href=https://github.com/TrevorS/voxtral-mini-realtime-rs target=_blank>Voxtral Mini Realtime</a> is a pure Rust implementation of Mistral's speech recognition model. It runs natively and in web browsers through WASM and WebGPU. Getting a 4B parameter model into a browser required solving five hard engineering problems.<p>The architecture uses the Burn ML framework with two inference paths. The native path loads full f32 SafeTensors (about 9 GB). The browser path uses Q4 quantized GGUF files (about 2.5 GB), sharded into chunks under 512 MB to respect WASM's ArrayBuffer limits.<p>The browser constraints are where this gets interesting. WASM's 4 GB address space forced a two-phase loading pattern: parse weights first, drop the reader, then finalize the model. The 1.5 GB embedding table was too large for GPU memory, so they store Q4-quantized embeddings on GPU (216 MB) with CPU-side row lookups. WebGPU doesn't support synchronous readback, so the entire decode loop is async. And WebGPU's 256 max invocations per workgroup required patching cubecl-wgpu to stay within spec limits.<p>Custom WGSL shaders handle fused Q4 dequantization and matrix multiplication on the GPU. The quantization itself proved sensitive to audio padding, requiring 76 silence tokens instead of the upstream library's 32 to cover all decoder prefix positions.<p>Community reaction on HN was blunt. Multiple users reported it wasn't truly real-time on an M4 Max, and transcription accuracy was inconsistent. The 2.5 GB download raised legitimate UX concerns. But as a proof of concept for client-side ML inference in Rust, the engineering is impressive. Each of those constraints is a problem other developers will face as browser-based ML matures.<p><strong>Takeaways:</strong><ul><li>If you're targeting WASM for ML inference, budget significant engineering time for memory layout. The 2 GB allocation limit and 4 GB address space require creative workarounds like sharded cursors and two-phase loading<li>Q4 quantization cuts model size from 9 GB to 2.5 GB, making browser deployment feasible<li>Privacy-preserving speech recognition without server round-trips is the compelling use case, even if performance needs work</ul><h1 id=snippets>Snippets</h1><ul><li><p><strong><a href=https://github.com/j178/prek target=_blank>Prek: Pre-Commit Replacement in Rust</a></strong> Already adopted by CPython, FastAPI, and Home Assistant</p><li><p><strong><a href=https://smallcultfollowing.com/babysteps/blog/2026/02/09/hello-dada/ target=_blank>Niko Matsakis Launches Dada Language Series</a></strong> Introducing a new language with a fresh take on permissions and mutation</p><li><p><strong><a href=https://internals.rust-lang.org/t/private-unsafe-fields-are-a-poorly-motivated-feature/23976 target=_blank>Private Unsafe Fields: A Poorly Motivated Feature?</a></strong> Hot Discourse debate on whether this feature solves the right problem</p><li><p><strong><a href=https://github.com/artifact-keeper target=_blank>Artifact Keeper: Open-Source Artifactory Alternative</a></strong> Self-hosted artifact registry with a Rust backend, supporting 45+ package formats</p><li><p><strong><a href=https://www.phoronix.com/news/Rust-Coreutils-FOSDEM-2026 target=_blank>Rust Coreutils at FOSDEM 2026</a></strong> uutils marches toward drop-in GNU coreutils replacement</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202605170539" defer></script>

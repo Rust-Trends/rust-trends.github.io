@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         77 - Rust Sharpens the Craft
+        
+    </title><meta content="77 - Rust Sharpens the Craft" property=og:title><meta content="Zed ships 1.0, OpenAI Codex CLI hits 79K stars, and the community sharpens its craft: stricter Clippy configs, Box for stack control, and a Catan MCTS engine." property=og:description><meta content="Zed ships 1.0, OpenAI Codex CLI hits 79K stars, and the community sharpens its craft: stricter Clippy configs, Box for stack control, and a Catan MCTS engine." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/rust-sharpens-the-craft/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="77 - Rust Sharpens the Craft" name=twitter:title><meta content="Zed ships 1.0, OpenAI Codex CLI hits 79K stars, and the community sharpens its craft: stricter Clippy configs, Box for stack control, and a Catan MCTS engine." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-sharpens-the-craft/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-05-02 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "77 - Rust Sharpens the Craft",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-05-02",
+  "dateModified": "2026-05-02",
+  "description": "Zed ships 1.0, OpenAI Codex CLI hits 79K stars, and the community sharpens its craft: stricter Clippy configs, Box for stack control, and a Catan MCTS engine.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-sharpens-the-craft&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-sharpens-the-craft&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "77 - Rust Sharpens the Craft",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-sharpens-the-craft&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "77 - Rust Sharpens the Craft",
+  "description": "Zed ships 1.0, OpenAI Codex CLI hits 79K stars, and the community sharpens its craft: stricter Clippy configs, Box for stack control, and a Catan MCTS engine.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-sharpens-the-craft&#x2F;",
+  "datePublished": "2026-05-02",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "77 - Rust Sharpens the Craft",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-sharpens-the-craft&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>77 - Rust Sharpens the Craft</ol></nav><main><article><div class=title><div class=page-header>77 - Rust Sharpens the Craft<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2026-05-02</time></div></div><section class=body><p>Two tools hit major milestones for Rust developers this week.<p>Zed reached 1.0, shipping the Rust-native editor as a stable product. The OpenAI Codex CLI landed on GitHub Trending, signalling that AI coding agents have crossed from experimental to expected tooling.<p>Meanwhile the community kept sharpening its fundamentals: a post on stricter Clippy configurations sparked wide discussion, and a practical guide to using Box for stack frame control followed close behind.<h1 id=your-clippy-config-should-be-stricter>Your Clippy Config Should Be Stricter</h1><p>Clippy ships with over 700 lints. The default <code>cargo clippy</code> enables a fraction of them, by design: the conservative defaults reduce noise for beginners and help adoption. For production teams, that tradeoff goes the other way.<p><a href=https://emschwartz.me/your-clippy-config-should-be-stricter target=_blank>Evan Schwartz</a> makes the case for enabling <code>clippy::pedantic</code> and <code>clippy::nursery</code> across a codebase, along with specific lints that catch real bugs rather than style preferences. The workflow is straightforward: add <code>#![warn(clippy::pedantic)]</code> to <code>lib.rs</code>, run the linter, then make deliberate decisions on each new warning. Fix the code, or suppress the lint with a comment explaining why.<p>The lints worth enabling include checks for unintentional integer casts, missing panic documentation, and needlessly complex boolean expressions. The nursery group contains experimental lints that may still change but are already useful on stable code.<p>We covered Clippy configuration in depth on the blog: <a href=https://rust-trends.com/posts/mastering-clippy-elevating-your-rust-code-quality/ target=_blank>Mastering Clippy: Elevating Your Rust Code Quality</a>.<p><strong>Takeaways:</strong><ul><li>Enable <code>clippy::pedantic</code> and <code>clippy::nursery</code> in production codebases<li>Suppress lint-by-lint with explanatory comments, not blanket <code>#[allow]</code><li>The default config is tuned for adoption, not production quality<li>Nursery lints are experimental but already useful on stable code</ul><h1 id=box-to-save-memory>Box to Save Memory</h1><p>Rust allocates values on the stack by default. For most types this is the right choice, but large types in recursive structures or enums with large variants cause stack frames to grow in ways that compound across call depth.<p>Denys Séguret, known for building <a href=https://github.com/Canop/broot target=_blank>broot</a>, explains a specific technique: wrap the oversized field or enum variant in <code>Box&lt;T></code>. This moves the data to the heap, keeping the stack entry to a pointer width. The payoff is measurable in two places. Recursive functions that previously risked stack overflow stay bounded. Enums where one variant is substantially larger than the others no longer force every match arm to allocate space for the largest case.<p>The post at <a href=https://dystroy.org/blog/box-to-save-memory target=_blank>dystroy.org</a> includes concrete before-and-after examples from real code, showing both the struct layout change and the corresponding reduction in stack frame size as reported by the compiler.<p><strong>Takeaways:</strong><ul><li><code>Box&lt;T></code> controls stack frame size, not just heap ownership<li>Large enum variants force all match arms to allocate for the largest case<li>Recursive functions with large types risk stack overflow without Box<li>Wrapping oversized fields in Box reduces stack frame to a pointer width</ul><h1 id=introducing-monte-catano-open-source-mcts-catan-engine>Introducing Monte Catano: Open-Source MCTS Catan Engine</h1><p>Monte Carlo Tree Search is one of the foundational algorithms for game AI in large-branching-factor domains. Writing an effective implementation requires balancing tree traversal policy, rollout simulation, and selection heuristics, all at a performance level where microseconds matter.<p>One developer stepped away from chess engine programming and came back to game AI through Catan. The result is <a href=https://reddit.com/r/rust/comments/1sz304o target=_blank>Monte Catano</a>, an open-source MCTS engine for the Catan board game written in Rust. The post covers algorithm design decisions, game state representation, and the implementation of the UCB1 selection formula. The developer notes upfront that there is no head-to-head benchmark against the only other known Rust Catan engine, Catanatron, so the "world's strongest" claim is provisional.<p>The community discussion is substantive: comparisons to other MCTS implementations, suggestions for parallelizing tree search with Rayon, and interest in the game state representation.<p><strong>Takeaways:</strong><ul><li>Monte Catano implements MCTS for Catan using the UCB1 selection formula<li>Rayon is a natural fit for parallelizing tree search branches<li>No GC pauses make Rust competitive with C++ for game AI<li>The strongest claim is provisional with no direct benchmark yet</ul><h1 id=openai-codex-ai-coding-agents-go-mainstream>openai/codex: AI Coding Agents Go Mainstream</h1><p>AI coding agents moved from experimental to mainstream tooling in under two years. OpenAI's <a href=https://github.com/openai/codex target=_blank>Codex CLI</a>, a lightweight terminal-based coding agent, landed on GitHub Trending this week. The tool targets the same workflow as Claude Code, Aider, and other terminal AI assistants: read a codebase, accept a task in natural language, and produce working code or edits across multiple files.<p>The Rust developer community watches this category closely. Borrow checker rules, lifetime annotations, and trait bounds generate a class of errors that models trained primarily on other languages frequently miss. The practical question is not whether to use AI assistance but which agent produces better Rust code and which prompting strategies reduce borrow checker churn.<p>I explored what this looks like in practice on the blog: <a href=https://rust-trends.com/posts/vibe-coding-scales-to-a-demo/ target=_blank>Vibe Coding Scales to a Demo</a>.<p><strong>Takeaways:</strong><ul><li>Multiple serious terminal AI agents now compete for developer workflows<li>Test borrow checker and lifetime handling when evaluating AI agents for Rust<li>Prompting strategy for ownership patterns is a differentiating factor</ul><h1 id=snippets>Snippets</h1><ul><li><p><strong><a href=https://rust-trends.com/posts/vibe-coding-scales-to-a-demo/ target=_blank>From the blog: Vibe Coding Scales to a Demo</a></strong> My latest post looks at whether AI-assisted coding holds up beyond toy examples, building a working demo end to end. Relevant reading alongside the Codex CLI story above.</p><li><p><strong><a href=https://zed.dev/blog/zed-1-0 target=_blank>Zed 1.0</a></strong> The Rust-native editor shipped its 1.0 release this week, marking the transition from beta to stable product.</p><li><p><strong><a href=https://reddit.com/r/rust/comments/1szaa9p target=_blank>rboard: a clipboard manager written in Rust</a></strong> A community-built terminal clipboard manager with multi-entry storage and search. The creator posted a gif demo showing the interface in action.</p><li><p><strong><a href=https://reddit.com/r/rust/comments/1t0jju9 target=_blank>Reverse engineering a multi-stage malware suite hidden in a fake developer assessment</a></strong> A developer targeted by a credential-stealing payload disguised as a coding assessment wrote a full reverse engineering breakdown, covering deobfuscation steps, OPSEC methodology, and the attack chain. Worth reading before running any unfamiliar code from a Rust job application.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202605170539" defer></script>
