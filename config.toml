@@ -40,8 +40,9 @@ menu = [
     { name = "/search", url = "/search/", weight = 3, slash = true },
     { name = "/faq", url = "/faq/", weight = 4, slash = true },
     { name = "/about", url = "/about/", weight = 5, slash = true },
-    { name = "/contact", url = "/contact/", weight = 6, slash = true },
-    { name = "/sign up", url = "/signup/", weight = 7, slash = true },
+    { name = "/sponsor", url = "/sponsor/", weight = 6, slash = true },
+    { name = "/contact", url = "/contact/", weight = 7, slash = true },
+    { name = "/sign up", url = "/signup/", weight = 8, slash = true },
 ]
 
 
