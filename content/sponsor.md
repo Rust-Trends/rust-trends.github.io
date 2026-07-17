@@ -1,7 +1,7 @@
 +++
 title = "Sponsor Rust Trends"
 path = "sponsor"
-description = "Reach ~1,500 Rust developers and CTOs biweekly. Rust Trends sponsorship pricing, audience stats, and how to book a slot."
+description = "Reach ~1,500 Rust developers and CTOs biweekly. Rust Trends sponsorship audience stats and how to book a slot."
 [extra]
 toc_not_generate = true
 no_newsletter_signup = true
@@ -19,21 +19,6 @@ infrastructure that Rust teams use, this is a direct line to them.
 - Every edition also gets submitted to <a href="https://this-week-in-rust.org/" target="_blank">This Week in Rust</a> and syndicated via RSS, and stays live permanently on rust-trends.com
 - Biweekly cadence — one focused touchpoint every two weeks, not lost in a daily flood
 
-## Pricing
-
-| Placement | Price | What you get |
-|---|---|---|
-| **Featured Sponsor** | €450 / edition | Top placement, sole sponsor, logo + up to ~80 words + link |
-| **Standard Mention** | €250 / edition | Mid-edition placement, ~40 words + logo + link, may share the edition with one other sponsor |
-
-### Multi-edition discounts
-
-| Slots booked | Price per edition |
-|---|---|
-| 2 | €425 |
-| 3 | €400 |
-| 4 | €375 |
-
 ## Why sponsor Rust Trends
 
 - **Targeted, not broad.** Every subscriber opted in for Rust specifically — no generic dev-newsletter spray.
@@ -43,8 +28,9 @@ infrastructure that Rust teams use, this is a direct line to them.
 ## How to book a slot
 
 Rust Trends is currently taking on a limited number of founding sponsors — early sponsors help
-shape what this placement looks like going forward.
+shape what this placement looks like going forward. Featured (sole sponsor, top placement) and
+standard (mid-edition mention) slots are both available.
 
 Get in touch via the <a href="/contact/">contact form</a> or email
-<a href="mailto:contact@rust-trends.com">contact@rust-trends.com</a> with which placement and how
-many editions you're interested in, and we'll confirm the next available slot.
+<a href="mailto:contact@rust-trends.com">contact@rust-trends.com</a> and we'll follow up with
+pricing and the next available slot.
