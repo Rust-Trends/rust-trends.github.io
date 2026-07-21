@@ -554,6 +554,6 @@ A huge thanks to the **Codecrafters team** for their support and guidance throug
 <center>
 
 ## Share
-[Hacker News](https://news.ycombinator.com/submitlink?u=https://rust-trends.com/posts/building-dns-server-in-rust-part-2/)&nbsp;&nbsp;&nbsp;&nbsp;[Reddit](https://reddit.com/r/rust/submit?url=https://rust-trends.com/posts/building-dns-server-in-rust-part-2/)&nbsp;&nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/shareArticle?mini=true&url=https://rust-trends.com/posts/building-dns-server-in-rust-part-2/)
+[Hacker News](https://news.ycombinator.com/submitlink?u=https://rust-trends.com/posts/building-a-dns-server-in-rust-part-2/)&nbsp;&nbsp;&nbsp;&nbsp;[Reddit](https://reddit.com/r/rust/submit?url=https://rust-trends.com/posts/building-a-dns-server-in-rust-part-2/)&nbsp;&nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/shareArticle?mini=true&url=https://rust-trends.com/posts/building-a-dns-server-in-rust-part-2/)
 
 </center>
