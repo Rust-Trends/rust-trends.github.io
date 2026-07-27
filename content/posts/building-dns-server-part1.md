@@ -315,7 +315,7 @@ Header { id: 15935, qr: false, opcode: 0, aa: false, tc: false, rd: true, ra: fa
 ```
 Each line in the output represents 16 bytes of the request. The first column is the byte offset (e.g., 00000000). The next columns show the hexadecimal values of the bytes. Finally, the rightmost column prints the ASCII representation of printable characters, replacing non-printable bytes with dots (.).
 
-This debug information is useful for understanding the DNS request. Did you notice the quirk where z is set to 2? It's a reserved field that can be used for future extensions and was expected to be zero. Huh!? What's that about? You can read more about it at <a href="https://unix.stackexchange.com/questions/591203/understanding-the-digs-dns-query-does-dig-set-non-zero-value-for-z-field" target="_blank">StackExchange</a>. Apperently RFC's get amended. For now, we’ll ignore it and move on....
+This debug information is useful for understanding the DNS request. Did you notice the quirk where z is set to 2? It's a reserved field that can be used for future extensions and was expected to be zero. Huh!? What's that about? You can read more about it at <a href="https://unix.stackexchange.com/questions/591203/understanding-the-digs-dns-query-does-dig-set-non-zero-value-for-z-field" target="_blank">StackExchange</a>. Apparently RFC's get amended. For now, we’ll ignore it and move on....
 
 Since the DNS header is always 12 bytes, and our total request length is 44 bytes, we can infer that the remaining 32 bytes correspond to the Question Section. Next, we’ll decode it to extract the domain name being queried.
 
@@ -481,7 +481,7 @@ impl Question {
     pub fn to_bytes(&self) -> Vec<u8> {
         let mut buf = Vec::new();
 
-        // Write the labels to the buffer and add . inbetween and end with 0
+        // Write the labels to the buffer and add . in between and end with 0
         for label in &self.name {
             buf.push(label.len() as u8);
             buf.extend_from_slice(label.0.as_bytes());
