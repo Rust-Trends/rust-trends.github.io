@@ -184,11 +184,14 @@ class SEOAuditor {
       const regex = /<img[^>]*>/gi;
       let match;
       while ((match = regex.exec(html)) !== null) {
-        const altMatch = match[0].match(/alt=["']([^"']*)["']/i);
-        const srcMatch = match[0].match(/src=["']([^"']*)["']/i);
+        // Attribute values may be unquoted in the minified HTML output, so match
+        // quoted or bare forms rather than assuming quotes are always present.
+        const altMatch = match[0].match(/alt=(?:"([^"]*)"|'([^']*)'|(\S*))/i);
+        const srcMatch = match[0].match(/src=(?:"([^"]*)"|'([^']*)'|(\S*))/i);
+        const altValue = altMatch ? (altMatch[1] ?? altMatch[2] ?? altMatch[3]) : null;
         images.push({
-          src: srcMatch ? srcMatch[1] : '',
-          alt: altMatch ? altMatch[1] : null,
+          src: srcMatch ? (srcMatch[1] ?? srcMatch[2] ?? srcMatch[3]) : '',
+          alt: altValue,
           hasAlt: altMatch !== null,
         });
       }
