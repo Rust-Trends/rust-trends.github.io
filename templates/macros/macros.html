@@ -2,9 +2,9 @@
     <ul>
     {%- for page in pages %}
         <section class="list-item">
-            <h1 class="title">
+            <h2 class="title">
                 <a href={{ page.permalink }}>{{page.title}}</a>
-            </h1>
+            </h2>
 
             <div class="meta">
                 {%- if page.date %}
@@ -56,9 +56,9 @@
 {% endmacro tags %}
 
 {% macro page_header(title) %}
-    <div class="page-header">
+    <h1 class="page-header">
         {{ title }}<span class="primary-color" style="font-size: 1.6em">.</span>
-    </div>
+    </h1>
 {% endmacro content %}
 
 {% macro content(page) %}
@@ -158,13 +158,13 @@
             {% endif %}
 
             <div class="card-info">
-                <h1 class="card-title">
+                <h2 class="card-title">
                     {% if page.extra.link_to %}
                     <a href={{ page.extra.link_to }}>{{page.title}}</a>
                     {% else %}
                     <a href={{ page.permalink }}>{{page.title}}</a>
                     {% endif %}
-                </h1>
+                </h2>
 
                 <div class="meta">
                     {%- if page.date %}
