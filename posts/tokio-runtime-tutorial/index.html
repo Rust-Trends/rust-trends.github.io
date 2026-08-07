@@ -1,0 +1,197 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         The Tokio Runtime Tutorial: How Rust's Async Executor Actually Schedules Your Code
+        
+    </title><meta content="The Tokio Runtime Tutorial: How Rust's Async Executor Actually Schedules Your Code" property=og:title><meta content="How the Tokio runtime really works: what #[tokio::main] expands into, current_thread vs multi_thread schedulers, work-stealing, and the blocking trap that stalls async Rust in production." property=og:description><meta content="How the Tokio runtime really works: what #[tokio::main] expands into, current_thread vs multi_thread schedulers, work-stealing, and the blocking trap that stalls async Rust in production." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/tokio-runtime-tutorial/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="The Tokio Runtime Tutorial: How Rust's Async Executor Actually Schedules Your Code" name=twitter:title><meta content="How the Tokio runtime really works: what #[tokio::main] expands into, current_thread vs multi_thread schedulers, work-stealing, and the blocking trap that stalls async Rust in production." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/tokio-runtime-tutorial/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-07-24 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Tokio Runtime Tutorial: How Rust&#x27;s Async Executor Actually Schedules Your Code",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-07-24",
+  "dateModified": "2026-07-24",
+  "description": "How the Tokio runtime really works: what #[tokio::main] expands into, current_thread vs multi_thread schedulers, work-stealing, and the blocking trap that stalls async Rust in production.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;tokio-runtime-tutorial&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;tokio-runtime-tutorial&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The Tokio Runtime Tutorial: How Rust&#x27;s Async Executor Actually Schedules Your Code",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;tokio-runtime-tutorial&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/sponsor/ style=margin-left:.7em>/sponsor</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Tokio Runtime Tutorial: How Rust&#x27;s Async Executor Actually Schedules Your Code",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-07-24",
+  "dateModified": "2026-07-24",
+  "description": "How the Tokio runtime really works: what #[tokio::main] expands into, current_thread vs multi_thread schedulers, work-stealing, and the blocking trap that stalls async Rust in production.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;tokio-runtime-tutorial&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;tokio-runtime-tutorial&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The Tokio Runtime Tutorial: How Rust&#x27;s Async Executor Actually Schedules Your Code",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;tokio-runtime-tutorial&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>The Tokio Runtime Tutorial: How Rust's Async Executor Actually Schedules Your Code</ol></nav><main><article><div class=title><h1 class=page-header>The Tokio Runtime Tutorial: How Rust's Async Executor Actually Schedules Your Code<span class=primary-color style=font-size:1.6em>.</span></h1><div class=meta>Posted on <time>2026-07-24</time></div></div><section class=body><p>Most Rust developers meet Tokio through a single line, <code>#[tokio::main]</code>, and never look past it. That's fine until something goes wrong: a service that mysteriously stalls under load, a task that never seems to run, or a benchmark that contradicts every claim about async Rust being fast. All three trace back to the same gap: not knowing what the runtime is actually doing between the <code>await</code> points in your code.</p><span id=continue-reading></span><h1 id=what-tokio-main-actually-expands-into>What <code>#[tokio::main]</code> Actually Expands Into</h1><p>The macro is a code generator, not magic. It rewrites your <code>async fn main()</code> into a synchronous <code>fn main()</code> that builds a runtime and blocks on your future:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    tokio::runtime::Builder::new_multi_thread()
+</span><span>        .</span><span style=color:#96b5b4>enable_all</span><span>()
+</span><span>        .</span><span style=color:#96b5b4>build</span><span>()
+</span><span>        .</span><span style=color:#96b5b4>unwrap</span><span>()
+</span><span>        .</span><span style=color:#96b5b4>block_on</span><span>(async {
+</span><span>            </span><span style=color:#65737e>// your original main body
+</span><span>        });
+</span><span>}
+</span></code></pre><p><code>Builder::new_multi_thread()</code> is the default because it's the safest general-purpose choice, but it's also the piece most tutorials skip past. Once you know it's there, the runtime stops being an implicit black box and becomes a normal object you can configure: worker thread count, thread naming, a custom panic handler, or a shutdown timeout, all through the same <code>Builder</code>.<h1 id=two-schedulers-not-one>Two Schedulers, Not One</h1><p>Tokio ships two distinct schedulers, and picking the wrong one for your workload is the single most common source of "why is my async code slower than sync code" questions.<ul><li><strong><code>current_thread</code></strong>: a single-threaded executor. All tasks run on the thread that called <code>block_on</code>, cooperatively, with no work-stealing and no cross-thread synchronization overhead. Correct default for CLIs, low-concurrency tools, and anywhere you'd rather pay for a <code>Mutex</code> than a thread pool.<li><strong><code>multi_thread</code></strong>: a work-stealing scheduler across N OS threads (defaults to the number of logical CPUs). Correct default for servers handling many concurrent connections, where you want CPU-bound and I/O-bound tasks spread across cores instead of queued behind each other.</ul><p>The two aren't interchangeable performance-wise. A <code>current_thread</code> runtime handling thousands of idle-mostly connections is often faster than <code>multi_thread</code>, because there's no cross-thread task migration cost. A <code>multi_thread</code> runtime with only a handful of tasks wastes cycles on synchronization it doesn't need. Benchmark your actual workload before assuming more threads means more throughput.<h1 id=work-stealing-what-spawn-actually-costs>Work-Stealing: What "Spawn" Actually Costs</h1><p><code>tokio::spawn</code> doesn't create an OS thread. It hands a <code>Future</code> to the scheduler, which stores it as a task on one of several per-worker run queues. Spawning is cheap, on the order of an allocation and a queue push, which is why idiomatic async Rust spawns thousands of tasks without a second thought.<p>The work-stealing part matters once you have a <code>multi_thread</code> runtime with uneven load: if one worker's queue empties out, it steals tasks from a busier worker's queue rather than sitting idle. This is what makes Tokio's multi-threaded scheduler competitive with hand-tuned thread pools, the load-balancing happens automatically instead of requiring you to reason about which thread handles which connection.<p><a href=https://rust-trends.com/newsletter/production-rust-internet-scale/ target=_blank>Rust Trends #71</a> covered Cloudflare's Pingora proxy, which leans on exactly this property: Tokio's async scheduling is what lets a single process handle Cloudflare's connection volume without a process-per-connection model like older nginx deployments used.<h1 id=the-blocking-trap>The Blocking Trap</h1><p>This is the failure mode that catches even experienced Rust developers: calling a blocking function, <code>std::fs::read</code>, a synchronous database driver, a <code>Mutex::lock</code> held across an <code>.await</code>, from inside an async task. Because Tokio's scheduler is cooperative, a task that blocks its worker thread doesn't just block itself; it blocks every other task queued on that same worker until the blocking call returns.<p><a href=https://rust-trends.com/newsletter/when-meta-and-anthropic-choose-rust/ target=_blank>Rust Trends #74</a> covered this exact bottleneck in production async Rust: code that looked correct and passed tests under low load, then stalled under concurrency because a blocking call was quietly starving the worker thread's task queue. The fix pattern is consistent:<ul><li><strong>CPU-bound or blocking I/O work</strong> goes through <code>tokio::task::spawn_blocking</code>, which runs it on a separate blocking thread pool instead of a scheduler worker thread.<li><strong>Locks held across <code>.await</code></strong> should be <code>tokio::sync::Mutex</code>, not <code>std::sync::Mutex</code>, or better, restructured so the lock is dropped before the await point.<li><strong>Long CPU-bound loops</strong> without any <code>.await</code> should periodically yield with <code>tokio::task::yield_now()</code> if they can't be broken up, so the scheduler gets a chance to run other tasks.</ul><p><strong>Key insight:</strong> an async runtime doesn't make blocking calls non-blocking. It just gives you a very effective way to have one bad blocking call take down every other task sharing that worker thread.<h1 id=a-minimal-runtime-built-by-hand>A Minimal Runtime, Built by Hand</h1><p>Seeing the pieces without the macro makes the mental model concrete:<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> rt = tokio::runtime::Builder::new_multi_thread()
+</span><span>        .</span><span style=color:#96b5b4>worker_threads</span><span>(</span><span style=color:#d08770>4</span><span>)
+</span><span>        .</span><span style=color:#96b5b4>thread_name</span><span>("</span><span style=color:#a3be8c>worker</span><span>")
+</span><span>        .</span><span style=color:#96b5b4>enable_io</span><span>()
+</span><span>        .</span><span style=color:#96b5b4>enable_time</span><span>()
+</span><span>        .</span><span style=color:#96b5b4>build</span><span>()
+</span><span>        .</span><span style=color:#96b5b4>expect</span><span>("</span><span style=color:#a3be8c>failed to build Tokio runtime</span><span>");
+</span><span>
+</span><span>    rt.</span><span style=color:#96b5b4>block_on</span><span>(async {
+</span><span>        </span><span style=color:#b48ead>let</span><span> handle = tokio::spawn(async {
+</span><span>            println!("</span><span style=color:#a3be8c>running on a worker thread</span><span>");
+</span><span>        });
+</span><span>        handle.await.</span><span style=color:#96b5b4>unwrap</span><span>();
+</span><span>    });
+</span><span>}
+</span></code></pre><p><code>enable_io()</code> and <code>enable_time()</code> matter because Tokio's I/O and timer drivers aren't started by default. If you build a runtime by hand and skip them, <code>TcpStream::connect</code> or <code>tokio::time::sleep</code> will panic at runtime with a driver-not-enabled error, one of the more confusing early error messages in the ecosystem precisely because the macro hides that these are opt-in.<h1 id=when-you-don-t-need-tokio-at-all>When You Don't Need Tokio At All</h1><p>Not every async problem needs a multi-threaded work-stealing runtime. <code>current_thread</code>, <code>async-std</code>, and <code>smol</code> all cover the case of a small number of concurrent I/O operations without the overhead of a full thread pool. And a meaningful share of "should I use async here" questions have a simpler answer: if the work is CPU-bound rather than I/O-bound, a plain <code>std::thread</code> pool or <code>rayon</code> will outperform async Rust with less code, because there's no I/O to overlap in the first place. Async buys you concurrency during waiting, not general-purpose parallelism.<p>The runtime is doing real, visible work: scheduling tasks across threads, stealing work to balance load, and driving I/O and timers. Once that model is explicit instead of implicit behind a macro, most of the surprising performance and correctness issues in async Rust code stop being surprising.</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202608070716" defer></script>
