@@ -87,4 +87,8 @@ fn main() {
 
 Not every async problem needs a multi-threaded work-stealing runtime. `current_thread`, `async-std`, and `smol` all cover the case of a small number of concurrent I/O operations without the overhead of a full thread pool. And a meaningful share of "should I use async here" questions have a simpler answer: if the work is CPU-bound rather than I/O-bound, a plain `std::thread` pool or `rayon` will outperform async Rust with less code, because there's no I/O to overlap in the first place. Async buys you concurrency during waiting, not general-purpose parallelism.
 
+# Practice on a Real Concurrent System
+
+Reading about schedulers and the blocking trap only goes so far; the mistakes above are the kind you actually internalize by hitting them. <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">CodeCrafters</a>' "Build Your Own Redis" challenge has you implement a concurrent, event-driven server in Rust that has to handle exactly the failure modes covered here: pick the wrong concurrency model and a single slow client stalls every other connection. It's a direct, hands-on way to feel the difference between `current_thread` and `multi_thread` instead of just reading about it.
+
 The runtime is doing real, visible work: scheduling tasks across threads, stealing work to balance load, and driving I/O and timers. Once that model is explicit instead of implicit behind a macro, most of the surprising performance and correctness issues in async Rust code stop being surprising.
