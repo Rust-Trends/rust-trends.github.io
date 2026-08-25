@@ -80,7 +80,8 @@ class SEOAuditor {
         `name=${name}(?=[\\s>])`,
       ];
       const contentPatterns = [
-        `content=["']([^"']*)["']`,
+        `content="([^"]*)"`,
+        `content='([^']*)'`,
         `content=([^\\s>]+)`,
       ];
 
@@ -108,7 +109,8 @@ class SEOAuditor {
         `property=${property.replace(':', '\\:')}(?=[\\s>])`,
       ];
       const contentPatterns = [
-        `content=["']([^"']*)["']`,
+        `content="([^"]*)"`,
+        `content='([^']*)'`,
         `content=([^\\s>]+)`,
       ];
 
