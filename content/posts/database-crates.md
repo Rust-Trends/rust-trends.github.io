@@ -171,6 +171,9 @@ Community engagement is another crucial factor. A well-supported library often t
 
 Finally, consider the maturity of your selected library. More established projects like __Diesel__ have been battle-tested in a variety of environments, which may give you more confidence in their stability. __SQLx__, while newer, has rapidly gained maturity and traction. __Tokio-Postgres__, being more specialized, might not have the same breadth of usage but is stable and reliable for its intended use-cases.
 
+## Try It Yourself with CodeCrafters
+Everything above is about *using* a database crate. If you want to see what's underneath — B-trees, page layout, SQL parsing — <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">CodeCrafters</a>' "Build Your Own SQLite" challenge has you build a real SQLite file reader in Rust from scratch. It's a good complement to this comparison: you'll come away with a much better sense of what Diesel, SQLx, and Tokio-Postgres are actually doing for you. Sign up free with GitHub, no payment info required.
+
 ## Conclusion
 
 Choosing a database library is often a trade-off between various factors such as performance, type safety, level of abstraction, and community support. Your project's specific needs will guide your choice, and fortunately, whether you choose __Diesel__ for its powerful ORM capabilities, __SQLx__ for its asynchronous support and type safety, or __Tokio-Postgres__ for low-level control, you're in good hands.
