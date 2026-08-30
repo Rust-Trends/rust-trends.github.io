@@ -12,7 +12,7 @@ This April 2024, we're thrilled to announce a partnership with CodeCrafters to o
 🌟 Here’s the best part: As a "Rust Trends" subscriber, you could win one of two yearly CodeCrafters subscriptions, each valued at $990! Imagine accessing premium challenges and resources for a whole year—on us!
 
 # 👉 Why Should You Join?
-- Absolutely Free to Participate: Just sign up with your Github Accountat no cost and start building your HTTP server today.
+- Absolutely Free to Participate: Just sign up with your Github Accountant no cost and start building your HTTP server today.
 - Boost Your Rust Skills: Elevate your coding expertise with hands-on practice in a real-world project.
 - Risk-Free Learning: With nothing to lose, there’s no better time to explore and expand your knowledge.
 
