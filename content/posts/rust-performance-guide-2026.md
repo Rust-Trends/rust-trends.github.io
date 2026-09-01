@@ -11,7 +11,7 @@ Every few months "rust vs c++ performance" trends again, usually attached to a s
 
 <!-- more -->
 
-# Why Rust Can Match C++ in the First Place
+## Why Rust Can Match C++ in the First Place
 
 Rust's performance case rests on three things that are true regardless of which specific micro-benchmark you pick:
 
@@ -21,7 +21,7 @@ Rust's performance case rests on three things that are true regardless of which 
 
 None of this guarantees Rust code is fast. It guarantees Rust doesn't force you to pay for safety at runtime, which means the ceiling is the same as C++. Whether you hit that ceiling is a function of your code, not the language.
 
-# Two Real Optimization Stories, With Real Numbers
+## Two Real Optimization Stories, With Real Numbers
 
 Benchmark game results are useful but abstract. What's more instructive is what happens when a real production crate gets a serious optimization pass, because the *type* of win tells you where to look in your own code.
 
@@ -31,7 +31,7 @@ Benchmark game results are useful but abstract. What's more instructive is what 
 
 **Key insight:** in both cases the win came from understanding what the hardware was doing (cache lines, integer vs. float ALU paths, lock contention) not from a language feature. Rust made the fix possible to ship safely; it didn't find the fix for you.
 
-# SIMD in Rust: Where Things Stand
+## SIMD in Rust: Where Things Stand
 
 For workloads that are genuinely vectorization-bound, Rust gives you three tiers, in order of how much control you trade for portability:
 
@@ -41,7 +41,7 @@ For workloads that are genuinely vectorization-bound, Rust gives you three tiers
 
 None of this is unique to Rust, C++ has the equivalent tiers with intrinsics headers and libraries like Highway. The difference is that Rust's borrow checker catches the aliasing bugs that make hand-written SIMD code miserable to debug in C++, at compile time, before you've spent an afternoon in a debugger.
 
-# Where C++ Still Has an Edge
+## Where C++ Still Has an Edge
 
 It's worth being honest about this rather than pretending Rust has already won everywhere:
 
@@ -49,11 +49,11 @@ It's worth being honest about this rather than pretending Rust has already won e
 - **Template metaprogramming depth.** C++ templates, for all their compile-time pain, support some compile-time computation patterns that Rust's const generics and macro system don't yet match.
 - **FFI boundary cost.** If your hot path repeatedly crosses between Rust and a C++ codebase, you can lose more to the boundary than either language would cost you natively. This matters for gradual migrations more than greenfield projects.
 
-# Memory Safety Is a Performance Property Too
+## Memory Safety Is a Performance Property Too
 
 It's tempting to treat memory safety and performance as a tradeoff Rust makes on your behalf. In practice, safety at compile time is what lets you attempt aggressive optimizations you'd be too nervous to try in unchecked C++. The Matrix SDK case above is a good example: restructuring hot-path data layout is exactly the kind of change that introduces use-after-free and data-race bugs in C++ if done carelessly. In Rust, the borrow checker rejects the incorrect version before it compiles, which means the optimization gets attempted and shipped instead of left on the table as too risky.
 
-# The Practical Guide
+## The Practical Guide
 
 If you're deciding how to approach performance work in a Rust codebase in 2026, the order of operations that actually pays off is:
 

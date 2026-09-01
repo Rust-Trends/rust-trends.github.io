@@ -15,7 +15,7 @@ This isn't a minor implementation detail. It reveals something important about h
 
 <!-- more -->
 
-# What Makes ripgrep Different
+## What Makes ripgrep Different
 
 ripgrep (command: `rg`) is a line-oriented search tool created by Andrew Gallant. He first released it in September 2016 after spending 2.5 years working on text search in Rust. The tool combines the usability of The Silver Searcher with the raw performance of GNU grep.
 
@@ -34,7 +34,7 @@ The regex engine alone represents a significant effort. It guarantees linear tim
 - Smart defaults matter as much as raw speed
 - Linear time guarantees eliminate entire categories of edge cases
 
-# How Claude Code Uses ripgrep
+## How Claude Code Uses ripgrep
 
 Claude Code's "Grep" tool is powered by ripgrep out of the box. No configuration needed. The naming is somewhat misleading since it's not GNU grep at all. The system prompt explicitly instructs Claude:
 
@@ -48,7 +48,7 @@ Claude Code bundles ripgrep via the `@vscode/ripgrep` npm package. This is the s
 - Claude Code ships ripgrep as a bundled dependency
 - The same battle-tested package that powers VS Code search
 
-# Why Not Vector Search?
+## Why Not Vector Search?
 
 This is the interesting part. Most AI coding tools use RAG (Retrieval-Augmented Generation) with embeddings. You chunk the codebase, create vector embeddings, store them in a database, and do similarity search.
 
@@ -69,7 +69,7 @@ One Hacker News commenter noted this is still technically a form of RAG. It just
 - Exact text matching avoids the semantic drift of embeddings
 - Proven techniques often beat newer alternatives
 
-# The VS Code Connection
+## The VS Code Connection
 
 ripgrep's adoption in Claude Code follows an established pattern. In March 2017, Visual Studio Code (version 1.11) switched to ripgrep for its text search functionality. This was a significant endorsement. VS Code's search now handles millions of searches daily across codebases of all sizes.
 
@@ -81,7 +81,7 @@ Microsoft maintains the `vscode-ripgrep` npm package specifically for this integ
 - Claude Code benefits from that battle-testing
 - Reusing proven infrastructure reduces risk
 
-# Configuration Tips
+## Configuration Tips
 
 ripgrep works out of the box with Claude Code. No configuration is required for most users.
 
@@ -107,7 +107,7 @@ export USE_BUILTIN_RIPGREP=0
 
 Note: This optimization is not officially documented by Anthropic and results may vary.
 
-# Build Your Own grep
+## Build Your Own grep
 
 If you want to understand how tools like ripgrep work under the hood, <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">CodeCrafters</a> offers a "Build your own grep" challenge where you implement a regex engine from scratch.
 
@@ -121,7 +121,7 @@ The challenge covers:
 
 It's available in 16 languages including Rust. The stages progress from matching literal characters (5 minutes) to implementing nested backreferences (1+ hours). A solid way to understand both regex internals and Rust's approach to systems programming.
 
-# The Rust Ecosystem Effect
+## The Rust Ecosystem Effect
 
 ripgrep is one of the clearest examples of Rust delivering on its promise: C-level performance with memory safety and a pleasant developer experience. The tool has nearly 59,000 GitHub stars and powers search in some of the most widely-used developer tools.
 
@@ -144,7 +144,7 @@ Andrew Gallant continues to maintain ripgrep along with several other foundation
 
 The choice of ripgrep over vector search in Claude Code reminds us that sometimes the best solution isn't the newest one. It's the one that's been battle-tested and does exactly what you need.
 
-# Links
+## Links
 
 - <a href="https://github.com/BurntSushi/ripgrep" target="_blank">ripgrep on GitHub</a>
 - <a href="https://burntsushi.net/" target="_blank">Andrew Gallant's blog</a>

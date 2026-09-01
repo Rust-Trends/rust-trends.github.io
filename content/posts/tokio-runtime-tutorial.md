@@ -11,7 +11,7 @@ Most Rust developers meet Tokio through a single line, `#[tokio::main]`, and nev
 
 <!-- more -->
 
-# What `#[tokio::main]` Actually Expands Into
+## What `#[tokio::main]` Actually Expands Into
 
 The macro is a code generator, not magic. It rewrites your `async fn main()` into a synchronous `fn main()` that builds a runtime and blocks on your future:
 
@@ -29,7 +29,7 @@ fn main() {
 
 `Builder::new_multi_thread()` is the default because it's the safest general-purpose choice, but it's also the piece most tutorials skip past. Once you know it's there, the runtime stops being an implicit black box and becomes a normal object you can configure: worker thread count, thread naming, a custom panic handler, or a shutdown timeout, all through the same `Builder`.
 
-# Two Schedulers, Not One
+## Two Schedulers, Not One
 
 Tokio ships two distinct schedulers, and picking the wrong one for your workload is the single most common source of "why is my async code slower than sync code" questions.
 
@@ -38,7 +38,7 @@ Tokio ships two distinct schedulers, and picking the wrong one for your workload
 
 The two aren't interchangeable performance-wise. A `current_thread` runtime handling thousands of idle-mostly connections is often faster than `multi_thread`, because there's no cross-thread task migration cost. A `multi_thread` runtime with only a handful of tasks wastes cycles on synchronization it doesn't need. Benchmark your actual workload before assuming more threads means more throughput.
 
-# Work-Stealing: What "Spawn" Actually Costs
+## Work-Stealing: What "Spawn" Actually Costs
 
 `tokio::spawn` doesn't create an OS thread. It hands a `Future` to the scheduler, which stores it as a task on one of several per-worker run queues. Spawning is cheap, on the order of an allocation and a queue push, which is why idiomatic async Rust spawns thousands of tasks without a second thought.
 
@@ -46,7 +46,7 @@ The work-stealing part matters once you have a `multi_thread` runtime with uneve
 
 <a href="https://rust-trends.com/newsletter/production-rust-internet-scale/" target="_blank">Rust Trends #71</a> covered Cloudflare's Pingora proxy, which leans on exactly this property: Tokio's async scheduling is what lets a single process handle Cloudflare's connection volume without a process-per-connection model like older nginx deployments used.
 
-# The Blocking Trap
+## The Blocking Trap
 
 This is the failure mode that catches even experienced Rust developers: calling a blocking function, `std::fs::read`, a synchronous database driver, a `Mutex::lock` held across an `.await`, from inside an async task. Because Tokio's scheduler is cooperative, a task that blocks its worker thread doesn't just block itself; it blocks every other task queued on that same worker until the blocking call returns.
 
@@ -58,7 +58,7 @@ This is the failure mode that catches even experienced Rust developers: calling 
 
 **Key insight:** an async runtime doesn't make blocking calls non-blocking. It just gives you a very effective way to have one bad blocking call take down every other task sharing that worker thread.
 
-# A Minimal Runtime, Built by Hand
+## A Minimal Runtime, Built by Hand
 
 Seeing the pieces without the macro makes the mental model concrete:
 
@@ -83,11 +83,11 @@ fn main() {
 
 `enable_io()` and `enable_time()` matter because Tokio's I/O and timer drivers aren't started by default. If you build a runtime by hand and skip them, `TcpStream::connect` or `tokio::time::sleep` will panic at runtime with a driver-not-enabled error, one of the more confusing early error messages in the ecosystem precisely because the macro hides that these are opt-in.
 
-# When You Don't Need Tokio At All
+## When You Don't Need Tokio At All
 
 Not every async problem needs a multi-threaded work-stealing runtime. `current_thread`, `async-std`, and `smol` all cover the case of a small number of concurrent I/O operations without the overhead of a full thread pool. And a meaningful share of "should I use async here" questions have a simpler answer: if the work is CPU-bound rather than I/O-bound, a plain `std::thread` pool or `rayon` will outperform async Rust with less code, because there's no I/O to overlap in the first place. Async buys you concurrency during waiting, not general-purpose parallelism.
 
-# Practice on a Real Concurrent System
+## Practice on a Real Concurrent System
 
 Reading about schedulers and the blocking trap only goes so far; the mistakes above are the kind you actually internalize by hitting them. <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">CodeCrafters</a>' "Build Your Own Redis" challenge has you implement a concurrent, event-driven server in Rust that has to handle exactly the failure modes covered here: pick the wrong concurrency model and a single slow client stalls every other connection. It's a direct, hands-on way to feel the difference between `current_thread` and `multi_thread` instead of just reading about it.
 

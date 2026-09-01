@@ -94,7 +94,7 @@
         {% if not page.extra.toc_not_generate %}
             {% if config.extra.toc | default(value=false) %}
                 {% if page.toc %}
-                    <h1>Table of Contents</h1>
+                    <h2>Table of Contents</h2>
                     <ul>
                     {% for h1 in page.toc %}
                         <li>

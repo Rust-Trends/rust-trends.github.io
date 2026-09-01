@@ -15,7 +15,7 @@ That conclusion is wrong. It's also understandable, because the evidence looks c
 
 <!-- more -->
 
-# Two Camps
+## Two Camps
 
 There are two ways I see developers approaching this shift.
 
@@ -31,7 +31,7 @@ Both approaches can produce working code. Only one produces software worth keepi
 - Vibe coding compounds debt. Structured engineering compounds skill.
 - The bottleneck moves from writing to evaluating.
 
-# The Plausibility Problem
+## The Plausibility Problem
 
 LLMs are good at producing plausible code. This is both the strength and the biggest risk.
 
@@ -47,7 +47,7 @@ These problems are not solvable by better prompting. You need to understand why 
 - Debugging AI output requires the exact same skills as debugging hand-written code.
 - Surface-level validation breaks down precisely when it matters most.
 
-# What Fundamentals Actually Are
+## What Fundamentals Actually Are
 
 When people say "learn to code," they usually mean syntax and language features. That's the least important part.
 
@@ -63,7 +63,7 @@ The thinking hasn't gone away. It just has a different target.
 - Good prompts require the same decomposition skills as good code.
 - Trade-off awareness is still entirely on you. The model doesn't know your constraints or your production environment.
 
-# Amplifier, Not Replacement
+## Amplifier, Not Replacement
 
 A developer with strong fundamentals can use AI to generate scaffolding quickly, spot flawed assumptions in generated code before they become problems, and refactor outputs into something maintainable. They can hold a mental model of the whole system and evaluate each piece against it.
 
@@ -77,7 +77,7 @@ The gap between these two outcomes is significant. It also compounds. The person
 - Leverage requires something to apply leverage to.
 - Skill compounds. AI just accelerates the compounding.
 
-# Learning Still Pays Off
+## Learning Still Pays Off
 
 If you're early in your career, or want to sharpen the fundamentals you already have, structured learning still pays off. The difference now is it doesn't have to be dry.
 
@@ -87,7 +87,7 @@ If you're learning Rust, it's one of the more honest ways to do it.
 
 The mental model you build from that kind of work is exactly what makes AI tools more useful to you, because you know what you're looking for in the output.
 
-# The Shift
+## The Shift
 
 The question used to be: can you write this function?
 
