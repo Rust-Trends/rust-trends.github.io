@@ -1,0 +1,183 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         Rust Async Runtimes Compared: Tokio vs Smol in 2026
+        
+    </title><meta content="Rust Async Runtimes Compared: Tokio vs Smol in 2026" property=og:title><meta content="Real crates.io download data on Tokio vs smol vs async-std, why async-std was discontinued, and how to pick a runtime for a new Rust project in 2026." property=og:description><meta content="Real crates.io download data on Tokio vs smol vs async-std, why async-std was discontinued, and how to pick a runtime for a new Rust project in 2026." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/posts/rust-async-runtimes-compared/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="Rust Async Runtimes Compared: Tokio vs Smol in 2026" name=twitter:title><meta content="Real crates.io download data on Tokio vs smol vs async-std, why async-std was discontinued, and how to pick a runtime for a new Rust project in 2026." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/rust-async-runtimes-compared/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-09-04 property=article:published_time><meta content=Tutorial property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust Async Runtimes Compared: Tokio vs Smol in 2026",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-09-04",
+  "dateModified": "2026-09-04",
+  "description": "Real crates.io download data on Tokio vs smol vs async-std, why async-std was discontinued, and how to pick a runtime for a new Rust project in 2026.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-async-runtimes-compared&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-async-runtimes-compared&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust Async Runtimes Compared: Tokio vs Smol in 2026",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-async-runtimes-compared&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/sponsor/ style=margin-left:.7em>/sponsor</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rust Async Runtimes Compared: Tokio vs Smol in 2026",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-09-04",
+  "dateModified": "2026-09-04",
+  "description": "Real crates.io download data on Tokio vs smol vs async-std, why async-std was discontinued, and how to pick a runtime for a new Rust project in 2026.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-async-runtimes-compared&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-async-runtimes-compared&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rust Async Runtimes Compared: Tokio vs Smol in 2026",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;rust-async-runtimes-compared&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>Rust Async Runtimes Compared: Tokio vs Smol in 2026</ol></nav><main><article><div class=title><h1 class=page-header>Rust Async Runtimes Compared: Tokio vs Smol in 2026<span class=primary-color style=font-size:1.6em>.</span></h1><div class=meta>Posted on <time>2026-09-04</time></div></div><section class=body><p>For years, "which async runtime" was a real fork in the road for a new Rust project: Tokio, async-std, or something smaller. That question has an asterisk on it now. async-std's own README says the project "has been discontinued," and pulling live numbers from crates.io shows exactly how lopsided the field has become since.</p><span id=continue-reading></span><h2 id=the-numbers>The Numbers</h2><p>Crates.io's API exposes download counts directly, so this isn't secondhand. As of this writing:<ul><li><strong>Tokio</strong>: 935,996,538 total downloads, 216,230,632 in the recent window<li><strong>async-std</strong>: 91,278,477 total, 9,881,773 recent, despite being discontinued<li><strong>smol</strong>: 21,920,856 total, 4,218,397 recent, its recommended replacement<li><strong>glommio</strong>: 160,315 total, 23,839 recent, a thread-per-core niche runtime</ul><p>Tokio outpulls smol by roughly 51x on recent downloads, and about 43x on total downloads. That's not close, and it hasn't been close for a while. The more interesting number is the second one: a runtime whose own maintainers say to stop using it is still pulling more than double smol's recent downloads. Some of that is likely transitive, a crate two or three levels down still pulling in async-std rather than developers choosing it directly today. But crates.io download counts can't separate direct choices from transitive resolution, CI, or mirrors, so treat the figure as a coarse signal rather than proof.<h2 id=what-happened-to-async-std>What Happened to async-std</h2><p>async-std shipped in 2019 as a deliberate mirror of the standard library's API, built by Stjepan Glavina in collaboration with Yoshua Wuyts to prove that async Rust didn't have to look like a different language. It worked, for a while it was a genuine second option alongside Tokio, with its own ecosystem of HTTP clients and web frameworks like <code>surf</code> and <code>tide</code>.<p>The project's GitHub README now states it plainly:<blockquote><p>"async-std has been discontinued; use smol instead."</blockquote><p>The maintainers' own explanation is that async-std succeeded at its original goal, demonstrating that a std-mirroring async library was viable, and that <code>smol</code>, which grew out of the same team's work, became the better vehicle for carrying that idea forward rather than maintaining two overlapping projects. RustSec made it official with <a href=https://rustsec.org/advisories/RUSTSEC-2025-0052.html target=_blank>RUSTSEC-2025-0052</a>, issued August 27, 2025, an informational advisory flagging async-std as unmaintained with no patched version coming. If <code>cargo audit</code> runs in your CI and a dependency still pulls async-std, this is what it will surface, though unmaintained findings are warnings unless you configure CI to deny them.<p><strong>Key insight:</strong> "unmaintained" in the RustSec sense doesn't mean broken today. async-std still compiles and runs fine. It means no one is fixing what breaks tomorrow, which is a different kind of risk than a build failure, and one that's easy to ignore until it isn't.<h2 id=tokio-the-default-and-why>Tokio: The Default, and Why</h2><p>Tokio's download lead isn't just inertia. It ships as more than an executor: networking, filesystem, process, signal, synchronization, and timer facilities (<code>tokio::net</code>, <code>tokio::fs</code>, <code>tokio::process</code>, <code>tokio::signal</code>, and more), plus a surrounding ecosystem tied to it in varying degrees. <code>axum</code>, under the tokio-rs organization, is built directly on Tokio; <code>tonic</code> and <code>hyper</code>, both under the hyperium organization, are more independent, and <code>hyper</code> in particular exposes its own executor, timer, and I/O abstractions (<code>hyper::rt</code>) so it can run on other runtimes, even though most deployments pair it with Tokio. That breadth is also the cost. Tokio enables no features by default; its <code>full</code> set turns on APIs and optional dependencies a smaller configuration doesn't need, and the exact dependency count varies with the features you enable, your target platform, and your Cargo version. Rather than trusting a fixed number, compare the feature sets you actually need and clean-build times on your target, since the tax mostly shows up on clean or uncached CI builds.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span>#[</span><span style=color:#bf616a>tokio</span><span>::</span><span style=color:#bf616a>main</span><span>]
+</span><span>async </span><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    </span><span style=color:#b48ead>let</span><span> listener = tokio::net::TcpListener::bind("</span><span style=color:#a3be8c>127.0.0.1:8080</span><span>").await.</span><span style=color:#96b5b4>unwrap</span><span>();
+</span><span>    </span><span style=color:#65737e>// axum is built directly on Tokio; tonic and hyper usually run on it too
+</span><span>}
+</span></code></pre><p>For anything that needs to talk to that ecosystem, a web server, a gRPC service, most production infrastructure work, Tokio isn't really a choice you're making so much as a dependency your other dependencies already made for you. <a href=https://rust-trends.com/newsletter/production-rust-internet-scale/ target=_blank>Rust Trends #71</a> covered a concrete version of this at Cloudflare: Pingora, the Rust proxy that handles traffic between Cloudflare and origin servers, is built on Tokio. In <a href=https://blog.cloudflare.com/how-we-built-pingora-the-proxy-that-connects-cloudflare-to-the-internet/ target=_blank>their own account</a>, the reasons were Tokio's multithreading, shared resources (connection pools in particular), and work stealing, not a ready-made surrounding ecosystem. Cloudflare in fact wrote its own HTTP implementation rather than adopting hyper, a reminder that leaning on a runtime and leaning on its ecosystem are separate decisions. Tokio's own scope keeps expanding on the strength of that same network effect: <a href=https://rust-trends.com/newsletter/rust-climbs-the-stack/ target=_blank>Rust Trends #79</a> covered Topcoat, an experimental full-stack web framework from the Tokio team for building server-rendered, async-native apps without WebAssembly in the browser, another layer stacked directly on top of the runtime rather than beside it.<h2 id=smol-small-on-purpose>Smol: Small on Purpose</h2><p>Smol takes the opposite bet: no macros, a minimal core, and component crates (<code>async-io</code>, <code>async-executor</code>, <code>blocking</code>) you can pull in piecemeal.<pre class=language-rust data-lang=rust style=color:#c0c5ce;background-color:#2b303b><code class=language-rust data-lang=rust><span style=color:#b48ead>fn </span><span style=color:#8fa1b3>main</span><span>() {
+</span><span>    smol::block_on(async {
+</span><span>        </span><span style=color:#b48ead>let</span><span> listener = smol::net::TcpListener::bind("</span><span style=color:#a3be8c>127.0.0.1:8080</span><span>").await.</span><span style=color:#96b5b4>unwrap</span><span>();
+</span><span>        </span><span style=color:#65737e>// note: smol::net and smol::block_on still tie this code to smol
+</span><span>    });
+</span><span>}
+</span></code></pre><p>That's the real use case for smol in 2026: not "smaller Tokio," but a lighter-weight runtime whose components you can adopt piecemeal. For a genuinely runtime-neutral library, though, the more portable move is to expose plain <code>futures</code> and portable traits and let the caller bring the runtime, reaching for <code>smol::net</code> or smol's executor only when you specifically want smol's I/O. Applications with a hard dependency on the Tokio-specific ecosystem don't gain much from switching, the ecosystem gap is the actual cost, not the runtime itself.<h2 id=where-glommio-fits>Where glommio Fits</h2><p>Glommio is worth naming even at 160,315 total downloads, because it solves a problem neither Tokio nor smol targets directly: thread-per-core execution on Linux via <code>io_uring</code>. Each core normally owns a local executor, which reduces cross-thread coordination and task migration, though applications can still pass messages across executors through shared channels when they need to. That model earns real throughput on databases, proxies, and message brokers that can partition work by core, at the cost of only running on Linux (kernel 5.8 or newer) and requiring an execution model most codebases aren't structured for. It's a build-a-database choice, not a default.<h2 id=choosing-one>Choosing One</h2><ul><li><strong>Building a web service, gRPC API, or anything touching <code>axum</code>/<code>tonic</code>/<code>hyper</code></strong>: Tokio. The ecosystem decision was already made upstream.<li><strong>Writing a library that shouldn't dictate a runtime to its callers</strong>: expose plain <code>futures</code> and portable traits and let the caller bring the runtime; reach for smol's <code>net</code>/executor components only when you specifically want smol's I/O.<li><strong>A database, proxy, or broker that can partition work per-CPU-core on Linux</strong>: glommio is worth the narrower fit.<li><strong>Anything still depending on async-std directly</strong>: migrate. Not urgently, in the sense that nothing breaks this week, but the RustSec advisory is a documented finding your security scanning will keep surfacing until you do.</ul><p>The field didn't get more crowded over the last few years, it got smaller and more decided. That's a genuinely easier starting point than the three-way split of 2020, even if the reason it simplified was one project folding.</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202609051815" defer></script>
