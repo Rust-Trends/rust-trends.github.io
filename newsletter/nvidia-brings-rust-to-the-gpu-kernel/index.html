@@ -1,0 +1,162 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>
+         83 - NVIDIA Brings Rust to the GPU Kernel
+        
+    </title><meta content="83 - NVIDIA Brings Rust to the GPU Kernel" property=og:title><meta content="NVIDIA ships two ways to write CUDA kernels in Rust, real principles for fast Tokio apps, and what an ECS buys Veloren at 500 players." property=og:description><meta content="NVIDIA ships two ways to write CUDA kernels in Rust, real principles for fast Tokio apps, and what an ECS buys Veloren at 500 players." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet><link title="Rust Trends" href=https://rust-trends.com/atom.xml rel=alternate type=application/atom+xml><link href=https://rust-trends.com/newsletter/nvidia-brings-rust-to-the-gpu-kernel/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="83 - NVIDIA Brings Rust to the GPU Kernel" name=twitter:title><meta content="NVIDIA ships two ways to write CUDA kernels in Rust, real principles for fast Tokio apps, and what an ECS buys Veloren at 500 players." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/nvidia-brings-rust-to-the-gpu-kernel/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-09-18 property=article:published_time><meta content=Newsletter property=article:section><link href=https://rust-trends.com/main.css media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "83 - NVIDIA Brings Rust to the GPU Kernel",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-09-18",
+  "dateModified": "2026-09-18",
+  "description": "NVIDIA ships two ways to write CUDA kernels in Rust, real principles for fast Tokio apps, and what an ECS buys Veloren at 500 players.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;nvidia-brings-rust-to-the-gpu-kernel&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;nvidia-brings-rust-to-the-gpu-kernel&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "83 - NVIDIA Brings Rust to the GPU Kernel",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;nvidia-brings-rust-to-the-gpu-kernel&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77" async></script><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/sponsor/ style=margin-left:.7em>/sponsor</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "83 - NVIDIA Brings Rust to the GPU Kernel",
+  "description": "NVIDIA ships two ways to write CUDA kernels in Rust, real principles for fast Tokio apps, and what an ECS buys Veloren at 500 players.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;nvidia-brings-rust-to-the-gpu-kernel&#x2F;",
+  "datePublished": "2026-09-18",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "83 - NVIDIA Brings Rust to the GPU Kernel",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;nvidia-brings-rust-to-the-gpu-kernel&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>83 - NVIDIA Brings Rust to the GPU Kernel</ol></nav><main><article><div class=title><h1 class=page-header>83 - NVIDIA Brings Rust to the GPU Kernel<span class=primary-color style=font-size:1.6em>.</span></h1><div class=meta>Posted on <time>2026-09-18</time></div></div><section class=body><p>This edition is about who decides where your work runs. NVIDIA now lets you write the GPU kernel in Rust, a first set of principles for fast Tokio applications explains why your scheduler, not your code, is often the thing to measure, and Veloren's core developers show what an ECS buys you once 500 players are connected at once. The Rust project also has a security warning worth two minutes of your time.<table style="border-collapse:separate;margin:22px 0 4px" border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="background:#fff5f0;border:1px solid #f4c9b6;border-radius:10px;padding:20px 22px"><div style="letter-spacing:.12em;text-transform:uppercase;color:#b2531f;margin:0 0 14px;font-family:Georgia,serif;font-size:11px;font-weight:700">Featured sponsor</div> <table border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="padding:2px 16px 0 0" valign=top width=48><img alt=Svix height=48 src=https://github.com/svix.png style=border:0;border-radius:11px;display:block width=48><td style=color:#333;font-family:Georgia,serif;font-size:16px;line-height:1.6 valign=top><strong>Send webhooks without building the infrastructure.</strong> Svix is the enterprise-ready webhooks service, and its core is built in Rust. Retries, signature verification, fan-out, rate limiting, and observability arrive as an API you can drop in within minutes, so your team ships product instead of maintaining webhook plumbing. <a href=https://www.svix.com style=color:#f74c00;font-weight:700 target=_blank>Start sending at svix.com →</a></table></table><h2 id=nvidia-brings-rust-to-the-gpu-kernel>NVIDIA Brings Rust to the GPU Kernel</h2><p>Rust is creeping into NVIDIA's stack for a while now, e.g. the Nova Linux driver, a Rust core inside NVIDIA Dynamo, Rust bindings for <a href=https://docs.nvidia.com/tools-extension/index.html target=_blank>NVTX</a>. The kernel itself was the missing link in that story, since you could launch one from Rust but had to write it in something else. On 8 September NVIDIA closed the gap with <a href=https://developer.nvidia.com/blog/introducing-cuda-rust-two-tracks-for-writing-gpu-kernels target=_blank>CUDA Rust</a>, compiling kernels written in Rust natively to PTX.<p>There are two tracks, mirroring CUDA's own. cuda-oxide is a custom rustc codegen backend for the familiar SIMT model, where you say what one thread does and launch thousands. cutile-rs takes the newer Tile model, where you describe what one tile of data does and the compiler decides how tiles map onto each architecture. NVIDIA's advice is to reach for Tile first and drop to SIMT when you need the control.<p>The maturity gap is the practical detail. cutile-rs runs on stable Rust 1.89 and above with CUDA 13.3, needs no custom LLVM, and is already used inside HuggingFace's Grout inference engine and mistral.rs. cuda-oxide needs a pinned nightly toolchain plus LLVM and is still early alpha.<p><strong>Takeaways:</strong><ul><li>GPU kernels in Rust, compiled to PTX, not a wrapper around code written elsewhere<li>Both tracks enforce memory safety at compile time, through DisjointSlice and launch contracts or through tensor partitioning and ownership<li>cutile-rs is the one to try today: stable Rust, already in production inference engines<li>NVIDIA plans interoperability with CUDA C++ and CUDA Python, so choosing Rust should not lock you out</ul><hr><h2 id=the-first-real-principles-for-fast-tokio-applications>The First Real Principles for Fast Tokio Applications</h2><p>Async performance advice usually arrives as folklore. Russell, who works on the dial9 tracing tool, has started writing it down instead, in <a href=https://dial9-rs.github.io/blog/principles-for-fast-tokio-applications target=_blank>principles for fast Tokio applications</a>, drawn from a debugging and benchmarking discussion at the RustConf Unconf and his own production experience.<p>The honest framing, there are few hard rules, because a workload's performance depends on what else is running on the runtime at that moment, which is why these problems surface only in production. His first principle is to check whether you have a problem at all: go looking for red flags and you will find them, since almost every real application has polls far longer than the 10 to 100 microseconds Alice Ryhl recommends, and plenty of them are benign. Work backward from a metric you care about.<p>From there it is trade-offs rather than rules. Split for latency, batch for throughput. Yield more often when latency matters. Beware global resources, be careful with mutexes, constrain parallelism, isolate Tokio workers from other threads. Then the exceptions, for when you know better: blocking the executor can be fine, multiple runtimes can isolate workloads by priority, and spinning can be worth it to keep control.<p><strong>Takeaways:</strong><ul><li>Schedule latency, the gap between a task being ready and Tokio polling it, is the most useful single metric, and it now has a histogram<li>Most async performance problems live in application code and in how components interact, not in Tokio<li>It is a living document, so send a PR if your production experience differs</ul><hr><h2 id=what-an-ecs-actually-buys-you-measured-in-players>What an ECS Actually Buys You, Measured in Players</h2><p>Veloren is an open-world multiplayer game in Rust, and a core developer has written up <a href=https://blog.jsbarretto.com/post/veloren target=_blank>the unusual choices behind it</a>. The headline one, taken in 2018 when it was still rare outside demos, was to build on an ECS (Entity Component System) rather than a class hierarchy.<p>The payoff is a number worth quoting: the server hits 50 percent core utilisation on a 48 thread machine with over 500 players connected and tens of thousands of entities interacting. Most MMOs reach those figures only by cutting cross-entity interaction or sharding players into separate world spaces.<p>The quirks are just as instructive. With an ECS, polymorphism is the default and an entity taxonomy is something you opt into, which produces bugs a class hierarchy would have made impossible. A botched loot transition once gave players an ItemDrop component, so nearby players could pick each other up, which dropped the target's entity and kicked them off the server.<p>The second choice is stricter than most games manage: players and NPCs (Non-Player Characters) are the same thing. Both go through one Controller component, a virtual gamepad fed by keyboard and mouse for players and by the agent decision tree for NPCs. NPCs cannot teleport or phase through blocks, and an agent that ignores momentum will walk its NPC off a cliff.<p><strong>Takeaways:</strong><ul><li>An ECS is what lets one server hold 500 players and tens of thousands of interacting entities without sharding<li>Default polymorphism is the cost: entity taxonomy is opt-in, and the bugs that follow are strange ones<li>Running NPCs through the same physics and control path as players makes bad agent code visible immediately</ul><hr><h2 id=a-pokedex-in-the-terminal-and-the-async-underneath-it>A Pokedex in the Terminal, and the Async Underneath It</h2><p>Not everything worth reading is infrastructure. <a href=https://www.reddit.com/r/rust/comments/1wi01ch target=_blank>rotomdex</a> is a Pokedex TUI, and its author describes it as their first substantial programming project. It renders an overview, an evolution tree, abilities and movesets for every version of the mainline games, inside an 80 by 24 terminal, with animated sprites drawn in the terminal itself.<p>What makes it relevant here is what sits underneath: assets fetched asynchronously and on demand, hot swappable versions, and a working offline mode. That is the same concurrency machinery the rest of this edition is about, doing unglamorous work in a small program, which is where most developers meet it first.<p>There is a <a href=https://zdragg.github.io/rotomdex/ target=_blank>web demo</a> if you want to try it without installing anything, and the source is on <a href=https://github.com/zdragg/rotomdex target=_blank>GitHub</a>.<p><strong>Takeaways:</strong><ul><li>Demand-driven async fetching with a real offline mode is a proper design<li>Terminal UIs remain one of the friendliest on-ramps to Rust: small scope, fast feedback, no web stack to fight<li>A first project shipping a web demo and install instructions beats plenty of mature crates on developer experience</ul><hr><h2 id=snippets>Snippets</h2><ul><li><p><strong><a href=https://blog.rust-lang.org/2026/09/17/targeted-attacks target=_blank>Be alert: targeted attacks on prominent Rustaceans</a></strong> The Rust project warns of a campaign targeting rust-lang members and popular crate owners, using video calls set up under a pretext to get the target to run something. The arrayref crate fell to it last month. Check your MFA and logins.</p><li><p><strong><a href=https://akesson.io/a-visual-guide-to-rust-async target=_blank>A visual guide to Rust async</a></strong> Sixteen steps tracing one tiny program down to the state machine the compiler builds: why an async fn becomes an enum with one variant per pause point, and why the thread does nothing at all while the future waits.</p><li><p><strong><a href=https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results target=_blank>Rust debugging survey 2026 results</a></strong> The compiler team's first debugging survey, with over 2,300 responses: fewer than half of respondents use a debugger with Rust at all. Read it next to the Tokio piece above, on measuring rather than guessing.</p><li><p><strong><a href=https://rust-glancer.github.io/blog/why-lsp-is-hard target=_blank>Why building a Rust LSP is hard</a></strong> Rust Glancer's author on rust-analyzer's architecture and their own server. An LSP has to answer from partial information, which is what turns the easy-looking parts hard.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202609191729" defer></script>
