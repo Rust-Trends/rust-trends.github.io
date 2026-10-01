@@ -485,8 +485,11 @@ For example, I observed numerous SSH brute-force attempts and port scans targeti
 
 ---
 
+## Try It Yourself with CodeCrafters
+The honeypot above is a bare TCP listener that just logs whatever hits it. If you want to go further and actually speak a protocol back to the connecting client, <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">CodeCrafters</a>’ "Build Your Own HTTP Server" challenge picks up exactly where this leaves off: accept raw TCP connections in Rust and parse the HTTP protocol on top, stage by stage. It’s a natural next step for turning a passive listener into something that can convincingly emulate a real service — which is the direction this post’s "expand to emulate common protocols" suggestion points anyway. Sign up free with GitHub, no payment info required.
+
 ## Conclusion
-Deploying a custom Rust honeypot on an always-free Oracle Cloud instance gives you hands-on insight into real-world malicious activity. You’ve learned how to code a simple TCP server in Rust, configure Oracle’s networking, manage an OCI's firewall, and centralize logging. With a bit of creativity, you can expand your honeypot to emulate common protocols, capture richer data, or integrate with threat intelligence pipelines. Happy hacking—safely, of course!
+Deploying a custom Rust honeypot on an always-free Oracle Cloud instance gives you hands-on insight into real-world malicious activity. You’ve learned how to code a simple TCP server in Rust, configure Oracle’s networking, manage an OCI’s firewall, and centralize logging. With a bit of creativity, you can expand your honeypot to emulate common protocols, capture richer data, or integrate with threat intelligence pipelines. Happy hacking—safely, of course!
 
 ---
 ## GitHub Repository

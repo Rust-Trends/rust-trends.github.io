@@ -41,14 +41,8 @@ Playground <a href="https://play.rust-lang.org/?version=stable&mode=debug&editio
 
 __Use of match for Control Flow:__ The match operator is akin to a switch statement but more powerful. It allows a value to be compared against a series of patterns and execute code based on which pattern matches. This is particularly useful for enums in Rust, as demonstrated in our TrafficLight example.
 
-## Elevate Your Rust Skills with CodeCrafters! 🚀 [advertisement]
-Join us in partnership with CodeCrafters to build your own HTTP server for FREE! Sign up easily with GitHub—no payment info required.
-
-📅 Hurry, as April's special offer is ending soon! WIN one of two yearly subscriptions worth $990 each. Plus, subscribers receive a 40% discount on all paid plans.
-
-Don't miss out—enhance your skills and win big. <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">Sign up now</a>
-
-P.S. it helps us to keep the lights on and continue to provide valuable content and for you it is FREE. Thank you for your support! 🙏
+## Try It Yourself with CodeCrafters
+The `match` expressions above are toy-sized on purpose. If you want to see pattern matching carry real weight, <a href="https://app.codecrafters.io/join?via=Rust-Trends" target="_blank">CodeCrafters</a>' "Build Your Own Redis" challenge has you parse and dispatch RESP commands — match-heavy Rust from the first line, not a three-variant enum. Sign up free with GitHub, no payment info required.
 
 Let's continue with the article!
 
