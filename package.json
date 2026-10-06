@@ -10,6 +10,7 @@
     "seo:all": "npm run seo:benchmark"
   },
   "devDependencies": {
-    "glob": "^10.3.10"
+    "glob": "^10.3.10",
+    "htmlparser2": "^9.1.0"
   }
 }
