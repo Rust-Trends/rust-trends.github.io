@@ -2,6 +2,7 @@
 title = "Contact"
 path = "contact"
 [extra]
+seo_title = "Contact Rust Trends: Questions, Ideas and Sponsorship"
 no_newsletter_signup = true
 +++
 
