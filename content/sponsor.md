@@ -3,6 +3,7 @@ title = "Sponsor Rust Trends"
 path = "sponsor"
 description = "Reach ~1,500 Rust developers and CTOs biweekly. Rust Trends sponsorship audience stats and how to book a slot."
 [extra]
+seo_title = "Sponsor Rust Trends: Reach ~1,500 Rust Developers"
 toc_not_generate = true
 no_newsletter_signup = true
 +++

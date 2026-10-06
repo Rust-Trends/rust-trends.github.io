@@ -2,6 +2,7 @@
 title = "Sign up"
 path = "signup"
 [extra]
+seo_title = "Subscribe to Rust Trends: Free Biweekly Rust Newsletter"
 toc_not_generate = true
 no_newsletter_signup = true
 +++

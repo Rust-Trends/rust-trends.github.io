@@ -42,20 +42,38 @@
 
     {# Site title #}
     {% set current_path = current_path | default(value="/") %}
+    {#
+       <title>: an explicit extra.seo_title (page or section front matter) is used as-is.
+       Otherwise the page/section title gets a " | Rust Trends" suffix when the result
+       still fits in 60 chars. Paginated listings get a page number so titles stay unique.
+    #}
+    {% set seo_title_explicit = false %}
+    {% if page.extra.seo_title %}
+        {% set seo_title = page.extra.seo_title %}{% set seo_title_explicit = true %}
+    {% elif page.title %}
+        {% set seo_title = page.title %}
+    {% elif section.extra.seo_title %}
+        {% set seo_title = section.extra.seo_title %}{% set seo_title_explicit = true %}
+    {% elif section.title %}
+        {% set seo_title = section.title %}
+    {% else %}
+        {% set seo_title = config.title | default(value="Home") %}
+    {% endif %}
+    {% if not seo_title_explicit and seo_title != config.title and seo_title | length <= 46 %}
+        {% set seo_title = seo_title ~ " | " ~ config.title %}
+    {% endif %}
+    {% if paginator %}{% if paginator.current_index > 1 %}
+        {% set seo_title = seo_title ~ " (Page " ~ paginator.current_index ~ ")" %}
+    {% endif %}{% endif %}
+
     {% if current_path == "/" %}
-    <title>
-        {{ config.title | default(value="Home") }}
-    </title>
+    <title>{{ seo_title }}</title>
     {% if not page_has_og_title %}
         <meta property="og:title" content="{{ config.title | default(value="Home") }}" />
     {% endif %}
 
     {% else %}
-    <title>
-        {% if page.title %} {{ page.title }}
-        {% elif config.title %} {{ config.title }}
-        {% else %} Post {% endif %}
-    </title>
+    <title>{{ seo_title }}</title>
 
         {% if not page_has_og_title %}
             <meta property="og:title" content="{% if page.title -%}{{ page.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}" />

@@ -1,6 +1,8 @@
 +++
 title = "Search Rust Trends"
 description = "Search through Rust Trends newsletters and posts to find the latest Rust programming content, tutorials, and ecosystem updates."
+[extra]
+seo_title = "Search Rust Trends Newsletters, Articles and Tutorials"
 +++
 
 Find what you're looking for in our collection of Rust programming newsletters and posts.

@@ -3,6 +3,7 @@ title = "About"
 path = "about"
 description = "Learn about Rust Trends newsletter - your source for the latest Rust programming language news, insights, and expert analysis from industry professionals."
 [extra]
+seo_title = "About Rust Trends: The Biweekly Rust Newsletter"
 toc_not_generate = true
 +++
 
