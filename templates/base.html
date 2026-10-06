@@ -4,14 +4,30 @@
 <html lang="en">
 {% include "partials/header.html" %}
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77"></script>
+<!-- Google tag (gtag.js), loaded on first interaction or 3.5 s after page load
+     so it stays off the critical path. Hits are queued in dataLayer until then. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-FWPL9RWX77');
+
+  (function () {
+    var loaded = false;
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    function loadGtag() {
+      if (loaded) return;
+      loaded = true;
+      events.forEach(function (e) { removeEventListener(e, loadGtag); });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77';
+      document.head.appendChild(s);
+    }
+    events.forEach(function (e) { addEventListener(e, loadGtag, { once: true, passive: true }); });
+    addEventListener('load', function () { setTimeout(loadGtag, 3500); });
+  })();
 </script>
 
 <body>
