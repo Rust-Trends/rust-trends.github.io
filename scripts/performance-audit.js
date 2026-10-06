@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const { glob } = require('glob');
-const { execSync } = require('child_process');
+const { parseDocument, DomUtils } = require('htmlparser2');
 
 // ANSI color codes
 const colors = {
@@ -49,6 +49,11 @@ const THRESHOLDS = {
     good: 1000,
     warning: 2000,
   },
+  // HTML + same-origin CSS/JS + eagerly loaded images that one page view downloads
+  pageWeight: {
+    good: 500 * 1024,
+    warning: 1024 * 1024,
+  },
 };
 
 class PerformanceAuditor {
@@ -77,76 +82,49 @@ class PerformanceAuditor {
     return colors.red('POOR');
   }
 
+  // Parse with a real HTML parser: Zola's minifier drops optional end tags
+  // (</p>, </li>) and attribute quotes, which regex-based parsing misreads.
   analyzeHTML(html) {
-    // Count DOM elements (approximate)
-    const tagMatches = html.match(/<[a-z][^>]*>/gi) || [];
-    const elementCount = tagMatches.length;
+    const doc = parseDocument(html, { lowerCaseTags: true, lowerCaseAttributeNames: true });
+    const elements = DomUtils.findAll(() => true, doc.children);
+    const elementCount = elements.length;
 
-    // Calculate DOM depth (approximate)
-    let maxDepth = 0;
-    let currentDepth = 0;
-    const openTags = /<([a-z][a-z0-9]*)\b[^>]*(?<!\/)\s*>/gi;
-    const closeTags = /<\/([a-z][a-z0-9]*)\s*>/gi;
+    const depthOf = (node) => {
+      const kids = (node.children || []).filter(c => c.type === 'tag' || c.type === 'script' || c.type === 'style');
+      return kids.length === 0 ? 0 : 1 + Math.max(...kids.map(depthOf));
+    };
+    const maxDepth = depthOf(doc);
 
-    // Simple depth estimation
-    let pos = 0;
-    while (pos < html.length) {
-      const openMatch = html.slice(pos).match(/<([a-z][a-z0-9]*)\b[^>]*>/i);
-      const closeMatch = html.slice(pos).match(/<\/([a-z][a-z0-9]*)\s*>/i);
+    const inNoscript = (el) => {
+      for (let p = el.parent; p; p = p.parent) if (p.name === 'noscript') return true;
+      return false;
+    };
+    const rels = (el) => (el.attribs.rel || '').toLowerCase().split(/\s+/);
+    const live = elements.filter(el => !inNoscript(el));
 
-      if (!openMatch && !closeMatch) break;
+    const stylesheets = live.filter(el => el.name === 'link' && rels(el).includes('stylesheet') && el.attribs.href);
+    const scripts = live.filter(el => el.name === 'script' && el.attribs.src);
+    const images = live.filter(el => el.name === 'img' && el.attribs.src);
 
-      const openPos = openMatch ? html.indexOf(openMatch[0], pos) : Infinity;
-      const closePos = closeMatch ? html.indexOf(closeMatch[0], pos) : Infinity;
+    const cssRefs = stylesheets.map(el => el.attribs.href);
+    const jsRefs = scripts.map(el => el.attribs.src);
+    const imgRefs = images.map(el => el.attribs.src);
+    // The first image may be the LCP element, so only later images should be lazy
+    const eagerImgRefs = images.filter((el, i) => i === 0 || el.attribs.loading !== 'lazy').map(el => el.attribs.src);
 
-      if (openPos < closePos) {
-        const tag = openMatch[1].toLowerCase();
-        const selfClosing = ['br', 'hr', 'img', 'input', 'meta', 'link', 'area', 'base', 'col', 'embed', 'param', 'source', 'track', 'wbr'];
-        if (!selfClosing.includes(tag) && !openMatch[0].endsWith('/>')) {
-          currentDepth++;
-          maxDepth = Math.max(maxDepth, currentDepth);
-        }
-        pos = openPos + openMatch[0].length;
-      } else {
-        currentDepth = Math.max(0, currentDepth - 1);
-        pos = closePos + closeMatch[0].length;
-      }
-    }
+    const textLength = (el) => DomUtils.textContent(el).length;
+    const inlineStyles = live.filter(el => el.name === 'style').reduce((sum, el) => sum + textLength(el), 0);
+    const inlineScripts = live
+      .filter(el => el.name === 'script' && !el.attribs.src && !(el.attribs.type || '').includes('json'))
+      .reduce((sum, el) => sum + textLength(el), 0);
 
-    // Extract referenced assets
-    const cssRefs = (html.match(/<link[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/gi) || [])
-      .map(m => m.match(/href=["']([^"']+)["']/i)?.[1])
-      .filter(Boolean);
-
-    const jsRefs = (html.match(/<script[^>]*src=["']([^"']+)["']/gi) || [])
-      .map(m => m.match(/src=["']([^"']+)["']/i)?.[1])
-      .filter(Boolean);
-
-    const imgRefs = (html.match(/<img[^>]*src=["']([^"']+)["']/gi) || [])
-      .map(m => m.match(/src=["']([^"']+)["']/i)?.[1])
-      .filter(Boolean);
-
-    // Check for inline styles and scripts
-    const inlineStyles = (html.match(/<style[^>]*>[\s\S]*?<\/style>/gi) || [])
-      .reduce((sum, s) => sum + s.length, 0);
-
-    const inlineScripts = (html.match(/<script(?![^>]*src)[^>]*>[\s\S]*?<\/script>/gi) || [])
-      .reduce((sum, s) => sum + s.length, 0);
-
-    // Check for render-blocking resources
     const renderBlocking = {
-      css: cssRefs.filter(ref => !html.includes(`media="print"`) && !html.includes('preload')).length,
-      js: jsRefs.filter(ref => {
-        const scriptTag = html.match(new RegExp(`<script[^>]*src=["']${ref.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i'));
-        return scriptTag && !scriptTag[0].includes('async') && !scriptTag[0].includes('defer');
-      }).length,
+      css: stylesheets.filter(el => !el.attribs.media || el.attribs.media === 'all' || el.attribs.media === 'screen').length,
+      js: scripts.filter(el => !('async' in el.attribs) && !('defer' in el.attribs) && el.attribs.type !== 'module').length,
     };
 
-    // Check for performance hints
-    const hasDNSPrefetch = html.includes('dns-prefetch');
-    const hasPreconnect = html.includes('preconnect');
-    const hasPreload = html.includes('rel="preload"') || html.includes("rel='preload'");
-    const hasLazyLoading = html.includes('loading="lazy"') || html.includes("loading='lazy'");
+    const hasRel = (rel) => live.some(el => el.name === 'link' && rels(el).includes(rel));
+    const canonical = live.find(el => el.name === 'link' && rels(el).includes('canonical'));
 
     return {
       elementCount,
@@ -154,16 +132,38 @@ class PerformanceAuditor {
       cssRefs,
       jsRefs,
       imgRefs,
+      eagerImgRefs,
+      lazyImages: images.filter(el => el.attribs.loading === 'lazy').length,
+      canonical: canonical ? canonical.attribs.href : null,
       inlineStyles,
       inlineScripts,
       renderBlocking,
       performanceHints: {
-        dnsPrefetch: hasDNSPrefetch,
-        preconnect: hasPreconnect,
-        preload: hasPreload,
-        lazyLoading: hasLazyLoading,
+        dnsPrefetch: hasRel('dns-prefetch'),
+        preconnect: hasRel('preconnect'),
+        preload: hasRel('preload'),
+        lazyLoading: images.some(el => el.attribs.loading === 'lazy'),
       },
     };
+  }
+
+  // Size on disk of a same-origin reference, or null for external/missing files
+  localAssetSize(ref, pageFile, origin) {
+    let url;
+    try {
+      url = new URL(ref, origin ? new URL(path.relative(this.buildDir, pageFile).split(path.sep).join('/'), origin + '/') : 'https://local.invalid/');
+    } catch {
+      return null;
+    }
+    if (origin && url.origin !== origin) return null;
+    if (!origin && url.origin !== 'https://local.invalid') return null;
+    const file = path.join(this.buildDir, decodeURIComponent(url.pathname));
+    try {
+      const stats = fs.statSync(file);
+      return stats.isFile() ? stats.size : null;
+    } catch {
+      return null;
+    }
   }
 
   async auditPage(filePath) {
@@ -196,7 +196,8 @@ class PerformanceAuditor {
     }
 
     // Render-blocking resources
-    if (analysis.renderBlocking.css > 0) {
+    // One small first-party stylesheet has to block rendering; flag anything beyond that
+    if (analysis.renderBlocking.css > 1) {
       recommendations.push(`${analysis.renderBlocking.css} render-blocking CSS file(s)`);
     }
     if (analysis.renderBlocking.js > 0) {
@@ -216,14 +217,28 @@ class PerformanceAuditor {
     if (!hints.dnsPrefetch && !hints.preconnect) {
       recommendations.push('Consider adding dns-prefetch/preconnect for external resources');
     }
-    if (analysis.imgRefs.length > 3 && !hints.lazyLoading) {
-      recommendations.push('Consider adding lazy loading for images');
+    const eagerBelowFirst = analysis.imgRefs.length - 1 - analysis.lazyImages;
+    if (eagerBelowFirst > 2) {
+      recommendations.push(`${eagerBelowFirst} images after the first lack loading="lazy"`);
+    }
+
+    // Page weight: what a first visit downloads from this site (third-party excluded)
+    const origin = analysis.canonical ? new URL(analysis.canonical).origin : null;
+    const sizeOf = (ref) => this.localAssetSize(ref, filePath, origin) || 0;
+    const pageWeight = stats.size
+      + [...analysis.cssRefs, ...analysis.jsRefs].reduce((sum, ref) => sum + sizeOf(ref), 0)
+      + analysis.eagerImgRefs.reduce((sum, ref) => sum + sizeOf(ref), 0);
+    if (pageWeight > THRESHOLDS.pageWeight.warning) {
+      issues.push(`Page weight too high: ${this.formatSize(pageWeight)}`);
+    } else if (pageWeight > THRESHOLDS.pageWeight.good) {
+      recommendations.push(`Consider reducing page weight: ${this.formatSize(pageWeight)}`);
     }
 
     return {
       path: relativePath,
       size: stats.size,
       sizeFormatted: this.formatSize(stats.size),
+      pageWeight,
       analysis,
       issues,
       recommendations,
@@ -310,15 +325,21 @@ class PerformanceAuditor {
 
     let totalIssues = 0;
     let totalRecommendations = 0;
+    let cleanPages = 0;
 
     const pageResults = [];
-    for (const file of files.slice(0, 20)) { // Limit to first 20 pages for performance
+    for (const file of files) {
       const filePath = path.join(this.buildDir, file);
       const result = await this.auditPage(filePath);
       pageResults.push(result);
 
       totalIssues += result.issues.length;
       totalRecommendations += result.recommendations.length;
+
+      if (result.issues.length === 0 && result.recommendations.length === 0) {
+        cleanPages++;
+        continue;
+      }
 
       const status = result.issues.length > 0
         ? colors.red('✗')
@@ -327,7 +348,7 @@ class PerformanceAuditor {
           : colors.green('✓');
 
       console.log(`\n${status} ${colors.bold(result.path)}`);
-      console.log(`  Size: ${result.sizeFormatted} | Elements: ${result.analysis.elementCount} | Depth: ${result.analysis.maxDepth}`);
+      console.log(`  Size: ${result.sizeFormatted} | Weight: ${this.formatSize(result.pageWeight)} | Elements: ${result.analysis.elementCount} | Depth: ${result.analysis.maxDepth}`);
 
       if (result.issues.length > 0) {
         result.issues.forEach(issue => {
@@ -341,9 +362,7 @@ class PerformanceAuditor {
       }
     }
 
-    if (files.length > 20) {
-      console.log(colors.dim(`\n... and ${files.length - 20} more pages (not shown)`));
-    }
+    console.log(colors.dim(`\n${cleanPages} page(s) without issues or recommendations not shown`));
 
     // Summary
     console.log('\n' + colors.dim('─'.repeat(60)));
@@ -356,46 +375,46 @@ class PerformanceAuditor {
     console.log(`  Images: ${this.formatSize(totalImages)} (${assets.images.length} files)`);
     console.log(`  Fonts:  ${this.formatSize(totalFonts)} (${assets.fonts.length} files)`);
 
-    console.log(`\nPages Analyzed: ${Math.min(files.length, 20)} of ${files.length}`);
+    console.log(`\nPages Analyzed: ${pageResults.length}`);
     console.log(`${colors.red('Issues:')} ${totalIssues}`);
     console.log(`${colors.yellow('Recommendations:')} ${totalRecommendations}`);
 
-    // Performance score - more granular calculation
+    // Performance score. Penalties scale with the share of affected pages, so the
+    // score does not drop just because the site has more pages.
+    const share = (pred) => pageResults.filter(pred).length / pageResults.length;
     const avgPageSize = pageResults.reduce((sum, p) => sum + p.size, 0) / pageResults.length;
     const avgElements = pageResults.reduce((sum, p) => sum + p.analysis.elementCount, 0) / pageResults.length;
+    const avgPageWeight = pageResults.reduce((sum, p) => sum + p.pageWeight, 0) / pageResults.length;
+    console.log(`Average page weight: ${this.formatSize(avgPageWeight)}`);
 
-    // Calculate score components
     let score = 100;
 
-    // Issues penalty: scale from 0-40 based on issue count (0 issues = 0 penalty, 20+ = max penalty)
-    const issuesPenalty = Math.min(40, Math.round((totalIssues / 20) * 40));
-    score -= issuesPenalty;
+    // Issues penalty: 0-40 by share of pages with at least one issue
+    score -= Math.round(40 * share(p => p.issues.length > 0));
 
-    // Recommendations penalty: scale from 0-15 (minor impact)
-    const recsPenalty = Math.min(15, totalRecommendations * 2);
-    score -= recsPenalty;
+    // Recommendations penalty: 0-15 by share of pages with recommendations (minor impact)
+    score -= Math.round(15 * share(p => p.recommendations.length > 0));
 
-    // Page size penalty: 0-15 based on average page size
+    // Page size penalty: 0-10 based on average HTML size
     if (avgPageSize > THRESHOLDS.htmlSize.warning) {
-      score -= 15;
+      score -= 10;
     } else if (avgPageSize > THRESHOLDS.htmlSize.good) {
-      score -= 8;
+      score -= 5;
     }
 
-    // DOM complexity penalty: 0-15 based on element count
+    // DOM complexity penalty: 0-10 based on element count
     if (avgElements > THRESHOLDS.domElements.warning) {
-      score -= 15;
+      score -= 10;
     } else if (avgElements > THRESHOLDS.domElements.good) {
-      score -= 8;
+      score -= 5;
     }
 
-    // Asset size penalty: 0-15 (exclude fonts if using CDN - check for font preload absence)
-    // Note: If fonts aren't preloaded locally, likely using CDN
-    const effectiveAssetSize = totalCSS + totalJS + totalImages; // Exclude fonts for CDN case
-    if (effectiveAssetSize > 5 * 1024 * 1024) {
-      score -= 15;
-    } else if (effectiveAssetSize > 1 * 1024 * 1024) {
-      score -= 8;
+    // Page weight penalty: 0-25 based on what an average page view downloads.
+    // (The old check summed every asset in the build, which no visitor downloads.)
+    if (avgPageWeight > THRESHOLDS.pageWeight.warning) {
+      score -= 25;
+    } else if (avgPageWeight > THRESHOLDS.pageWeight.good) {
+      score -= 12;
     }
 
     score = Math.max(0, score);
@@ -418,6 +437,7 @@ class PerformanceAuditor {
         totalPages: files.length,
         issues: totalIssues,
         recommendations: totalRecommendations,
+        avgPageWeight: Math.round(avgPageWeight),
         score,
       },
       assets,
