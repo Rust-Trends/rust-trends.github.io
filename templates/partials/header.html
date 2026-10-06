@@ -121,8 +121,14 @@
 
     {# Font from cdn or disk #}
     {% if config.extra.use_cdn | default(value=false) %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css">
+        {# Load font CSS without blocking render; both stylesheets use font-display: swap #}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css" media="print" onload="this.media='all'">
+        <noscript>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css">
+        </noscript>
     {% else %}
         <link href={{ get_url(path="fonts.css") }} rel="stylesheet" />
     {% endif %}
