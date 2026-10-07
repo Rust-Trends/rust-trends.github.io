@@ -20,7 +20,18 @@
             {%- set show_pages = section.pages -%}
         {% endif -%}
 
-        {{ post_macros::list_posts(pages=show_pages) }}
+        {#- Home lists only the latest editions; the full list lives on /newsletter/ -#}
+        {%- set home_limit = 10 -%}
+        {%- set is_home = current_path == "/" -%}
+
+        {%- if is_home %}
+            {{ post_macros::list_posts(pages=show_pages | slice(end=home_limit)) }}
+            {%- if show_pages | length > home_limit %}
+            <p class="all-editions"><a href="{{ get_url(path='@/newsletter/_index.md') }}">All {{ show_pages | length }} editions ⟶</a></p>
+            {%- endif %}
+        {%- else %}
+            {{ post_macros::list_posts(pages=show_pages) }}
+        {%- endif %}
     </main>
 
     {% if paginator %}
