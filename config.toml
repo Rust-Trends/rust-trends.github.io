@@ -2,6 +2,7 @@
 base_url = "https://rust-trends.com"
 
 title = "Rust Trends"
+author = "Bob Peters"
 description = "The premier Rust programming newsletter covering trends, tutorials, and ecosystem updates. Stay current with Rust development."
 
 # Whether to build a search index to be used later on by a JavaScript library
@@ -49,4 +50,5 @@ menu = [
 socials = [
     { name = "linkedin", url = "https://www.linkedin.com/company/rust-trends", icon = "linkedin" },
     { name = "github", url = "https://github.com/rust-trends/", icon = "github" },
+    { name = "RSS feed", url = "/newsletter/rss.xml", icon = "rss" },
 ]
