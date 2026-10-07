@@ -162,7 +162,8 @@
     {% endif %}
 
     {# RSS #}
-    <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ config.title }} Newsletter" href="{{ get_url(path="newsletter/rss.xml", trailing_slash=false) }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ config.title }} (newsletter and posts)" href="{{ get_url(path="rss.xml", trailing_slash=false) }}">
 
     {# Canonical URL #}
     {% if page %}
