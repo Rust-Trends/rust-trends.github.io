@@ -1,7 +1,7 @@
 {% macro list_posts(pages) %}
     <ul>
     {%- for page in pages %}
-        <section class="list-item">
+        <li class="list-item">
             <h2 class="title">
                 <a href={{ page.permalink }}>{{page.title}}</a>
             </h2>
@@ -29,9 +29,9 @@
 
             {% if not hide_read_more %}
             <br>
-                <a class="readmore" href={{ page.permalink }}>Read more ⟶</a>
+                <a class="readmore" href={{ page.permalink }} aria-label="Read more: {{ page.title }}">Read more ⟶</a>
             {% endif %}
-        </section>
+        </li>
 
     {% endfor -%}
     </ul>
