@@ -1,0 +1,175 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>84 - Google Puts Agents on the Rust Rewrite | Rust Trends</title><meta content="84 - Google Puts Agents on the Rust Rewrite" property=og:title><meta content="Google ports up to 800K lines of C and C++ to Rust with agents, a 3.7 GiB Tokio lesson, rustc 4.57% faster, and a 130 GB/s hash in Rust." property=og:description><meta content="Google ports up to 800K lines of C and C++ to Rust with agents, a 3.7 GiB Tokio lesson, rustc 4.57% faster, and a 130 GB/s hash in Rust." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link crossorigin href=https://cdn.jsdelivr.net rel=preconnect><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css media=print rel=stylesheet><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css media=print rel=stylesheet><noscript><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet> <link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet></noscript><link title="Rust Trends Newsletter" href=https://rust-trends.com/newsletter/rss.xml rel=alternate type=application/rss+xml><link title="Rust Trends (newsletter and posts)" href=https://rust-trends.com/rss.xml rel=alternate type=application/rss+xml><link href=https://rust-trends.com/newsletter/google-puts-agents-on-the-rust-rewrite/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="84 - Google Puts Agents on the Rust Rewrite" name=twitter:title><meta content="Google ports up to 800K lines of C and C++ to Rust with agents, a 3.7 GiB Tokio lesson, rustc 4.57% faster, and a 130 GB/s hash in Rust." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/google-puts-agents-on-the-rust-rewrite/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-10-04 property=article:published_time><meta content=Newsletter property=article:section><link href="https://rust-trends.com/main.css?h=bd5d5fb977aafc838352" media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;","&#x2F;newsletter&#x2F;rss.xml"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "84 - Google Puts Agents on the Rust Rewrite",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-10-04",
+  "dateModified": "2026-10-04",
+  "description": "Google ports up to 800K lines of C and C++ to Rust with agents, a 3.7 GiB Tokio lesson, rustc 4.57% faster, and a 130 GB&#x2F;s hash in Rust.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;google-puts-agents-on-the-rust-rewrite&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;google-puts-agents-on-the-rust-rewrite&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "84 - Google Puts Agents on the Rust Rewrite",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;google-puts-agents-on-the-rust-rewrite&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');
+
+  (function () {
+    var loaded = false;
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    function loadGtag() {
+      if (loaded) return;
+      loaded = true;
+      events.forEach(function (e) { removeEventListener(e, loadGtag); });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77';
+      document.head.appendChild(s);
+    }
+    events.forEach(function (e) { addEventListener(e, loadGtag, { once: true, passive: true }); });
+    addEventListener('load', function () { setTimeout(loadGtag, 3500); });
+  })();</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a><a class=social href=/newsletter/rss.xml rel=me> <img alt="RSS feed" src=/social_icons/rss.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/sponsor/ style=margin-left:.7em>/sponsor</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "84 - Google Puts Agents on the Rust Rewrite",
+  "description": "Google ports up to 800K lines of C and C++ to Rust with agents, a 3.7 GiB Tokio lesson, rustc 4.57% faster, and a 130 GB&#x2F;s hash in Rust.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;google-puts-agents-on-the-rust-rewrite&#x2F;",
+  "datePublished": "2026-10-04",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "84 - Google Puts Agents on the Rust Rewrite",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;google-puts-agents-on-the-rust-rewrite&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>84 - Google Puts Agents on the Rust Rewrite</ol></nav><main><article><div class=title><h1 class=page-header>84 - Google Puts Agents on the Rust Rewrite<span class=primary-color style=font-size:1.6em>.</span></h1><div class=meta>Posted on <time>2026-10-04</time></div></div><section class=body><p>The Rust rewrite has stopped being a debate and become an engineering programme with numbers attached. Google says its agents are porting C and C++ to Rust, up to an 800,000 line kernel. A team three years into its own migration shares the dashboards, including the Tokio mistake that cost it a 3.7 GiB pod. And the compiler you build all of it with just got 4.57% faster in two months.<table style="border-collapse:separate;margin:22px 0 4px" border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="background:#fff5f0;border:1px solid #f4c9b6;border-radius:10px;padding:20px 22px"><div style="letter-spacing:.12em;text-transform:uppercase;color:#b2531f;margin:0 0 14px;font-family:Georgia,serif;font-size:11px;font-weight:700">Featured sponsor</div> <table border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="padding:2px 16px 0 0" valign=top width=48><img alt=Svix height=48 src=https://github.com/svix.png style=border:0;border-radius:11px;display:block width=48><td style=color:#333;font-family:Georgia,serif;font-size:16px;line-height:1.6 valign=top><strong>Send webhooks without building the infrastructure.</strong> Svix is the enterprise-ready webhooks service, and its core is built in Rust. Retries, signature verification, fan-out, rate limiting, and observability arrive as an API you can drop in within minutes, so your team ships product instead of maintaining webhook plumbing. <a href=https://www.svix.com style=color:#f74c00;font-weight:700 target=_blank>Start sending at svix.com →</a></table></table><h2 id=google-puts-agents-on-the-rust-rewrite>Google Puts Agents on the Rust Rewrite</h2><p>The most interesting paragraph in Google's <a href=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ target=_blank>Gemini 4 Argon announcement</a> is not about benchmarks. It is about Rust. Google says Argon agents are migrating C and C++ codebases to Rust across the company, from tens of thousands of lines in core libraries like re2 and libgav1 up to more than 800,000 lines for the Fuchsia Zircon kernel.<p>The libgav1 example is the concrete one. Starting from an existing Rust port of Google's AV1 video decoder, agents replaced 32,000 lines of SIMD code by running rounds of profile-guided experiments and studying the compiler's output, until they had safe Rust that the compiler vectorises on its own. The result decodes 2.7 times faster than the earlier Rust port, with identical video output, closer to the hand-optimised C++.<p>Google is careful about the rest. Given how critical these systems are, the rewrites go through automated and manual auditing, emulation testing and review before production, and Argon itself is only rolling out to a set of trusted cyber defenders for now. The <a href=https://www.reddit.com/r/rust/comments/1wukyos/google_is_doing_large_scale_codebase_migrations/ target=_blank>r/rust discussion</a> was split between excitement and developers who have reviewed agent-written code and found it works but is hard to maintain.<p><strong>Takeaways:</strong><ul><li>A company of Google's size now treats C and C++ to Rust as a migration it can scale, not a one-off rewrite<li>Safe Rust that auto-vectorises beat a hand-written SIMD port by 2.7 times, which says as much about the compiler as about the agents<li>Maintainability of agent-written code is the open question, and the community is right to keep asking it</ul><hr><h2 id=three-years-of-rust-migration-and-the-tokio-mistake>Three Years of Rust Migration, and the Tokio Mistake</h2><p>Most migration stories end at the cutover. Stephen Blum's <a href=https://www.reddit.com/r/rust/comments/1wuask9/three_years_migrating_latencysensitive_services/ target=_blank>three-year write-up</a> shows fifteen dashboard panels, and every one of those dashboards existed before the migration started, so the before and after are real measurements. His team moved latency-sensitive services from Python, Go, JVM and C to Rust, one service and one region at a time, running old and new side by side.<p>The headline numbers: replacing an nginx-based load balancer with Pingora, Cloudflare's Rust proxy framework, took average balancer time from 600ms to 101ms on the same hardware and traffic. Publish latency on the hottest path went from about 350µs to about 50µs, and the variance dropped with it, which mattered more for their latency guarantees than the average.<p>Two of the panels compare Rust with Rust. A redesign of the Presence service cut peak pod memory about six times, a reminder that the first Rust release is a baseline, not the finish line.<p>The best section is the failure. They spawned a task per request with no cap, and during bursts Tokio queued tasks that each held buffers while waiting on I/O. A 100 MiB pod climbed to 3.7 GiB. Leak detection found nothing, because the memory was live. Scaling out only gave the backlog more places to grow. The fix was backpressure at the ingest edge: a cap on in-flight work and a bounded queue.<p><strong>Takeaways:</strong><ul><li>Instrument before you migrate, or you cannot prove the result<li>Async tasks are cheap in CPU, not in memory: put a limit somewhere in the path<li>Treat the first Rust version as a baseline, iterate from there</ul><hr><h2 id=rustc-got-4-57-faster-in-two-months>rustc Got 4.57% Faster in Two Months</h2><p>Nicholas Nethercote's <a href=https://nnethercote.github.io/2026/09/30/how-to-speed-up-the-rust-compiler-in-september-2026.html target=_blank>latest compiler performance update</a> covers 29 July to 28 September, and the summary is unusually strong. The mean wall-time reduction across the benchmark suite was 4.57%, and 555 of 629 benchmark measurements improved.<p>The wins came from many people. Nikita Popov's upgrade to LLVM 23 alone gave a mean 1.2% reduction. Jakub Beránek enabled PGO for Clippy, worth up to 18% on Clippy benchmarks. A new contributor, xmakro, landed a string of improvements, including one that cut mean cycle counts by 1.58%. At one point so many performance PRs were waiting to merge that they were bundled into a rollup of ten.<p>Nethercote's own favourite is a change to the traversal order of the compiler's dataflow analyses. For most code it changes nothing, but cranelift-codegen has one function with over 18,000 basic blocks. A borrow checker analysis that needed 1.5 million block visits to reach a fixpoint now needs 90,000, a 30% wall-time reduction for a check build of that crate.<p>There is a cost on the horizon too. The new borrow checker, Polonius Alpha, and the new trait solver are both enabled on Nightly, and both are slower for a minority of crates, including serde. Work on that is ongoing, and Nethercote is starting at Hexcat to work on the compiler performance optimisations project goal.<p><strong>Takeaways:</strong><ul><li>4.57% mean wall-time reduction in two months, with 555 of 629 measurements improving<li>LLVM 23 and PGO for Clippy were the big single changes<li>Polonius Alpha and the new trait solver are on Nightly, with known regressions being worked on<li>Nethercote moves to <a href=https://hexcat.nl/ target=_blank>Hexcat</a> to work on the compiler performance project goal</ul><hr><h2 id=polyxor128-a-fast-hash-with-a-machine-checked-proof>PolyXOR128, a Fast Hash With a Machine-Checked Proof</h2><p>Fast hashes and provable hashes are usually different hashes. Orson Peters, the author of pdqsort, has released <a href=https://github.com/orlp/polyxor target=_blank>PolyXOR128</a>, a 128-bit universal hash that tries to be both. With a key that is random and independent of the input, the chance that two inputs of up to n bytes collide is at most (n/4096 + 3) / 2^128, and that proof is formalised in Lean.<p>On speed, he reports up to 130 GB/s on a Ryzen 9950X and 60 GB/s on an Apple M2 Pro, which makes it, to his knowledge, the fastest 128-bit hash, ahead of most 64-bit and non-secure hashes too. The trade-off is hardware: it needs accelerated carryless multiplication, which every modern desktop and server CPU has, and the portable fallback is far too slow to use.<p>It is a universal hash family, in the same category as Poly1305 and GHASH, not an unkeyed hash like SHA-256. The key has to be secret, random and independent of the message, and Peters is explicit about that in the <a href=https://www.reddit.com/r/rust/comments/1wrg5wq/polyxor128_a_new_fast_universal_hash_written_in/ target=_blank>r/rust thread</a>.<p>The Rust angle is his reason for not writing it in C. Cargo made it easy to depend on a hardware-accelerated AES implementation, and target_feature plus is_x86_feature_detected made runtime dispatch much simpler than in C, with faster code as a result.<p><strong>Takeaways:</strong><ul><li>A 128-bit hash for file and stream integrity, with a collision bound proven in Lean<li>Up to 130 GB/s, if your CPU has carryless multiplication<li>It is keyed: a secret, random, independent key is part of the security claim<li>Cargo and target_feature are why it is a Rust crate and not a C library</ul><hr><h2 id=snippets>Snippets</h2><ul><li><p><strong><a href=https://dzania.github.io/green-threads-from-scratch/ target=_blank>Building a green thread runtime in Rust from scratch</a></strong> A runtime under 1,000 lines, built to learn what happens below async. Each task gets a 32 KiB stack mapped with mmap, plus a guard page so an overflow crashes instead of corrupting memory.</p><li><p><strong><a href=https://mnwa.hashnode.dev/can-safe-rust-ever-beat-google-s-c-brotli target=_blank>Can safe Rust ever beat Google's C Brotli?</a></strong> New lzbench results put mbrotli, a safe Rust Brotli, next to Google's C version. The post explains why safe Rust and C make different trade-offs in the hot loops.</p><li><p><strong><a href=https://www.reddit.com/r/rust/comments/1wtkjct/is_it_common_to_build_everything_in_one_unit/ target=_blank>Is it common to build everything in one unit?</a></strong> One crate or a workspace of many? The top answer: splitting is common in large codebases, but the crate graph cannot be circular, and changing a crate many others depend on invalidates the cache.</p><li><p><strong><a href=https://www.reddit.com/r/rust/comments/1wsb19c/whats_everyone_working_on_this_week_402026/ target=_blank>What's everyone working on this week (40/2026)?</a></strong> This week's thread includes a ptrace-based crate for intercepting syscalls and signals, a fast diff tool, and a desktop app that routes local audio through a PipeWire virtual microphone.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><div>Prefer a feed reader? Follow the newsletter via <a href=/newsletter/rss.xml>RSS</a>.</div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202610071134" defer></script>
