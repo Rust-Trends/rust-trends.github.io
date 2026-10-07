@@ -219,7 +219,7 @@
         {% endfor %}
     {% endif %}
 
-    <link rel="stylesheet" type="text/css" media="screen" href={{ get_url(path="main.css") }} />
+    <link rel="stylesheet" type="text/css" media="screen" href={{ get_url(path="main.css", cachebust=true) }} />
 
 
     {% if config.extra.stylesheets %}
