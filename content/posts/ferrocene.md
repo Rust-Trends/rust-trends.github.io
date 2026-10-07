@@ -35,4 +35,4 @@ The open-source community gains a single, unified specification, reducing confus
 
 In summary, Ferrous Systems' donation of the Ferrocene specification is a significant leap forward for Rust, solidifying its place as a robust, trustworthy language for both everyday and safety-critical applications.
 
-If you want to read more about this on Reddit, a post started by Steve Klabnik, you can find it <a href="https://www.reddit.com/r/rust/comments/1jkfovo/ferrous_systems_donates_ferrocene_language/" target="_blank">here</a>.
+If you want to read more about this on Reddit, a post started by Steve Klabnik, you can find it <a href="https://www.reddit.com/r/rust/comments/1jkfovo/ferrous_systems_donates_ferrocene_language/" target="_blank">on r/rust</a>.

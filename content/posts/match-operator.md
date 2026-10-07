@@ -37,7 +37,7 @@ fn main() {
     println!("The light says: {}", action(light));
 }
 ```
-Playground <a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=44e42a468bc89c711643299885e88533" target="_blank">link</a>
+<a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=44e42a468bc89c711643299885e88533" target="_blank">Open in the Rust Playground</a>
 
 __Use of match for Control Flow:__ The match operator is akin to a switch statement but more powerful. It allows a value to be compared against a series of patterns and execute code based on which pattern matches. This is particularly useful for enums in Rust, as demonstrated in our TrafficLight example.
 
@@ -78,7 +78,7 @@ fn main() {
 }
 ```
 
-Playground <a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=ec71038ae74ab6610cbb48d1cb92810e" target="_blank">link</a>
+<a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=ec71038ae74ab6610cbb48d1cb92810e" target="_blank">Open in the Rust Playground</a>
 
 Explanation of Key Parts:
 - __Function Signature:__ The `action` function now accepts a reference to a `TrafficLight` (&TrafficLight) instead of owning it. This is a more flexible approach, especially when you don't need to take ownership of the value.
@@ -118,7 +118,7 @@ fn main() {
     }
 }
 ```
-Playground <a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9df958812ad767f59466c88ba0462014" target="_blank">link</a>
+<a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9df958812ad767f59466c88ba0462014" target="_blank">Open in the Rust Playground</a>
 
 Documentation <a href="https://doc.rust-lang.org/std/fmt/trait.Display.html" target="_blank">std::fmt</a>
 
@@ -202,7 +202,7 @@ Note in this example I am still using `strum` to iterate over the enum variants,
 
 <img src="../../newsletter/40/match-operator.webp" alt="Code snippet match-operator" style="display: block; margin-left: auto; margin-right: auto; width: 50%; border:0">
 
-One community member asked how to generate such great code snippets images I use ray.so for generating code snippets. It's a fantastic tool for creating beautiful code images for sharing on social media platforms like LinkedIn, Twitter, etc. You can check it out <a href="https://ray.so/" target="_blank">here</a>.
+One community member asked how to generate such great code snippets images I use ray.so for generating code snippets. It's a fantastic tool for creating beautiful code images for sharing on social media platforms like LinkedIn, Twitter, etc. You can check out <a href="https://ray.so/" target="_blank">ray.so</a>.
 
 
 ## Conclusion

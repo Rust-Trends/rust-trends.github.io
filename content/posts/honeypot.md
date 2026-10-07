@@ -44,7 +44,7 @@ If your setup is different, fear not—just make sure you have some way to compi
 
 ### 1.4 Basic Terminal / SSH Skills
 
-Brush up on your command line wizardry and SSH know-how. If you can SSH into your server, open files in your favorite terminal editor you’re set! If you are not there yet, no worries—there are plenty of tutorials out there to help you get up to speed, e.g. <a href="https://www.pluralsight.com/resources/blog/cloud/ssh-and-scp-howto-tips-tricks" target="_blank">here</a>.
+Brush up on your command line wizardry and SSH know-how. If you can SSH into your server, open files in your favorite terminal editor you’re set! If you are not there yet, no worries—there are plenty of tutorials out there to help you get up to speed, e.g. <a href="https://www.pluralsight.com/resources/blog/cloud/ssh-and-scp-howto-tips-tricks" target="_blank">Pluralsight's SSH and SCP how-to</a>.
 
 ---
 
