@@ -25,6 +25,13 @@ infrastructure that Rust teams use, this is a direct line to them.
 - **Permanent placement.** Editions live forever at rust-trends.com/newsletter/, so your mention keeps getting found via search long after send day.
 - **Small enough to matter.** Your sponsorship funds an independent newsletter directly — no ad network markup.
 
+## Current sponsor
+
+<div style="display:flex;align-items:flex-start;gap:16px;margin:1.5em 0;">
+<img src="https://github.com/svix.png" alt="Svix" width="48" height="48" style="border-radius:11px;flex-shrink:0;" />
+<div><strong>Svix</strong> — the enterprise-ready webhooks service, built in Rust. Retries, signature verification, fan-out, rate limiting, and observability arrive as an API you can drop in within minutes. <a href="https://www.svix.com" target="_blank">svix.com</a></div>
+</div>
+
 ## How to book a slot
 
 Rust Trends is currently taking on a limited number of founding sponsors — early sponsors help
