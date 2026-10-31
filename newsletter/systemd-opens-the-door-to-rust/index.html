@@ -1,0 +1,175 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>86 - systemd Opens the Door to Rust | Rust Trends</title><meta content="86 - systemd Opens the Door to Rust" property=og:title><meta content="New systemd tools can now be written in Rust, with no cargo and no outside crates. Plus Cloudflare's TypeScript port that checks code up to 8x faster." property=og:description><meta content="New systemd tools can now be written in Rust, with no cargo and no outside crates. Plus Cloudflare's TypeScript port that checks code up to 8x faster." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link crossorigin href=https://cdn.jsdelivr.net rel=preconnect><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css media=print rel=stylesheet><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css media=print rel=stylesheet><noscript><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet> <link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet></noscript><link title="Rust Trends Newsletter" href=https://rust-trends.com/newsletter/rss.xml rel=alternate type=application/rss+xml><link title="Rust Trends (newsletter and posts)" href=https://rust-trends.com/rss.xml rel=alternate type=application/rss+xml><link href=https://rust-trends.com/newsletter/systemd-opens-the-door-to-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="86 - systemd Opens the Door to Rust" name=twitter:title><meta content="New systemd tools can now be written in Rust, with no cargo and no outside crates. Plus Cloudflare's TypeScript port that checks code up to 8x faster." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/systemd-opens-the-door-to-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-10-31 property=article:published_time><meta content=Newsletter property=article:section><link href="https://rust-trends.com/main.css?h=bd5d5fb977aafc838352" media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;","&#x2F;newsletter&#x2F;rss.xml"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "86 - systemd Opens the Door to Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-10-31",
+  "dateModified": "2026-10-31",
+  "description": "New systemd tools can now be written in Rust, with no cargo and no outside crates. Plus Cloudflare&#x27;s TypeScript port that checks code up to 8x faster.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;systemd-opens-the-door-to-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;systemd-opens-the-door-to-rust&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "86 - systemd Opens the Door to Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;systemd-opens-the-door-to-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');
+
+  (function () {
+    var loaded = false;
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    function loadGtag() {
+      if (loaded) return;
+      loaded = true;
+      events.forEach(function (e) { removeEventListener(e, loadGtag); });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77';
+      document.head.appendChild(s);
+    }
+    events.forEach(function (e) { addEventListener(e, loadGtag, { once: true, passive: true }); });
+    addEventListener('load', function () { setTimeout(loadGtag, 3500); });
+  })();</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a><a class=social href=/newsletter/rss.xml rel=me> <img alt="RSS feed" src=/social_icons/rss.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/sponsor/ style=margin-left:.7em>/sponsor</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "86 - systemd Opens the Door to Rust",
+  "description": "New systemd tools can now be written in Rust, with no cargo and no outside crates. Plus Cloudflare&#x27;s TypeScript port that checks code up to 8x faster.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;systemd-opens-the-door-to-rust&#x2F;",
+  "datePublished": "2026-10-31",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "86 - systemd Opens the Door to Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;systemd-opens-the-door-to-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>86 - systemd Opens the Door to Rust</ol></nav><main><article><div class=title><h1 class=page-header>86 - systemd Opens the Door to Rust<span class=primary-color style=font-size:1.6em>.</span></h1><div class=meta>Posted on <time>2026-10-31</time></div></div><section class=body><p>Rust keeps moving into the layers most people never look at. systemd now accepts new components written in Rust, Cloudflare and VoidZero are porting the TypeScript compiler to it, and Astral rewrote the tar parser behind uv. Underneath it all, the Rust compiler is having a big year of its own. The plumbing is changing, and it is changing to Rust.<table style="border-collapse:separate;margin:22px 0 4px" border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="background:#fff5f0;border:1px solid #f4c9b6;border-radius:10px;padding:20px 22px"><div style="letter-spacing:.12em;text-transform:uppercase;color:#b2531f;margin:0 0 14px;font-family:Georgia,serif;font-size:11px;font-weight:700">Featured sponsor</div> <table border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="padding:2px 16px 0 0" valign=top width=48><img alt=Svix height=48 src=https://github.com/svix.png style=border:0;border-radius:11px;display:block width=48><td style=color:#333;font-family:Georgia,serif;font-size:16px;line-height:1.6 valign=top><strong>Send webhooks without building the infrastructure.</strong> Svix is the enterprise-ready webhooks service, and its core is built in Rust. Retries, signature verification, fan-out, rate limiting, and observability arrive as an API you can drop in within minutes, so your team ships product instead of maintaining webhook plumbing. <a href=https://link.svix.com/rust-tre-01 style=color:#f74c00;font-weight:700 target=_blank>Start sending at svix.com →</a></table></table><h2 id=systemd-now-accepts-new-components-written-in-rust>systemd Now Accepts New Components Written in Rust</h2><p>With security vulnerabilities being reported at an ever-growing pace, moving more and more of Linux to Rust is a good path to be on. systemd sits at the core of nearly every Linux system, and on 24 October Christian Brauner merged <a href=https://github.com/systemd/systemd/pull/44324 target=_blank>support for writing systemd programs in Rust</a>. After the kernel and Ubuntu's Rust coreutils and sudo (see <a href=https://rust-trends.com/newsletter/from-lab-to-factory-rust-in-production/ target=_blank>From Lab to Factory</a>), it is the next big piece of Linux to let Rust in.<p>Three days later the first tool landed. systemd-keyring-setup enrolls X.509 certificates into the kernel's keyrings at boot and then seals them. The maintainers set tight limits:<ul><li>Rust is only for new tools at the edge of systemd, and existing C code stays<li>There is no cargo and there are no outside crates, everything builds with meson as <code>no_std</code> code<li>systemd brings its own <code>Box</code> and <code>Vec</code>, where a failed allocation returns an error instead of aborting</ul><p>I wrote up the details in <a href=https://rust-trends.com/posts/systemd-rust target=_blank>my full post on rust-trends.com</a>.<hr><h2 id=cloudflare-ports-typescript-to-rust>Cloudflare Ports TypeScript to Rust</h2><p>TypeScript has earned its place on the web, and with Rust powering the plumbing underneath, it only gets faster. Cloudflare and VoidZero are building <a href=https://blog.cloudflare.com/typescript-rust-port target=_blank>tsrs</a>, a Rust port of the TypeScript compiler, in close collaboration with the TypeScript team. It lives in the Oxc toolchain and follows TypeScript's design decisions. Nobody is forking the language.<p>Early benchmarks put it at up to 8x faster than TypeScript 7.0 with about 70% less memory, on the same number of type-check workers. Why Rust when a Go port already exists? WebAssembly. A Go program has to carry its garbage collector into Wasm and a Rust program does not, which counts when you want a whole toolchain running in a browser.<hr><h2 id=2026-is-a-big-year-for-the-rust-compiler>2026 Is a Big Year for the Rust Compiler</h2><p>Much of the work on the Rust compiler happens out of sight, which is exactly why I enjoyed <a href=https://yoyo-code.com/2026-is-exciting-year-for-rust-compiler-and-me target=_blank>Matyáš Racek’s post</a>. Compiler performance is his main interest, he recently joined perf triage, and his point is that several long-running efforts pay off in the same year.<p>The next-generation trait solver, almost ten years in the making, fixes a batch of soundness bugs and holds answers to old problems in async Rust and <code>impl Trait</code>. Polonius, the new borrow checker, lets more code compile. The parallel front end is close to stabilization. Racek calls LLVM 23 an "unambiguous and unexpectedly large" performance win for rustc. A project goal also aims to let cargo share build artifacts between <code>cargo check</code> and <code>cargo build</code>.<hr><h2 id=what-3-300-rust-users-want-from-variadic-generics>What 3,300 Rust Users Want From Variadic Generics</h2><p>These surveys shape the language, so it is important they get the reach they need. The <a href=https://blog.rust-lang.org/inside-rust/2026/10/27/variadic-generics-micro-survey-results/ target=_blank>Variadic Generics Micro Survey</a> drew over 3,300 submissions. The team read the free answers by hand, for privacy and quality reasons, which is why the results took a year.<p>One need comes up again and again: implementing a trait for tuples of every size. Today that takes a macro that stops at some fixed length. Skeptics fear "death by a thousand cuts", small obscure features piling up until Rust is hard for newcomers. The team's advice for a future proposal is a syntax that is easy to read and clear wins over the macro workarounds.<hr><h2 id=snippets>Snippets</h2><ul><li><p><strong><a href=https://google.github.io/styleguide/rustguide.html target=_blank>Google's Rust Style Guide</a></strong> How Google wants Rust written across Android, Chrome and the rest. It builds on rustfmt and the Rust API Guidelines, then adds firm picks of its own, such as preferring unique ownership over Rc and Arc.</p><li><p><strong><a href=https://astral.sh/blog/tar-codec target=_blank>A fast and secure tar parser for the Rust ecosystem</a></strong> Astral built tar-codec after finding that uv and pip could see different files in the same tarball. Since uv 0.13 it parses source distributions, roughly twice as fast as the parser it replaced.</p><li><p><strong><a href=https://blog.rust-lang.org/2026/10/26/how-to-fund-rust-contributors target=_blank>How to fund Rust contributors</a></strong> The Rust Funding team lists three ways to pay for Rust work: the maintainer funds of the Rust Foundation and RustNL, fundable Project Goals, and GitHub Sponsors for individual contributors.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><div>Prefer a feed reader? Follow the newsletter via <a href=/newsletter/rss.xml>RSS</a>.</div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202610311021" defer></script>

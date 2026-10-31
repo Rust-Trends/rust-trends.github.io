@@ -1,0 +1,185 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>systemd Now Accepts New Components Written in Rust</title><meta content="systemd Now Accepts New Components Written in Rust" property=og:title><meta content="systemd merged support for programs written in Rust. New leaf tools only, no cargo, no_std, and the first one, systemd-keyring-setup, has landed." property=og:description><meta content="systemd merged support for programs written in Rust. New leaf tools only, no cargo, no_std, and the first one, systemd-keyring-setup, has landed." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link crossorigin href=https://cdn.jsdelivr.net rel=preconnect><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css media=print rel=stylesheet><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css media=print rel=stylesheet><noscript><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet> <link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet></noscript><link title="Rust Trends Newsletter" href=https://rust-trends.com/newsletter/rss.xml rel=alternate type=application/rss+xml><link title="Rust Trends (newsletter and posts)" href=https://rust-trends.com/rss.xml rel=alternate type=application/rss+xml><link href=https://rust-trends.com/posts/systemd-rust/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="systemd Now Accepts New Components Written in Rust" name=twitter:title><meta content="systemd merged support for programs written in Rust. New leaf tools only, no cargo, no_std, and the first one, systemd-keyring-setup, has landed." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/posts/systemd-rust/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-10-29 property=article:published_time><meta content=Tutorial property=article:section><link href="https://rust-trends.com/main.css?h=bd5d5fb977aafc838352" media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;","&#x2F;newsletter&#x2F;rss.xml"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "systemd Now Accepts New Components Written in Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-10-29",
+  "dateModified": "2026-10-29",
+  "description": "systemd merged support for programs written in Rust. New leaf tools only, no cargo, no_std, and the first one, systemd-keyring-setup, has landed.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;systemd-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;systemd-rust&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "systemd Now Accepts New Components Written in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;systemd-rust&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');
+
+  (function () {
+    var loaded = false;
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    function loadGtag() {
+      if (loaded) return;
+      loaded = true;
+      events.forEach(function (e) { removeEventListener(e, loadGtag); });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77';
+      document.head.appendChild(s);
+    }
+    events.forEach(function (e) { addEventListener(e, loadGtag, { once: true, passive: true }); });
+    addEventListener('load', function () { setTimeout(loadGtag, 3500); });
+  })();</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a><a class=social href=/newsletter/rss.xml rel=me> <img alt="RSS feed" src=/social_icons/rss.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/sponsor/ style=margin-left:.7em>/sponsor</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "systemd Now Accepts New Components Written in Rust",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-10-29",
+  "dateModified": "2026-10-29",
+  "description": "systemd merged support for programs written in Rust. New leaf tools only, no cargo, no_std, and the first one, systemd-keyring-setup, has landed.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;systemd-rust&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;systemd-rust&#x2F;"
+  },
+  
+  "articleSection": "Tutorial",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Posts",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/posts"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "systemd Now Accepts New Components Written in Rust",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;posts&#x2F;systemd-rust&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/posts>Posts</a><li class="breadcrumb-item current" aria-current=page>systemd Now Accepts New Components Written in Rust</ol></nav><main><article><div class=title><h1 class=page-header>systemd Now Accepts New Components Written in Rust<span class=primary-color style=font-size:1.6em>.</span></h1><div class=meta>Posted on <time>2026-10-29</time></div></div><section class=body><p>systemd sits at the core of nearly every Linux system. Each step a memory-safe language like Rust takes into that core makes Linux more future-proof, and with vulnerabilities being reported faster every year, those steps matter. After the kernel and <a href=https://rust-trends.com/newsletter/from-lab-to-factory-rust-in-production/ target=_blank>Ubuntu's Rust-based coreutils and sudo</a>, systemd is the next big piece of Linux to let Rust in.<p>On 24 October Christian Brauner merged <a href=https://github.com/systemd/systemd/pull/44324 target=_blank>support for writing systemd programs in Rust</a>, "after a long debate", as he put it <a href=https://mastodon.social/@brauner/117494833311192688 target=_blank>on Mastodon</a> (<a href=https://tweakers.net/nieuws/253730/ontwikkelaars-kunnen-nieuwe-systemd-componenten-voortaan-in-rust-bouwen.html target=_blank>Tweakers</a> covered it in Dutch). Three days later the first one landed. <a href=https://github.com/systemd/systemd/pull/44114 target=_blank>systemd-keyring-setup</a> enrolls X.509 certificates into the kernel's <code>.dm-verity</code>, <code>.fs-verity</code> and <code>.bpf</code> keyrings at boot and then seals them. Brauner had written a C prototype of it, but that never got merged, so the tool started life in Rust.<p>At their Berlin hackfest the maintainers set tight limits. Rust is only for new tools at the edge of systemd. Existing C code stays, and nothing other components depend on gets written in Rust. There is no cargo, everything builds with meson, and the code is <code>no_std</code> with no outside crates. systemd even brings its own <code>Box</code> and <code>Vec</code>, in the style of the Linux kernel, where an allocation that fails returns an error instead of aborting the program. A Rust program links <code>libsystemd-shared</code> the same way the C programs do.<p>A stripped test program built with LTO is 32 KB, against 20 KB for the same program in C. For real tools, Lennart Poettering puts the difference at "like 20% larger" in the <a href=https://lwn.net/Articles/1102970 target=_blank>LWN comments</a>. To the person running it, a Rust tool looks like any other systemd tool, with the same <code>--help</code> and the same option parsing, and a test compares the two byte for byte. Secrets go into a <code>Vec&lt;u8, Erasing></code>, which wipes its memory when it is freed, so nobody has to remember to do that by hand.<p>For distributions, Rust support is optional and turns itself on when rustc 1.85, bindgen 0.71.1 and meson 1.4 are installed, the versions Debian 13 ships. Packagers who build with every optional feature enabled now have to add rustc and bindgen or switch Rust off. systemd's own Arch and openSUSE builds on OBS failed for that reason when the change was proposed. LWN thinks the work will probably ship in systemd v263, expected in December.<p>Is libsystemd next? Brauner <a href=https://mastodon.social/@brauner/117494833657858840 target=_blank>would like it to be</a>, "but there are several blockers in Rust's support for dynamic libraries which prevents us from doing that without massively bloating every binary we build." Whether outside crates will ever be allowed is open too; in the LWN comments he calls it a "we'll see where this goes" situation.</section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><div>Prefer a feed reader? Follow the newsletter via <a href=/newsletter/rss.xml>RSS</a>.</div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202610311021" defer></script>

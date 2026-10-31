@@ -1,0 +1,175 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><link href=//www.googletagmanager.com rel=dns-prefetch><title>85 - If It Compiles, the Agent Got It Right | Rust Trends</title><meta content="85 - If It Compiles, the Agent Got It Right" property=og:title><meta content="Niko Matsakis wants Rust to double down on 'if it compiles, it works' as agents write more code. Plus a Rust mail client that keeps AI opt-in." property=og:description><meta content="Niko Matsakis wants Rust to double down on 'if it compiles, it works' as agents write more code. Plus a Rust mail client that keeps AI opt-in." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link crossorigin href=https://cdn.jsdelivr.net rel=preconnect><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css media=print rel=stylesheet><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css media=print rel=stylesheet><noscript><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet> <link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet></noscript><link title="Rust Trends Newsletter" href=https://rust-trends.com/newsletter/rss.xml rel=alternate type=application/rss+xml><link title="Rust Trends (newsletter and posts)" href=https://rust-trends.com/rss.xml rel=alternate type=application/rss+xml><link href=https://rust-trends.com/newsletter/if-it-compiles-the-agent-got-it-right/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="85 - If It Compiles, the Agent Got It Right" name=twitter:title><meta content="Niko Matsakis wants Rust to double down on 'if it compiles, it works' as agents write more code. Plus a Rust mail client that keeps AI opt-in." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/if-it-compiles-the-agent-got-it-right/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-10-17 property=article:published_time><meta content=Newsletter property=article:section><link href="https://rust-trends.com/main.css?h=bd5d5fb977aafc838352" media=screen rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;","&#x2F;newsletter&#x2F;rss.xml"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "85 - If It Compiles, the Agent Got It Right",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-10-17",
+  "dateModified": "2026-10-17",
+  "description": "Niko Matsakis wants Rust to double down on &#x27;if it compiles, it works&#x27; as agents write more code. Plus a Rust mail client that keeps AI opt-in.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;if-it-compiles-the-agent-got-it-right&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;if-it-compiles-the-agent-got-it-right&#x2F;"
+  },
+  
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "85 - If It Compiles, the Agent Got It Right",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;if-it-compiles-the-agent-got-it-right&#x2F;"
+    }
+    
+  ]
+}
+</script></head><script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FWPL9RWX77');
+
+  (function () {
+    var loaded = false;
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    function loadGtag() {
+      if (loaded) return;
+      loaded = true;
+      events.forEach(function (e) { removeEventListener(e, loadGtag); });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FWPL9RWX77';
+      document.head.appendChild(s);
+    }
+    events.forEach(function (e) { addEventListener(e, loadGtag, { once: true, passive: true }); });
+    addEventListener('load', function () { setTimeout(loadGtag, 3500); });
+  })();</script><body><div class=content><header><div class=main><a href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a><a class=social href=/newsletter/rss.xml rel=me> <img alt="RSS feed" src=/social_icons/rss.svg> </a></div></div><nav>  <a href=/newsletter/ style=margin-left:.7em>/newsletter</a>   <a href=/posts/ style=margin-left:.7em>/posts</a>   <a href=/search/ style=margin-left:.7em>/search</a>   <a href=/faq/ style=margin-left:.7em>/faq</a>   <a href=/about/ style=margin-left:.7em>/about</a>   <a href=/sponsor/ style=margin-left:.7em>/sponsor</a>   <a href=/contact/ style=margin-left:.7em>/contact</a>   <a href=/signup/ style=margin-left:.7em>/sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "85 - If It Compiles, the Agent Got It Right",
+  "description": "Niko Matsakis wants Rust to double down on &#x27;if it compiles, it works&#x27; as agents write more code. Plus a Rust mail client that keeps AI opt-in.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;if-it-compiles-the-agent-got-it-right&#x2F;",
+  "datePublished": "2026-10-17",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "85 - If It Compiles, the Agent Got It Right",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;if-it-compiles-the-agent-got-it-right&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>85 - If It Compiles, the Agent Got It Right</ol></nav><main><article><div class=title><h1 class=page-header>85 - If It Compiles, the Agent Got It Right<span class=primary-color style=font-size:1.6em>.</span></h1><div class=meta>Posted on <time>2026-10-17</time></div></div><section class=body><p>Agents are writing more of our code, and more of that code is in Rust. Prime Intellect let agents rewrite its coding agent in Rust and cut start-up from 736 ms to 52 ms. Niko Matsakis argues the type system is a big part of why agents do well in Rust, and Penguin Mail puts an opt-in assistant inside a native Rust mail client. When code gets cheaper to write, the compiler that checks the most becomes the sensible pick...<table style="border-collapse:separate;margin:22px 0 4px" border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="background:#fff5f0;border:1px solid #f4c9b6;border-radius:10px;padding:20px 22px"><div style="letter-spacing:.12em;text-transform:uppercase;color:#b2531f;margin:0 0 14px;font-family:Georgia,serif;font-size:11px;font-weight:700">Featured sponsor</div> <table border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="padding:2px 16px 0 0" valign=top width=48><img alt=Svix height=48 src=https://github.com/svix.png style=border:0;border-radius:11px;display:block width=48><td style=color:#333;font-family:Georgia,serif;font-size:16px;line-height:1.6 valign=top><strong>Send webhooks without building the infrastructure.</strong> Svix is the enterprise-ready webhooks service, and its core is built in Rust. Retries, signature verification, fan-out, rate limiting, and observability arrive as an API you can drop in within minutes, so your team ships product instead of maintaining webhook plumbing. <a href=https://www.svix.com style=color:#f74c00;font-weight:700 target=_blank>Start sending at svix.com →</a></table></table><h2 id=artcraft-takes-on-adobe-with-twelve-rust-apps>ArtCraft Takes On Adobe With Twelve Rust Apps</h2><p>Adobe's software was long seen as hard to compete with. But here we are. The ArtCraft team has announced <a href=https://getartcraft.com/apps target=_blank>twelve free, native creative apps</a> written in Rust, from an image editor to CAD. There is no Electron and no web view, and most of them also compile to WebAssembly.<p>As a disclaimer only PhotoCraft and PdfCraft have reached alpha. PhotoCraft's <a href=https://github.com/storytold/photocraft target=_blank>README</a> is the most concrete: its PSD support was written from Adobe's public specification and re-saves 307 of 309 psd-tools test files without changing the render. And it is good to know that the project itself says it is "not yet a Photoshop replacement for daily professional work". But it will just be a matter of time.<hr><h2 id=niko-matsakis-on-what-agents-mean-for-rust>Niko Matsakis on What Agents Mean for Rust</h2><p>Rust is an ideal language for coding agents. If the code compiles, there's a good chance it's correct. Niko Matsakis makes the same case in <a href=https://smallcultfollowing.com/babysteps/blog/2026/10/14/agentic-dev-and-rust target=_blank>his post</a> based on a talk at REBASE. In his words, Rust "happens to be a really good fit for agentic coding". The type system acts as guardrails, and agents are good at tuning fast code against a profiler.<p>He wants Rust to go further. "So my take is that Rust should double down on if it compiles, it works." That means a type system that can express more, so agents stop working around it. His north star is "no more unsafe code". The keyword stays, but tools like Verus would prove that unsafe code cannot cause undefined behavior.<hr><h2 id=prime-intellect-let-agents-rewrite-its-coding-agent-in-rust>Prime Intellect Let Agents Rewrite Its Coding Agent in Rust</h2><p>More use of AI also means more use of Rust. If AI makes coding more cost effective and you still don't use Rust with its help, you are leaving a great opportunity on the table. Prime Intellect's rewrite of Prime Agent, its open-source coding agent harness, makes that case well. (By the way Google does the same read my previous email)<p>The team started in TypeScript. "TypeScript helped us ship Prime Agent quickly, but its types are optional and disappear at runtime," they write in <a href=https://www.primeintellect.ai/blog/prime-agent-rust target=_blank>the rewrite post</a>. With agents writing most of the code, they wanted the compiler to carry more of the load. Exhaustive enums, Send and Sync, and Clippy's pedantic lints do that job.<p>Agents did write it, about 1,981 of them using 193 billion tokens. Each task went through a planner, an implementer, a reviewer on a different model and a verifier. Parity was checked by diffing terminal frames and session transcripts against the TypeScript binary.<p>The straight port did not win on its own. It was bigger on disk and slower at switching views. A three-day performance pass followed, mostly moving work off the startup path. After that, cold start to input-ready went from 736.1 ms to 51.9 ms. Memory on a large session fell from 1,130 MB to 237.3 MB.<p><strong>Takeaways:</strong><ul><li>Build the oracle first, before any agent writes Rust<li>The result is nine crates with a one-way dependency graph enforced by Cargo, which keeps many agents from tangling one codebase</ul><hr><h2 id=penguin-mail-brings-rust-and-ai-to-your-inbox>Penguin Mail Brings Rust and AI to Your Inbox</h2><p>A lot of email is standard text and formalities, so why not combine both worlds, Rust and AI? <a href=https://penguin-mail.com/ target=_blank>Penguin Mail</a> does that. It is mail, calendar and contacts for Linux and macOS, written in Rust on GTK 4 and libadwaita.<p>The assistant stays off until you choose a model. That can be a local server like Ollama or LM Studio, an OpenAI-compatible endpoint or the Anthropic API. It can summarise and draft replies, and it shows each tool call it runs on your mailboxes. Encryption goes through your own GnuPG, and there is no Penguin Mail server in between. The <a href=https://github.com/c9dev/penguin-mail target=_blank>source</a> is GPL-3.0-or-later.<hr><h2 id=snippets>Snippets</h2><ul><li><p><strong><a href=https://shnatsel.github.io/state-of-simd-rust-2026 target=_blank>The state of SIMD in Rust in 2026</a></strong> SIMD is getting more common as a speedup, so it is worth a look, or worth telling your AI to look at. Shnatsel compares autovectorization, portable libraries and raw intrinsics.</p><li><p><strong><a href=https://bd103.dev/blog/2026-10-07-c-for-rust-programmers target=_blank>C for Rust Programmers</a></strong> A guide to C for people who learned Rust first. It covers null-terminated strings and array-to-pointer decay, and why fixed-width types like uint32_t beat long.</p><li><p><strong><a href=https://lwn.net/Articles/1055211 target=_blank>Compiling Rust to readable C with Eurydice</a></strong> From the Inria and Microsoft group behind Aeneas, Eurydice turns Rust into readable C for verification tools and targets with only a C compiler.</p><li><p><strong><a href=https://mihai.dinculescu.dev/posts/tapo-speaks-tpap target=_blank>Tapo now speaks TP-Link's TPAP protocol</a></strong> The Rust and Python client for Tapo smart plugs and lights now supports TPAP, the SPAKE2+ login on newer firmware. It no longer needs the Third-Party Compatibility switch turned on.</p><li><p><strong><a href=https://quake-srp.pages.dev/ target=_blank>Quake ported to safe Rust, playable in the browser</a></strong> 1996 Quake, ported from the WinQuake C source with <code>#![forbid(unsafe_code)]</code> on every crate and no dependencies. Claude wrote the code, checked pixel by pixel.</p><li><p><strong><a href=https://lucumr.pocoo.org/2026/9/29/deser target=_blank>Deser: Rethinking Rust Serialization</a></strong> Armin Ronacher's experiment keeps Serde's ergonomics but inverts control. Formats push events into heap-allocated sinks, which avoids deep recursion and keeps what Serde loses with flatten and untagged enums.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section></article></main></div><div class=footer><br><hr><div style=font-size:x-large><a href=/signup/>Sign up for our Newsletter</a></div><div>Prefer a feed reader? Follow the newsletter via <a href=/newsletter/rss.xml>RSS</a>.</div><br> © Copyright 2022-2025 Rust Trends.<br>All Rights Reserved | Powered by Rust and <a href=https://www.getzola.org/ target=_blank>Zola</a><br><br></div><script src="https://rust-trends.com/search.js?v=202610311021" defer></script>
