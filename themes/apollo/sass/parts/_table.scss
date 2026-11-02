@@ -13,3 +13,16 @@ table td {
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
 }
+// Email layout tables (the featured-sponsor box in editions): the inline
+// styles carry the design, so drop the data-table borders and padding above
+// and use the site font instead of the email's Georgia.
+table[role="presentation"] td,
+table[role="presentation"] th {
+  padding: 0;
+  border: 0;
+}
+
+table[role="presentation"] td,
+table[role="presentation"] td div {
+  font-family: inherit !important;
+}
