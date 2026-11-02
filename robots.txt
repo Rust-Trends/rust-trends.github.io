@@ -1,0 +1,56 @@
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Allow AI crawlers explicitly for better AI search optimization
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Bot
+Allow: /
+
+User-agent: Perplexity-Bot
+Allow: /
+
+User-agent: Bard-Bot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# SEO and social crawlers
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: GoogleBot
+Allow: /
+
+User-agent: BingBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://rust-trends.com/sitemap.xml
+Sitemap: https://rust-trends.com/rss.xml
+
+# Priority pages for crawlers
+# Newsletter archive (high-value content)
+Allow: /newsletter/
+# Blog posts and tutorials
+Allow: /posts/
+# Key landing pages
+Allow: /about/
+Allow: /faq/
+Allow: /contact/
+Allow: /signup/
