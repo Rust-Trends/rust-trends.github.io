@@ -190,7 +190,7 @@
           interaction: { mode: 'nearest', axis: 'y', intersect: false },
           scales: {
             x: { beginAtZero: true, title: axisTitle(valueLabel),
-                 ticks: { callback: function (v) { return v >= 1000 ? (v / 1000) + 'k' : n(v); } } },
+                 ticks: { precision: 0, callback: function (v) { return v >= 1000 ? (v / 1000) + 'k' : n(v); } } },
             y: { grid: { display: false }, ticks: { autoSkip: false, color: C.text0,
                  callback: function (v) {
                    var s = this.getLabelForValue(v);
@@ -210,8 +210,6 @@
     (newest.components || []).forEach(function (c) {
       where.push({ label: c.label, value: c.code, color: C[c.area] || C.drivers });
     });
-    if (newest.loc.rust_by_area.samples.code > 0)
-      where.push({ label: 'samples/', value: newest.loc.rust_by_area.samples.code, color: C.samples });
     if (newest.loc.rust_by_area.other.code > 0)
       where.push({ label: 'Other (lib, scripts, ...)', value: newest.loc.rust_by_area.other.code, color: C.other });
     var vpat = hatch('#7d7d7d');
@@ -291,7 +289,8 @@
     });
 
     // ---- Top C functions ----
-    hbar('lr-ffi', (newest.ffi.top || []).slice(0, 15).map(function (f) {
+    // bindings::foo_t(..) builds a C typedef value, it is not a call into C
+    hbar('lr-ffi', (newest.ffi.top || []).filter(function (f) { return !/_t$/.test(f.name); }).slice(0, 15).map(function (f) {
       return { label: f.name.replace(/^bindings::/, ''), value: f.calls };
     }), C.drivers, 'Call sites', 'call sites');
 
@@ -335,7 +334,31 @@
       l.sort(function (a, b) { return (rank[a.kind] - rank[b.kind]) || (a.name < b.name ? -1 : 1); });
     });
 
-    var nodeW = 112, nodeH = 30, gapX = 16, gapY = 58, pad = 12;
+    // draw only direct links: c -> d is left out when d is reachable through another dep of c
+    // (the table below still lists every dependency)
+    var reachMemo = {};
+    function reach(name, seen) {
+      if (reachMemo[name]) return reachMemo[name];
+      seen = seen || {};
+      if (seen[name]) return {};
+      seen[name] = true;
+      var r = {};
+      ((byName[name] || {}).deps || []).forEach(function (x) {
+        if (!byName[x]) return;
+        r[x] = true;
+        var rx = reach(x, seen);
+        for (var k in rx) r[k] = true;
+      });
+      reachMemo[name] = r;
+      return r;
+    }
+    function drawnDeps(c) {
+      return c.deps.filter(function (d) {
+        return byName[d] && !c.deps.some(function (o) { return o !== d && reach(o)[d]; });
+      });
+    }
+
+    var nodeW = 150, nodeH = 30, gapX = 16, gapY = 58, pad = 12;
     var widest = Math.max.apply(null, layers.map(function (l) { return l.length; }));
     var W = Math.max(widest * (nodeW + gapX) - gapX + pad * 2, 320);
     var H = (maxD + 1) * nodeH + maxD * gapY + pad * 2;
@@ -371,7 +394,7 @@
     var edges = mk('g', { fill: 'none', stroke: 'rgba(255,255,255,0.28)', 'stroke-width': '1.25' });
     crates.forEach(function (c) {
       var a = pos[c.name];
-      c.deps.forEach(function (dn) {
+      drawnDeps(c).forEach(function (dn) {
         var b = pos[dn];
         if (!a || !b) return;
         var x1 = a.x + nodeW / 2, y1 = a.y + nodeH, x2 = b.x + nodeW / 2, y2 = b.y;

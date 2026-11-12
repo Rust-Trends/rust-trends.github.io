@@ -49,17 +49,17 @@
         <p class="lr-muted">Tagged {{ n.date }}. All counts are lines of code: non-blank, non-comment.</p>
         <div class="lr-tiles">
             <div class="lr-tile lr-tile-wide">
-                <div class="lr-tile-label">Rust code lines</div>
-                <div class="lr-tile-value">{{ n.loc.rust.code | num_format }}</div>
+                <div class="lr-tile-label">Rust code lines written for the kernel</div>
+                <div class="lr-tile-value">{{ fp_code | num_format }}</div>
                 <div class="lr-tile-sub">
-                    <span class="lr-key lr-key-fp"></span>{{ fp_code | num_format }} first-party
-                    &middot; <span class="lr-key lr-key-vendored"></span>{{ v.code | num_format }} vendored
+                    <span class="lr-key lr-key-vendored"></span>plus {{ v.code | num_format }} vendored
+                    = {{ n.loc.rust.code | num_format }} in total
                 </div>
             </div>
             <div class="lr-tile">
-                <div class="lr-tile-label">Rust share of C + Rust</div>
-                <div class="lr-tile-value">{{ share | round(precision=2) }}%</div>
-                <div class="lr-tile-sub">{{ share_fp | round(precision=2) }}% first-party only. Tiny: {{ c_code | num_format }} lines of C and headers.</div>
+                <div class="lr-tile-label">Rust share of the kernel</div>
+                <div class="lr-tile-value">{{ share_fp | round(precision=2) }}%</div>
+                <div class="lr-tile-sub">{{ share | round(precision=2) }}% with vendored crates. Against {{ c_code | num_format }} lines of C and headers.</div>
             </div>
             <div class="lr-tile">
                 <div class="lr-tile-label">.rs files</div>
@@ -73,8 +73,8 @@
             </div>
             <div class="lr-tile">
                 <div class="lr-tile-label">Growth since {{ first.tag }}</div>
-                <div class="lr-tile-value">{{ growth | round(precision=1) }}&times;</div>
-                <div class="lr-tile-sub">{{ first.loc.rust.code | num_format }} &rarr; {{ n.loc.rust.code | num_format }} lines; first-party {{ growth_fp | round(precision=1) }}&times;</div>
+                <div class="lr-tile-value">{{ growth_fp | round(precision=0) }}&times;</div>
+                <div class="lr-tile-sub">{{ fp_first | num_format }} &rarr; {{ fp_code | num_format }} first-party lines; {{ growth | round(precision=1) }}&times; with vendored</div>
             </div>
         </div>
     </section>
@@ -199,7 +199,7 @@
         <div class="lr-chart lr-chart-short"><canvas id="lr-safety" role="img" aria-label="Line chart of the percentage of unsafe blocks with a SAFETY comment per release"></canvas></div>
 
         <h3>Most-called C functions</h3>
-        <p class="lr-muted">Top 15 in {{ n.tag }} by call sites through <code>bindings::</code>, out of {{ n.ffi.call_sites | num_format }} call sites in total.</p>
+        <p class="lr-muted">Top 15 in {{ n.tag }} by call sites through <code>bindings::</code>, out of {{ n.ffi.call_sites | num_format }} call sites in total. The list is flat on purpose: {{ n.ffi.call_sites | num_format }} call sites reach {{ n.ffi.distinct_functions | num_format }} different C functions, because the abstractions in <code>rust/</code> wrap each C function once and everything else calls the safe wrapper.</p>
         <div class="lr-chart lr-chart-tall"><canvas id="lr-ffi" role="img" aria-label="Horizontal bar chart of the 15 most-called C functions"></canvas></div>
         <details class="lr-table-view">
             <summary>Table view</summary>
@@ -226,7 +226,7 @@
             <span><span class="lr-key lr-key-vendored"></span>vendored</span>
         </div>
         <div class="lr-graph" id="lr-graph" role="img" aria-label="Dependency graph of the crates built from the kernel tree in {{ n.tag }}; arrows point from a crate to what it depends on"></div>
-        <p class="lr-muted">Arrows point from a crate to the crates it depends on. Every crate also depends on <code>core</code> from the Rust toolchain; those arrows are left out.</p>
+        <p class="lr-muted">Arrows point from a crate to the crates it depends on directly. A link that already follows from a longer chain is not drawn, and neither is <code>core</code> from the Rust toolchain, which every crate uses. The table lists every dependency.</p>
         <div class="lr-scroll">
         <table>
             <thead><tr><th>Crate</th><th>Kind</th><th>Depends on</th><th class="num">Code lines</th><th>First release</th></tr></thead>
@@ -288,7 +288,7 @@
         <h2>Methodology</h2>
         <ul>
             <li>Every tagged release from {{ first.tag }} on is downloaded from <a href="{{ data.source }}">the mainline tree</a>, plus the newest release candidate when it is newer than the newest release.</li>
-            <li>Lines are counted with <a href="https://github.com/XAMPPRocky/tokei">tokei</a>: code lines exclude blanks and comments. C counts are <code>*.c</code> and <code>*.h</code> files.</li>
+            <li>Lines are counted by the rules of <a href="https://github.com/XAMPPRocky/tokei">tokei</a>, within 0.1% of tokei itself: code lines exclude blanks and comments, and doc comments count as comments. The kernel's share counts Rust against <code>*.c</code> plus <code>*.h</code> files.</li>
             <li>Items, <code>unsafe</code> and calls into C are counted by parsing every <code>.rs</code> file with <a href="https://github.com/dtolnay/syn">syn</a>. The bodies of macro invocations and <code>macro_rules!</code> definitions are not parsed, so code generated by macros is not counted.</li>
             <li>Vendored third-party crates ({% for c in data.crate_timeline | filter(attribute="kind", value="vendored") %}<code>{{ c.name }}</code>{% if not loop.last %}, {% endif %}{% endfor %}) are shown separately and left out of the first-party numbers.</li>
             <li>A call into C is a call whose path goes through <code>bindings::</code>. Calls made through the safe wrappers in the <code>kernel</code> crate count once, at the wrapper.</li>
@@ -297,13 +297,13 @@
         <h3>Cross-checks</h3>
         <div class="lr-scroll">
         <table>
-            <thead><tr><th>Tag</th><th>Source</th><th class="num">Their Rust</th><th class="num">Ours</th><th class="num">Their C</th><th class="num">Ours</th></tr></thead>
+            <thead><tr><th>Tag</th><th>Source</th><th class="num">Their Rust</th><th class="num">Ours</th><th class="num">Their C (<code>.c</code> only)</th><th class="num">Ours</th></tr></thead>
             <tbody>
             {% for x in data.cross_checks %}
             {% set mine = rels | filter(attribute="tag", value=x.tag) | first %}
             <tr><td><code>{{ x.tag }}</code></td><td><a href="{{ x.url }}">{{ x.source }}</a></td>
                 <td class="num">{{ x.rust_code | num_format }}</td><td class="num">{% if mine %}{{ mine.loc.rust.code | num_format }}{% else %}-{% endif %}</td>
-                <td class="num">{{ x.c_code | num_format }}</td><td class="num">{% if mine %}{{ mine.loc.c.code + mine.loc.h.code | num_format }}{% else %}-{% endif %}</td></tr>
+                <td class="num">{{ x.c_code | num_format }}</td><td class="num">{% if mine %}{{ mine.loc.c.code | num_format }}{% else %}-{% endif %}</td></tr>
             {% endfor %}
             </tbody>
         </table>
