@@ -7,6 +7,13 @@
 <div>Prefer a feed reader? Follow the newsletter via <a href="/newsletter/rss.xml">RSS</a>.</div>
 {% endif %}
 
+{% if config.extra.footer_menu %}
+<style>.footer-menu{margin:24px 0 8px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px}.footer-menu a{color:var(--text-0)}</style>
+<nav class="footer-menu" aria-label="More from Rust Trends">
+    {% for item in config.extra.footer_menu %}<a href="{{ item.url }}">{{ item.name }}</a>{% endfor %}
+</nav>
+{% endif %}
+
 <br />
 &#169; Copyright 2022-2025 Rust Trends.<br />All Rights Reserved | Powered by Rust and
 <a href="https://www.getzola.org/" target="_blank">Zola</a><br /><br />
