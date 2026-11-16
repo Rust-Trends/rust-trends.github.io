@@ -32,7 +32,7 @@ Next to running Rust Trends, Bob is the **CTO of an Industrial IoT company**, wh
 
 **Background & Expertise:**
 - **Industrial IoT systems** architecture and implementation
-- **Technology leadership** as an entrepreneur, in startup and enterprise environments
+- **Technology leadership** with an entrepreneurial mindset, in startup and enterprise environments
 
 That technical depth and industry perspective keep Rust Trends practical: insights you can act on, not just news summaries.
 
