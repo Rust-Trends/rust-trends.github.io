@@ -1,19 +1,31 @@
-<br>
-<hr>
-{% if not page.extra.no_newsletter_signup %}
-<div style="font-size: x-large;">
-<a href="/signup/">Sign up for our Newsletter</a>
-</div>
-<div>Prefer a feed reader? Follow the newsletter via <a href="/newsletter/rss.xml">RSS</a>.</div>
-{% endif %}
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        {% if not page.extra.no_newsletter_signup %}
+        <div class="site-footer__cta">
+            <a class="site-footer__cta-link" href="/signup/">Sign up for our newsletter</a>
+            <p>Prefer a feed reader? Follow the newsletter via <a href="/newsletter/rss.xml">RSS</a>.</p>
+        </div>
+        {% endif %}
 
-{% if config.extra.footer_menu %}
-<style>.footer-menu{margin:24px 0 8px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px}.footer-menu a{color:var(--text-0)}</style>
-<nav class="footer-menu" aria-label="More from Rust Trends">
-    {% for item in config.extra.footer_menu %}<a href="{{ item.url }}">{{ item.name }}</a>{% endfor %}
-</nav>
-{% endif %}
+        {% if config.extra.footer_menu %}
+        <nav class="site-footer__nav" aria-label="Footer">
+            {% for group in config.extra.footer_menu %}
+            <div class="site-footer__group">
+                <h2 class="site-footer__heading">{{ group.title }}</h2>
+                <ul class="site-footer__links">
+                    {% for item in group.items %}
+                    <li><a href="{{ item.url }}"{% if item.url is starting_with("http") %} rel="noopener"{% endif %}>{{ item.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </nav>
+        {% endif %}
 
-<br />
-&#169; Copyright 2022-2025 Rust Trends.<br />All Rights Reserved | Powered by Rust and
-<a href="https://www.getzola.org/" target="_blank">Zola</a><br /><br />
+        <div class="site-footer__legal">
+            &#169; 2022&ndash;{{ now() | date(format="%Y") }} Rust Trends. All rights reserved.
+            <span class="site-footer__sep" aria-hidden="true">|</span>
+            Powered by Rust and <a href="https://www.getzola.org/" rel="noopener">Zola</a>
+        </div>
+    </div>
+</footer>

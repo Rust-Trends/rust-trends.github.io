@@ -47,9 +47,31 @@ menu = [
 ]
 
 
-# Footer menu (templates/partials/footer.html): pages that don't need a spot in the header
+# Extra stylesheets linked from every page (templates/partials/header.html); compiled from sass/
+stylesheets = ["footer.css"]
+
+# Footer columns (templates/partials/footer.html, styles in sass/footer.scss)
 footer_menu = [
-    { name = "Rust in the Linux kernel", url = "/linux-rust/" },
+    { title = "Newsletter", items = [
+        { name = "All editions", url = "/newsletter/" },
+        { name = "Sign up", url = "/signup/" },
+        { name = "RSS feed", url = "/newsletter/rss.xml" },
+    ] },
+    { title = "Explore", items = [
+        { name = "Posts", url = "/posts/" },
+        { name = "Rust in the Linux kernel", url = "/linux-rust/" },
+        { name = "Search", url = "/search/" },
+        { name = "FAQ", url = "/faq/" },
+    ] },
+    { title = "Rust Trends", items = [
+        { name = "About", url = "/about/" },
+        { name = "Sponsor", url = "/sponsor/" },
+        { name = "Contact", url = "/contact/" },
+    ] },
+    { title = "Follow", items = [
+        { name = "LinkedIn", url = "https://www.linkedin.com/company/rust-trends" },
+        { name = "GitHub", url = "https://github.com/rust-trends/" },
+    ] },
 ]
 
 
