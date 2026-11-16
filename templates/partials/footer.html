@@ -1,31 +1,40 @@
+{# Footer band: sign-up panel, link columns (config.extra.footer_menu), copyright and
+   socials (config.extra.socials). No h1-h6 here, so pages keep their own heading outline. #}
 <footer class="site-footer">
     <div class="site-footer__inner">
-        {% if not page.extra.no_newsletter_signup %}
-        <div class="site-footer__cta">
-            <a class="site-footer__cta-link" href="/signup/">Sign up for our newsletter</a>
-            <p>Prefer a feed reader? Follow the newsletter via <a href="/newsletter/rss.xml">RSS</a>.</p>
-        </div>
-        {% endif %}
-
-        {% if config.extra.footer_menu %}
-        <nav class="site-footer__nav" aria-label="Footer">
-            {% for group in config.extra.footer_menu %}
-            <div class="site-footer__group">
-                <h2 class="site-footer__heading">{{ group.title }}</h2>
-                <ul class="site-footer__links">
-                    {% for item in group.items %}
-                    <li><a href="{{ item.url }}"{% if item.url is starting_with("http") %} rel="noopener"{% endif %}>{{ item.name }}</a></li>
-                    {% endfor %}
-                </ul>
+        <div class="site-footer__grid{% if page.extra.no_newsletter_signup %} site-footer__grid--links-only{% endif %}">
+            {% if not page.extra.no_newsletter_signup %}
+            <div class="site-footer__signup">
+                <p class="site-footer__pitch">The Rust news that matters, <em>every two weeks</em>.</p>
+                <p class="site-footer__blurb">One email with the releases, crates and talks worth your time. No spam, unsubscribe in one click.</p>
+                <a class="site-footer__button" href="/signup/">Subscribe</a>
+                <a class="site-footer__rss" href="/newsletter/rss.xml">or use RSS</a>
             </div>
-            {% endfor %}
-        </nav>
-        {% endif %}
+            {% endif %}
+
+            {% if config.extra.footer_menu %}
+            <nav class="site-footer__nav" aria-label="Footer">
+                {% for group in config.extra.footer_menu %}
+                <div class="site-footer__group">
+                    <p class="site-footer__label">{{ group.title }}</p>
+                    <ul class="site-footer__links">
+                        {% for item in group.items %}
+                        <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </nav>
+            {% endif %}
+        </div>
 
         <div class="site-footer__legal">
-            &#169; 2022&ndash;{{ now() | date(format="%Y") }} Rust Trends. All rights reserved.
-            <span class="site-footer__sep" aria-hidden="true">|</span>
-            Powered by Rust and <a href="https://www.getzola.org/" rel="noopener">Zola</a>
+            <span>&#169; 2022&ndash;{{ now() | date(format="%Y") }} Rust Trends. Powered by Rust and <a href="https://www.getzola.org/" rel="noopener">Zola</a>.</span>
+            {% if config.extra.socials %}
+            <span class="site-footer__social">
+                {% for social in config.extra.socials %}<a href="{{ social.url }}"{% if social.url is starting_with("http") %} rel="noopener"{% endif %}>{% if social.icon == "rss" %}RSS{% elif social.icon == "linkedin" %}LinkedIn{% elif social.icon == "github" %}GitHub{% else %}{{ social.name }}{% endif %}</a>{% endfor %}
+            </span>
+            {% endif %}
         </div>
     </div>
 </footer>
