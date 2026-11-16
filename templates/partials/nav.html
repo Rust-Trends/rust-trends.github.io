@@ -1,6 +1,10 @@
-<header>
+{#- Site header: brand and socials on the left, menu on the right (styles in sass/site.scss).
+    Menu entries come from config.extra.menu; one with `button = true` renders as the
+    orange call-to-action. The entry whose url is the current section gets `on`. -#}
+{%- set here = current_path | default(value="/") -%}
+<header class="site-header">
     <div class="main">
-        <a href={{ config.base_url }}>{{ config.title }}</a>
+        <a class="brand" href={{ config.base_url }}>{{ config.title }}</a>
 
         <div class="socials">
             {% for social in config.extra.socials %}
@@ -11,9 +15,17 @@
         </div>
     </div>
 
-    <nav>
-        {% for menu in config.extra.menu %}
-            &nbsp;&nbsp;<a href={{ menu.url }} style="margin-left: 0.7em">{{ menu.name }}</a>
-        {% endfor %}
+    <nav class="site-nav" aria-label="Main">
+        {%- for menu in config.extra.menu %}
+            {%- set on = here is starting_with(menu.url) or (here == "/" and menu.url == "/newsletter/") %}
+            {%- set cta = menu.button | default(value=false) %}
+        <a href={{ menu.url }}{% if on and cta %} class="on cta"{% elif on %} class="on"{% elif cta %} class="cta"{% endif %}>
+            {%- if menu.slash and menu.name is starting_with("/") -%}
+                <span class="slash">/</span>{{ menu.name | trim_start_matches(pat="/") }}
+            {%- else -%}
+                {{ menu.name }}
+            {%- endif -%}
+        </a>
+        {%- endfor %}
     </nav>
 </header>

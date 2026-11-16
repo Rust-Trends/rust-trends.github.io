@@ -43,12 +43,13 @@ menu = [
     { name = "/about", url = "/about/", weight = 5, slash = true },
     { name = "/sponsor", url = "/sponsor/", weight = 6, slash = true },
     { name = "/contact", url = "/contact/", weight = 7, slash = true },
-    { name = "/sign up", url = "/signup/", weight = 8, slash = true },
+    { name = "/sign up", url = "/signup/", weight = 8, slash = true, button = true },
 ]
 
 
 # Extra stylesheets linked from every page (templates/partials/header.html); compiled from sass/
-stylesheets = ["footer.css"]
+# site.css: header, type scale, links and edition list rows; footer.css: the footer band
+stylesheets = ["site.css", "footer.css"]
 
 # Footer columns (templates/partials/footer.html, styles in sass/footer.scss)
 footer_menu = [
