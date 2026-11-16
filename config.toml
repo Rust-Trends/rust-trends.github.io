@@ -5,8 +5,8 @@ title = "Rust Trends"
 author = "Bob Peters"
 description = "The premier Rust programming newsletter covering trends, tutorials, and ecosystem updates. Stay current with Rust development."
 
-# Whether to build a search index to be used later on by a JavaScript library
-build_search_index = true
+# No site search: the page was removed (old /search/ links redirect home)
+build_search_index = false
 
 theme = "apollo"
 
@@ -38,12 +38,35 @@ theme = "dark"
 menu = [
     { name = "/newsletter", url = "/newsletter/", weight = 1, slash = true },
     { name = "/posts", url = "/posts/", weight = 2, slash = true },
-    { name = "/search", url = "/search/", weight = 3, slash = true },
     { name = "/faq", url = "/faq/", weight = 4, slash = true },
     { name = "/about", url = "/about/", weight = 5, slash = true },
     { name = "/sponsor", url = "/sponsor/", weight = 6, slash = true },
     { name = "/contact", url = "/contact/", weight = 7, slash = true },
-    { name = "/sign up", url = "/signup/", weight = 8, slash = true },
+    { name = "/sign up", url = "/signup/", weight = 8, slash = true, button = true },
+]
+
+
+# Extra stylesheets linked from every page (templates/partials/header.html); compiled from sass/
+# site.css: header, type scale, links and edition list rows; footer.css: the footer band
+stylesheets = ["site.css", "footer.css", "signup.css"]
+
+# Footer columns (templates/partials/footer.html, styles in sass/footer.scss)
+footer_menu = [
+    { title = "Newsletter", items = [
+        { name = "All editions", url = "/newsletter/" },
+        { name = "Sign up", url = "/signup/" },
+        { name = "RSS feed", url = "/newsletter/rss.xml" },
+    ] },
+    { title = "Explore", items = [
+        { name = "Posts", url = "/posts/" },
+        { name = "Rust in the Linux kernel", url = "/linux-rust/" },
+        { name = "FAQ", url = "/faq/" },
+    ] },
+    { title = "Rust Trends", items = [
+        { name = "About", url = "/about/" },
+        { name = "Sponsor", url = "/sponsor/" },
+        { name = "Contact", url = "/contact/" },
+    ] },
 ]
 
 

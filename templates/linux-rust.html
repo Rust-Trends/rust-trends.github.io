@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+{{ post_macros::article_schema(page=page) }}
+{{ post_macros::breadcrumb_schema(page=page) }}
+{{ post_macros::breadcrumb_nav(page=page) }}
+
+{% set data = load_data(path="static/data/linux-rust.json") %}
+{% set rels = data.releases %}
+{% set n = rels | last %}
+{% set first = rels | first %}
+{% set v = n.loc.rust_by_area.vendored %}
+{% set fp_code = n.loc.rust.code - v.code %}
+{% set share = n.rust_share * 100 %}
+{% set share_fp = n.rust_share_first_party * 100 %}
+{% set c_code = n.loc.c.code + n.loc.h.code %}
+{% set drivers = data.component_timeline | filter(attribute="area", value="drivers") | filter(attribute="last_tag", value=n.tag) %}
+{% set growth = n.loc.rust.code / first.loc.rust.code %}
+{% set fp_first = first.loc.rust.code - first.loc.rust_by_area.vendored.code %}
+{% set growth_fp = fp_code / fp_first %}
+
+<link rel="stylesheet" href="{{ get_url(path='linux-rust.css', cachebust=true) }}">
+
+<main class="lr">
+<article>
+    <div class="title">
+        {{ post_macros::page_header(title=page.title) }}
+        <div class="meta">Data for every release from {{ first.tag }} to {{ n.tag }}{% if n.is_rc %} (release candidate){% endif %} &middot; last updated <time>{{ data.generated_at }}</time></div>
+    </div>
+
+    <section class="body lr-intro">
+        {{ page.content | safe }}
+    </section>
+
+    <nav class="lr-toc" aria-label="On this page">
+        <a href="#headline">Headline</a>
+        <a href="#growth">Growth</a>
+        <a href="#where">Where it lives</a>
+        <a href="#anatomy">Anatomy</a>
+        <a href="#unsafe">Unsafe &amp; C calls</a>
+        <a href="#crates">Crates</a>
+        <a href="#drivers">Drivers</a>
+        <a href="#methodology">Methodology</a>
+    </nav>
+
+    {# ---------------- 1. Headline ---------------- #}
+    <section id="headline" class="lr-section">
+        <h2>Newest tag: <code>{{ n.tag }}</code>{% if n.is_rc %} <span class="lr-muted">(release candidate)</span>{% endif %}</h2>
+        <p class="lr-muted">Tagged {{ n.date }}. All counts are lines of code: non-blank, non-comment.</p>
+        <div class="lr-tiles">
+            <div class="lr-tile lr-tile-wide">
+                <div class="lr-tile-label">Rust code lines written for the kernel</div>
+                <div class="lr-tile-value">{{ fp_code | num_format }}</div>
+                <div class="lr-tile-sub">
+                    <span class="lr-key lr-key-vendored"></span>plus {{ v.code | num_format }} vendored
+                    = {{ n.loc.rust.code | num_format }} in total
+                </div>
+            </div>
+            <div class="lr-tile">
+                <div class="lr-tile-label">Rust share of the kernel</div>
+                <div class="lr-tile-value">{{ share_fp | round(precision=2) }}%</div>
+                <div class="lr-tile-sub">{{ share | round(precision=2) }}% with vendored crates. Against {{ c_code | num_format }} lines of C and headers.</div>
+            </div>
+            <div class="lr-tile">
+                <div class="lr-tile-label">.rs files</div>
+                <div class="lr-tile-value">{{ n.loc.rust.files | num_format }}</div>
+                <div class="lr-tile-sub">{{ v.files | num_format }} of them vendored</div>
+            </div>
+            <div class="lr-tile">
+                <div class="lr-tile-label">Rust drivers in tree</div>
+                <div class="lr-tile-value">{{ drivers | length }}</div>
+                <div class="lr-tile-sub">from <a href="#drivers">the driver timeline</a></div>
+            </div>
+            <div class="lr-tile">
+                <div class="lr-tile-label">Growth since {{ first.tag }}</div>
+                <div class="lr-tile-value">{{ growth_fp | round(precision=0) }}&times;</div>
+                <div class="lr-tile-sub">{{ fp_first | num_format }} &rarr; {{ fp_code | num_format }} first-party lines; {{ growth | round(precision=1) }}&times; with vendored</div>
+            </div>
+        </div>
+    </section>
+
+    {# ---------------- 2. Growth ---------------- #}
+    <section id="growth" class="lr-section">
+        <h2>Growth</h2>
+        <p>Rust code lines per release, stacked by where they live in the tree. Vendored third-party
+        crates are grey and hatched: they are copied in, not written for the kernel. The big jump in
+        6.19 is mostly the vendored <code>syn</code>, <code>quote</code> and <code>proc-macro2</code>
+        crates, added so the kernel's procedural macros can parse Rust properly.</p>
+        <div class="lr-controls" role="group" aria-label="Growth chart options">
+            <label><input type="checkbox" id="lr-fp-only"> First-party only (hide vendored)</label>
+        </div>
+        <div class="lr-legend" id="lr-growth-legend" aria-hidden="true"></div>
+        <div class="lr-chart lr-chart-tall"><canvas id="lr-growth" role="img" aria-label="Stacked area chart of Rust code lines per kernel release by area"></canvas></div>
+
+        <h3>Rust share of the kernel, first-party only</h3>
+        <p class="lr-muted">First-party Rust as a percentage of first-party Rust plus C and headers. Separate chart because the scale is
+        nothing like the line counts above.</p>
+        <div class="lr-chart lr-chart-short"><canvas id="lr-share" role="img" aria-label="Line chart of the first-party Rust share per release"></canvas></div>
+
+        <details class="lr-table-view">
+            <summary>Table view: Rust code per release</summary>
+            <div class="lr-scroll">
+            <table>
+                <thead><tr><th>Tag</th><th>Date</th>{% for a in data.areas %}<th class="num">{{ a.label }}</th>{% endfor %}<th class="num">Total</th><th class="num">Share</th><th class="num">Share (first-party)</th></tr></thead>
+                <tbody>
+                {% for r in rels %}
+                <tr><td><code>{{ r.tag }}</code></td><td>{{ r.date }}</td>
+                    {% for a in data.areas %}<td class="num">{{ r.loc.rust_by_area[a.id].code | num_format }}</td>{% endfor %}
+                    <td class="num"><strong>{{ r.loc.rust.code | num_format }}</strong></td>
+                    {% set s = r.rust_share * 100 %}{% set sf = r.rust_share_first_party * 100 %}
+                    <td class="num">{{ s | round(precision=3) }}%</td><td class="num">{{ sf | round(precision=3) }}%</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </details>
+    </section>
+
+    {# ---------------- 3. Where ---------------- #}
+    <section id="where" class="lr-section">
+        <h2>Where the Rust lives</h2>
+        <p>Code lines in {{ n.tag }}, per driver or subsystem, against the core abstractions in <code>rust/</code> and the vendored crates.</p>
+        <div class="lr-chart" id="lr-where-wrap"><canvas id="lr-where" role="img" aria-label="Horizontal bar chart of Rust code lines per component"></canvas></div>
+        <details class="lr-table-view">
+            <summary>Table view</summary>
+            <div class="lr-scroll">
+            <table>
+                <thead><tr><th>Component</th><th>Path</th><th class="num">Code lines</th></tr></thead>
+                <tbody>
+                <tr><td>Core abstractions</td><td><code>rust/</code></td><td class="num">{{ n.loc.rust_by_area.core.code | num_format }}</td></tr>
+                {% for c in n.components | sort(attribute="code") | reverse %}
+                <tr><td>{{ c.label }}</td><td><code>{{ c.path }}</code></td><td class="num">{{ c.code | num_format }}</td></tr>
+                {% endfor %}
+                <tr><td>Samples</td><td><code>samples/rust/</code></td><td class="num">{{ n.loc.rust_by_area.samples.code | num_format }}</td></tr>
+                {% for c in n.crates | filter(attribute="kind", value="vendored") %}
+                <tr><td>{{ c.name }} (vendored)</td><td><code>{{ c.path }}</code></td><td class="num">{{ c.code | num_format }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </details>
+    </section>
+
+    {# ---------------- 4. Anatomy ---------------- #}
+    {% set it = n.items %}{% set iv = n.items_by_area.vendored %}
+    <section id="anatomy" class="lr-section">
+        <h2>Anatomy</h2>
+        <p>What the first-party Rust in {{ n.tag }} is made of, counted by parsing every file with <code>syn</code>
+        (vendored crates left out). Code inside macro invocations such as <code>module! {}</code> is not counted.</p>
+        <div class="lr-tiles lr-tiles-small">
+            <div class="lr-tile"><div class="lr-tile-label">Functions</div><div class="lr-tile-value">{{ it.fn_free + it.fn_impl + it.fn_trait - iv.fn_free - iv.fn_impl - iv.fn_trait | num_format }}</div>
+                <div class="lr-tile-sub">{{ it.fn_free - iv.fn_free | num_format }} free, {{ it.fn_impl - iv.fn_impl | num_format }} in impls, {{ it.fn_trait - iv.fn_trait | num_format }} in traits</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">Structs</div><div class="lr-tile-value">{{ it.struct - iv.struct | num_format }}</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">Enums</div><div class="lr-tile-value">{{ it.enum - iv.enum | num_format }}</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">Traits</div><div class="lr-tile-value">{{ it.trait - iv.trait | num_format }}</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">Impl blocks</div><div class="lr-tile-value">{{ it.impl_inherent + it.impl_trait - iv.impl_inherent - iv.impl_trait | num_format }}</div>
+                <div class="lr-tile-sub">{{ it.impl_trait - iv.impl_trait | num_format }} trait impls</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">macro_rules!</div><div class="lr-tile-value">{{ it.macro_rules - iv.macro_rules | num_format }}</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">Proc macros</div><div class="lr-tile-value">{{ it.proc_macro - iv.proc_macro | num_format }}</div></div>
+        </div>
+        <h3>Functions per release</h3>
+        <div class="lr-chart lr-chart-short"><canvas id="lr-fns" role="img" aria-label="Line chart of first-party function count per release"></canvas></div>
+    </section>
+
+    {# ---------------- 5. Unsafe ---------------- #}
+    {% set ub = n.unsafe_by_area %}
+    {% set fp_blocks = n.unsafe.blocks - ub.vendored.blocks %}
+    {% set fp_safety = n.unsafe.blocks_with_safety_comment - ub.vendored.blocks_with_safety_comment %}
+    <section id="unsafe" class="lr-section">
+        <h2>Unsafe and calls into C</h2>
+        <p>Kernel Rust has to talk to C, and that takes <code>unsafe</code>. The core abstractions in <code>rust/</code>
+        exist to wrap it, so drivers need less of it. Kernel style asks for a <code>// SAFETY:</code> comment above
+        every <code>unsafe</code> block explaining why it is sound.</p>
+        <div class="lr-tiles lr-tiles-small">
+            <div class="lr-tile"><div class="lr-tile-label">unsafe blocks (first-party)</div><div class="lr-tile-value">{{ fp_blocks | num_format }}</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">with // SAFETY: comment</div><div class="lr-tile-value">{% if fp_blocks > 0 %}{% set sp = fp_safety / fp_blocks * 100 %}{{ sp | round(precision=1) }}%{% else %}n/a{% endif %}</div></div>
+            <div class="lr-tile"><div class="lr-tile-label">Call sites into C</div><div class="lr-tile-value">{{ n.ffi.call_sites | num_format }}</div>
+                <div class="lr-tile-sub">{{ n.ffi.distinct_functions | num_format }} distinct C functions via <code>bindings::</code></div></div>
+        </div>
+
+        <h3>unsafe blocks per 1,000 code lines</h3>
+        <div class="lr-legend" id="lr-unsafe-legend" aria-hidden="true"></div>
+        <div class="lr-chart"><canvas id="lr-unsafe" role="img" aria-label="Line chart of unsafe blocks per thousand code lines by area"></canvas></div>
+        <div class="lr-scroll">
+        <table>
+            <thead><tr><th>Area ({{ n.tag }})</th><th class="num">Code lines</th><th class="num">unsafe blocks</th><th class="num">per 1k lines</th><th class="num">with SAFETY</th></tr></thead>
+            <tbody>
+            {% for a in ["core", "drivers", "samples"] %}{% set u = ub[a] %}{% set l = n.loc.rust_by_area[a] %}
+            {% set lab = data.areas | filter(attribute="id", value=a) | first %}
+            <tr><td>{{ lab.label }}</td><td class="num">{{ l.code | num_format }}</td><td class="num">{{ u.blocks | num_format }}</td>
+                <td class="num">{% if l.code > 0 %}{% set d = u.blocks / l.code * 1000 %}{{ d | round(precision=1) }}{% else %}-{% endif %}</td>
+                <td class="num">{% if u.blocks > 0 %}{% set p = u.blocks_with_safety_comment / u.blocks * 100 %}{{ p | round(precision=0) }}%{% else %}-{% endif %}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+        <h3>Share of unsafe blocks with a <code>// SAFETY:</code> comment</h3>
+        <div class="lr-chart lr-chart-short"><canvas id="lr-safety" role="img" aria-label="Line chart of the percentage of unsafe blocks with a SAFETY comment per release"></canvas></div>
+
+        <h3>Most-called C functions</h3>
+        <p class="lr-muted">Top 15 in {{ n.tag }} by call sites through <code>bindings::</code>, out of {{ n.ffi.call_sites | num_format }} call sites in total. The list is flat on purpose: {{ n.ffi.call_sites | num_format }} call sites reach {{ n.ffi.distinct_functions | num_format }} different C functions, because the abstractions in <code>rust/</code> wrap each C function once and everything else calls the safe wrapper.</p>
+        <div class="lr-chart lr-chart-tall"><canvas id="lr-ffi" role="img" aria-label="Horizontal bar chart of the 15 most-called C functions"></canvas></div>
+        <details class="lr-table-view">
+            <summary>Table view</summary>
+            <div class="lr-scroll">
+            <table>
+                <thead><tr><th>#</th><th>C function</th><th class="num">Call sites</th></tr></thead>
+                <tbody>
+                {% for f in n.ffi.top | slice(end=15) %}
+                <tr><td>{{ loop.index }}</td><td><code>{{ f.name }}</code></td><td class="num">{{ f.calls | num_format }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </details>
+    </section>
+
+    {# ---------------- 6. Crates ---------------- #}
+    <section id="crates" class="lr-section">
+        <h2>The kernel's crates</h2>
+        <p>The kernel does not use Cargo or crates.io. Its crates are built by Kbuild, the kernel's own build system,
+        and the dependencies between them are declared by hand in <code>rust/Makefile</code>.</p>
+        <div class="lr-legend" aria-hidden="true">
+            <span><span class="lr-key lr-key-fp"></span>first-party</span>
+            <span><span class="lr-key lr-key-vendored"></span>vendored</span>
+        </div>
+        <div class="lr-graph" id="lr-graph" role="img" aria-label="Dependency graph of the crates built from the kernel tree in {{ n.tag }}; arrows point from a crate to what it depends on"></div>
+        <p class="lr-muted">Arrows point from a crate to the crates it depends on directly. A link that already follows from a longer chain is not drawn, and neither is <code>core</code> from the Rust toolchain, which every crate uses. The table lists every dependency.</p>
+        <div class="lr-scroll">
+        <table>
+            <thead><tr><th>Crate</th><th>Kind</th><th>Depends on</th><th class="num">Code lines</th><th>First release</th></tr></thead>
+            <tbody>
+            {% for c in n.crates %}
+            {% set ct = data.crate_timeline | filter(attribute="name", value=c.name) | first %}
+            <tr><td><code>{{ c.name }}</code></td><td>{{ c.kind | replace(from="_", to="-") }}</td>
+                <td class="lr-deps">{% for d in c.deps %}<code>{{ d }}</code>{% if not loop.last %} {% endif %}{% endfor %}</td>
+                <td class="num">{% if c.kind == "toolchain" %}<span class="lr-muted">sysroot</span>{% else %}{{ c.code | num_format }}{% endif %}</td>
+                <td>{% if ct %}<code>{{ ct.first_tag }}</code>{% endif %}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {% set gone = data.crate_timeline | filter(attribute="last_tag", value=n.tag) | length %}
+        {% if gone < data.crate_timeline | length %}
+        <p class="lr-muted">No longer built:
+        {% for ct in data.crate_timeline %}{% if ct.last_tag != n.tag %}<code>{{ ct.name }}</code> ({{ ct.first_tag }} to {{ ct.last_tag }}) {% endif %}{% endfor %}</p>
+        {% endif %}
+
+        <h3>What drivers import from <code>kernel::</code></h3>
+        <p class="lr-muted">Files outside <code>rust/</code> with at least one <code>use kernel::&lt;module&gt;</code>, in {{ n.tag }}.</p>
+        <div class="lr-chart lr-chart-tall"><canvas id="lr-imports" role="img" aria-label="Horizontal bar chart of the most imported kernel modules"></canvas></div>
+        <details class="lr-table-view">
+            <summary>Table view</summary>
+            <div class="lr-scroll">
+            <table>
+                <thead><tr><th>Module</th><th class="num">Files</th></tr></thead>
+                <tbody>
+                {% for m in n.imports.kernel_top %}
+                <tr><td><code>kernel::{{ m.module }}</code></td><td class="num">{{ m.files | num_format }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </details>
+    </section>
+
+    {# ---------------- 7. Drivers ---------------- #}
+    <section id="drivers" class="lr-section">
+        <h2>Driver timeline</h2>
+        <p>Rust drivers and subsystems outside <code>rust/</code>, by the release they first appeared in.</p>
+        <ol class="lr-timeline">
+        {% for c in data.component_timeline %}
+            <li class="{% if c.last_tag != n.tag %}lr-removed{% endif %}">
+                <div class="lr-tl-tag"><code>{{ c.first_tag }}</code></div>
+                <div class="lr-tl-body">
+                    <div class="lr-tl-title">{{ c.label }}</div>
+                    <div class="lr-tl-path"><code>{{ c.path }}</code></div>
+                    <div class="lr-tl-meta">{{ c.latest_code | num_format }} code lines{% if c.last_tag != n.tag %} &middot; last seen in {{ c.last_tag }}{% else %} in {{ n.tag }}{% endif %}</div>
+                </div>
+            </li>
+        {% endfor %}
+        </ol>
+    </section>
+
+    {# ---------------- 8. Methodology ---------------- #}
+    <section id="methodology" class="lr-section">
+        <h2>Methodology</h2>
+        <ul>
+            <li>Every tagged release from {{ first.tag }} on is downloaded from <a href="{{ data.source }}">the mainline tree</a>, plus the newest release candidate when it is newer than the newest release.</li>
+            <li>Lines are counted by the rules of <a href="https://github.com/XAMPPRocky/tokei">tokei</a>, within 0.1% of tokei itself: code lines exclude blanks and comments, and doc comments count as comments. The kernel's share counts Rust against <code>*.c</code> plus <code>*.h</code> files.</li>
+            <li>Items, <code>unsafe</code> and calls into C are counted by parsing every <code>.rs</code> file with <a href="https://github.com/dtolnay/syn">syn</a>. The bodies of macro invocations and <code>macro_rules!</code> definitions are not parsed, so code generated by macros is not counted.</li>
+            <li>Vendored third-party crates ({% for c in data.crate_timeline | filter(attribute="kind", value="vendored") %}<code>{{ c.name }}</code>{% if not loop.last %}, {% endif %}{% endfor %}) are shown separately and left out of the first-party numbers.</li>
+            <li>A call into C is a call whose path goes through <code>bindings::</code>. Calls made through the safe wrappers in the <code>kernel</code> crate count once, at the wrapper.</li>
+        </ul>
+        {% if data.cross_checks | length > 0 %}
+        <h3>Cross-checks</h3>
+        <div class="lr-scroll">
+        <table>
+            <thead><tr><th>Tag</th><th>Source</th><th class="num">Their Rust</th><th class="num">Ours</th><th class="num">Their C (<code>.c</code> only)</th><th class="num">Ours</th></tr></thead>
+            <tbody>
+            {% for x in data.cross_checks %}
+            {% set mine = rels | filter(attribute="tag", value=x.tag) | first %}
+            <tr><td><code>{{ x.tag }}</code></td><td><a href="{{ x.url }}">{{ x.source }}</a></td>
+                <td class="num">{{ x.rust_code | num_format }}</td><td class="num">{% if mine %}{{ mine.loc.rust.code | num_format }}{% else %}-{% endif %}</td>
+                <td class="num">{{ x.c_code | num_format }}</td><td class="num">{% if mine %}{{ mine.loc.c.code | num_format }}{% else %}-{% endif %}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {% endif %}
+        <p>The analyzer is <a href="{{ data.analyzer.repo }}">open source and reproducible</a>
+        ({{ data.analyzer.name }} {{ data.analyzer.version }}). You can <a href="{{ get_url(path='data/linux-rust.json') }}" download>download the data as JSON</a>.</p>
+        <p class="lr-muted">Last updated {{ data.generated_at }}.</p>
+    </section>
+</article>
+</main>
+
+<script type="application/json" id="lr-data">{{ data | json_encode() | replace(from="</", to="<\/") | safe }}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
+<script defer src="{{ get_url(path='js/linux-rust.js') }}?v={{ now() | date(format='%Y%m%d%H%M') }}"></script>
+{% endblock main_content %}

@@ -26,26 +26,14 @@ toc_not_generate = true
 
 ## Meet the Author
 
-**<a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">Bob Peters</a>** brings over a decade of systems programming experience to Rust Trends, with deep expertise in both **Rust development and Industrial IoT systems**.
+**<a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">Bob Peters</a>** is the creator of Rust Trends. He brings over a decade of systems programming experience, with deep expertise in both **Rust development and Industrial IoT systems**.
 
-As **CTO of an Industrial IoT company**, Bob architects high-performance, safety-critical systems where Rust's guarantees around memory safety and concurrency are essential. His hands-on experience spans embedded systems, distributed architectures, and performance optimization—giving him unique insight into where Rust excels and where the ecosystem is heading.
+Next to running Rust Trends, Bob is the **CTO of an Industrial IoT company**, where he architects high-performance, safety-critical systems in which Rust's guarantees around memory safety and concurrency are essential. His hands-on experience spans embedded systems, distributed architectures and performance optimization, which shows him where Rust excels and where the ecosystem is heading.
 
 **Background & Expertise:**
 - **Industrial IoT systems** architecture and implementation
-- **Technology leadership** in startup and enterprise environments
+- **Technology leadership** with an entrepreneurial mindset, in startup and enterprise environments
 
-Bob's technical depth and industry perspective ensure Rust Trends delivers practical, actionable insights rather than just news summaries.
+That technical depth and industry perspective keep Rust Trends practical: insights you can act on, not just news summaries.
 
 **Connect:** <a href="https://www.linkedin.com/in/bjhpeters/" target="_blank">LinkedIn</a> • [Email](mailto:contact@rust-trends.com)
-
----
-
-### About the Author
-
-Meet **[Bob Peters](https://www.linkedin.com/in/bjhpeters/)**, the creator of Rust Trends.
-
-Bob has a strong background in the **Internet of Things (IoT)** and extensive experience in the technology industry. As an entrepreneur and tech leader, he is passionate about keeping up with the latest trends and advancements.
-
-In addition to running Rust Trends, Bob is the **CTO of an Industrial IoT company**, where he applies his expertise in programming languages and cutting-edge technology. His deep understanding of Rust and dedication to continuous learning make him well-equipped to bring you **valuable insights and resources**.
-
-We hope you enjoy the **Rust Trends newsletter**. Feel free to **connect with Bob on [LinkedIn](https://www.linkedin.com/in/bjhpeters/)!**

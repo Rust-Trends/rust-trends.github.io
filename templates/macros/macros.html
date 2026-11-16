@@ -1,36 +1,43 @@
+{#- Edition list rows (home and /newsletter/): a mono gutter with date and edition
+    number on the left, title, description and read link on the right. The edition
+    number is the newsletter file name (content/newsletter/N.md); posts have none. -#}
 {% macro list_posts(pages) %}
     <ul>
     {%- for page in pages %}
+        {%- set file = page.relative_path | split(pat="/") | last | trim_end_matches(pat=".md") %}
+        {%- set edition = page.relative_path is starting_with("newsletter/") and file is matching("^[0-9]+$") %}
         <li class="list-item">
-            <h2 class="title">
-                <a href={{ page.permalink }}>{{page.title}}</a>
-            </h2>
-
             <div class="meta">
                 {%- if page.date %}
                     <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
+                {% endif -%}
+                {%- if edition %}
+                    <span class="edition">Edition {{ file }}</span>
                 {% endif -%}
                 {% if page.draft %}
                     <span class="draft-label">DRAFT</span> 
                 {% endif %}
             </div>
 
-            
-            <div class="description">
-                {% if page.description %}
-                <br>
-                    {{ page.description }}
-                {% elif page.summary %}
-                    {{ page.summary | safe }}&hellip;
-                {% else %}
-                    {% set hide_read_more = true %}
+            <div class="list-main">
+                <h2 class="title">
+                    <a href={{ page.permalink }}>{{page.title}}</a>
+                </h2>
+
+                <div class="description">
+                    {% if page.description %}
+                        {{ page.description }}
+                    {% elif page.summary %}
+                        {{ page.summary | safe }}&hellip;
+                    {% else %}
+                        {% set hide_read_more = true %}
+                    {% endif %}
+                </div>
+
+                {% if not hide_read_more %}
+                    <a class="readmore" href={{ page.permalink }} aria-label="Read more: {{ page.title }}">Read more ⟶</a>
                 {% endif %}
             </div>
-
-            {% if not hide_read_more %}
-            <br>
-                <a class="readmore" href={{ page.permalink }} aria-label="Read more: {{ page.title }}">Read more ⟶</a>
-            {% endif %}
         </li>
 
     {% endfor -%}
@@ -57,7 +64,7 @@
 
 {% macro page_header(title) %}
     <h1 class="page-header">
-        {{ title }}<span class="primary-color" style="font-size: 1.6em">.</span>
+        {{ title }}<span class="primary-color dot">.</span>
     </h1>
 {% endmacro content %}
 
@@ -68,8 +75,13 @@
             {#<h1 class="title">{{ page.title }}</h1>#}
             {{ post_macros::page_header(title=page.title) }}
 
+                {#- Newsletter editions show "Edition N · date"; posts keep "Posted on date" -#}
+                {%- set file = page.relative_path | split(pat="/") | last | trim_end_matches(pat=".md") %}
+                {%- set edition = page.relative_path is starting_with("newsletter/") and file is matching("^[0-9]+$") %}
                 <div class="meta">
-                    {% if page.date %}
+                    {% if edition %}
+                        <span class="edition">Edition {{ file }}</span>{% if page.date %} &middot; <time>{{ page.date | date(format="%Y-%m-%d") }}</time>{% endif %}
+                    {% elif page.date %}
                         Posted on <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
                     {% endif %}
 

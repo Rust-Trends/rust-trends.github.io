@@ -224,7 +224,7 @@
 
     {% if config.extra.stylesheets %}
         {% for stylesheet in config.extra.stylesheets %}
-            <link rel="stylesheet" href="{{ get_url(path=stylesheet) }}">
+            <link rel="stylesheet" href="{{ get_url(path=stylesheet, cachebust=true) }}">
         {% endfor %}
     {% endif %}
 

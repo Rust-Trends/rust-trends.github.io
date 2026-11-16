@@ -1,0 +1,154 @@
+// Styles for /linux-rust/ only (included from templates/linux-rust.html).
+.lr {
+  --lr-fp: #f74c00;
+  --lr-drivers: #3987e5;
+  --lr-samples: #199e70;
+  --lr-other: #9085e9;
+  --lr-vendored: #6b6b6b;
+  --lr-toolchain: #3a3a3a;
+  --lr-line: rgba(255, 255, 255, 0.12);
+  --lr-tile-bg: rgba(255, 255, 255, 0.04);
+
+  min-width: 0;
+
+  h2 { margin-top: 0; }
+  h3 { margin-top: 2rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+  table th, table td { padding: 0.35rem 0.6rem; border: 0; border-bottom: 1px solid var(--lr-line); font-size: inherit; text-align: left; vertical-align: top; }
+  table th { color: var(--text-1); font-weight: 600; white-space: nowrap; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td code, th code { white-space: nowrap; }
+}
+
+.lr-muted { color: var(--text-1); }
+
+.lr-section {
+  margin: 3rem 0;
+  padding-top: 0.5rem;
+  scroll-margin-top: 1rem;
+}
+
+.lr-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 1.5rem 0;
+  font-family: var(--code-font);
+  font-size: 0.85em;
+}
+
+.lr-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.lr-tiles-small { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+.lr-tile {
+  background: var(--lr-tile-bg);
+  border: 1px solid var(--lr-line);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  min-width: 0;
+}
+
+.lr-tile-label { color: var(--text-1); font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.04em; }
+.lr-tile-value {
+  font-family: var(--header-font);
+  font-size: 1.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  line-height: 1.2;
+  color: var(--text-0);
+  font-variant-numeric: tabular-nums;
+}
+.lr-tiles-small .lr-tile-value { font-size: 1.5rem; }
+.lr-tile-sub { color: var(--text-1); font-size: 0.8em; margin-top: 0.25rem; }
+
+.lr-key {
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 2px;
+  margin-right: 0.3em;
+  vertical-align: baseline;
+}
+.lr-key-fp { background: var(--lr-fp); }
+.lr-key-drivers { background: var(--lr-drivers); }
+.lr-key-samples { background: var(--lr-samples); }
+.lr-key-other { background: var(--lr-other); }
+.lr-key-toolchain { background: var(--lr-toolchain); border: 1px solid var(--lr-line); }
+.lr-key-vendored {
+  background: repeating-linear-gradient(45deg, var(--lr-vendored) 0 2px, #2a2a2a 2px 4px);
+}
+.lr-key-line { height: 2px; width: 1em; vertical-align: middle; border-radius: 1px; }
+
+.lr-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  font-size: 0.8em;
+  color: var(--text-1);
+  margin: 0.5rem 0;
+}
+.lr-legend > span { white-space: nowrap; }
+
+.lr-controls { margin: 0.75rem 0; font-size: 0.9em; }
+.lr-controls input { accent-color: var(--lr-fp); margin-right: 0.4em; }
+
+.lr-chart { position: relative; height: 320px; width: 100%; min-width: 0; }
+.lr-chart-tall { height: 420px; }
+.lr-chart-short { height: 220px; }
+@media (max-width: 520px) {
+  .lr-chart { height: 280px; }
+  .lr-chart-tall { height: 400px; }
+}
+.lr-chart canvas { max-width: 100%; }
+
+.lr-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; margin: 1rem 0; }
+
+.lr-table-view { margin: 1rem 0; }
+.lr-table-view summary { cursor: pointer; color: var(--text-1); font-size: 0.9em; }
+
+.lr-deps code { margin-right: 0.3em; }
+
+.lr-graph { width: 100%; overflow-x: auto; margin: 1rem 0; }
+.lr-graph svg { display: block; margin: 0 auto; width: 100%; max-height: none; height: auto; }
+.lr-graph text { font-family: var(--code-font); }
+
+.lr-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  border-left: 2px solid var(--lr-line);
+  li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.6rem 0 0.6rem 1rem;
+  }
+  li::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 1rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--lr-fp);
+    box-shadow: 0 0 0 2px var(--bg-0);
+  }
+  li.lr-removed::before { background: var(--lr-vendored); }
+  li.lr-removed .lr-tl-title { color: var(--text-1); }
+}
+.lr-tl-tag code { white-space: nowrap; }
+.lr-tl-title { font-weight: 600; }
+.lr-tl-path { font-size: 0.85em; overflow-wrap: anywhere; }
+.lr-tl-path code { white-space: normal; overflow-wrap: anywhere; }
+.lr-tl-meta { color: var(--text-1); font-size: 0.85em; }
+@media (max-width: 520px) {
+  .lr-timeline li { grid-template-columns: 1fr; gap: 0.2rem; }
+}

@@ -1,0 +1,435 @@
+// Site-wide look, linked from every page via config.extra.stylesheets and loaded
+// after the theme's main.css so it wins on equal specificity. Covers the header,
+// the type scale, links, the edition list rows and the edition meta line. The
+// footer has its own file (footer.scss) and the kernel page its own (linux-rust.scss).
+
+:root {
+  --text-2: rgba(255, 255, 255, 50%);
+  --rule: rgba(255, 255, 255, 10%);
+  --code-bg: rgba(255, 255, 255, 7%);
+  --code-rule: rgba(255, 255, 255, 14%);
+}
+
+// ---------------------------------------------------------------------------
+// Links: a 1px orange underline instead of the theme's 3px bar and hover block
+// ---------------------------------------------------------------------------
+a {
+  border-bottom: 0;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--primary-color);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  background: none;
+  color: var(--primary-color);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+header.site-header a,
+.social,
+.readmore,
+.all-editions a,
+.breadcrumb a,
+.tags a {
+  border-bottom: 0;
+  text-decoration: none;
+}
+
+// ---------------------------------------------------------------------------
+// Header: brand and socials left, menu right, sign-up as a button
+// ---------------------------------------------------------------------------
+header.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 28px;
+  padding: 26px 0 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+header.site-header .main {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  font-size: 1rem;
+}
+
+header.site-header .brand {
+  font-family: var(--header-font), sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-0);
+  white-space: nowrap;
+}
+
+header.site-header .brand::after {
+  content: ".";
+  color: var(--primary-color);
+}
+
+header.site-header .brand:hover {
+  color: var(--text-0);
+}
+
+header.site-header .socials {
+  align-items: center;
+  gap: 10px;
+}
+
+header.site-header .social {
+  display: block;
+  padding: 2px;
+  line-height: 0;
+  opacity: 0.6;
+}
+
+header.site-header .social:hover,
+header.site-header .social:focus-visible {
+  opacity: 1;
+}
+
+header.site-header .social > img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  filter: invert(1);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  margin-left: auto;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--text-1);
+}
+
+.site-nav a {
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.site-nav a .slash {
+  color: var(--primary-color);
+}
+
+.site-nav a:hover {
+  color: var(--text-0);
+}
+
+.site-nav a.on {
+  color: var(--text-0);
+  border-bottom-color: var(--primary-color);
+}
+
+.site-nav a.cta,
+.site-nav a.cta.on {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--primary-color);
+  color: var(--bg-0);
+  font-family: var(--header-font), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.site-nav a.cta .slash {
+  color: rgba(18, 18, 18, 0.55);
+}
+
+.site-nav a.cta:hover,
+.site-nav a.cta:focus-visible {
+  background: var(--hover-color);
+  color: var(--bg-0);
+}
+
+@media (max-width: 760px) {
+  header.site-header {
+    gap: 14px 20px;
+    padding: 20px 0 14px;
+  }
+
+  .site-nav {
+    margin-left: 0;
+    gap: 6px 16px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Type scale
+// ---------------------------------------------------------------------------
+h1.page-header {
+  margin: 56px 0 12px;
+  font-family: var(--header-font), sans-serif;
+  font-size: clamp(34px, 2.1rem + 1.4vw, 48px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1.page-header::before {
+  font-weight: 400;
+}
+
+h1.page-header .dot {
+  color: var(--primary-color);
+}
+
+h2,
+h3,
+h4 {
+  font-family: var(--header-font), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1.6em;
+}
+
+h2::before,
+h3::before {
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 1.05rem;
+}
+
+@media (max-width: 640px) {
+  h1.page-header {
+    margin-top: 36px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}
+
+// Article body
+article .body {
+  line-height: 1.65;
+}
+
+article .body p,
+article .body li {
+  line-height: 1.65;
+}
+
+code {
+  background: var(--code-bg);
+  border: 1px solid var(--code-rule);
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
+  font-size: 0.88em;
+}
+
+pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+hr {
+  border-top: 1px solid var(--rule);
+  margin: 2em 0;
+}
+
+// ---------------------------------------------------------------------------
+// Breadcrumb and meta line on a page
+// ---------------------------------------------------------------------------
+.breadcrumb {
+  margin: 20px 0 0;
+}
+
+.breadcrumb-list {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.breadcrumb-item a {
+  color: var(--text-1);
+}
+
+.breadcrumb-item a:hover {
+  color: var(--primary-color);
+}
+
+.breadcrumb-item:not(:last-child)::after {
+  color: var(--text-2);
+}
+
+.breadcrumb-item.current {
+  color: var(--text-2);
+}
+
+.breadcrumb + main h1.page-header {
+  margin-top: 40px;
+}
+
+article > .title .meta {
+  margin: 0 0 26px;
+  font-family: var(--code-font), monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--text-2);
+}
+
+article > .title .meta time {
+  color: inherit;
+}
+
+article > .title .meta .edition {
+  color: var(--text-1);
+}
+
+// ---------------------------------------------------------------------------
+// Edition list rows (home and /newsletter/)
+// ---------------------------------------------------------------------------
+.list > ul {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+li.list-item {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  padding: 26px 0;
+  border-top: 1px solid var(--rule);
+}
+
+li.list-item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+li.list-item .meta {
+  padding-top: 6px;
+  font-family: var(--code-font), monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--text-2);
+}
+
+li.list-item .meta time {
+  display: block;
+  color: var(--text-1);
+  font-weight: 500;
+}
+
+li.list-item .meta .edition {
+  display: block;
+}
+
+li.list-item h2.title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+li.list-item .description {
+  margin: 8px 0 10px;
+  max-width: 68ch;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-1);
+}
+
+li.list-item .description:empty {
+  display: none;
+}
+
+.readmore {
+  color: var(--primary-color);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.readmore:hover,
+.all-editions a:hover {
+  color: var(--hover-color);
+}
+
+.all-editions {
+  margin: 0;
+  padding: 26px 0 16px;
+  font-size: 16px;
+}
+
+.all-editions a {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  li.list-item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding: 22px 0;
+  }
+
+  li.list-item .meta {
+    padding-top: 0;
+  }
+
+  li.list-item .meta time,
+  li.list-item .meta .edition {
+    display: inline;
+  }
+
+  li.list-item .meta .edition::before {
+    content: " \00b7  ";
+  }
+}
+
+// 404: the theme positions .centered-header absolutely, which lets the footer
+// slide up over it. Keep it in flow and centred instead.
+main.centered-header {
+  position: static;
+  transform: none;
+  padding: 48px 0 96px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+main.centered-header h1.page-header {
+  margin-bottom: 8px;
+}
