@@ -48,7 +48,7 @@ menu = [
 
 # Extra stylesheets linked from every page (templates/partials/header.html); compiled from sass/
 # site.css: header, type scale, links and edition list rows; footer.css: the footer band
-stylesheets = ["site.css", "footer.css"]
+stylesheets = ["site.css", "footer.css", "signup.css"]
 
 # Footer columns (templates/partials/footer.html, styles in sass/footer.scss)
 footer_menu = [
