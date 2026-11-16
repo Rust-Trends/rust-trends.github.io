@@ -5,8 +5,8 @@ title = "Rust Trends"
 author = "Bob Peters"
 description = "The premier Rust programming newsletter covering trends, tutorials, and ecosystem updates. Stay current with Rust development."
 
-# Whether to build a search index to be used later on by a JavaScript library
-build_search_index = true
+# No site search: the page was removed (old /search/ links redirect home)
+build_search_index = false
 
 theme = "apollo"
 
@@ -38,7 +38,6 @@ theme = "dark"
 menu = [
     { name = "/newsletter", url = "/newsletter/", weight = 1, slash = true },
     { name = "/posts", url = "/posts/", weight = 2, slash = true },
-    { name = "/search", url = "/search/", weight = 3, slash = true },
     { name = "/faq", url = "/faq/", weight = 4, slash = true },
     { name = "/about", url = "/about/", weight = 5, slash = true },
     { name = "/sponsor", url = "/sponsor/", weight = 6, slash = true },
@@ -61,7 +60,6 @@ footer_menu = [
     { title = "Explore", items = [
         { name = "Posts", url = "/posts/" },
         { name = "Rust in the Linux kernel", url = "/linux-rust/" },
-        { name = "Search", url = "/search/" },
         { name = "FAQ", url = "/faq/" },
     ] },
     { title = "Rust Trends", items = [
