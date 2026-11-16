@@ -1,6 +1,16 @@
 // Site footer: templates/partials/footer.html, linked from every page via
 // config.extra.stylesheets. Everything here is scoped to the footer.
 
+// Column headings use Bebas Neue (condensed caps, like corrode.dev's footer); one
+// 14 KB latin file, swapped in when it arrives. Links stay in the body font.
+@font-face {
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource/bebas-neue@5.0.8/files/bebas-neue-latin-400-normal.woff2") format("woff2");
+}
+
 // The theme's .footer is a 944px centred column (themes/apollo/sass/main.scss).
 // The band runs edge to edge instead; the negative margins cancel the browser's
 // default 8px body margin, which nothing else resets.
@@ -85,7 +95,7 @@
   display: grid;
   grid-template-columns: repeat(4, auto);
   justify-content: center;
-  gap: 40px 64px;
+  gap: 32px 56px;
   text-align: left;
 }
 
@@ -94,12 +104,12 @@
 }
 
 .site-footer__heading {
-  margin: 0 0 14px;
-  font-family: var(--header-font), sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
+  margin: 0 0 10px;
+  font-family: "Bebas Neue", var(--header-font), sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.4;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-1);
 }
@@ -117,8 +127,8 @@
 .site-footer__links li {
   margin: 0;
   padding: 0;
-  font-size: 1.05rem;
-  line-height: 2.2;
+  font-size: 0.875rem;
+  line-height: 2;
 }
 
 .site-footer__links a {
@@ -175,7 +185,7 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 340px) {
   .site-footer__nav {
     grid-template-columns: minmax(0, 1fr);
     gap: 32px;
