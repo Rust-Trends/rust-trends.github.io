@@ -1,0 +1,15 @@
+{# In-page sign-up box: a short pitch plus the EmailOctopus form, in one row.
+   Include with `lead` and `blurb` set; styles in sass/signup.scss (.signup-panel--inline).
+   The form markup is EmailOctopus's, so it reuses the .signup-panel #f1 overrides. #}
+<aside class="signup-panel signup-panel--inline" aria-label="Newsletter sign-up">
+    <div class="signup-panel__pitch">
+        <p class="signup-panel__lead">{{ lead | safe }}</p>
+        <p>{{ blurb | safe }}</p>
+        <p class="signup-panel__small">Free, no spam, unsubscribe in one click. <a href="/newsletter/">Read past editions</a>.</p>
+    </div>
+    <div class="signup-panel__form">
+        <div id="f1">
+            <script async src="https://eomail6.com/form/ebcbb0ae-09e5-11ee-91ef-e3f66f00cecb.js" data-form="ebcbb0ae-09e5-11ee-91ef-e3f66f00cecb"></script>
+        </div>
+    </div>
+</aside>
