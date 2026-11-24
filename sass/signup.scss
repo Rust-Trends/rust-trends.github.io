@@ -134,3 +134,33 @@
     padding: 22px 18px 14px;
   }
 }
+
+// In-page variant (templates/partials/signup_inline.html), e.g. on /linux-rust/:
+// a bordered band between sections, tighter than the full sign-up page.
+.signup-panel--inline {
+  gap: 32px;
+  align-items: center;
+  margin: 2.5rem 0;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.signup-panel--inline .signup-panel__lead {
+  font-size: 1.4rem;
+}
+
+.signup-panel--inline .signup-panel__pitch p:last-child {
+  margin-bottom: 0;
+}
+
+.signup-panel--inline .signup-panel__form {
+  padding: 20px 20px 12px;
+}
+
+@media (max-width: 760px) {
+  .signup-panel--inline {
+    gap: 20px;
+    padding: 18px 16px;
+  }
+}
