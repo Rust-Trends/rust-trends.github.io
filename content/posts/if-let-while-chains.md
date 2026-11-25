@@ -3,6 +3,8 @@ title = "Rust’s if/let While Chains: Cleaner Control Flow is Coming!"
 date = "2025-02-14"
 slug = "Rust’s if let While Chains"
 description = "Rust’s upcoming if/let while chains will clean up control flow by eliminating unnecessary nesting. Explore how this feature simplifies conditional expressions and loops, making Rust code more readable and expressive."
+[taxonomies]
+tags = ["Language Features", "Learning Rust"]
 +++
 
 One of the long-awaited features in Rust is if/let while chains, and it’s finally on the way! This small but powerful change will make conditional expressions and loops more ergonomic, eliminating some of the verbosity that Rustaceans have had to deal with.

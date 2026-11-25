@@ -3,6 +3,8 @@ title = "Building a Honeypot in Rust and Deploy it to Oracle for Free"
 date = "2025-01-05"
 slug = "Building a Honeypot in Rust and Deploy it to Oracle for Free"
 description = "Learn how to build a honeypot in Rust and deploy it to Oracle Cloud for free! This step-by-step guide covers coding, deployment, and tips for leveraging Rust’s safety and performance for cybersecurity projects."
+[taxonomies]
+tags = ["Security", "Learning Rust", "Networking"]
 +++
 
 ## Introduction

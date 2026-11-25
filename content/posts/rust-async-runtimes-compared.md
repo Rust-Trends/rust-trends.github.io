@@ -2,6 +2,8 @@
 title = "Rust Async Runtimes Compared: Tokio vs Smol in 2026"
 date = 2026-09-04
 description = "Real crates.io download data on Tokio vs smol vs async-std, why async-std was discontinued, and how to pick a runtime for a new Rust project in 2026."
+[taxonomies]
+tags = ["Async", "Web Development", "Networking"]
 [extra]
 author = "Bob Peters"
 toc_not_generate = true

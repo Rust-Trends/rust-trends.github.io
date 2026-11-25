@@ -2,6 +2,8 @@
 title = "systemd Now Accepts New Components Written in Rust"
 date = 2026-10-29
 description = "systemd merged support for programs written in Rust. New leaf tools only, no cargo, no_std, and the first one, systemd-keyring-setup, has landed."
+[taxonomies]
+tags = ["Operating Systems", "Memory Safety", "Rust in Production"]
 [extra]
 author = "Bob Peters"
 toc_not_generate = true

@@ -3,6 +3,8 @@ title = "68 - Special: Rust Your Way Through Summer - Join the Coding Contest & 
 date = "2025-07-01"
 slug = "Join the Rust Programming Contest & Win a Keychron Q1, AirPods Pro 2 or Oura Ring 4"
 description = "Level up your Rust skills this summer with the Rust-Trends Contest on CodeCrafters. Build real-world Rust projects, climb the leaderboard, and win a Keychron Q1 Pro, Oura Ring 4, or AirPods Pro 2."
+[taxonomies]
+tags = ["Learning Rust", "Community"]
 [extra]
 toc_not_generate = true
 +++

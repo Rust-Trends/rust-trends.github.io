@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{#- One topic: blurb from data/topics.json (written by the newsletter agent's
+    `na knowledge export-site`), then every edition and post with the tag. -#}
+{% block main_content %}
+    {%- set topics = load_data(path="data/topics.json", required=false) -%}
+    {%- set info = false -%}{%- if topics and topics[term.name] -%}{%- set info = topics[term.name] -%}{%- endif -%}
+
+    {{ post_macros::page_header(title=term.name) }}
+
+    <main class="list topic">
+        {%- if info and info.blurb %}
+        <p class="topic-blurb">{{ info.blurb }}</p>
+        {%- endif %}
+        <p class="topic-count">{{ term.page_count }} editions and posts from the Rust Trends archive, newest first. <a href="/tags/">All topics</a></p>
+        {{ post_macros::list_posts(pages=term.pages) }}
+    </main>
+{% endblock main_content %}

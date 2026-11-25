@@ -19,6 +19,11 @@ generate_sitemap = true
 
 feed_filenames = ["rss.xml"]
 
+# Topic pages (/tags/<topic>/). The tags in each edition's and post's front
+# matter, data/topics.json (blurbs) and data/related.json ("From the archive"
+# block) are written by the newsletter agent's `na knowledge export-site`.
+taxonomies = [{ name = "tags", feed = false }]
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
