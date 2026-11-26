@@ -3,6 +3,8 @@ title = "Rust’s Async Closures: A New Way to Handle Asynchronous Logic"
 date = "2025-02-14"
 slug = "Rust’s Async Closures"
 description = "Discover how async closures in Rust (coming in Rust 1.85) will make handling asynchronous logic more ergonomic. Learn what closures are, why async closures matter, and see simple examples of how they improve Rust’s async experience."
+[taxonomies]
+tags = ["Async", "Language Features"]
 +++
 
 Rust’s upcoming async closures are an exciting feature set to land in **Rust 1.85**. If you’ve ever tried to write a closure inside an async function, you’ve likely hit a wall. Until now, closures couldn’t be async themselves, forcing developers to work around the limitation with named async functions. But with async closures, Rustaceans will finally get the closure they’ve been seeking!

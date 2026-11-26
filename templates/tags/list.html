@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    {%- set topics = load_data(path="data/topics.json", required=false) -%}
+    {{ post_macros::page_header(title="Topics") }}
+
+    <main class="list topics">
+        <p class="topic-blurb">Every Rust Trends edition and post, filed by topic.</p>
+        <ul class="topic-list">
+        {%- for term in terms | sort(attribute="name") %}
+            {%- set info = false %}{%- if topics and topics[term.name] %}{%- set info = topics[term.name] %}{%- endif %}
+            <li>
+                <a href="{{ term.permalink | safe }}">{{ term.name }}</a>
+                <span class="topic-n">{{ term.page_count }}</span>
+                {%- if info and info.blurb %}<p>{{ info.blurb }}</p>{% endif %}
+            </li>
+        {%- endfor %}
+        </ul>
+    </main>
+{% endblock main_content %}

@@ -2,6 +2,8 @@
 title = "The Rust Performance Guide for 2026: What Makes Rust Fast"
 date = 2026-07-14
 description = "What actually makes Rust fast: zero-cost abstractions, real 5.9x and 78x optimization case studies, current SIMD support, and where C++ still wins."
+[taxonomies]
+tags = ["Learning Rust", "Performance"]
 [extra]
 author = "Bob Peters"
 toc_not_generate = true

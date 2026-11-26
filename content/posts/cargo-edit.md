@@ -2,6 +2,8 @@
 title = "Streamlining Your Rust Development Process with cargo-edit"
 date = "2023-05-10"
 description = "As your Rust projects grow in complexity, managing dependencies can become a time-consuming and error-prone task. Fortunately, cargo-edit is a powerful tool that can help simplify the process of adding, removing, and updating dependencies in your Cargo.toml file. In this blog post, we'll take a closer look at how to use cargo-edit in your Rust projects."
+[taxonomies]
+tags = ["Tooling", "Learning Rust"]
 +++
 
 As your Rust projects grow in complexity, managing dependencies can become a time-consuming and error-prone task. Fortunately, cargo-edit is a powerful tool that can help simplify the process of adding, removing, and updating dependencies in your Cargo.toml file. In this blog post, we'll take a closer look at how to use cargo-edit in your Rust projects.

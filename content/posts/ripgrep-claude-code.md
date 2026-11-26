@@ -2,6 +2,8 @@
 title = "Why Claude Code Chose ripgrep Over Vector Search"
 date = 2026-01-29
 description = "How a Rust-powered text search tool became the backbone of AI coding assistants"
+[taxonomies]
+tags = ["AI-Assisted Coding", "Performance", "CLI Tools"]
 [extra]
 author = "Bob Peters"
 toc_not_generate = true

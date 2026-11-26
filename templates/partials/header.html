@@ -55,6 +55,11 @@
         {% set seo_title = section.extra.seo_title %}{% set seo_title_explicit = true %}
     {% elif section.title %}
         {% set seo_title = section.title %}
+    {% elif term %}
+        {% set seo_title = "Rust " ~ term.name ~ ": every edition and post" %}
+        {% if term.name is starting_with("Rust ") %}{% set seo_title = term.name ~ ": every edition and post" %}{% endif %}
+    {% elif taxonomy %}
+        {% set seo_title = "Rust topics: the archive by subject" %}
     {% else %}
         {% set seo_title = config.title | default(value="Home") %}
     {% endif %}
@@ -79,8 +84,19 @@
         {% endif %}
      {% endif %}
 
+     {#- Topic pages: the blurb from data/topics.json as the description -#}
+     {% set kn_description = "" %}
+     {% if term and not page %}
+         {% set kn_topics = load_data(path="data/topics.json", required=false) %}
+         {% if kn_topics and kn_topics[term.name] %}{% set kn_description = kn_topics[term.name].blurb %}{% endif %}
+     {% elif taxonomy and not page %}
+         {% set kn_description = "Every Rust Trends edition and post, filed by topic: async, embedded, WebAssembly, tooling, rewrites and more." %}
+     {% endif %}
+
      {% if not page_has_og_description %}
-         {% if page.description %}
+         {% if kn_description %}
+             <meta property="og:description" content="{{ kn_description }}" />
+         {% elif page.description %}
              <meta property="og:description" content="{{ page.description }}" />
          {% elif config.description %}
              <meta property="og:description" content="{{ config.description }}" />
@@ -88,7 +104,9 @@
      {% endif %}
 
      {% if not page_has_description %}
-         {% if page.description %}
+         {% if kn_description %}
+             <meta name="description" content="{{ kn_description }}" />
+         {% elif page.description %}
              <meta name="description" content="{{ page.description }}" />
          {% elif config.description %}
              <meta name="description" content="{{ config.description }}" />
@@ -169,6 +187,10 @@
         <link rel="canonical" href="{{ page.permalink }}" />
     {% elif section %}
         <link rel="canonical" href="{{ section.permalink }}" />
+    {% elif term %}
+        <link rel="canonical" href="{{ term.permalink }}" />
+    {% elif taxonomy %}
+        <link rel="canonical" href="{{ current_url }}" />
     {% else %}
         <link rel="canonical" href="{{ config.base_url }}" />
     {% endif %}
@@ -182,7 +204,9 @@
     {% else %}
         <meta name="twitter:title" content="{{ config.title }}" />
     {% endif %}
-    {% if page.description %}
+    {% if kn_description %}
+        <meta name="twitter:description" content="{{ kn_description }}" />
+    {% elif page.description %}
         <meta name="twitter:description" content="{{ page.description }}" />
     {% elif config.description %}
         <meta name="twitter:description" content="{{ config.description }}" />

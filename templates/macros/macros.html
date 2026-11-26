@@ -141,6 +141,8 @@
             {{ page.content | safe }}
         </section>
 
+        {{ post_macros::related(page=page) }}
+
         {% if page.taxonomies and page.taxonomies.tags %}
             <div class="post-tags">
                 <nav class="nav tags">
@@ -156,6 +158,26 @@
     </article>
 </main>
 {% endmacro content %}
+
+{#- Up to 3 earlier or later docs that share the rarest concepts with this
+    one, from data/related.json (`na knowledge export-site`). -#}
+{% macro related(page) %}
+    {%- set related = load_data(path="data/related.json", required=false) -%}
+    {%- if related and related[page.relative_path] %}
+        <aside class="related">
+            <h2>From the archive</h2>
+            <ul>
+            {%- for key in related[page.relative_path] %}
+                {%- set p = get_page(path=key) %}
+                <li>
+                    <a href="{{ p.permalink | safe }}">{{ p.title }}</a>
+                    {%- if p.date %} <time>{{ p.date | date(format="%Y-%m-%d") }}</time>{% endif %}
+                </li>
+            {%- endfor %}
+            </ul>
+        </aside>
+    {%- endif %}
+{% endmacro related %}
 
 {% macro cards_posts(pages) %}
     <div class="cards">

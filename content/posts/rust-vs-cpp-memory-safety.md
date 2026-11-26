@@ -2,6 +2,8 @@
 title = "Rust vs C++ Memory Safety: What Actually Gets Prevented"
 date = 2026-08-25
 description = "Which memory bugs Rust catches at compile time that C++ does not, backed by real vulnerability data from Android and Microsoft."
+[taxonomies]
+tags = ["Memory Safety", "Security"]
 [extra]
 author = "Bob Peters"
 toc_not_generate = true

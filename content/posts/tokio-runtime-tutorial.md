@@ -2,6 +2,8 @@
 title = "The Tokio Runtime Tutorial: How Rust's Async Executor Actually Schedules Your Code"
 date = 2026-07-24
 description = "How the Tokio runtime really works: what #[tokio::main] expands into, current_thread vs multi_thread schedulers, work-stealing, and the blocking trap that stalls async Rust in production."
+[taxonomies]
+tags = ["Async", "Learning Rust", "Performance"]
 [extra]
 author = "Bob Peters"
 toc_not_generate = true

@@ -3,6 +3,8 @@ title = "Building a DNS Server in Rust: Part 1 of 2"
 date = "2025-02-28"
 slug = "Building a DNS Server in Rust"
 description = "Learn how to build a DNS server in Rust from scratch. Explore the DNS protocol, create a simple server, and handle DNS queries with ease."
+[taxonomies]
+tags = ["Learning Rust", "Networking"]
 +++
 
 ## Introduction: Why Build a DNS Server?

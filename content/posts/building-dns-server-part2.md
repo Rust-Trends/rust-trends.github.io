@@ -3,6 +3,8 @@ title = "Building a DNS Server in Rust: Part 2 of 2"
 date = "2025-03-04"
 slug = "Building a DNS Server in Rust Part 2"
 description = "Continue building a DNS server in Rust by adding packet decompression and query forwarding to external resolvers."
+[taxonomies]
+tags = ["Learning Rust", "Networking"]
 +++
 
 ## Building a DNS Server in Rust: Part 2

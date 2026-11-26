@@ -2,6 +2,8 @@
 title = "Vibe Coding Scales to a Demo"
 date = 2026-04-29
 description = "LLMs shifted coding from a manual craft to directing output. That doesn't mean fundamentals matter less. It means they matter differently."
+[taxonomies]
+tags = ["AI-Assisted Coding", "Learning Rust"]
 [extra]
 author = "Bob Peters"
 toc_not_generate = true

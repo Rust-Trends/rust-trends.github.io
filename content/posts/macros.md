@@ -3,6 +3,8 @@ title = "Rust Macros Revealed!"
 date = "2023-08-06"
 slug = "Rust Macros Revealed"
 description = "Delve into Rust macros' transformative potential. See how tools like 'cargo expand' unveil macro magic, illustrated with Actix Web & Tokio runtime. Simplify boilerplate and master Rust meta-programming."
+[taxonomies]
+tags = ["Tooling", "Language Features", "Learning Rust"]
 +++
 <img src="../../newsletter/23/transformers.webp" alt="Rust Macros Revealed!" style="display: block; margin-left: auto; margin-right: auto; width: 60%; border:0">
 

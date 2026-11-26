@@ -1,0 +1,467 @@
+{
+  "newsletter/1.md": [
+    "newsletter/54.md",
+    "newsletter/46.md",
+    "newsletter/83.md"
+  ],
+  "newsletter/10.md": [
+    "newsletter/45.md",
+    "newsletter/26.md",
+    "posts/macros.md"
+  ],
+  "newsletter/11.md": [
+    "newsletter/80.md",
+    "posts/match-operator.md",
+    "newsletter/16.md"
+  ],
+  "newsletter/12.md": [
+    "posts/rust-vs-cpp-memory-safety.md",
+    "newsletter/4.md",
+    "posts/rust-performance-guide-2026.md"
+  ],
+  "newsletter/13.md": [
+    "newsletter/14.md",
+    "newsletter/30.md",
+    "newsletter/57.md"
+  ],
+  "newsletter/14.md": [
+    "newsletter/13.md",
+    "newsletter/32.md",
+    "newsletter/3.md"
+  ],
+  "newsletter/15.md": [
+    "newsletter/22.md",
+    "posts/ferrocene.md",
+    "newsletter/33.md"
+  ],
+  "newsletter/16.md": [
+    "newsletter/33.md",
+    "posts/clippy.md",
+    "newsletter/35.md"
+  ],
+  "newsletter/17.md": [
+    "posts/cargo-edit.md",
+    "newsletter/37.md",
+    "newsletter/28.md"
+  ],
+  "newsletter/18.md": [
+    "newsletter/59.md",
+    "newsletter/76.md",
+    "newsletter/69.md"
+  ],
+  "newsletter/19.md": [
+    "newsletter/57.md",
+    "newsletter/54.md",
+    "newsletter/39.md"
+  ],
+  "newsletter/2.md": [
+    "newsletter/71.md",
+    "newsletter/84.md",
+    "newsletter/69.md"
+  ],
+  "newsletter/20.md": [
+    "newsletter/84.md",
+    "newsletter/86.md",
+    "posts/rust-performance-guide-2026.md"
+  ],
+  "newsletter/21.md": [
+    "newsletter/42.md",
+    "newsletter/75.md",
+    "newsletter/82.md"
+  ],
+  "newsletter/22.md": [
+    "posts/ferrocene.md",
+    "newsletter/15.md",
+    "newsletter/82.md"
+  ],
+  "newsletter/23.md": [
+    "newsletter/59.md",
+    "posts/macros.md",
+    "newsletter/69.md"
+  ],
+  "newsletter/24.md": [
+    "newsletter/84.md",
+    "newsletter/87.md",
+    "newsletter/70.md"
+  ],
+  "newsletter/25.md": [
+    "posts/database-crates.md",
+    "posts/cargo-edit.md",
+    "newsletter/85.md"
+  ],
+  "newsletter/26.md": [
+    "newsletter/5.md",
+    "newsletter/8.md",
+    "newsletter/42.md"
+  ],
+  "newsletter/27.md": [
+    "newsletter/54.md",
+    "newsletter/4.md",
+    "newsletter/5.md"
+  ],
+  "newsletter/28.md": [
+    "newsletter/37.md",
+    "newsletter/82.md",
+    "newsletter/26.md"
+  ],
+  "newsletter/29.md": [
+    "newsletter/71.md",
+    "newsletter/76.md",
+    "newsletter/70.md"
+  ],
+  "newsletter/3.md": [
+    "newsletter/33.md",
+    "posts/ripgrep-claude-code.md",
+    "newsletter/72.md"
+  ],
+  "newsletter/30.md": [
+    "newsletter/41.md",
+    "newsletter/72.md",
+    "newsletter/13.md"
+  ],
+  "newsletter/31.md": [
+    "newsletter/41.md",
+    "newsletter/80.md",
+    "newsletter/86.md"
+  ],
+  "newsletter/32.md": [
+    "newsletter/72.md",
+    "newsletter/41.md",
+    "newsletter/14.md"
+  ],
+  "newsletter/33.md": [
+    "newsletter/69.md",
+    "newsletter/87.md",
+    "newsletter/3.md"
+  ],
+  "newsletter/34.md": [
+    "newsletter/69.md",
+    "newsletter/39.md",
+    "newsletter/40.md"
+  ],
+  "newsletter/35.md": [
+    "posts/tokio-runtime-tutorial.md",
+    "newsletter/8.md",
+    "newsletter/16.md"
+  ],
+  "newsletter/36.md": [
+    "newsletter/55.md",
+    "newsletter/69.md",
+    "newsletter/59.md"
+  ],
+  "newsletter/37.md": [
+    "newsletter/28.md",
+    "newsletter/74.md",
+    "newsletter/17.md"
+  ],
+  "newsletter/38.md": [
+    "newsletter/40.md",
+    "posts/systemd-rust.md",
+    "newsletter/76.md"
+  ],
+  "newsletter/39.md": [
+    "posts/tokio-runtime-tutorial.md",
+    "newsletter/34.md",
+    "newsletter/44.md"
+  ],
+  "newsletter/4.md": [
+    "newsletter/6.md",
+    "newsletter/12.md",
+    "newsletter/54.md"
+  ],
+  "newsletter/40.md": [
+    "newsletter/38.md",
+    "newsletter/45.md",
+    "newsletter/34.md"
+  ],
+  "newsletter/41.md": [
+    "newsletter/71.md",
+    "newsletter/30.md",
+    "newsletter/86.md"
+  ],
+  "newsletter/42.md": [
+    "newsletter/26.md",
+    "newsletter/23.md",
+    "newsletter/21.md"
+  ],
+  "newsletter/43.md": [
+    "newsletter/87.md",
+    "newsletter/86.md",
+    "newsletter/78.md"
+  ],
+  "newsletter/44.md": [
+    "newsletter/39.md",
+    "newsletter/5.md",
+    "newsletter/76.md"
+  ],
+  "newsletter/45.md": [
+    "newsletter/56.md",
+    "newsletter/72.md",
+    "newsletter/80.md"
+  ],
+  "newsletter/46.md": [
+    "posts/clippy.md",
+    "newsletter/33.md",
+    "newsletter/55.md"
+  ],
+  "newsletter/5.md": [
+    "newsletter/26.md",
+    "posts/building-dns-server-part1.md",
+    "newsletter/44.md"
+  ],
+  "newsletter/54.md": [
+    "newsletter/75.md",
+    "newsletter/1.md",
+    "newsletter/27.md"
+  ],
+  "newsletter/55.md": [
+    "newsletter/71.md",
+    "newsletter/76.md",
+    "newsletter/69.md"
+  ],
+  "newsletter/56.md": [
+    "newsletter/67.md",
+    "newsletter/80.md",
+    "newsletter/45.md"
+  ],
+  "newsletter/57.md": [
+    "posts/honeypot.md",
+    "newsletter/30.md",
+    "newsletter/13.md"
+  ],
+  "newsletter/59.md": [
+    "newsletter/23.md",
+    "newsletter/70.md",
+    "newsletter/72.md"
+  ],
+  "newsletter/6.md": [
+    "posts/rust-vs-cpp-memory-safety.md",
+    "newsletter/72.md",
+    "newsletter/8.md"
+  ],
+  "newsletter/60.md": [
+    "newsletter/83.md",
+    "posts/building-dns-server-part2.md",
+    "posts/building-dns-server-part1.md"
+  ],
+  "newsletter/66.md": [
+    "newsletter/87.md",
+    "newsletter/70.md",
+    "newsletter/69.md"
+  ],
+  "newsletter/67.md": [
+    "newsletter/56.md",
+    "newsletter/80.md",
+    "newsletter/70.md"
+  ],
+  "newsletter/68-special.md": [
+    "posts/tokio-runtime-tutorial.md",
+    "posts/building-dns-server-part2.md",
+    "posts/building-dns-server-part1.md"
+  ],
+  "newsletter/69.md": [
+    "newsletter/33.md",
+    "newsletter/87.md",
+    "newsletter/34.md"
+  ],
+  "newsletter/7.md": [
+    "posts/ripgrep-claude-code.md",
+    "newsletter/45.md",
+    "newsletter/81.md"
+  ],
+  "newsletter/70.md": [
+    "newsletter/59.md",
+    "newsletter/86.md",
+    "posts/async-closures.md"
+  ],
+  "newsletter/71.md": [
+    "newsletter/84.md",
+    "newsletter/2.md",
+    "newsletter/41.md"
+  ],
+  "newsletter/72.md": [
+    "newsletter/86.md",
+    "newsletter/79.md",
+    "newsletter/85.md"
+  ],
+  "newsletter/73.md": [
+    "newsletter/76.md",
+    "posts/systemd-rust.md",
+    "newsletter/83.md"
+  ],
+  "newsletter/74.md": [
+    "posts/ripgrep-claude-code.md",
+    "newsletter/85.md",
+    "posts/tokio-runtime-tutorial.md"
+  ],
+  "newsletter/75.md": [
+    "newsletter/76.md",
+    "posts/rust-async-runtimes-compared.md",
+    "newsletter/85.md"
+  ],
+  "newsletter/76.md": [
+    "newsletter/73.md",
+    "newsletter/75.md",
+    "posts/rust-performance-guide-2026.md"
+  ],
+  "newsletter/77.md": [
+    "newsletter/85.md",
+    "posts/vibe-coding-scales-to-a-demo.md",
+    "posts/tokio-runtime-tutorial.md"
+  ],
+  "newsletter/78.md": [
+    "newsletter/86.md",
+    "newsletter/70.md",
+    "newsletter/79.md"
+  ],
+  "newsletter/79.md": [
+    "posts/rust-vs-cpp-memory-safety.md",
+    "newsletter/72.md",
+    "newsletter/85.md"
+  ],
+  "newsletter/8.md": [
+    "newsletter/26.md",
+    "newsletter/35.md",
+    "newsletter/6.md"
+  ],
+  "newsletter/80.md": [
+    "newsletter/56.md",
+    "newsletter/87.md",
+    "newsletter/81.md"
+  ],
+  "newsletter/81.md": [
+    "newsletter/83.md",
+    "newsletter/80.md",
+    "newsletter/82.md"
+  ],
+  "newsletter/82.md": [
+    "newsletter/81.md",
+    "newsletter/22.md",
+    "posts/async-closures.md"
+  ],
+  "newsletter/83.md": [
+    "newsletter/81.md",
+    "newsletter/60.md",
+    "newsletter/76.md"
+  ],
+  "newsletter/84.md": [
+    "newsletter/86.md",
+    "newsletter/71.md",
+    "newsletter/2.md"
+  ],
+  "newsletter/85.md": [
+    "newsletter/79.md",
+    "newsletter/72.md",
+    "newsletter/84.md"
+  ],
+  "newsletter/86.md": [
+    "newsletter/84.md",
+    "newsletter/72.md",
+    "newsletter/70.md"
+  ],
+  "newsletter/87.md": [
+    "newsletter/69.md",
+    "newsletter/43.md",
+    "newsletter/33.md"
+  ],
+  "newsletter/9.md": [
+    "posts/cross-compiling.md",
+    "newsletter/40.md",
+    "newsletter/39.md"
+  ],
+  "posts/async-closures.md": [
+    "newsletter/59.md",
+    "newsletter/70.md",
+    "newsletter/82.md"
+  ],
+  "posts/building-dns-server-part1.md": [
+    "posts/building-dns-server-part2.md",
+    "newsletter/67.md",
+    "newsletter/45.md"
+  ],
+  "posts/building-dns-server-part2.md": [
+    "posts/building-dns-server-part1.md",
+    "newsletter/60.md",
+    "newsletter/28.md"
+  ],
+  "posts/cargo-edit.md": [
+    "newsletter/24.md",
+    "newsletter/17.md",
+    "newsletter/25.md"
+  ],
+  "posts/clippy.md": [
+    "newsletter/16.md",
+    "newsletter/46.md",
+    "newsletter/33.md"
+  ],
+  "posts/cross-compiling.md": [
+    "newsletter/9.md",
+    "posts/honeypot.md",
+    "newsletter/45.md"
+  ],
+  "posts/database-crates.md": [
+    "newsletter/25.md",
+    "posts/rust-async-runtimes-compared.md",
+    "newsletter/79.md"
+  ],
+  "posts/ferrocene.md": [
+    "newsletter/22.md",
+    "newsletter/15.md",
+    "newsletter/73.md"
+  ],
+  "posts/honeypot.md": [
+    "newsletter/57.md",
+    "posts/cross-compiling.md",
+    "newsletter/86.md"
+  ],
+  "posts/if-let-while-chains.md": [
+    "newsletter/59.md",
+    "newsletter/80.md",
+    "posts/match-operator.md"
+  ],
+  "posts/macros.md": [
+    "newsletter/23.md",
+    "posts/tokio-runtime-tutorial.md",
+    "newsletter/10.md"
+  ],
+  "posts/match-operator.md": [
+    "newsletter/16.md",
+    "newsletter/11.md",
+    "posts/clippy.md"
+  ],
+  "posts/ripgrep-claude-code.md": [
+    "newsletter/74.md",
+    "newsletter/3.md",
+    "newsletter/85.md"
+  ],
+  "posts/rust-async-runtimes-compared.md": [
+    "posts/tokio-runtime-tutorial.md",
+    "newsletter/75.md",
+    "newsletter/71.md"
+  ],
+  "posts/rust-performance-guide-2026.md": [
+    "newsletter/76.md",
+    "posts/rust-vs-cpp-memory-safety.md",
+    "newsletter/20.md"
+  ],
+  "posts/rust-vs-cpp-memory-safety.md": [
+    "newsletter/79.md",
+    "posts/rust-performance-guide-2026.md",
+    "newsletter/12.md"
+  ],
+  "posts/systemd-rust.md": [
+    "newsletter/86.md",
+    "newsletter/76.md",
+    "newsletter/73.md"
+  ],
+  "posts/tokio-runtime-tutorial.md": [
+    "posts/rust-async-runtimes-compared.md",
+    "newsletter/35.md",
+    "newsletter/74.md"
+  ],
+  "posts/vibe-coding-scales-to-a-demo.md": [
+    "newsletter/77.md",
+    "newsletter/85.md",
+    "newsletter/84.md"
+  ]
+}

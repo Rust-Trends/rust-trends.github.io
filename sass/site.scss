@@ -433,3 +433,69 @@ main.centered-header {
 main.centered-header h1.page-header {
   margin-bottom: 8px;
 }
+
+// ---------------------------------------------------------------------------
+// Topic pages (/tags/) and the "From the archive" block under each page
+// ---------------------------------------------------------------------------
+.topic-blurb {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.topic-count {
+  color: var(--text-2);
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+
+.topic-list {
+  list-style: none;
+  padding: 0;
+}
+
+.topic-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.topic-list li a {
+  font-weight: 600;
+}
+
+.topic-list .topic-n {
+  color: var(--text-2);
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.topic-list li p {
+  margin: 4px 0 0;
+  font-size: 15px;
+}
+
+aside.related {
+  margin: 40px 0 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+aside.related h2 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+aside.related ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+aside.related li {
+  padding: 6px 0;
+}
+
+aside.related time {
+  color: var(--text-2);
+  font-size: 14px;
+  margin-left: 6px;
+}

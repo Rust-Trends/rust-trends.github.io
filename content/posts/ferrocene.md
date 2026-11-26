@@ -3,6 +3,8 @@ title = "Ferrocene Language Specification Donated to the Rust Project"
 date = "2025-03-29"
 slug = "ferrocene language specification donated to the rust project"
 description = "Ferrous Systems has donated the Ferrocene Language Specification to the Rust Project—a major step toward standardizing Rust and enabling its use in safety-critical systems."
+[taxonomies]
+tags = ["Safety-Critical", "Community"]
 +++
 
 Ferrous Systems recently donated the <a href="https://spec.ferrocene.dev/" target="_blank">Ferrocene Language Specification</a> (**FLS**) to the Rust Project, marking a significant milestone toward formalizing the Rust programming language. This article explains the impact and importance of this contribution.

@@ -3,6 +3,8 @@ title = "Unpacking Rust's match Operator with Community Insights"
 date = "2024-04-26"
 slug = "Unpacking Rust's match Operator with Community Insights"
 description = "Explores the usage of the match operator in Rust, discusses community feedback on a shared code snippet, and presents several code improvements."
+[taxonomies]
+tags = ["Language Features", "Learning Rust"]
 +++
 
 ## Introduction
