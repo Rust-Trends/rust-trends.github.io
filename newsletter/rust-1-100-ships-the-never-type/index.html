@@ -1,0 +1,155 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><title>87 - Rust 1.100 Ships the Never Type | Rust Trends</title><meta content="87 - Rust 1.100 Ships the Never Type" property=og:title><meta content="After ten years and five failed attempts, ! is a real type. Plus all 13 Rust GSoC projects passed, and a sharp critique of GPUI's state model." property=og:description><meta content="After ten years and five failed attempts, ! is a real type. Plus all 13 Rust GSoC projects passed, and a sharp critique of GPUI's state model." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link crossorigin href=https://cdn.jsdelivr.net rel=preconnect><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css media=print rel=stylesheet><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css media=print rel=stylesheet><noscript><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet> <link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet></noscript><link title="Rust Trends Newsletter" href=https://rust-trends.com/newsletter/rss.xml rel=alternate type=application/rss+xml><link title="Rust Trends (newsletter and posts)" href=https://rust-trends.com/rss.xml rel=alternate type=application/rss+xml><link href=https://rust-trends.com/newsletter/rust-1-100-ships-the-never-type/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="87 - Rust 1.100 Ships the Never Type" name=twitter:title><meta content="After ten years and five failed attempts, ! is a real type. Plus all 13 Rust GSoC projects passed, and a sharp critique of GPUI's state model." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-1-100-ships-the-never-type/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-11-14 property=article:published_time><meta content=Newsletter property=article:section><meta content=Tooling property=article:tag><meta content="Language Features" property=article:tag><meta content="Memory Safety" property=article:tag><meta content="GUI and Desktop" property=article:tag><meta content=Community property=article:tag><link href="https://rust-trends.com/main.css?h=add795440538aa3c31b4" media=screen rel=stylesheet><link href="https://rust-trends.com/site.css?h=d321f59b9d3bd61f2feb" rel=stylesheet><link href="https://rust-trends.com/footer.css?h=a567562f91a6cf478eb1" rel=stylesheet><link href="https://rust-trends.com/signup.css?h=7195138b847823330dca" rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;","&#x2F;newsletter&#x2F;rss.xml"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "87 - Rust 1.100 Ships the Never Type",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-14",
+  "description": "After ten years and five failed attempts, ! is a real type. Plus all 13 Rust GSoC projects passed, and a sharp critique of GPUI&#x27;s state model.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-1-100-ships-the-never-type&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-1-100-ships-the-never-type&#x2F;"
+  },
+  "keywords": ["Tooling","Language Features","Memory Safety","GUI and Desktop","Community"],
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "87 - Rust 1.100 Ships the Never Type",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-1-100-ships-the-never-type&#x2F;"
+    }
+    
+  ]
+}
+</script><body><div class=content><header class=site-header><div class=main><a class=brand href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a><a class=social href=/newsletter/rss.xml rel=me> <img alt="RSS feed" src=/social_icons/rss.svg> </a></div></div><nav aria-label=Main class=site-nav><a class=on href=/newsletter/><span class=slash>/</span>newsletter</a><a href=/posts/><span class=slash>/</span>posts</a><a href=/faq/><span class=slash>/</span>faq</a><a href=/about/><span class=slash>/</span>about</a><a href=/sponsor/><span class=slash>/</span>sponsor</a><a href=/contact/><span class=slash>/</span>contact</a><a class=cta href=/signup/><span class=slash>/</span>sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "87 - Rust 1.100 Ships the Never Type",
+  "description": "After ten years and five failed attempts, ! is a real type. Plus all 13 Rust GSoC projects passed, and a sharp critique of GPUI&#x27;s state model.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-1-100-ships-the-never-type&#x2F;",
+  "datePublished": "2026-11-14",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "87 - Rust 1.100 Ships the Never Type",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-1-100-ships-the-never-type&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>87 - Rust 1.100 Ships the Never Type</ol></nav><main><article><div class=title><h1 class=page-header>87 - Rust 1.100 Ships the Never Type<span class="primary-color dot">.</span></h1><div class=meta><span class=edition>Edition 87</span> · <time>2026-11-14</time></div></div><section class=body><p>Patience is paying off in Rust. The never type is stable after ten years and five failed attempts. All 13 Rust projects in Google Summer of Code passed their final evaluation. And while the language grows up, people keep testing its foundations, from Microsoft's audit of the standard library to a pointed critique of GPUI.<table style="border-collapse:separate;margin:22px 0 4px" border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="background:#fff5f0;border:1px solid #f4c9b6;border-radius:10px;padding:20px 22px"><div style="letter-spacing:.12em;text-transform:uppercase;color:#b2531f;margin:0 0 14px;font-family:Georgia,serif;font-size:11px;font-weight:700">Featured sponsor</div> <table border=0 cellpadding=0 cellspacing=0 role=presentation width=100%><tr><td style="padding:2px 16px 0 0" valign=top width=48><img alt=Svix height=48 src=https://github.com/svix.png style=border:0;border-radius:11px;display:block width=48><td style=color:#333;font-family:Georgia,serif;font-size:16px;line-height:1.6 valign=top><strong>Send webhooks without building the infrastructure.</strong> Svix is the enterprise-ready webhooks service, and its core is built in Rust. Retries, signature verification, fan-out, rate limiting, and observability arrive as an API you can drop in within minutes, so your team ships product instead of maintaining webhook plumbing. <a href=https://link.svix.com/rust-tre-01 style=color:#f74c00;font-weight:700 target=_blank>Start sending at svix.com →</a></table></table><h2 id=13-rust-projects-13-successes-google-summer-of-code-2026>13 Rust Projects, 13 Successes: Google Summer of Code 2026</h2><p>The Rust Project has wrapped up its third year in Google Summer of Code (GSoC), and <a href=https://blog.rust-lang.org/2026/11/11/gsoc-2026-results target=_blank>all 13 projects passed their final evaluations</a>.<p>What is Google Summer of Code? It is a Google-funded program where new open-source contributors work on real projects under the guidance of experienced mentors. Contributors submit proposals, spend several months writing code with the maintainers, and receive a stipend for their work.<p>So, what did they actually build?<ul><li>Kei Akiyama taught the Wild linker WebAssembly. It links SQLite, CPython and even SpiderMonkey, 2 to 15x faster than wasm-ld<li>Vishruth Thimmaiah got Wild linking Linux kernel modules such as btrfs, 2 to 4x faster than GNU ld or LLD<li>Mohamed Ali brought back priroda, a debugger for Miri: set breakpoints in gdb and step through the program that triggered UB<li>Marcelo Domínguez made GPU kernel launches through <code>std::offload</code> type-checked and safe<li>Ryosuke Yamano implemented impl and mut restrictions from RFC 3323, now on nightly with stabilization planned for 2027</ul><p>Over three years, 40 of 41 Rust GSoC projects have passed. This year had fewer projects than 2025, mostly because of limited mentoring capacity.<p><strong>Takeaways:</strong><ul><li>Mentors are the bottleneck, so experienced contributors who can guide a newcomer for a summer make the program bigger<li>Interested in taking part? The post links the project idea list and the guide for new contributors</ul><hr><h2 id=rust-1-100-stabilizes-the-never-type>Rust 1.100 Stabilizes the Never Type</h2><p><a href=https://blog.rust-lang.org/2026/11/12/Rust-1.100.0 target=_blank>Rust 1.100</a> is a nice round number, and it came with the never type, written <code>!</code>. It represents code that never returns a value, such as an infinite loop, a panic or a program exit. Rust can now use <code>!</code> anywhere a type is expected, so you can write things like <code>Result&lt;T, !></code>, a result that can never fail. It took 10 years and 5 failed attempts to stabilize this tiny but powerful feature.<p><code>Infallible</code> is now an alias for <code>!</code>. Getting there meant changing the never type fallback in editions before 2024, which can break code in rare cases. Cargo also gains dependency cooldowns: set a minimum publish age and it holds back versions that were published too recently.<hr><h2 id=thinking-in-traits>Thinking in Traits</h2><p>A great explainer by Matthias Endler. <a href=https://corrode.dev/blog/thinking-in-traits target=_blank>Thinking in Traits</a> starts with a question most of us never ask: how does <code>collect()</code> know to build a <code>Vec</code>? The answer is <code>FromIterator</code>, and from there he works out why Rust favors composition over inheritance.<p>His counterexample is Java's <code>SSLSocket</code>. It inherited a half-close operation that some Android versions could not perform, which crashed OkHttp. In Rust you ask what a type can do, and a type implements only the traits it supports. He is honest about the bill too, since generic code costs compile time and binary size. The finale is collecting into <code>Result&lt;Vec&lt;_>, _></code>, which stops at the first error with the same iterator expression.<hr><h2 id=a-critique-of-gpui>A Critique of GPUI</h2><p>Desktop apps are moving to native Rust GUI frameworks, and the author of <a href=https://blog.zortax.de/posts/a-critique-of-gpui target=_blank>A Critique of GPUI</a> points out that Discord has announced a rewrite on Zed's GPUI. His argument is that the state models of GPUI and egui stop scaling in complex apps.<p>GPUI cannot see which field changed, so after a <code>notify</code> it re-renders every view without a cache. In his benchmark, one label change among 3,000 rows takes 8.4 ms with a cached view per row and 92 ms without. Making that precise takes an entity, a subscription and a guard per label, which he calls a signal graph built by hand. Read it with his disclosure in mind: he works on zgui, a signal-based framework that appears in his charts.<hr><h2 id=opening-a-50-gb-text-file-without-reading-it>Opening a 50 GB Text File Without Reading It</h2><p>Most editors read the whole file before they show you anything. <a href=https://dev.to/erkinpardayev/opening-a-50-gb-text-file-without-reading-it-13dk target=_blank>Erkin Pardayev</a> built <a href=https://github.com/Erkinbek/bigtext target=_blank>BigText</a>, an open-source Rust editor where every operation costs what is on screen and nothing more.<p>It memory-maps the file in windows and reads only the first megabyte to detect the encoding. The view is anchored to a byte offset instead of a line number. A sparse index keeps one line count per 64 KB block, 8 MB for a 50 GB log, and builds in the background while you scroll. The result: the first screen of a 50 GB file appears in about 31 to 35 ms, as fast as a 1 GB file.<hr><h2 id=snippets>Snippets</h2><ul><li><p><strong><a href=https://ketchup3d.github.io/app target=_blank>KetchUp, now BenchUp: an open-source SketchUp alternative</a></strong> A free 3D modeling app for woodworking and furniture design, written in Rust. It runs in a desktop browser or as an app on Windows, macOS and Linux, and it imports SketchUp geometry.</p><li><p><strong><a href=https://firenook.dev/ target=_blank>Firenook: Firebase emulators in Rust</a></strong> A drop-in replacement for the Firebase Local Emulator Suite that keeps your config and ports and needs no Java. On the project's own benchmark, writes are about 40x faster with a tenth of the memory.</p><li><p><strong><a href=https://nnethercote.github.io/2026/11/04/how-to-speed-up-the-rust-compiler-in-november-2026.html target=_blank>How to speed up the Rust compiler in November 2026</a></strong> Nicholas Nethercote's first month on compiler performance at Hexcat. A simpler span compression scheme cut the spans interned in incremental builds from 20 to 40% down to about 1%.</p><li><p><strong><a href=https://forge-blog.github.io/posts/rust-std-memory-safety target=_blank>Memory Safety Bugs in Rust Standard Library</a></strong> Microsoft's FORGE Lab found soundness bugs in std and core where safe Rust could trigger undefined behavior. The post sorts them into three patterns of misplaced trust in unsafe code.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section><aside class=related><h2>From the archive</h2><ul><li><a href=https://rust-trends.com/newsletter/rust-enterprise-breakthrough-2025/>69 - Rust's Enterprise Breakthrough Year</a> <time>2025-08-31</time><li><a href=https://rust-trends.com/newsletter/enhance-your-rust-workflow-with-miri-and-others/>43 - Enhance your Rust Workflow with Miri and others</a> <time>2024-06-15</time><li><a href=https://rust-trends.com/newsletter/unveiling-cargo-tool-secrets-how-top-companies-are-innovating-with-rust/>33 - Unveiling Cargo Tool Secrets & How Top Companies Are Innovating with Rust</a> <time>2024-01-17</time></ul></aside><div class=post-tags><nav class="nav tags"><ul class=tags><li><a href=https://rust-trends.com/tags/tooling/>Tooling</a><li><a href=https://rust-trends.com/tags/language-features/>Language Features</a><li><a href=https://rust-trends.com/tags/memory-safety/>Memory Safety</a><li><a href=https://rust-trends.com/tags/gui-and-desktop/>GUI and Desktop</a><li><a href=https://rust-trends.com/tags/community/>Community</a></ul></nav></div></article></main></div><div class=footer><footer class=site-footer><div class=site-footer__inner><div class=site-footer__grid><div class=site-footer__signup><p class=site-footer__pitch>The Rust news that matters, <em>every two weeks</em>.<p class=site-footer__blurb>One email with the releases, crates and talks worth your time. No spam, unsubscribe in one click.</p><a class=site-footer__button href=/signup/>Subscribe</a><a class=site-footer__rss href=/newsletter/rss.xml>or use RSS</a></div><nav aria-label=Footer class=site-footer__nav><div class=site-footer__group><p class=site-footer__label>Newsletter<ul class=site-footer__links><li><a href=/newsletter/>All editions</a><li><a href=/signup/>Sign up</a><li><a href=/newsletter/rss.xml>RSS feed</a></ul></div><div class=site-footer__group><p class=site-footer__label>Explore<ul class=site-footer__links><li><a href=/posts/>Posts</a><li><a href=/linux-rust/>Rust in the Linux kernel</a><li><a href=/faq/>FAQ</a></ul></div><div class=site-footer__group><p class=site-footer__label>Rust Trends<ul class=site-footer__links><li><a href=/about/>About</a><li><a href=/sponsor/>Sponsor</a><li><a href=/contact/>Contact</a></ul></div></nav></div><div class=site-footer__legal><span>© 2022–2026 Rust Trends. Powered by Rust and <a href=https://www.getzola.org/ rel=noopener>Zola</a>.</span><span class=site-footer__social> <a href=https://www.linkedin.com/company/rust-trends rel=noopener>LinkedIn</a><a href=https://github.com/rust-trends/ rel=noopener>GitHub</a><a href=/newsletter/rss.xml>RSS</a> </span></div></div></footer></div>

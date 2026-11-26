@@ -1,0 +1,155 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=#ff6b35 name=theme-color><meta content=#ff6b35 name=msapplication-TileColor><meta content=yes name=apple-mobile-web-app-capable><meta content=black-translucent name=apple-mobile-web-app-status-bar-style><meta content=en name=language><meta content="Bob Peters" name=author><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><link href=//fonts.googleapis.com rel=dns-prefetch><title>79 - Rust Climbs the Stack | Rust Trends</title><meta content="79 - Rust Climbs the Stack" property=og:title><meta content="Tokio ships Topcoat for full-stack web without WASM, COSMIC turns seven months, Andrew Kelley pitches runtime memory safety, and unbounded channels bite back." property=og:description><meta content="Tokio ships Topcoat for full-stack web without WASM, COSMIC turns seven months, Andrew Kelley pitches runtime memory safety, and unbounded channels bite back." name=description><link href=https://rust-trends.com/icon/favicon.ico rel=icon type=image/x-icon><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=180x180><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=152x152><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=144x144><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=120x120><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=114x114><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=76x76><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=72x72><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=60x60><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon sizes=57x57><link href=https://rust-trends.com/icon/favicon.ico rel=apple-touch-icon><link crossorigin href=https://cdn.jsdelivr.net rel=preconnect><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css media=print rel=stylesheet><link onload="this.media='all'" href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css media=print rel=stylesheet><noscript><link href=https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css rel=stylesheet> <link href=https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css rel=stylesheet></noscript><link title="Rust Trends Newsletter" href=https://rust-trends.com/newsletter/rss.xml rel=alternate type=application/rss+xml><link title="Rust Trends (newsletter and posts)" href=https://rust-trends.com/rss.xml rel=alternate type=application/rss+xml><link href=https://rust-trends.com/newsletter/rust-climbs-the-stack/ rel=canonical><meta content=summary_large_image name=twitter:card><meta content=@rust_trends name=twitter:site><meta content=@bob_peters name=twitter:creator><meta content="79 - Rust Climbs the Stack" name=twitter:title><meta content="Tokio ships Topcoat for full-stack web without WASM, COSMIC turns seven months, Andrew Kelley pitches runtime memory safety, and unbounded channels bite back." name=twitter:description><meta content=https://rust-trends.com/icon/favicon.ico property=og:image><meta content=https://rust-trends.com/icon/favicon.ico name=twitter:image><meta content=article property=og:type><meta content=https://rust-trends.com/newsletter/rust-climbs-the-stack/ property=og:url><meta content="Rust Trends" property=og:site_name><meta content=2026-07-25 property=article:published_time><meta content=Newsletter property=article:section><meta content=Async property=article:tag><meta content="Web Development" property=article:tag><meta content="Memory Safety" property=article:tag><meta content="GUI and Desktop" property=article:tag><link href="https://rust-trends.com/main.css?h=add795440538aa3c31b4" media=screen rel=stylesheet><link href="https://rust-trends.com/site.css?h=d321f59b9d3bd61f2feb" rel=stylesheet><link href="https://rust-trends.com/footer.css?h=a567562f91a6cf478eb1" rel=stylesheet><link href="https://rust-trends.com/signup.css?h=7195138b847823330dca" rel=stylesheet><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "logo": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "foundingDate": "2022",
+  "founder": {
+    "@type": "Person",
+    "name": "Bob Peters"
+  },
+  "sameAs": [
+    "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends","https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;","&#x2F;newsletter&#x2F;rss.xml"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/contact"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rust Trends",
+  "url": "https:&#x2F;&#x2F;rust-trends.com",
+  "description": "The premier newsletter and resource for Rust programming trends, tutorials, and ecosystem updates.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https:&#x2F;&#x2F;rust-trends.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "79 - Rust Climbs the Stack",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about",
+    "sameAs": [
+      "https:&#x2F;&#x2F;www.linkedin.com&#x2F;company&#x2F;rust-trends",
+      "https:&#x2F;&#x2F;github.com&#x2F;rust-trends&#x2F;"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:&#x2F;&#x2F;rust-trends.com/icon/favicon.ico"
+    }
+  },
+  "datePublished": "2026-07-25",
+  "dateModified": "2026-07-25",
+  "description": "Tokio ships Topcoat for full-stack web without WASM, COSMIC turns seven months, Andrew Kelley pitches runtime memory safety, and unbounded channels bite back.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-climbs-the-stack&#x2F;",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-climbs-the-stack&#x2F;"
+  },
+  "keywords": ["Async","Web Development","Memory Safety","GUI and Desktop"],
+  "articleSection": "Newsletter",
+  "inLanguage": "en-US"
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "79 - Rust Climbs the Stack",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-climbs-the-stack&#x2F;"
+    }
+    
+  ]
+}
+</script><body><div class=content><header class=site-header><div class=main><a class=brand href=https://rust-trends.com>Rust Trends</a><div class=socials><a class=social href=https://www.linkedin.com/company/rust-trends rel=me> <img alt=linkedin src=/social_icons/linkedin.svg> </a><a class=social href=https://github.com/rust-trends/ rel=me> <img alt=github src=/social_icons/github.svg> </a><a class=social href=/newsletter/rss.xml rel=me> <img alt="RSS feed" src=/social_icons/rss.svg> </a></div></div><nav aria-label=Main class=site-nav><a class=on href=/newsletter/><span class=slash>/</span>newsletter</a><a href=/posts/><span class=slash>/</span>posts</a><a href=/faq/><span class=slash>/</span>faq</a><a href=/about/><span class=slash>/</span>about</a><a href=/sponsor/><span class=slash>/</span>sponsor</a><a href=/contact/><span class=slash>/</span>contact</a><a class=cta href=/signup/><span class=slash>/</span>sign up</a></nav></header><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "Newsletter",
+  "name": "79 - Rust Climbs the Stack",
+  "description": "Tokio ships Topcoat for full-stack web without WASM, COSMIC turns seven months, Andrew Kelley pitches runtime memory safety, and unbounded channels bite back.",
+  "url": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-climbs-the-stack&#x2F;",
+  "datePublished": "2026-07-25",
+  "author": {
+    "@type": "Person",
+    "name": "Bob Peters",
+    "url": "https:&#x2F;&#x2F;rust-trends.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rust Trends",
+    "url": "https:&#x2F;&#x2F;rust-trends.com"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "PeriodicalSeries",
+    "name": "Rust Trends Newsletter",
+    "description": "Weekly newsletter covering Rust programming trends, tutorials, and ecosystem updates"
+  }
+}
+</script><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https:&#x2F;&#x2F;rust-trends.com"
+    },
+    
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Newsletter",
+      "item": "https:&#x2F;&#x2F;rust-trends.com/newsletter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "79 - Rust Climbs the Stack",
+      "item": "https:&#x2F;&#x2F;rust-trends.com&#x2F;newsletter&#x2F;rust-climbs-the-stack&#x2F;"
+    }
+    
+  ]
+}
+</script><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=https://rust-trends.com>Home</a><li class=breadcrumb-item><a href=https://rust-trends.com/newsletter>Newsletter</a><li class="breadcrumb-item current" aria-current=page>79 - Rust Climbs the Stack</ol></nav><main><article><div class=title><h1 class=page-header>79 - Rust Climbs the Stack<span class="primary-color dot">.</span></h1><div class=meta><span class=edition>Edition 79</span> · <time>2026-07-25</time></div></div><section class=body><p>Rust keeps moving up the stack. This fortnight the Tokio team shipped a full-stack web framework, System76's Rust desktop environment passed seven months of shipping real software, and an outside language author put runtime memory safety forward as a rival to the borrow checker. The systems language is now building the whole product, from the allocator to the app.<h2 id=tokio-s-topcoat-brings-full-stack-web-to-rust-no-wasm-required>Tokio's Topcoat Brings Full-Stack Web to Rust, No WASM Required</h2><p>The team behind Tokio just moved up the stack. Carl Lerche and Julien Scholz have released <a href=https://tokio.rs/blog/2026-07-22-announcing-topcoat target=_blank>Topcoat</a>, a batteries-included framework for building full-stack, server-rendered reactive web apps in Rust, and its headline decision is what it leaves out: no WebAssembly in the browser.<p>Instead, client-side reactivity is produced by compiling Rust to JavaScript through macros, while all markup renders on the server. That server-first model is the whole point. As the announcement puts it, "all markup is rendered on the server, and so components can be <code>async</code>, access the database, or verify user permissions safely." Authentication and data fetching live at the component level rather than in middleware, with request-level memoization to kill redundant database calls.<p>The rest is deliberately pragmatic: a content-hash-based asset pipeline, a Tailwind component library modeled on shadcn/ui, and native integrations for Fontsource, Iconify, HTMX, and Alpine.js. It ships as a production-ready first release with a getting-started guide.<p><strong>Takeaways:</strong><ul><li>Topcoat targets organizations already running Rust on the backend who want to build apps without adding a second language or a WASM toolchain<li>Server-rendered components that can be async and touch the database directly are the core bet, not client-side hydration<li>Coming from the Tokio maintainers, this is a serious signal that Rust wants a place in full-stack web, not just its infrastructure</ul><hr><h2 id=andrew-kelley-pitches-runtime-memory-safety-and-aims-it-at-rust>Andrew Kelley Pitches Runtime Memory Safety, and Aims It at Rust</h2><p>The most-discussed thread of the fortnight, 408 upvotes and 193 comments, is not about Rust at all. Zig creator Andrew Kelley opened <a href=https://codeberg.org/ziglang/zig/issues/36237 target=_blank>a proposal</a> for a new "fil" ABI, inspired by Fil-C, that would make Zig fully memory safe at runtime. He updated the issue title to read "actually memory safe (unlike borrow checking)," and that framing is the story.<p>Kelley's argument is that Rust offers compile-time memory safety only if you avoid <code>unsafe</code>, whereas a runtime-enforced model has no escape hatch at all. The mechanism is "invisicaps," pointer provenance checks combined with syscall interception, with an expected 1x to 6x performance penalty. It could compile entire C and C++ dependency trees as memory safe, targeting x86_64 Linux first.<p>The reaction was mixed and pointed. Critics argued hidden allocations clash with Zig's explicit-everything philosophy and its arena patterns. Fil-C's creator Fil Pizlo joined constructively, and the thread eventually got heated enough that Kelley locked it to serious contributors.<p><strong>Takeaways:</strong><ul><li>The debate reframes "memory safe" as compile-time (Rust without unsafe) versus run-time (no escape hatch), a distinction worth being precise about<li>A credible language author positioning runtime safety as superior for security-critical code is a direct challenge to Rust's core pitch<li>Rust's answer, that unsafe is auditable and localized rather than a loophole, is exactly the argument this thread forces into the open</ul><hr><h2 id=unbounded-channels-are-mostly-a-mistake>Unbounded Channels Are Mostly a Mistake</h2><p>Ali Fereidani makes a case Rust developers reach for daily and rarely question: <a href=https://fereidani.com/unbounded-channels-are-mostly-a-mistake target=_blank>unbounded channels are a dishonest API</a>. They advertise infinite capacity, but they are really bounded by RAM, and the failure mode is the kernel killing your whole process at the worst possible moment.<p>The math is Little's Law. If 110,000 messages arrive per second and 100,000 leave, the queue grows by 10,000 per second, roughly 2.3 GB per hour at 64 bytes each. Worse, a deep queue hides the overload while quietly wrecking latency: five million queued messages served at 100,000 per second means every message is 50 seconds stale. Retries then pile on, a bufferbloat feedback loop that makes everything slower.<p>The fix is to make the decision explicit. Start at <code>bounded(0)</code> or <code>bounded(1)</code>, then size capacity on purpose: for latency, capacity equals send rate times acceptable delay, so 50,000 per second times 100ms gives 5,000. Bounded channels force you to choose backpressure, load shedding, or a deadline. Unbounded ones just hide that choice.<p><strong>Takeaways:</strong><ul><li>Unbounded channels defer overload to an out-of-memory kill instead of surfacing it as backpressure<li>Size a bounded channel from a real number: send rate times the delay you can tolerate<li>Legitimate exceptions exist, waker edges, interior pipeline stages behind an entry bound, and finite batch jobs, but each should come with a stated reason</ul><hr><h2 id=cosmic-at-seven-months-a-whole-desktop-written-in-rust>COSMIC at Seven Months: A Whole Desktop, Written in Rust</h2><p>While Rust climbs into web frameworks, it is also shipping at the other end of the stack. System76's <a href=https://system76.com/blog/post/cosmic-de-first-seven-months target=_blank>seven-month retrospective</a> on the COSMIC desktop environment is a reminder that a full end-user desktop, not just a library, is being written in Rust in public and moving fast.<p>The feature list reads like a maturing product. Appearance gained frosted glass with adjustable opacity and consistent corner styling across GNOME and KDE apps. There is a new COSMIC System Monitor with resource graphs, workspace search and cycling in the launcher, and a steady stream of file-manager upgrades: tab drag-and-drop, network paths, pasting images and video from the clipboard, and text previews. COSMIC Text, their pure-Rust text handling library, even learned ellipsis truncation.<p>The quieter wins matter most. Screen reader activation is now on by default during setup, multi-display works during first configuration, and gaming got multiple fullscreen windows per workspace. Features ship as they land rather than waiting for a big release.<p><strong>Takeaways:</strong><ul><li>A complete desktop environment in Rust has moved from promise to a shipping product with real accessibility and gaming work<li>The pure-Rust COSMIC Text library maturing in the open is a quiet dividend the whole ecosystem can reuse<li>This is the accessible, tangible face of Rust adoption: software people actually run all day, not an RFC</ul><h2 id=snippets>Snippets</h2><ul><li><p><strong><a href=https://this-week-in-rust.org/blog/2026/07/22/this-week-in-rust-661 target=_blank>This Week in Rust 661</a></strong> The weekly firehose for everything this edition skipped. Highlights this issue: Rust 1.97.1, <code>syn</code> 3.0.0, PGO landing for Cargo and rustdoc, and, fittingly, Topcoat.</p><li><p><strong><a href=https://github.com/nwtnni/arctic target=_blank>arctic: a lock-free concurrent ordered map</a></strong> A practical lock-free adaptive radix tree from a paper at OSDI '26, with wait-free reads and lock-free writes, ordered range and prefix scans, and benchmarks against DashMap and concurrent B+-trees. On crates.io as <code>arctic-map</code>.</p><li><p><strong><a href=https://shnatsel.github.io/improving-std-simd-swizzle-dyn/ target=_blank>Improving std::simd::swizzle_dyn</a></strong> Sergey Davidoff reworks the AVX2 path so a base64 encoder prototype jumps from 1.6 to 9.4 GiB/s, roughly 6x, without needing custom target-cpu flags.</p><li><p><strong><a href=https://weblings.forest-anderson.ca/ target=_blank>Rust compilation in the browser with WASM</a></strong> Weblings downloads the Rust toolchain into your browser and compiles Rust to WebAssembly client-side, no local install required. Worth a click just to watch it work.</p><li><p><strong><a href=https://reddit.com/r/rust/comments/1uzxeyb target=_blank>rsloop is now faster than uvloop</a></strong> rsloop, a Rust event loop for Python's asyncio, reports benchmarks beating uvloop, the long-standing speed champion in that space.</p><li><p><strong><a href=https://reddit.com/r/rust/comments/1v0x7pg target=_blank>3D ascii tetris</a></strong> The most-upvoted show-and-tell of the fortnight at nearly a thousand points, Tetris rendered in 3D ASCII in the terminal, in Rust.</p></ul><hr><p>We are thrilled to have you as part of our growing community of Rust enthusiasts! If you found value in this newsletter, don't keep it to yourself — share it with your network and let's grow the Rust community together.<p><strong>👉 Take Action Now:</strong><br><ul><li><p><strong>Share:</strong> Forward this email to share this newsletter with your colleagues and friends.</p><li><p><strong>Engage:</strong> Have thoughts or questions? Reply to this email.</p><li><p><strong>Subscribe:</strong> Not a subscriber yet? Click <a href=/signup/>here</a> to never miss an update from Rust Trends.<br><br></p></ul><p>Cheers,<br> Bob Peters<p><em>Want to sponsor Rust Trends? We reach thousands of Rust developers biweekly. <a href=mailto:contact@rust-trends.com>Get in touch!</a></em></section><aside class=related><h2>From the archive</h2><ul><li><a href=https://rust-trends.com/posts/rust-vs-cpp-memory-safety/>Rust vs C++ Memory Safety: What Actually Gets Prevented</a> <time>2026-08-25</time><li><a href=https://rust-trends.com/newsletter/experimental-to-enterprise-rust-production/>72 - From Experimental to Enterprise: Rust's Production Moment</a> <time>2025-11-16</time><li><a href=https://rust-trends.com/newsletter/if-it-compiles-the-agent-got-it-right/>85 - If It Compiles, the Agent Got It Right</a> <time>2026-10-17</time></ul></aside><div class=post-tags><nav class="nav tags"><ul class=tags><li><a href=https://rust-trends.com/tags/async/>Async</a><li><a href=https://rust-trends.com/tags/web-development/>Web Development</a><li><a href=https://rust-trends.com/tags/memory-safety/>Memory Safety</a><li><a href=https://rust-trends.com/tags/gui-and-desktop/>GUI and Desktop</a></ul></nav></div></article></main></div><div class=footer><footer class=site-footer><div class=site-footer__inner><div class=site-footer__grid><div class=site-footer__signup><p class=site-footer__pitch>The Rust news that matters, <em>every two weeks</em>.<p class=site-footer__blurb>One email with the releases, crates and talks worth your time. No spam, unsubscribe in one click.</p><a class=site-footer__button href=/signup/>Subscribe</a><a class=site-footer__rss href=/newsletter/rss.xml>or use RSS</a></div><nav aria-label=Footer class=site-footer__nav><div class=site-footer__group><p class=site-footer__label>Newsletter<ul class=site-footer__links><li><a href=/newsletter/>All editions</a><li><a href=/signup/>Sign up</a><li><a href=/newsletter/rss.xml>RSS feed</a></ul></div><div class=site-footer__group><p class=site-footer__label>Explore<ul class=site-footer__links><li><a href=/posts/>Posts</a><li><a href=/linux-rust/>Rust in the Linux kernel</a><li><a href=/faq/>FAQ</a></ul></div><div class=site-footer__group><p class=site-footer__label>Rust Trends<ul class=site-footer__links><li><a href=/about/>About</a><li><a href=/sponsor/>Sponsor</a><li><a href=/contact/>Contact</a></ul></div></nav></div><div class=site-footer__legal><span>© 2022–2026 Rust Trends. Powered by Rust and <a href=https://www.getzola.org/ rel=noopener>Zola</a>.</span><span class=site-footer__social> <a href=https://www.linkedin.com/company/rust-trends rel=noopener>LinkedIn</a><a href=https://github.com/rust-trends/ rel=noopener>GitHub</a><a href=/newsletter/rss.xml>RSS</a> </span></div></div></footer></div>
